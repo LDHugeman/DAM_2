@@ -1,12 +1,13 @@
 package autorlibros;
 
-/*import com.mysql.jdbc.Connection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;*/
-import java.io.*;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 
 /**
  *
