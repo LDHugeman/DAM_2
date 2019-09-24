@@ -7,22 +7,12 @@ package Objetos;
  */
 public class Libro {
     
-    private int idLibro;
     private String titulo;
     private float precio;
     
-    public Libro(int idLibro, String titulo, float precio){
-        this.idLibro = idLibro;
+    public Libro(String titulo, float precio){
         this.titulo = titulo;
         this.precio = precio;
-    }
-
-    public int getIdLibro() {
-        return idLibro;
-    }
-
-    public void setIdLibro(int idLibro) {
-        this.idLibro = idLibro;
     }
 
     public String getTitulo() {
