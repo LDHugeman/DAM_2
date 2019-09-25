@@ -6,6 +6,7 @@ import Objetos.Libro;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,6 +27,66 @@ public class Consultar {
             System.err.println(excepcion.getMessage());
         }
         return autorEncontrado;
+    }
+    
+    public static Autor encontrarAutorPorNombre (Statement sentencia, String nombre){
+        Autor autorEncontrado = null;
+        try{               
+            String sql = String.format("SELECT * FROM AUTORES WHERE nombre='%s'", nombre);
+            ResultSet resultado = sentencia.executeQuery(sql);
+            while(resultado.next()){
+                autorEncontrado = construyeAutor(resultado);
+            }
+        }catch(SQLException excepcion){
+            System.out.println("Error al acceder a la tabla autores");
+            System.err.println(excepcion.getMessage());
+        }
+        return autorEncontrado;
+    }
+    
+    public static ArrayList<Libro> encontrarLibrosPorNombreAutor (Statement sentencia, String nombre){
+        ArrayList<Libro> libros = new ArrayList<>();
+        try{               
+            String sql = String.format("SELECT * FROM LIBROS WHERE autor=(SELECT dni FROM AUTORES WHERE nombre='%s')", nombre);
+            ResultSet resultado = sentencia.executeQuery(sql);
+            while(resultado.next()){
+                libros.add(construyeLibro(resultado));
+            }
+        }catch(SQLException excepcion){
+            System.out.println("Error al acceder a la tabla autores");
+            System.err.println(excepcion.getMessage());
+        }
+        return libros;
+    }
+    
+        public static ArrayList<Autor> extraerAutores (Statement sentencia){
+        ArrayList<Autor> autores = new ArrayList<>();
+        try{               
+            String sql = String.format("SELECT * FROM autores");
+            ResultSet resultado = sentencia.executeQuery(sql);
+            while(resultado.next()){
+                autores.add(construyeAutor(resultado));
+            }
+        }catch(SQLException excepcion){
+            System.out.println("Error al acceder a la tabla autores");
+            System.err.println(excepcion.getMessage());
+        }
+        return autores;
+    }
+    
+    public static ArrayList<Libro> extraerLibros (Statement sentencia){
+        ArrayList<Libro> libros = new ArrayList<>();
+        try{               
+            String sql = String.format("SELECT * FROM LIBROS");
+            ResultSet resultado = sentencia.executeQuery(sql);
+            while(resultado.next()){
+                libros.add(construyeLibro(resultado));
+            }
+        }catch(SQLException excepcion){
+            System.out.println("Error al acceder a la tabla autores");
+            System.err.println(excepcion.getMessage());
+        }
+        return libros;
     }
     
     private static Autor construyeAutor(ResultSet resultado) throws SQLException{
@@ -62,5 +123,37 @@ public class Consultar {
         String titulo = resultado.getString("titulo");
         float precio = resultado.getFloat("precio");
         return new Libro(titulo, precio);
+    }
+    
+    public static String encontrarNombreAutorPorTituloLibro(Statement sentencia, String titulo){
+        String nombreEncontrado = null;
+        try{
+            String sql = String.format("SELECT nombre FROM AUTORES WHERE dni=(SELECT autor FROM LIBROS WHERE titulo='%s')", titulo);
+            ResultSet resultado = sentencia.executeQuery(sql);
+            while (resultado.next()){
+                nombreEncontrado = resultado.getString("nombre");
+            }
+            
+        }catch(SQLException excepcion){
+            System.out.println("Error al acceder a los datos");
+            System.out.println(excepcion.getMessage());
+        }
+        return nombreEncontrado;
+    }
+    
+    public static ArrayList<Libro> librosDeAutor(Statement sentencia, String dni){
+        ArrayList<Libro> libros = new ArrayList();
+        try{
+            String sql = String.format("SELECT * FROM libros WHERE autor='%s'", dni);
+            ResultSet resultado = sentencia.executeQuery(sql);
+            while (resultado.next()){
+                 libros.add(construyeLibro(resultado));
+            }
+            
+        }catch(SQLException excepcion){
+            System.out.println("Error al acceder a los datos");
+            System.out.println(excepcion.getMessage());
+        }
+        return libros;
     }
 }

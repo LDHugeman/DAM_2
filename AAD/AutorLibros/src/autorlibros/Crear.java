@@ -46,8 +46,7 @@ public class Crear {
     
     public static Autor nuevoAutor(BufferedReader lee)throws IOException{
         String dni = pedirDni(lee);
-        System.out.printf("Nombre: ");
-        String nombre = lee.readLine();
+        String nombre = pedirNombre(lee);
         System.out.printf("Nacionalidad: ");
         String nacionalidad = lee.readLine();
         return new Autor(dni, nombre, nacionalidad);
@@ -55,8 +54,7 @@ public class Crear {
     
     public static Libro nuevoLibro(BufferedReader lee)throws IOException{
         String titulo = pedirTitulo(lee);
-        System.out.printf("Precio: ");
-        float precio = Float.parseFloat(lee.readLine());
+        float precio = pedirPrecio(lee);
         return new Libro(titulo, precio);
     }
     
@@ -65,8 +63,18 @@ public class Crear {
         return lee.readLine();
     }
     
+    public static String pedirNombre (BufferedReader lee)throws IOException{
+        System.out.printf("Nombre: ");
+        return lee.readLine();
+    }
+    
     public static String pedirTitulo (BufferedReader lee)throws IOException{
         System.out.printf("Título: ");
         return lee.readLine();
+    }
+    
+    public static float pedirPrecio (BufferedReader lee)throws IOException{
+        System.out.printf("Precio: ");
+        return Float.parseFloat(lee.readLine());
     }
 }

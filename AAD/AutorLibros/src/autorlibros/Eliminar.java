@@ -22,9 +22,10 @@ public class Eliminar {
     }
 
     public static void libro(Statement sentencia, String titulo) {
-        String sqlBorrarLibros = String.format("DELETE FROM LIBROS WHERE titulo='%s'", titulo);
+        String sqlBorrarLibro = String.format("DELETE FROM LIBROS WHERE titulo='%s'", titulo);
         try {
-            sentencia.executeUpdate(sqlBorrarLibros);
+            sentencia.executeUpdate(sqlBorrarLibro);
+            System.out.println("El libro " + titulo + "ha sido eliminado");
         } catch (SQLException excepcion) {
             System.out.println("Error al eliminar el libro");
             System.out.println(excepcion.getMessage());

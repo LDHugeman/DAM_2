@@ -24,9 +24,7 @@ public class Insertar {
     
     public static void nuevoLibro(Libro libro, Statement sentencia, String dni){
         try{
-            String sql = 
-                    String.format("INSERT INTO LIBROS (titulo, precio, autor) VALUES ('%s','%s','%s')", 
-                            libro.getTitulo(), libro.getPrecio(), dni);
+            String sql = String.format("INSERT INTO LIBROS (titulo, precio, autor) VALUES ('%s','%s','%s')", libro.getTitulo(), libro.getPrecio(), dni); /*%s o %f*/
             sentencia.executeUpdate(sql);
         }catch(SQLException excepcion){
             System.err.println("Error al insertar el libro");

@@ -45,6 +45,12 @@ public class AutorLibros {
                 case 2:
                     Menu.menuEliminar(sentencia, lee);
                     break;
+                case 3:
+                    Menu.menuModificar(sentencia, lee);
+                    break;
+                case 4:
+                    Menu.menuVisualizar(sentencia, lee);
+                    break;
                 case 0:
                     break;
             }

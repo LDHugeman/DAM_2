@@ -6,8 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 /**
  *
@@ -49,10 +48,70 @@ public class Menu {
         } while (opcion != 0);
     }
 
+    public static void menuModificar(Statement sentencia, BufferedReader lee) throws IOException {
+        byte opcion = 0;
+        do {
+            opcion = seleccionarOpcionMenuModificar(lee);
+            switch (opcion) {
+                case 1:
+                    modificarTituloLibro(sentencia, lee);
+                    break;
+                case 2:
+                    modificarPrecioLibro(sentencia, lee);
+                    break;
+                case 0:
+                    break;
+            }
+        } while (opcion != 0);
+    }
+
+    public static void menuVisualizar(Statement sentencia, BufferedReader lee) throws IOException {
+        byte opcion = 0;
+        do {
+            opcion = seleccionarOpcionMenuVisualizar(lee);
+            switch (opcion) {
+                case 1:
+                    System.out.println("--- Introduzca el título del libro que desea ver ---");
+                    String titulo = Crear.pedirTitulo(lee);
+                    Libro libroEncontrado = Consultar.encontrarLibroPorTitulo(sentencia, titulo);
+                    if (libroEncontrado != null) {
+                        String nombreAutor = Consultar.encontrarNombreAutorPorTituloLibro(sentencia, titulo);
+                        Visualizar.libroYAutor(libroEncontrado, nombreAutor);
+                    } else {
+                        System.err.println("No existe ningún libro con ese título");
+                    }
+                    break;
+                case 2:
+                    System.out.println("--- Introduzca el nombre del autor del que desea ver sus libros ---");
+                    String nombre = Crear.pedirNombre(lee);
+                    Autor autorEncontrado = Consultar.encontrarAutorPorNombre(sentencia, nombre);
+                    if (autorEncontrado != null) {
+                        System.out.println("--- Libros de " + autorEncontrado.getNombre() + " ---");
+                        ArrayList<Libro> librosEncontrados = Consultar.encontrarLibrosPorNombreAutor(sentencia, nombre);
+                        Visualizar.libros(librosEncontrados);
+                    } else {
+                        System.err.println("No hay ningún autor con ese nombre");
+                    }
+                    break;
+                case 3:
+                    ArrayList<Libro> libros = Consultar.extraerLibros(sentencia);
+                    Visualizar.libros(libros);
+                    break;
+                case 4:
+                    mostrarAutoresYLibros(sentencia);
+                    break;
+                case 0:
+                    break;
+            }
+        } while (opcion != 0);
+    }
+
     public static byte seleccionarOpcionMenuPrincipal(BufferedReader lee) throws IOException {
         System.out.println("------- MENU -------");
         System.out.println("[1] Insertar ");
         System.out.println("[2] Eliminar");
+        System.out.println("[3] Modificar");
+        System.out.println("[4] Visualizar");
         System.out.println("[0] Salir");
         System.out.printf("Selecione una opción: ");
         return Byte.parseByte(lee.readLine());
@@ -76,6 +135,26 @@ public class Menu {
         return Byte.parseByte(lee.readLine());
     }
 
+    public static byte seleccionarOpcionMenuModificar(BufferedReader lee) throws IOException {
+        System.out.println("------- MODIFICAR -------");
+        System.out.println("[1] Título de un libro");
+        System.out.println("[2] Precio de un libro");
+        System.out.println("[0] Salir");
+        System.out.printf("Selecione una opción: ");
+        return Byte.parseByte(lee.readLine());
+    }
+
+    public static byte seleccionarOpcionMenuVisualizar(BufferedReader lee) throws IOException {
+        System.out.println("------- VISUALIZAR -------");
+        System.out.println("[1] Libro y su autor");
+        System.out.println("[2] Libros de un autor");
+        System.out.println("[3] Todos los libros");
+        System.out.println("[4] Todos los autores con sus libros");
+        System.out.println("[0] Salir");
+        System.out.printf("Selecione una opción: ");
+        return Byte.parseByte(lee.readLine());
+    }
+
     public static void eliminarLibro(Statement sentencia, BufferedReader lee) throws IOException {
         System.out.println("--- Introduzca el dni del autor del que desea eliminar el libro ---");
         String dni = Crear.pedirDni(lee);
@@ -84,7 +163,7 @@ public class Menu {
             String titulo = Crear.pedirTitulo(lee);
             Libro libroEncontrado = Consultar.encontrarLibroPorTitulo(sentencia, titulo);
             if (libroEncontrado != null) {
-                Visualizar.libro(libroEncontrado);
+                Visualizar.verLibro(libroEncontrado);
                 System.out.println("Es este el libro que desea eliminar?");
                 System.out.println("[1] Sí");
                 System.out.println("[2] No");
@@ -92,7 +171,6 @@ public class Menu {
                 byte opcionLibro = Byte.parseByte(lee.readLine());
                 if (opcionLibro == 1) {
                     Eliminar.libro(sentencia, titulo);
-                    System.out.println("El libro " + titulo + "ha sido eliminado");
                 }
             } else {
                 System.err.println("No existe ningún libro con ese título");
@@ -157,7 +235,7 @@ public class Menu {
                 } while (opcionLibro == 1);
             }
         } else {
-            System.out.println("No hay ningún autor con ese dni");
+            System.err.println("No hay ningún autor con ese dni");
         }
     }
 
@@ -178,6 +256,50 @@ public class Menu {
             }
         } else {
             System.err.println("No existe un autor con ese dni");
+        }
+    }
+
+    public static void modificarTituloLibro(Statement sentencia, BufferedReader lee) throws IOException {
+        String titulo = Crear.pedirTitulo(lee);
+        Libro libroEncontrado = Consultar.encontrarLibroPorTitulo(sentencia, titulo);
+        if (libroEncontrado != null) {
+            Visualizar.verLibro(libroEncontrado);
+            System.out.println("Es este el libro que desea modificar?");
+            System.out.println("[1] Sí");
+            System.out.println("[2] No");
+            System.out.printf("Seleccione una opción: ");
+            byte opcionLibro = Byte.parseByte(lee.readLine());
+            if (opcionLibro == 1) {
+                Modificar.tituloLibro(sentencia, lee, titulo);
+            }
+        } else {
+            System.err.println("No existe ningún libro con ese título");
+        }
+    }
+
+    public static void modificarPrecioLibro(Statement sentencia, BufferedReader lee) throws IOException {
+        String titulo = Crear.pedirTitulo(lee);
+        Libro libroEncontrado = Consultar.encontrarLibroPorTitulo(sentencia, titulo);
+        if (libroEncontrado != null) {
+            Visualizar.verLibro(libroEncontrado);
+            System.out.println("Es este el libro que desea modificar?");
+            System.out.println("[1] Sí");
+            System.out.println("[2] No");
+            System.out.printf("Seleccione una opción: ");
+            byte opcionLibro = Byte.parseByte(lee.readLine());
+            if (opcionLibro == 1) {
+                Modificar.precioLibro(sentencia, lee, titulo);
+            }
+        } else {
+            System.err.println("No existe ningún libro con ese título");
+        }
+    }
+    
+    public static void mostrarAutoresYLibros(Statement sentencia){
+        for(Autor autor : Consultar.extraerAutores(sentencia)){
+            Visualizar.autor(autor);
+            Visualizar.libros(Consultar.librosDeAutor(sentencia, autor.getDni()));
+            System.out.println("#######################################");
         }
     }
 }
