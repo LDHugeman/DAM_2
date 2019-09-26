@@ -203,6 +203,7 @@ public class Menu {
             } while (opcionLibro == 1);
         } catch (SQLException excepcion) {
             System.err.println("El autor no ha podido ser insertado con sus libros");
+            System.out.println(excepcion.getMessage());
         }
     }
 

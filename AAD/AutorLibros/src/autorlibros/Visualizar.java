@@ -26,17 +26,13 @@ public class Visualizar {
     }
 
     public static void libroYAutor(Libro libro, String nombreAutor) {
-        System.out.println("---------------- LIBRO ----------------");
-        System.out.println("Título: " + libro.getTitulo());
-        System.out.println("Precio: " + libro.getPrecio());
-        System.out.println("Nombre del autor: " + nombreAutor);
-        System.out.println("---------------------------------------");
+        System.out.printf("%-15s %-25s %-35s %n", "TÍTULO", "PRECIO", "NOMBRE DEL AUTOR");
+        System.out.printf("%-15s %-25.2f %-35s %n", libro.getTitulo(), libro.getPrecio(), nombreAutor);
     }
 
     public static void libros(ArrayList<Libro> libros) {
         for (Libro libro : libros) {
             verLibro(libro);
         }
-    }
-    
+    } 
 }
