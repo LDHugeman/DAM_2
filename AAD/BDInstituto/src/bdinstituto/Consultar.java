@@ -154,10 +154,10 @@ public class Consultar {
         return encontrarAsignaturaPorCodigo(sentencia, codigo)!=null;
     }
     
-    public static Nota encontrarNotaPoridAlumnoEidAsignatura(Statement sentencia, int idAlumno, int idAsignatura){
+    public static Nota encontrarNotaPoridAlumnoEidAsignaturaYFecha(Statement sentencia, int idAlumno, int idAsignatura, String fecha){
         Nota notaEncontrada = null;
         try{
-            String sql = String.format("SELECT * FROM NOTAS WHERE ALUMNO='%s' AND ASIGNATURA='%s'", idAlumno, idAsignatura);
+            String sql = String.format("SELECT * FROM NOTAS WHERE ALUMNO='%s' AND ASIGNATURA='%s' AND FECHA='%s'", idAlumno, idAsignatura, fecha);
             ResultSet resultado = sentencia.executeQuery(sql);
             while(resultado.next()){
                 notaEncontrada = construyeNota(resultado);

@@ -33,7 +33,7 @@ public class Visualizar {
         System.out.println("Alumno: " + nombreAlumno);
         System.out.println("Asignatura: " + nombreAsignatura);
         System.out.println("Cualificación: " + nota.getCualificacion());
-        System.out.println("Fecha: " + nota.getStringFechaVisualizar());
+        System.out.println("Fecha: " + Crear.getStringFechaVisualizar(nota.getFecha()));
         System.out.println("---------------------------------------");
     }
     

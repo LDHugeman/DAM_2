@@ -1,7 +1,6 @@
 
 package objetos;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -34,16 +33,6 @@ public class Nota {
         this.idAsignatura = idAsignatura;
     }
     
-    public String getStringFechaSql() {
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
-        return formatoFecha.format(fecha);
-    }
-    
-    public String getStringFechaVisualizar() {
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
-        return formatoFecha.format(fecha);
-    }
-
     public float getCualificacion() {
         return cualificacion;
     }

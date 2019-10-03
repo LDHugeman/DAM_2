@@ -2,6 +2,7 @@ package bdinstituto;
 
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import objetos.Alumno;
 import objetos.Asignatura;
 import objetos.Nota;
@@ -64,7 +65,7 @@ public class Menu {
             }
         } while (opcion != 0);
     }
-    
+
     public static void menuVisualizar(Statement sentencia) {
         byte opcion = 0;
         do {
@@ -123,7 +124,7 @@ public class Menu {
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
     }
-    
+
     public static byte seleccionarOpcionMenuVisualizar() {
         System.out.println("------- VISUALIZAR -------");
         System.out.println("[1] Profesor y asignaturas que imparte");
@@ -160,12 +161,19 @@ public class Menu {
         System.out.println("--- Introduzca el código de la asignatura ---");
         String codigoAsignatura = Crear.pedirCodigoAsignaturaExistente(sentencia);
         int idAsignatura = Consultar.encontrarIdAsignaturaPorCodigo(sentencia, codigoAsignatura);
-        Nota nota = Consultar.encontrarNotaPoridAlumnoEidAsignatura(sentencia, idAlumno, idAsignatura);
+        System.out.println("--- Introduzca la fecha de la nota ---");
+        System.out.printf("Fecha(dd/MM/yyyy): ");
+        Date fecha = Pedir.fecha();
+        Nota nota = Consultar.encontrarNotaPoridAlumnoEidAsignaturaYFecha(sentencia, idAlumno, idAsignatura, Crear.getStringFechaSql(fecha));
         Alumno alumno = Consultar.encontrarAlumnoPorCodigo(sentencia, codigoAlumno);
         Asignatura asignatura = Consultar.encontrarAsignaturaPorCodigo(sentencia, codigoAsignatura);
-        Visualizar.verNota(nota, alumno.getNombre(), asignatura.getNombre());
-        if (Pedir.duda("¿Desea modificar esta nota?")) {
-            Modificar.notaAlumno(sentencia, idAlumno, idAsignatura);
+        if (nota != null) {
+            Visualizar.verNota(nota, alumno.getNombre(), asignatura.getNombre());
+            if (Pedir.duda("¿Desea modificar esta nota?")) {
+                Modificar.notaAlumno(sentencia, idAlumno, idAsignatura, Crear.getStringFechaSql(fecha));
+            }
+        } else {
+            System.err.println("No hay ninguna nota en esa fecha");
         }
     }
 }

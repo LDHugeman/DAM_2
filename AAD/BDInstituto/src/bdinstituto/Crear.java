@@ -4,6 +4,7 @@ package bdinstituto;
 import excepciones.Validar;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import objetos.Alumno;
 import objetos.Asignatura;
@@ -162,4 +163,14 @@ public class Crear {
         }while(!Validar.esCodigoAsignaturaExistenteValido(sentencia, codigo));    
         return codigo;
     }      
+    
+    public static String getStringFechaSql(Date fecha) {
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
+        return formatoFecha.format(fecha);
+    }
+    
+    public static String getStringFechaVisualizar(Date fecha) {
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        return formatoFecha.format(fecha);
+    }
 }
