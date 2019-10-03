@@ -49,7 +49,7 @@ public class Altas {
     public static void nuevaNota(Statement sentencia, Nota nota, int idAlumno, int idAsignatura){
         try{
             String sql = String.format("INSERT INTO NOTAS (ALUMNO , ASIGNATURA, NOTA, FECHA) VALUES ('%s','%s','%s','%s')", 
-                    idAlumno, idAsignatura, nota.getCualificacion(), Crear.getStringFechaSql(nota.getFecha()));
+                    idAlumno, idAsignatura, nota.getCalificacion(), Crear.getStringFechaSql(nota.getFecha()));
             sentencia.executeUpdate(sql);
         }catch(SQLException excepcion){
             System.err.println("Error al insertar la nota");

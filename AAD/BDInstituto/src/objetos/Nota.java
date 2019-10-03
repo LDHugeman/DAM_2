@@ -9,13 +9,13 @@ import java.util.Date;
  */
 public class Nota {
     
-    private float cualificacion;
+    private float calificacion;
     private Date fecha;
     private int idAlumno;
     private int idAsignatura;
 
-    public Nota(float cualificacion, Date fecha) {
-        this.cualificacion = cualificacion;
+    public Nota(float calificacion, Date fecha) {
+        this.calificacion = calificacion;
         this.fecha = fecha;
     }
     
@@ -26,19 +26,19 @@ public class Nota {
      * @param idAlumno Identificador de alumno
      * @param idAsignatura  Identificador de asignatura
      */
-    public Nota(float cualificacion, Date fecha, int idAlumno, int idAsignatura) {
-        this.cualificacion = cualificacion;
+    public Nota(float calificacion, Date fecha, int idAlumno, int idAsignatura) {
+        this.calificacion = calificacion;
         this.fecha = fecha;
         this.idAlumno = idAlumno;
         this.idAsignatura = idAsignatura;
     }
     
-    public float getCualificacion() {
-        return cualificacion;
+    public float getCalificacion() {
+        return calificacion;
     }
 
     public void setCualificacion(float cualificacion) {
-        this.cualificacion = cualificacion;
+        this.calificacion = cualificacion;
     }
 
     public Date getFecha() {

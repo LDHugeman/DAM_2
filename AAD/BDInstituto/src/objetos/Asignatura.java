@@ -7,11 +7,19 @@ package objetos;
  */
 public class Asignatura {
     
+    private int idAsignatura;
     private String codigo;
     private String nombre;
     private String ciclo;
 
     public Asignatura(String codigo, String nombre, String ciclo) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.ciclo = ciclo;
+    }
+
+    public Asignatura(int idAsignatura, String codigo, String nombre, String ciclo) {
+        this.idAsignatura = idAsignatura;
         this.codigo = codigo;
         this.nombre = nombre;
         this.ciclo = ciclo;
@@ -40,4 +48,12 @@ public class Asignatura {
     public void setCiclo(String ciclo) {
         this.ciclo = ciclo;
     } 
+
+    public int getIdAsignatura() {
+        return idAsignatura;
+    }
+
+    public void setIdAsignatura(int idAsignatura) {
+        this.idAsignatura = idAsignatura;
+    }
 }

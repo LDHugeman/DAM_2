@@ -16,37 +16,7 @@ import objetos.Profesor;
  * @author luisd
  */
 public class Consultar {
-    
-    public static int encontrarIdAlumnoPorCodigo(Statement sentencia, String codigoAlumno){
-        int idAlumno = -1;
-        try{
-            String sql = String.format("SELECT IDALUMNO FROM ALUMNOS WHERE CODIGO='%s'", codigoAlumno);
-            ResultSet resultado = sentencia.executeQuery(sql);
-            while(resultado.next()){
-                idAlumno = resultado.getInt("IDALUMNO");
-            }
-        }catch(SQLException excepcion){
-            System.err.println("Error al acceder a la tabla alumnos");
-            System.err.println(excepcion.getMessage());
-        }
-        return idAlumno;
-    }
-    
-    public static int encontrarIdAsignaturaPorCodigo(Statement sentencia, String codigoAsignatura){
-        int idAsignatura = -1;
-        try{
-            String sql = String.format("SELECT IDASIGNATURA FROM ASIGNATURAS WHERE CODIGO='%s'", codigoAsignatura);
-            ResultSet resultado = sentencia.executeQuery(sql);
-            while(resultado.next()){
-                idAsignatura = resultado.getInt("IDASIGNATURA");
-            }
-        }catch(SQLException excepcion){
-            System.err.println("Error al acceder a la tabla asignaturas");
-            System.err.println(excepcion.getMessage());
-        }
-        return idAsignatura;
-    }
-    
+       
     public static Profesor encontrarProfesorPorDni(Statement sentencia, String dni){
         Profesor profesorEncontrado = null;
         try{
@@ -61,14 +31,7 @@ public class Consultar {
         }
         return profesorEncontrado;
     }
-    
-    private static Profesor construyeProfesor(ResultSet resultado)throws SQLException{
-        String dni = resultado.getString("DNI");
-        String nombre = resultado.getString("NOMBRE");
-        String titulacion = resultado.getString("TITULACION");
-        return new Profesor(dni, nombre, titulacion);
-    }
-    
+        
     public static boolean existeProfesorPorDni(Statement sentencia, String dni){
         return encontrarProfesorPorDni(sentencia, dni)!=null;
     }
@@ -101,12 +64,6 @@ public class Consultar {
             System.err.println(excepcion.getMessage());
         }
         return alumnoEncontrado;
-    }
-    
-    private static Alumno construyeAlumno(ResultSet resultado)throws SQLException{
-        String codigo = resultado.getString("CODIGO");
-        String nombre = resultado.getString("NOMBRE");
-        return new Alumno(codigo, nombre);
     }
     
     public static boolean existeAlumnoPorCodigo(Statement sentencia, String codigo){
@@ -143,18 +100,11 @@ public class Consultar {
         return asignaturaEncontrada;
     }
     
-    private static Asignatura construyeAsignatura(ResultSet resultado)throws SQLException{
-        String codigo = resultado.getString("CODIGO");
-        String nombre = resultado.getString("NOMBRE");
-        String ciclo = resultado.getString("CICLO");
-        return new Asignatura(codigo, nombre, ciclo);
-    }
-    
     public static boolean existeAsignaturaPorCodigo(Statement sentencia, String codigo){
         return encontrarAsignaturaPorCodigo(sentencia, codigo)!=null;
     }
     
-    public static Nota encontrarNotaPoridAlumnoEidAsignaturaYFecha(Statement sentencia, int idAlumno, int idAsignatura, String fecha){
+    public static Nota encontrarNotaPorIdAlumnoIdAsignaturaYFecha(Statement sentencia, int idAlumno, int idAsignatura, String fecha){
         Nota notaEncontrada = null;
         try{
             String sql = String.format("SELECT * FROM NOTAS WHERE ALUMNO='%s' AND ASIGNATURA='%s' AND FECHA='%s'", idAlumno, idAsignatura, fecha);
@@ -168,15 +118,7 @@ public class Consultar {
         }
         return notaEncontrada;
     }
-    
-    private static Nota construyeNota(ResultSet resultado)throws SQLException{
-        float cualificacion = resultado.getFloat("NOTA");
-        Date fecha = resultado.getDate("FECHA");
-        int idAlumno = resultado.getInt("ALUMNO");
-        int idAsignatura = resultado.getInt("ASIGNATURA");
-        return new Nota(cualificacion, fecha, idAlumno, idAsignatura);
-    }
-    
+     
     public static ArrayList extraerAsignaturasProfesor(Statement sentencia, String dniProfesor){
         ArrayList<Asignatura> asignaturas = new ArrayList<>();
         try{
@@ -205,5 +147,35 @@ public class Consultar {
             System.err.println(excepcion.getMessage());
         }
         return notas;
+    }
+    
+    private static Profesor construyeProfesor(ResultSet resultado)throws SQLException{
+        String dni = resultado.getString("DNI");
+        String nombre = resultado.getString("NOMBRE");
+        String titulacion = resultado.getString("TITULACION");
+        return new Profesor(dni, nombre, titulacion);
+    }
+    
+    private static Alumno construyeAlumno(ResultSet resultado)throws SQLException{
+        int idAlumno = resultado.getInt("IDALUMNO");
+        String codigo = resultado.getString("CODIGO");
+        String nombre = resultado.getString("NOMBRE");
+        return new Alumno(idAlumno, codigo, nombre);
+    }
+    
+    private static Asignatura construyeAsignatura(ResultSet resultado)throws SQLException{
+        int idAsignatura = resultado.getInt("IDASIGNATURA");
+        String codigo = resultado.getString("CODIGO");
+        String nombre = resultado.getString("NOMBRE");
+        String ciclo = resultado.getString("CICLO");
+        return new Asignatura(idAsignatura, codigo, nombre, ciclo);
+    }
+    
+    private static Nota construyeNota(ResultSet resultado)throws SQLException{
+        float calificacion = resultado.getFloat("NOTA");
+        Date fecha = resultado.getDate("FECHA");
+        int idAlumno = resultado.getInt("ALUMNO");
+        int idAsignatura = resultado.getInt("ASIGNATURA");
+        return new Nota(calificacion, fecha, idAlumno, idAsignatura);
     }
 }

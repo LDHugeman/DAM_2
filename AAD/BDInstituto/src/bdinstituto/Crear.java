@@ -115,7 +115,7 @@ public class Crear {
     }
     
     public static float pedirNota(){
-        System.out.printf("Cualificación: ");
+        System.out.printf("Calificación: ");
         return Pedir.numeroRealFloat();
     }
     

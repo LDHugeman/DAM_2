@@ -36,12 +36,12 @@ public class Menu {
                 case 4:
                     System.out.println("--- Introduzca el código del alumno al que desea añadir notas ---");
                     String codigoAlumno = Crear.pedirCodigoAlumnoExistente(sentencia);
+                    Alumno alumnoEncontrado = Consultar.encontrarAlumnoPorCodigo(sentencia, codigoAlumno);
                     System.out.println("--- Introduzca el código de la asignatura ---");
                     String codigoAsignatura = Crear.pedirCodigoAsignaturaExistente(sentencia);
-                    int idAlumno = Consultar.encontrarIdAlumnoPorCodigo(sentencia, codigoAlumno);
-                    int idAsignatura = Consultar.encontrarIdAsignaturaPorCodigo(sentencia, codigoAsignatura);
+                    Asignatura asignaturaEncontrada = Consultar.encontrarAsignaturaPorCodigo(sentencia, codigoAsignatura);
                     Nota nota = Crear.nuevaNota();
-                    Altas.nuevaNota(sentencia, nota, idAlumno, idAsignatura);
+                    Altas.nuevaNota(sentencia, nota, alumnoEncontrado.getIdAlumno(), asignaturaEncontrada.getIdAsignatura());
                     break;
                 case 0:
                     break;
@@ -84,8 +84,7 @@ public class Menu {
                     String codigo = Crear.pedirCodigoAlumnoExistente(sentencia);
                     Alumno alumno = Consultar.encontrarAlumnoPorCodigo(sentencia, codigo);
                     Visualizar.alumno(alumno);
-                    int idAlumno = Consultar.encontrarIdAlumnoPorCodigo(sentencia, codigo);
-                    ArrayList<Nota> notas = Consultar.extraerNotasAlumno(sentencia, idAlumno);
+                    ArrayList<Nota> notas = Consultar.extraerNotasAlumno(sentencia, alumno.getIdAlumno());
                     Visualizar.verNotas(notas, sentencia);
                     break;
                 case 0:
@@ -157,20 +156,18 @@ public class Menu {
     public static void modificarNotaAlumno(Statement sentencia) {
         System.out.println("--- Introduzca el código del alumno al que desea modificar su nota ---");
         String codigoAlumno = Crear.pedirCodigoAlumnoExistente(sentencia);
-        int idAlumno = Consultar.encontrarIdAlumnoPorCodigo(sentencia, codigoAlumno);
         System.out.println("--- Introduzca el código de la asignatura ---");
         String codigoAsignatura = Crear.pedirCodigoAsignaturaExistente(sentencia);
-        int idAsignatura = Consultar.encontrarIdAsignaturaPorCodigo(sentencia, codigoAsignatura);
         System.out.println("--- Introduzca la fecha de la nota ---");
         System.out.printf("Fecha(dd/MM/yyyy): ");
         Date fecha = Pedir.fecha();
-        Nota nota = Consultar.encontrarNotaPoridAlumnoEidAsignaturaYFecha(sentencia, idAlumno, idAsignatura, Crear.getStringFechaSql(fecha));
         Alumno alumno = Consultar.encontrarAlumnoPorCodigo(sentencia, codigoAlumno);
         Asignatura asignatura = Consultar.encontrarAsignaturaPorCodigo(sentencia, codigoAsignatura);
+        Nota nota = Consultar.encontrarNotaPorIdAlumnoIdAsignaturaYFecha(sentencia, alumno.getIdAlumno(), asignatura.getIdAsignatura(), Crear.getStringFechaSql(fecha));
         if (nota != null) {
             Visualizar.verNota(nota, alumno.getNombre(), asignatura.getNombre());
             if (Pedir.duda("¿Desea modificar esta nota?")) {
-                Modificar.notaAlumno(sentencia, idAlumno, idAsignatura, Crear.getStringFechaSql(fecha));
+                Modificar.notaAlumno(sentencia, alumno.getIdAlumno(), asignatura.getIdAsignatura(), Crear.getStringFechaSql(fecha));
             }
         } else {
             System.err.println("No hay ninguna nota en esa fecha");
