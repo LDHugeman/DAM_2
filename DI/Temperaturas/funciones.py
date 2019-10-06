@@ -1,12 +1,11 @@
-def celsius_to_farenheit(grados_celsius):
-    grados_farenheit = 1.4*float(grados_celsius) + 32.0
-    var = str(fah)
-    return (var)
+def celsius_to_fahrenheit(grados_celsius):
+    resultado = 1.4 * float(grados_celsius) + 32.0  # resultado = 1.4 * float(grados_celsius) + 32.0
+    return resultado
 
 
-def celsius_to_kelvin(vcel):
-    kel = float(vcel) + 273.15
-    if kel < 0:
+def celsius_to_kelvin(grados_celsius):
+    grados_kelvin = float(grados_celsius) + 273.15
+    if grados_kelvin < 0:
         return False
     else:
-        return (str(kel))
+        return grados_kelvin

@@ -2,12 +2,12 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkWindow" id="vPrincipal">
+  <object class="GtkWindow" id="ventana_principal">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Conversor de Temperaturas</property>
     <property name="window_position">center</property>
     <property name="gravity">center</property>
-    <signal name="destroy" handler="on_vPrincipal_destroy" swapped="no"/>
+    <signal name="destroy" handler="on_ventana_principal_destroy" swapped="no"/>
     <child type="titlebar">
       <placeholder/>
     </child>
@@ -93,7 +93,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="lblResul">
+              <object class="GtkLabel" id="salida_temperatura">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_left">5</property>
@@ -107,7 +107,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entTemp">
+              <object class="GtkEntry" id="entrada_temperatura">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="margin_left">5</property>
@@ -121,7 +121,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="cmBT1">
+              <object class="GtkComboBoxText" id="combo_entrada">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_left">5</property>
@@ -131,7 +131,7 @@
                 <property name="active">2</property>
                 <items>
                   <item translatable="yes">Celsius</item>
-                  <item translatable="yes">Farenheit</item>
+                  <item translatable="yes">Fahrenheit</item>
                   <item translatable="yes">Kelvin</item>
                 </items>
               </object>
@@ -141,7 +141,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="cmbT2">
+              <object class="GtkComboBoxText" id="combo_salida">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_left">5</property>
@@ -151,7 +151,7 @@
                 <property name="active">2</property>
                 <items>
                   <item translatable="yes">Celsius</item>
-                  <item translatable="yes">Farenheit</item>
+                  <item translatable="yes">Fahrenheit</item>
                   <item translatable="yes">Kelvin</item>
                 </items>
               </object>
@@ -189,7 +189,7 @@
             <property name="margin_bottom">5</property>
             <property name="column_homogeneous">True</property>
             <child>
-              <object class="GtkButton" id="btnCalcular">
+              <object class="GtkButton" id="boton_calcular">
                 <property name="label" translatable="yes">Calcular</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -199,6 +199,7 @@
                 <property name="margin_right">10</property>
                 <property name="margin_top">5</property>
                 <property name="margin_bottom">5</property>
+                <signal name="clicked" handler="on_boton_calcular_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -206,7 +207,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="btnSalir">
+              <object class="GtkButton" id="boton_salir">
                 <property name="label" translatable="yes">Salir</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -216,7 +217,7 @@
                 <property name="margin_right">5</property>
                 <property name="margin_top">5</property>
                 <property name="margin_bottom">5</property>
-                <signal name="clicked" handler="on_btnSalir_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_boton_salir_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>

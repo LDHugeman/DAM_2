@@ -1,52 +1,51 @@
 # coding=utf-8
 
 import gi
+
+import funciones
+
 gi.require_version('Gtk', '3.0')
+
 from gi.repository import Gtk
 
 __autor__ = 'david'
 
 
-import funciones
-
-
 class Conversor:
     def __init__(self):
-        # iniciamos la libreria Gtk
-        b = Gtk.Builder()
-        b.add_from_file('../ventana.glade')
-        # cargamos los widgets con algún evento asociado o que son referenciados
-        self.vprincipal = b.get_object('vPrincipal')
-        self.btnsalir = b.get_object('btnSalir')
-        self.cmbt1 = b.get_object('cmbT1')
-        self.cmbt2 = b.get_object('cmbT2')
-        self.enttemp = b.get_object('entTemp')
-        self.lblresul = b.get_object('lblResul')
-        # Diccionario de eventos
-        dic = {'on_vPrincipal_destroy': self.salir, 'on_btnSalir_clicked': self.salir,
-               'on_btnCalcular_clicked': self.calcular}
-        self.selec1 = ""
-        self.selec2 = ""
+        builder = Gtk.Builder()
+        builder.add_from_file('../ventana.glade')
+        self.ventana_principal = builder.get_object('ventana_principal')
+        self.combo_entrada = builder.get_object('combo_entrada')
+        self.combo_salida = builder.get_object('combo_salida')
+        self.entrada_temperatura = builder.get_object('entrada_temperatura')
+        self.resultado_conversion = builder.get_object('salida_temperatura')
+        eventos = {'on_ventana_principal_destroy': self.salir,
+                   'on_boton_salir_clicked': self.salir,
+                   'on_boton_calcular_clicked': self.calcular
+                   }
 
-        # conectamostodo y mostramos
-        b.connect_signals(dic)  # conecta los eventos de glade con el codigo
-        self.vprincipal.show()
-
-    # ahora codificamos las funciones
+        builder.connect_signals(eventos)  # conecta los eventos de glade con el codigo
+        self.ventana_principal.show()
 
     def salir(self, widget):
-        self.btnsalir.exit()
+        self.ventana_principal.close()
         Gtk.main_quit()
 
     def calcular(self, widget):
         try:
-            self.selec1 = self.cmbt1.get_active_text()
-            self.selec2 = self.cmbt2.get_active_text()
-            if self.select1 == 'Celsius' and self.selec2 == 'Farenheit':
-                var = funciones.celtofah(self.enttemp.get_text())
-                self.lblresul.set_text('')
-                self.lblresul.set_text(var)
-        except:
+            valor_combo_entrada = self.combo_entrada.get_active_text()
+            valor_combo_salida = self.combo_salida.get_active_text()
+            if valor_combo_entrada == 'Celsius' and valor_combo_salida == 'Fahrenheit':
+                grados_fahrenheit = funciones.celsius_to_fahrenheit(self.entrada_temperatura.get_text())
+                self.resultado_conversion.set_text('')
+                self.resultado_conversion.set_text(str(grados_fahrenheit))
+            elif valor_combo_entrada == 'Celsius' and valor_combo_salida == 'Kelvin':
+                grados_kelvin = funciones.celsius_to_kelvin(self.entrada_temperatura.get_text())
+                self.resultado_conversion.set_text('')
+                self.resultado_conversion.set_text(str(grados_kelvin))
+        except Exception as e:
+            print(e)
             print('algún error')
 
 
