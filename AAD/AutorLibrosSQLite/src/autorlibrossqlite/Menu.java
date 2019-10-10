@@ -1,7 +1,5 @@
 package autorlibrossqlite;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import objetos.Autor;
