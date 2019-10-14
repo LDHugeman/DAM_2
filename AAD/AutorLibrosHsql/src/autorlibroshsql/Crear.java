@@ -36,6 +36,9 @@ public class Crear {
                     + " ON UPDATE CASCADE,"
                     + "PRIMARY KEY(AUTOR, LIBRO));");
             
+            sentencia.execute("CREATE TRIGGER ELIMINARLIBRO AFTER DELETE ON AUTORES"
+                    + " DELETE FROM LIBROS WHERE IDLIBRO NOT IN (SELECT LIBRO FROM AUTORES_LIBROS)");
+            
             System.out.println("Base de datos creada");
         } catch (SQLException excepcion) {
             System.out.println("Error al crear las tablas");
