@@ -12,8 +12,10 @@ public class Eliminar {
     
     public static void autor(Statement sentencia, String dni) {   
         try {
-            String sql = String.format("DELETE FROM AUTORES WHERE dni='%s'", dni);
-            sentencia.executeUpdate(sql);
+            String sqlBorrarLibros = String.format("DELETE FROM LIBROS WHERE IDLIBRO IN (SELECT LIBRO FROM AUTORES_LIBROS WHERE AUTOR='%s')", dni);
+            String sqlBorrarAutor = String.format("DELETE FROM AUTORES WHERE dni='%s'", dni);            
+            sentencia.executeUpdate(sqlBorrarLibros);
+            sentencia.executeUpdate(sqlBorrarAutor);
             System.out.println("El autor con dni " + dni + " ha sido eliminado");
         } catch (SQLException excepcion) {
             System.out.println("Error al eliminar el autor");
