@@ -23,7 +23,7 @@ public class Insertar {
     
     public static void nuevoLibro(Libro libro, Statement sentencia){
         try{
-            String sql = String.format("INSERT INTO LIBROS (TITULO, PRECIO) VALUES ('%s','%s')", libro.getTitulo(), libro.getPrecio()); 
+            String sql = String.format("INSERT INTO LIBROS (TITULO, PRECIO) VALUES ('%s', %s)", libro.getTitulo(), libro.getPrecio()); 
             sentencia.executeUpdate(sql);
         }catch(SQLException excepcion){
             System.err.println("Error al insertar el libro");
@@ -33,7 +33,7 @@ public class Insertar {
     
     public static void registroAutorLibro(String dni, int idLibro, Statement sentencia){
         try{
-            String sql = String.format("INSERT INTO AUTORES_LIBROS (AUTOR, LIBRO) VALUES ('%s','%s')", dni, idLibro); 
+            String sql = String.format("INSERT INTO AUTORES_LIBROS (AUTOR, LIBRO) VALUES ('%s',%s)", dni, idLibro); 
             sentencia.executeUpdate(sql);
         }catch(SQLException excepcion){
             System.err.println("Error al insertar el registro");

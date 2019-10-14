@@ -69,7 +69,7 @@ public class Consultar {
     public static ArrayList <String> encontrarNombreAutoresPorIDLibro(Statement sentencia, int idLibro){
         ArrayList<String> nombresAutores = new ArrayList<>();
         try{
-            String sql = String.format("SELECT NOMBRE FROM AUTORES WHERE DNI IN (SELECT AUTOR FROM AUTORES_LIBROS WHERE LIBRO='%s')", idLibro);
+            String sql = String.format("SELECT NOMBRE FROM AUTORES WHERE DNI IN (SELECT AUTOR FROM AUTORES_LIBROS WHERE LIBRO=%s)", idLibro);
             ResultSet resultado = sentencia.executeQuery(sql);
             while (resultado.next()){
                 nombresAutores.add(resultado.getString("NOMBRE"));

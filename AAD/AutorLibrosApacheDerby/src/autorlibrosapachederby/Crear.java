@@ -14,33 +14,26 @@ public class Crear {
 
     public static void tablas(Statement sentencia) {
         try {
-            sentencia.execute("ATTACH DATABASE 'LibreriaDerby.DB' as LibreriaDerby;");
-            sentencia.execute("CREATE TABLE IF NOT EXISTS AUTORES"
+            sentencia.execute("CREATE TABLE AUTORES"
                     + "(DNI CHAR(9) PRIMARY KEY NOT NULL,"
                     + " NOMBRE VARCHAR(30) NOT NULL,"
-                    + " NACIONALIDAD VARCHAR(30) NOT NULL);");
+                    + " NACIONALIDAD VARCHAR(30) NOT NULL)");
 
-            sentencia.execute("CREATE TABLE IF NOT EXISTS LIBROS"
-                    + "(IDLIBRO INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+            sentencia.execute("CREATE TABLE LIBROS"
+                    + "(IDLIBRO INTEGER PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
                     + " TITULO VARCHAR(30) NOT NULL,"
                     + " PRECIO FLOAT(6) NOT NULL,"
-                    + "CONSTRAINT AK_TITULO UNIQUE (TITULO));");           
+                    + "CONSTRAINT AK_TITULO UNIQUE (TITULO))");           
                     
-            sentencia.execute("CREATE TABLE IF NOT EXISTS AUTORES_LIBROS"
+            sentencia.execute("CREATE TABLE AUTORES_LIBROS"
                     + "(AUTOR CHAR(9) NOT NULL,"
                     + "LIBRO INTEGER NOT NULL,"
-                    + "FOREIGN KEY(AUTOR) REFERENCES AUTORES(DNI) "
-                    + "ON DELETE CASCADE "
-                    + "ON UPDATE CASCADE,"
-                    + "FOREIGN KEY(LIBRO) REFERENCES LIBROS(IDLIBRO) "
-                    + "ON DELETE CASCADE "
-                    + "ON UPDATE CASCADE,"
-                    + "PRIMARY KEY(AUTOR, LIBRO));");
+                    + "FOREIGN KEY(AUTOR) REFERENCES AUTORES(DNI) ON DELETE CASCADE,"
+                    + "FOREIGN KEY(LIBRO) REFERENCES LIBROS(IDLIBRO) ON DELETE CASCADE,"
+                    + "PRIMARY KEY(AUTOR, LIBRO))");
             
-            sentencia.execute("CREATE TRIGGER IF NOT EXISTS ELIMINARLIBRO AFTER DELETE ON AUTORES"
-                    + " BEGIN"
-                    + " DELETE FROM LIBROS WHERE IDLIBRO NOT IN (SELECT LIBRO FROM AUTORES_LIBROS);"
-                    + " END;");
+            sentencia.execute("CREATE TRIGGER ELIMINARLIBRO AFTER DELETE ON AUTORES"
+                    + " DELETE FROM LIBROS WHERE IDLIBRO NOT IN (SELECT LIBRO FROM AUTORES_LIBROS)");
             System.out.println("Base de datos creada");
         } catch (SQLException excepcion) {
             System.out.println("Error al crear las tablas");
