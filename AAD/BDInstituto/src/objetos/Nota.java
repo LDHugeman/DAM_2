@@ -21,7 +21,7 @@ public class Nota {
     
     /**
      * Constructor para BD
-     * @param cualificacion Cualificacion de alumno
+     * @param calificacion Cualificacion de alumno
      * @param fecha Fecha de cualificacion
      * @param idAlumno Identificador de alumno
      * @param idAsignatura  Identificador de asignatura
