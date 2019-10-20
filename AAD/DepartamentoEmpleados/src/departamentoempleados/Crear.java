@@ -15,11 +15,9 @@ public class Crear {
 
     public static void tablas(Statement sentencia) {
         try {
-            //sentencia.execute("DROP DATABASE IF EXISTS EMPRESA;");
             sentencia.execute("CREATE DATABASE IF NOT EXISTS EMPRESA;");
             sentencia.execute("USE EMPRESA");
 
-            //sentencia.execute("DROP TABLE IF EXISTS departamentos");
             sentencia.execute("CREATE TABLE IF NOT EXISTS departamentos"
                     + "(idDepartamento INT(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,"
                     + "nombre VARCHAR(30) NOT NULL,"
@@ -27,7 +25,6 @@ public class Crear {
                     + "PRIMARY KEY(idDepartamento))"
                     + "ENGINE INNODB;");
 
-            //sentencia.execute("DROP TABLE IF EXISTS empleados");
             sentencia.execute("CREATE TABLE IF NOT EXISTS empleados"
                     + "(numeroSegSocial CHAR(12) NOT NULL,"
                     + "nombre VARCHAR(30) NOT NULL,"

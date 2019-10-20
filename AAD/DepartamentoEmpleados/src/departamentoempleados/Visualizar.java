@@ -2,7 +2,6 @@ package departamentoempleados;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import objetos.Departamento;
 import objetos.Empleado;
 import org.hibernate.Session;
@@ -20,17 +19,17 @@ public class Visualizar {
         System.out.println("Localidad: " + departamento.getLocalidad());
         System.out.println("----------------------------------------------");
     }
-    
-    public static void departamentos(List <Departamento> departamentos) {
+
+    public static void departamentos(List<Departamento> departamentos) {
         System.out.println("---------------- DEPARTAMENTOS ---------------------");
         System.out.printf("%-15s %-25s %-35s %n", "IDDEPARTAMENTO", "NOMBRE", "LOCALIDAD");
-        for (Departamento departamento: departamentos){
+        for (Departamento departamento : departamentos) {
             System.out.printf("%-15s %-25s %-35s %n", departamento.getIdDepartamento(), departamento.getNombre(), departamento.getLocalidad());
         }
         System.out.println("----------------------------------------------------");
     }
-    
-    public static void empleado(Empleado empleado){
+
+    public static void empleado(Empleado empleado) {
         System.out.println("---------------- EMPLEADO ----------------");
         System.out.println("Número de Seguridad Social: " + empleado.getNumeroSegSocial());
         System.out.println("Nombre: " + empleado.getNombre());
@@ -45,16 +44,16 @@ public class Visualizar {
         session.close();
         System.out.println("------------------------------------------");
     }
-    
-    public static void empleados(Collection <Empleado> empleados) {
+
+    public static void empleados(Collection<Empleado> empleados) {
         System.out.println("---------------------------------------------------- EMPLEADOS ---------------------------------------------------------");
-        System.out.printf("%-15s %-10s %-15s %-15s %-15s %-15s %-15s %-15s %n", 
-                "NUMERO S.S.", "NOMBRE", "OFICIO", "DIRECCIÓN", 
+        System.out.printf("%-15s %-10s %-15s %-15s %-15s %-15s %-15s %-15s %n",
+                "NUMERO S.S.", "NOMBRE", "OFICIO", "DIRECCIÓN",
                 "FECHA DE ALTA", "SALARIO", "COMISIÓN", "DEPARTAMENTO");
-        for (Empleado empleado: empleados){
-            System.out.printf("%-15s %-10s %-15s %-15s %-15s %-15.2f %-15.2f %-15s %n", empleado.getNumeroSegSocial(), 
-                    empleado.getNombre(), empleado.getOficio(), empleado.getDireccion(), 
-                    Crear.getStringFechaVisualizar(empleado.getFechaAlta()), empleado.getSalario(), 
+        for (Empleado empleado : empleados) {
+            System.out.printf("%-15s %-10s %-15s %-15s %-15s %-15.2f %-15.2f %-15s %n", empleado.getNumeroSegSocial(),
+                    empleado.getNombre(), empleado.getOficio(), empleado.getDireccion(),
+                    Crear.getStringFechaVisualizar(empleado.getFechaAlta()), empleado.getSalario(),
                     empleado.getComision(), empleado.getNombreDepartamento());
         }
         System.out.println("------------------------------------------------------------------------------------------------------------------------");

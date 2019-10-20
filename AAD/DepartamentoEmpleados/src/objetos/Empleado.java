@@ -1,4 +1,3 @@
-
 package objetos;
 
 import departamentoempleados.NewHibernateUtil;
@@ -10,8 +9,8 @@ import org.hibernate.Session;
  *
  * @author a18luisdvp
  */
-public class Empleado implements Serializable{
-    
+public class Empleado implements Serializable {
+
     private String numeroSegSocial;
     private String nombre;
     private String oficio;
@@ -20,11 +19,11 @@ public class Empleado implements Serializable{
     private float salario;
     private float comision;
     private Departamento departamento;
-    
-    public Empleado(){       
+
+    public Empleado() {
     }
 
-    public Empleado(String numeroSegSocial, String nombre, String oficio, 
+    public Empleado(String numeroSegSocial, String nombre, String oficio,
             String direccion, Date fechaAlta, float salario, float comision) {
         this.numeroSegSocial = numeroSegSocial;
         this.nombre = nombre;
@@ -34,7 +33,7 @@ public class Empleado implements Serializable{
         this.salario = salario;
         this.comision = comision;
     }
-              
+
     public String getNumeroSegSocial() {
         return numeroSegSocial;
     }
@@ -90,8 +89,8 @@ public class Empleado implements Serializable{
     public void setComision(float comision) {
         this.comision = comision;
     }
-    
-    public String getNombreDepartamento(){
+
+    public String getNombreDepartamento() {
         Session sesion = NewHibernateUtil.getSession();
         sesion.update(this);
         String nombreDepartamento = departamento.getNombre();

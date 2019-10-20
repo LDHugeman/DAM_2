@@ -1,4 +1,3 @@
-
 package objetos;
 
 import java.io.Serializable;
@@ -9,17 +8,17 @@ import java.util.Set;
  *
  * @author a18luisdvp
  */
-public class Departamento implements Serializable, Cloneable{
-    
+public class Departamento implements Serializable, Cloneable {
+
     private int idDepartamento;
     private String nombre;
     private String localidad;
     private Set<Empleado> empleados;
-    
-    public Departamento(){       
+
+    public Departamento() {
     }
-    
-    public Departamento(String nombre, String localidad){
+
+    public Departamento(String nombre, String localidad) {
         this.nombre = nombre;
         this.localidad = localidad;
         this.empleados = new HashSet();
@@ -55,5 +54,5 @@ public class Departamento implements Serializable, Cloneable{
 
     public void setEmpleados(Set<Empleado> empleados) {
         this.empleados = empleados;
-    }  
+    }
 }

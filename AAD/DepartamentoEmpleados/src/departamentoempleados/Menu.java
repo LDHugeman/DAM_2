@@ -3,7 +3,6 @@ package departamentoempleados;
 import java.sql.Statement;
 import objetos.Departamento;
 import objetos.Empleado;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 
 /**
@@ -205,7 +204,7 @@ public class Menu {
         System.out.println("--- Introduzca el nombre del empleado al que desea modificar salario o comisión ---");
         String nombre = Crear.pedirNombreEmpleado();
         Empleado empleado = Consultar.encontrarEmpleadoPorNombre(nombre);
-        if (empleado != null) {            
+        if (empleado != null) {          
             Visualizar.empleado(empleado);
             if (Pedir.duda("¿Es este el empleado que desea modificar?")) {
                 System.out.println("¿Desea modificar el salario o la comisión?");
@@ -252,7 +251,7 @@ public class Menu {
         System.out.println("--- Introduzca el nombre del departamento del que desea ver sus empleados ---");
         String nombre = Crear.pedirNombreDepartamento();
         Departamento departamento = Consultar.encontrarDepartamentoPorNombre(nombre);
-        if (departamento != null) {
+        if (departamento != null) {           
             Session session = NewHibernateUtil.getSession();
             session.update(departamento);
             Visualizar.empleados(departamento.getEmpleados());
