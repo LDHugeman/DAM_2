@@ -1,4 +1,3 @@
-
 package departamentoempleados;
 
 import java.sql.Statement;
@@ -10,15 +9,14 @@ import objetos.Empleado;
  * @author a18luisdvp
  */
 public class Menu {
-    
+
     public static void menuAltas(Statement sentencia) {
         byte opcion = 0;
         do {
             opcion = seleccionarOpcionMenuAltas();
             switch (opcion) {
                 case 1:
-                    Empleado empleado = Crear.nuevoEmpleado();
-                    Altas.nuevoEmpleado(empleado);
+                    altaEmpleado();
                     break;
                 case 2:
                     Departamento departamento = Crear.nuevoDepartamento();
@@ -29,14 +27,14 @@ public class Menu {
             }
         } while (opcion != 0);
     }
-    
+
     public static void menuBajas(Statement sentencia) {
         byte opcion = 0;
         do {
             opcion = seleccionarOpcionMenuBajas();
             switch (opcion) {
                 case 1:
-                    
+
                     break;
                 case 2:
                     break;
@@ -45,14 +43,14 @@ public class Menu {
             }
         } while (opcion != 0);
     }
-    
+
     public static void menuModificar(Statement sentencia) {
         byte opcion = 0;
         do {
             opcion = seleccionarOpcionMenuModificar();
             switch (opcion) {
                 case 1:
-                    
+
                     break;
                 case 2:
                     break;
@@ -61,14 +59,14 @@ public class Menu {
             }
         } while (opcion != 0);
     }
-    
+
     public static void menuVisualizar(Statement sentencia) {
         byte opcion = 0;
         do {
             opcion = seleccionarOpcionMenuVisualizar();
             switch (opcion) {
                 case 1:
-                    
+
                     break;
                 case 2:
                     break;
@@ -77,7 +75,7 @@ public class Menu {
             }
         } while (opcion != 0);
     }
-    
+
     public static byte seleccionarOpcionMenuPrincipal() {
         System.out.println("------- MENU -------");
         System.out.println("[1] Altas ");
@@ -88,7 +86,7 @@ public class Menu {
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
     }
-    
+
     public static byte seleccionarOpcionMenuAltas() {
         System.out.println("------- ALTAS -------");
         System.out.println("[1] Empleado");
@@ -97,7 +95,7 @@ public class Menu {
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
     }
-    
+
     public static byte seleccionarOpcionMenuBajas() {
         System.out.println("------- BAJAS -------");
         System.out.println("[1] Empleado");
@@ -106,7 +104,7 @@ public class Menu {
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
     }
-    
+
     public static byte seleccionarOpcionMenuModificar() {
         System.out.println("------- MODIFICACIONES -------");
         System.out.println("[1] Modificar salario o comisión de un empleado");
@@ -115,7 +113,7 @@ public class Menu {
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
     }
-    
+
     public static byte seleccionarOpcionMenuVisualizar() {
         System.out.println("------- VISUALIZAR -------");
         System.out.println("[1] Empleados de un departamento");
@@ -123,5 +121,26 @@ public class Menu {
         System.out.println("[0] Salir");
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
+    }
+
+    public static void altaEmpleado() {
+        Empleado empleado = Crear.nuevoEmpleado();
+        Visualizar.departamentos(Consultar.extraerDepartamentos());
+        System.out.println("--- Introduzca el número del departamento en el que desea añadir el empleado ---");
+        System.out.printf("Número del departamento: ");
+        int numeroDepartamento = Pedir.numeroEntero();
+        Departamento departamento = Consultar.encontrarDepartamentoPorId(numeroDepartamento);
+        if (departamento != null) {
+            empleado.setDepartamento(departamento);
+            departamento.getEmpleados().add(empleado);
+        } else {
+            System.err.println("No existe un departamento con ese número");
+            if (Pedir.duda("¿Desea crear el departamento?")) {
+                Departamento nuevoDepartamento = Crear.nuevoDepartamento();
+                empleado.setDepartamento(nuevoDepartamento);
+                nuevoDepartamento.getEmpleados().add(empleado);                
+            }
+        }
+        Altas.nuevoEmpleado(empleado);
     }
 }
