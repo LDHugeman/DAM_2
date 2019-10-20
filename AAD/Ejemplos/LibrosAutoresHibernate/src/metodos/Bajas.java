@@ -17,20 +17,20 @@ public class Bajas {
     public static void bajasAutor() {
         int existe = Visualizar.visualizarAutores();
         String dni;
-        char conf;
-        Autor a = null;
+        char confirmacion;
+        Autor autor = null;
         Scanner scan = new Scanner(System.in);
         if (existe == 1) {
             System.out.println("Introduce el dni del autor a borrar.");
             System.out.print(" > ");
             dni = scan.nextLine();
-            a = AdicionalesBD.comprobarAutor(dni);
-            if (a != null) {
+            autor = AdicionalesBD.comprobarAutor(dni);
+            if (autor != null) {
                 System.out.println("Esta seguro de querer borrar el autor?");
                 System.out.print(" > ");
-                conf = scan.nextLine().toLowerCase().charAt(0);
-                if (conf == 's') {
-                    eliminar(a);
+                confirmacion = scan.nextLine().toLowerCase().charAt(0);
+                if (confirmacion == 's') {
+                    eliminar(autor);
                 } else {
                     System.out.println("No se ha borrado al autor");
                 }

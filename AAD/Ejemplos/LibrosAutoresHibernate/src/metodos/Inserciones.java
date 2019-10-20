@@ -59,27 +59,27 @@ public class Inserciones {
         System.out.print(" > ");
         precio = scan.nextFloat();
         scan.nextLine();
-        Libro l = new Libro(titulo, precio);
-        Autor a = null;
+        Libro libro = new Libro(titulo, precio);
+        Autor autor = null;
         do {
-            int c;
-            c = Visualizar.visualizarAutores();
-            if (c == 1) {
-                a = buscarAutor();
-                if (a == null) {
+            int opcion;
+            opcion = Visualizar.visualizarAutores();
+            if (opcion == 1) {
+                autor = buscarAutor();
+                if (autor == null) {
                     System.out.println("El autor introducido no existe, desea crearlo?[s/n].");
                     conf = scan.nextLine().toLowerCase().charAt(0);
                     if (conf == 's') {
-                        a = crearAutor(l);
+                        autor = crearAutor(libro);
                     }
                 }
             } else {
-                a = crearAutor(l);
+                autor = crearAutor(libro);
             }
-        } while (a == null);
+        } while (autor == null);
 
-        l.setAutor(a);
-        guardarModificar(l);
+        libro.setAutor(autor);
+        guardarModificar(libro);
         System.out.println("Libro introducido.");
 
     }
