@@ -1,8 +1,10 @@
 
 package objetos;
 
+import departamentoempleados.NewHibernateUtil;
 import java.io.Serializable;
 import java.util.Date;
+import org.hibernate.Session;
 
 /**
  *
@@ -87,6 +89,14 @@ public class Empleado implements Serializable{
 
     public void setComision(float comision) {
         this.comision = comision;
+    }
+    
+    public String getNombreDepartamento(){
+        Session sesion = NewHibernateUtil.getSession();
+        sesion.update(this);
+        String nombreDepartamento = departamento.getNombre();
+        sesion.close();
+        return nombreDepartamento;
     }
 
     public Departamento getDepartamento() {

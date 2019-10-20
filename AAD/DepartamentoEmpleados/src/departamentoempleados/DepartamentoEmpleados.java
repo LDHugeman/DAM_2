@@ -39,14 +39,19 @@ public class DepartamentoEmpleados {
                     Menu.menuAltas(sentencia);
                     break;
                 case 2:
+                    Menu.menuBajas(sentencia);
                     break;
                 case 3:
+                    Menu.menuModificar(sentencia);
                     break;
                 case 4:
+                    Menu.menuVisualizar(sentencia);
                     break;
                 case 0:
                     NewHibernateUtil.getSessionFactory().close();
                     break;
+                default:
+                    System.err.println("No existe esa opción");
             }
         } while (opcion != 0);
     }

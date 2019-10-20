@@ -9,7 +9,7 @@ import java.util.Set;
  *
  * @author a18luisdvp
  */
-public class Departamento implements Serializable{
+public class Departamento implements Serializable, Cloneable{
     
     private int idDepartamento;
     private String nombre;

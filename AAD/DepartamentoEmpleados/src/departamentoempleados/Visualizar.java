@@ -1,8 +1,11 @@
 package departamentoempleados;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import objetos.Departamento;
 import objetos.Empleado;
+import org.hibernate.Session;
 
 /**
  *
@@ -36,21 +39,24 @@ public class Visualizar {
         System.out.println("Fecha de alta: " + Crear.getStringFechaVisualizar(empleado.getFechaAlta()));
         System.out.println("Salario: " + empleado.getSalario());
         System.out.println("Comisión: " + empleado.getComision());
+        Session session = NewHibernateUtil.getSession();
+        session.update(empleado);
         System.out.println("Departamento: " + empleado.getDepartamento().getNombre());
+        session.close();
         System.out.println("------------------------------------------");
     }
     
-    public static void empleados(List <Empleado> empleados) {
-        System.out.println("------------------------------------- EMPLEADOS ------------------------------------------");
-        System.out.printf("%-15s %-25s %-35s %-45s %-55s %-65s %-75s %-85s %n", 
+    public static void empleados(Collection <Empleado> empleados) {
+        System.out.println("---------------------------------------------------- EMPLEADOS ---------------------------------------------------------");
+        System.out.printf("%-15s %-10s %-15s %-15s %-15s %-15s %-15s %-15s %n", 
                 "NUMERO S.S.", "NOMBRE", "OFICIO", "DIRECCIÓN", 
                 "FECHA DE ALTA", "SALARIO", "COMISIÓN", "DEPARTAMENTO");
         for (Empleado empleado: empleados){
-            System.out.printf("%-15s %-25s %-35s %-45s %-55s %-65.2f %-75.2f %-85s %n", empleado.getNumeroSegSocial(), 
+            System.out.printf("%-15s %-10s %-15s %-15s %-15s %-15.2f %-15.2f %-15s %n", empleado.getNumeroSegSocial(), 
                     empleado.getNombre(), empleado.getOficio(), empleado.getDireccion(), 
                     Crear.getStringFechaVisualizar(empleado.getFechaAlta()), empleado.getSalario(), 
-                    empleado.getComision(), empleado.getDepartamento().getNombre());
+                    empleado.getComision(), empleado.getNombreDepartamento());
         }
-        System.out.println("-------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------");
     }
 }

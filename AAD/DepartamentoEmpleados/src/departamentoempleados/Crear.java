@@ -15,19 +15,19 @@ public class Crear {
 
     public static void tablas(Statement sentencia) {
         try {
-            sentencia.execute("DROP DATABASE IF EXISTS EMPRESA;");
+            //sentencia.execute("DROP DATABASE IF EXISTS EMPRESA;");
             sentencia.execute("CREATE DATABASE IF NOT EXISTS EMPRESA;");
             sentencia.execute("USE EMPRESA");
 
-            sentencia.execute("DROP TABLE IF EXISTS departamentos");
+            //sentencia.execute("DROP TABLE IF EXISTS departamentos");
             sentencia.execute("CREATE TABLE IF NOT EXISTS departamentos"
                     + "(idDepartamento INT(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,"
                     + "nombre VARCHAR(30) NOT NULL,"
                     + "localidad VARCHAR(30) NOT NULL,"
                     + "PRIMARY KEY(idDepartamento))"
                     + "ENGINE INNODB;");
-            
-            sentencia.execute("DROP TABLE IF EXISTS empleados");
+
+            //sentencia.execute("DROP TABLE IF EXISTS empleados");
             sentencia.execute("CREATE TABLE IF NOT EXISTS empleados"
                     + "(numeroSegSocial CHAR(12) NOT NULL,"
                     + "nombre VARCHAR(30) NOT NULL,"
@@ -49,32 +49,61 @@ public class Crear {
             System.out.println(excepcion.getMessage());
         }
     }
-    
-    public static Departamento nuevoDepartamento (){
-        System.out.printf("Nombre: ");
-        String nombre = Pedir.texto();
-        System.out.printf("Localidad: ");
-        String localidad = Pedir.texto();
+
+    public static Departamento nuevoDepartamento() {
+        String nombre = pedirNombreDepartamento();
+        String localidad = pedirLocalidad();
         return new Departamento(nombre, localidad);
     }
-    
-    public static Empleado nuevoEmpleado(){
-        System.out.printf("Número de Seguridad Social: ");
-        String numeroSegSocial = Pedir.texto();
-        System.out.printf("Nombre: ");
-        String nombre = Pedir.texto();
+
+    public static Empleado nuevoEmpleado() {
+        String numeroSegSocial = pedirNumeroSegSocial();
+        String nombre = pedirNombreEmpleado();
         System.out.printf("Oficio: ");
         String oficio = Pedir.texto();
         System.out.printf("Dirección: ");
         String direccion = Pedir.texto();
-        System.out.printf("Salario: ");
         Date fechaAlta = new Date();
-        float salario = Pedir.numeroRealFloat();
-        System.out.printf("Comisión: ");
-        float comision = Pedir.numeroRealFloat();     
+        float salario = pedirSalario();      
+        float comision = pedirComision();
         return new Empleado(numeroSegSocial, nombre, oficio, direccion, fechaAlta, salario, comision);
     }
+
+    public static int pedirIdDepartamento() {
+        System.out.printf("Número de departamento: ");
+        return Pedir.numeroEntero();
+    }
     
+    public static String pedirLocalidad(){
+        System.out.printf("Localidad: ");
+        return Pedir.texto();
+    }
+    
+    public static String pedirNombreDepartamento(){
+        System.out.printf("Nombre: ");
+        return Pedir.texto();
+    }
+    
+    public static String pedirNombreEmpleado(){
+        System.out.printf("Nombre: ");
+        return Pedir.texto();
+    }
+
+    public static String pedirNumeroSegSocial() {
+        System.out.printf("Número de Seguridad Social: ");
+        return Pedir.texto();
+    }
+    
+    public static float pedirSalario() {
+        System.out.printf("Salario: ");
+        return Pedir.numeroRealFloat();
+    }
+    
+    public static float pedirComision() {
+        System.out.printf("Comisión: ");
+        return Pedir.numeroRealFloat();
+    }
+
     public static String getStringFechaVisualizar(Date fecha) {
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
         return formatoFecha.format(fecha);
