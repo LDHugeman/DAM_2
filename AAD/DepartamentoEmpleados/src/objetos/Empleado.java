@@ -17,12 +17,13 @@ public class Empleado implements Serializable{
     private Date fechaAlta;
     private float salario;
     private float comision;
-    private int numeroDepartamento;
+    private Departamento departamento;
     
     public Empleado(){       
     }
 
-    public Empleado(String numeroSegSocial, String nombre, String oficio, String direccion, Date fechaAlta, float salario, float comision, int numeroDepartamento) {
+    public Empleado(String numeroSegSocial, String nombre, String oficio, 
+            String direccion, Date fechaAlta, float salario, float comision) {
         this.numeroSegSocial = numeroSegSocial;
         this.nombre = nombre;
         this.oficio = oficio;
@@ -30,9 +31,8 @@ public class Empleado implements Serializable{
         this.fechaAlta = fechaAlta;
         this.salario = salario;
         this.comision = comision;
-        this.numeroDepartamento = numeroDepartamento;
     }
-        
+              
     public String getNumeroSegSocial() {
         return numeroSegSocial;
     }
@@ -88,12 +88,12 @@ public class Empleado implements Serializable{
     public void setComision(float comision) {
         this.comision = comision;
     }
-    
-    public int getNumeroDepartamento() {
-        return numeroDepartamento;
+
+    public Departamento getDepartamento() {
+        return departamento;
     }
 
-    public void setNumeroDepartamento(int numeroDepartamento) {
-        this.numeroDepartamento = numeroDepartamento;
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 }

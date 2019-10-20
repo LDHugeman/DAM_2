@@ -2,6 +2,7 @@ package departamentoempleados;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import objetos.Departamento;
 import objetos.Empleado;
@@ -35,8 +36,8 @@ public class Crear {
                     + "fechaAlta DATE NOT NULL,"
                     + "salario FLOAT(5) UNSIGNED NOT NULL,"
                     + "comision FLOAT(5) UNSIGNED NOT NULL,"
-                    + "numeroDepartamento INT(5) UNSIGNED ZEROFILL NOT NULL,"
-                    + "FOREIGN KEY(numeroDepartamento) REFERENCES DEPARTAMENTOS (idDepartamento) "
+                    + "departamento INT(5) UNSIGNED ZEROFILL NOT NULL,"
+                    + "FOREIGN KEY(departamento) REFERENCES DEPARTAMENTOS (idDepartamento) "
                     + "ON DELETE CASCADE "
                     + "ON UPDATE CASCADE,"
                     + "PRIMARY KEY(numeroSegSocial))"
@@ -70,11 +71,12 @@ public class Crear {
         Date fechaAlta = new Date();
         float salario = Pedir.numeroRealFloat();
         System.out.printf("Comisión: ");
-        float comision = Pedir.numeroRealFloat();
-        Visualizar.departamentos(Consultar.extraerDepartamentos());
-        System.out.println("--- Introduzca el número del departamento en el que desea añadir el empleado ---");       
-        System.out.printf("Número del departamento: ");
-        int numeroDepartamento = Pedir.numeroEntero();
-        return new Empleado(numeroSegSocial, nombre, oficio, direccion, fechaAlta, salario, comision, numeroDepartamento);
+        float comision = Pedir.numeroRealFloat();     
+        return new Empleado(numeroSegSocial, nombre, oficio, direccion, fechaAlta, salario, comision);
+    }
+    
+    public static String getStringFechaVisualizar(Date fecha) {
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        return formatoFecha.format(fecha);
     }
 }

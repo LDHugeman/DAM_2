@@ -9,7 +9,7 @@
         <property name="localidad"/>
         <set name="empleados" table="empleados" inverse="true">
             <key>
-                <column name="numeroDepartamento" not-null="true"/>
+                <column name="departamento" not-null="true"/>
             </key>
             <one-to-many class="objetos.Empleado"/>
         </set>

@@ -125,22 +125,24 @@ public class Menu {
 
     public static void altaEmpleado() {
         Empleado empleado = Crear.nuevoEmpleado();
+        Departamento departamento = null;
         Visualizar.departamentos(Consultar.extraerDepartamentos());
         System.out.println("--- Introduzca el número del departamento en el que desea añadir el empleado ---");
         System.out.printf("Número del departamento: ");
         int numeroDepartamento = Pedir.numeroEntero();
-        Departamento departamento = Consultar.encontrarDepartamentoPorId(numeroDepartamento);
-        if (departamento != null) {
-            empleado.setDepartamento(departamento);
+        departamento = Consultar.encontrarDepartamentoPorId(numeroDepartamento);
+        if (departamento != null) {        
             departamento.getEmpleados().add(empleado);
-        } else {
+        } else {  
             System.err.println("No existe un departamento con ese número");
             if (Pedir.duda("¿Desea crear el departamento?")) {
-                Departamento nuevoDepartamento = Crear.nuevoDepartamento();
-                empleado.setDepartamento(nuevoDepartamento);
-                nuevoDepartamento.getEmpleados().add(empleado);                
+                departamento = Crear.nuevoDepartamento();
+                departamento.getEmpleados().add(empleado);                
             }
         }
-        Altas.nuevoEmpleado(empleado);
+        empleado.setDepartamento(departamento);
+        Altas.nuevoEmpleado(empleado);     
+        System.out.printf("Num seg social: ");
+        Visualizar.empleado(Consultar.encontrarEmpleadoPorNumeroSegSocial(Pedir.texto()));
     }
 }

@@ -24,17 +24,13 @@ public class DepartamentoEmpleados {
 
         try {
             sentencia = conexion.createStatement();
-            if(!sentencia.executeQuery("SHOW DATABASES LIKE 'EMPRESA'").first()){
-                Crear.tablas(sentencia);
-            }else{
-                System.out.println("2dasda");
-                sentencia.execute("USE EMPRESA");
-            }
+            Crear.tablas(sentencia);
         } catch (SQLException excepcion) {
             System.out.println("Error al conectarse con el driver que maneja la BD");
             System.out.println(excepcion.getMessage());
         }
-        
+
+        NewHibernateUtil.getSessionFactory();
         byte opcion = 0;
         do {
             opcion = Menu.seleccionarOpcionMenuPrincipal();
@@ -49,6 +45,7 @@ public class DepartamentoEmpleados {
                 case 4:
                     break;
                 case 0:
+                    NewHibernateUtil.getSessionFactory().close();
                     break;
             }
         } while (opcion != 0);

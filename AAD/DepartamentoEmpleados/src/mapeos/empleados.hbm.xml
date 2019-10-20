@@ -9,8 +9,8 @@
       <property name="fechaAlta"/>
       <property name="salario"/>
       <property name="comision"/>
-      <many-to-one name="numeroDepartamento" class="objetos.Departamento">
-          <column name="numeroDepartamento" not-null="true"/>
+      <many-to-one name="departamento" class="objetos.Departamento">
+          <column name="departamento" not-null="true"/>
       </many-to-one>
   </class>
 </hibernate-mapping>
