@@ -141,19 +141,20 @@ public class Menu {
         System.out.println("--- Introduzca el número del departamento en el que desea añadir el empleado ---");
         System.out.printf("Número del departamento: ");
         int numeroDepartamento = Pedir.numeroEntero();
-        departamento = Consultar.encontrarDepartamentoPorId(numeroDepartamento);
-        Session session = NewHibernateUtil.getSession();
+        departamento = Consultar.encontrarDepartamentoPorId(numeroDepartamento);       
         if (departamento != null) {
+            Session session = NewHibernateUtil.getSession();
             session.update(departamento);
             departamento.getEmpleados().add(empleado);
-
+            session.close();
         } else {
             System.out.println("No existe un departamento con ese número");
             if (Pedir.duda("¿Desea crear el departamento?")) {
                 departamento = Crear.nuevoDepartamento();
-                session.update(departamento);
+                Session session2 = NewHibernateUtil.getSession();
+                session2.update(departamento);
                 departamento.getEmpleados().add(empleado);
-                session.close();
+                session2.close();
                 Altas.guardar(departamento);
             }
         }
@@ -266,10 +267,10 @@ public class Menu {
         String nombre = Crear.pedirNombreEmpleado();
         Empleado empleado = Consultar.encontrarEmpleadoPorNombre(nombre);
         if (empleado != null) {
-            Session session = NewHibernateUtil.getSession();
-            session.update(empleado);
+           // Session session = NewHibernateUtil.getSession();
+            //session.update(empleado);
             Visualizar.departamento(empleado.getDepartamento());
-            session.close();
+          //  session.close();
         } else {
             System.err.println("No existe un empleado con ese nombre");
         }

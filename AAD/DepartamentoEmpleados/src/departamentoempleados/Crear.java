@@ -17,11 +17,12 @@ public class Crear {
         try {
             sentencia.execute("CREATE DATABASE IF NOT EXISTS EMPRESA;");
             sentencia.execute("USE EMPRESA");
-
+                       
             sentencia.execute("CREATE TABLE IF NOT EXISTS departamentos"
                     + "(idDepartamento INT(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,"
                     + "nombre VARCHAR(30) NOT NULL,"
                     + "localidad VARCHAR(30) NOT NULL,"
+                    + "UNIQUE INDEX ak_nombre(nombre),"
                     + "PRIMARY KEY(idDepartamento))"
                     + "ENGINE INNODB;");
 

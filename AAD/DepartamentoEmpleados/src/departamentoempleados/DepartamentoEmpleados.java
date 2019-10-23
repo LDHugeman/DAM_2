@@ -48,7 +48,7 @@ public class DepartamentoEmpleados {
                     Menu.menuVisualizar(sentencia);
                     break;
                 case 0:
-                    NewHibernateUtil.getSessionFactory().close();
+                    NewHibernateUtil.getSessionFactory().close();                   
                     break;
                 default:
                     System.err.println("No existe esa opción");

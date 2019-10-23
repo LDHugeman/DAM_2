@@ -5,7 +5,7 @@
         <id name="idDepartamento">
             <generator class="increment"/>
         </id>
-        <property name="nombre"/>
+        <property name="nombre" unique="true"/>
         <property name="localidad"/>
         <set name="empleados" table="empleados" inverse="true">
             <key>
