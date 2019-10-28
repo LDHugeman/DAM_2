@@ -155,7 +155,7 @@ public class Menu {
                 session2.update(departamento);
                 departamento.getEmpleados().add(empleado);
                 session2.close();
-                Altas.guardar(departamento);
+                Altas.nuevoDepartamento(departamento);
             }
         }
         empleado.setDepartamento(departamento);
