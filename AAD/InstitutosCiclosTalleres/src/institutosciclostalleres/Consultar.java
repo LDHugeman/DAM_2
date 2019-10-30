@@ -57,7 +57,7 @@ public class Consultar {
         try{                    
             usos = session.createCriteria(Uso.class).add(Restrictions.between("fecha", primerFecha, segundaFecha)).list();
         }catch(HibernateException excepcion) {
-            System.err.println("Error al buscar el taller");
+            System.err.println("Error al buscar los usos");
             System.out.println(excepcion.getMessage());
         }
         return usos;
