@@ -54,8 +54,7 @@ public class Consultar {
     
     public static List<Uso> usosTalleresEntreFechas(Session session, Date primerFecha, Date segundaFecha){
         List<Uso> usos = new ArrayList<>();
-        try{
-                     
+        try{                    
             usos = session.createCriteria(Uso.class).add(Restrictions.between("fecha", primerFecha, segundaFecha)).list();
         }catch(HibernateException excepcion) {
             System.err.println("Error al buscar el taller");
