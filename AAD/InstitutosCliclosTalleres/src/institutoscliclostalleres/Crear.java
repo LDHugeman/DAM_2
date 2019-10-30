@@ -32,7 +32,7 @@ public class Crear {
 
             sentencia.execute("CREATE TABLE IF NOT EXISTS talleres ("
                     + "codigo INT(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,"
-                    + "nombre VARCHAR(10) NOT NULL,"
+                    + "nombre VARCHAR(30) NOT NULL,"
                     + "instituto INT(4) UNSIGNED ZEROFILL NOT NULL,"
                     + "PRIMARY KEY (codigo),"
                     + "FOREIGN KEY (instituto) REFERENCES institutos(codigo)"
@@ -71,27 +71,23 @@ public class Crear {
     }
 
     public static Instituto nuevoInstituto() {
-        int codigo = pedirCodigo();
         System.out.printf("Nombre: ");
         String nombre = Pedir.texto();
         System.out.printf("Teléfono: ");
         String telefono = Pedir.texto();
-        return new Instituto(codigo, nombre, telefono);
+        return new Instituto(nombre, telefono);
     }
 
     public static Ciclo nuevoCiclo() {
-        int codigo = pedirCodigo();
         System.out.printf("Nombre: ");
         String nombre = Pedir.texto();
-        return new Ciclo(codigo, nombre);
+        return new Ciclo(nombre);
     }
 
     public static Taller nuevoTaller(Instituto instituto) {
-        System.out.printf("Código del taller: ");
-        int codigo = Pedir.numeroEntero();
         System.out.printf("Nombre: ");
         String nombre = Pedir.texto();
-        return new Taller(codigo, nombre, instituto);
+        return new Taller(nombre, instituto);
     }
 
     public static Uso nuevoUso() {

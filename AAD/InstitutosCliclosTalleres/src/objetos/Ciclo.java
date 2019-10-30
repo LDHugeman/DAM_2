@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -20,6 +22,7 @@ import javax.persistence.Table;
 public class Ciclo implements Serializable{
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     private String nombre;
     @ManyToMany(
@@ -36,8 +39,7 @@ public class Ciclo implements Serializable{
     public Ciclo(){       
     }
     
-    public Ciclo(int codigo, String nombre) {
-        this.codigo = codigo;
+    public Ciclo(String nombre) {
         this.nombre = nombre;
         this.institutos = new HashSet();
         this.usos = new HashSet();

@@ -1,6 +1,7 @@
 package institutoscliclostalleres;
 
 import java.sql.Statement;
+import java.util.Date;
 import objetos.Ciclo;
 import objetos.Instituto;
 import objetos.Taller;
@@ -21,21 +22,6 @@ public class Menu {
                 case 1:
                     Instituto instituto = Crear.nuevoInstituto();
                     Altas.nuevoInstituto(instituto);
-                    break;
-                case 2:
-                    /* Ciclo ciclo = Crear.nuevoCiclo();
-                    Altas.nuevoCiclo(ciclo);*/
-                    break;
-                case 3:
-                    /*System.out.printf("Código del instituto: ");
-                    int codigoInstituto = Pedir.numeroEntero();
-                    Instituto institutoEncontrado = Consultar.encontrarInstitutoPorCodigo(codigoInstituto);
-                    if(institutoEncontrado!=null){
-                        Taller taller = Crear.nuevoTaller();
-                        Altas.nuevoTaller(taller);
-                    } else {
-                        System.err.println("No existe un instituto con ese código");
-                    }          */
                     break;
                 case 0:
                     break;
@@ -74,8 +60,10 @@ public class Menu {
             opcion = seleccionarOpcionMenuBajas();
             switch (opcion) {
                 case 1:
+                    eliminarCiclo();
                     break;
                 case 2:
+                    eliminarTaller();
                     break;
                 case 0:
                     break;
@@ -91,10 +79,19 @@ public class Menu {
             opcion = seleccionarOpcionMenuVisualizar();
             switch (opcion) {
                 case 1:
+                    System.out.printf("Primer fecha(dd/MM/yyyy): ");
+                    Date primerFecha = Pedir.fecha();
+                    System.out.printf("Segunda fecha(dd/MM/yyyy): ");
+                    Date segundaFecha = Pedir.fecha();
+                    Session session = NewHibernateUtil.getSession();
+                    Visualizar.ciclosUsaronTalleresEntreFechas(Consultar.usosTalleresEntreFechas(session, primerFecha, segundaFecha));
+                    session.close();
                     break;
                 case 2:
+                    visualizarCiclosInstituto();
                     break;
                 case 3:
+                    visualizarInstitutosImparteCiclo();
                     break;
                 case 0:
                     break;
@@ -118,8 +115,6 @@ public class Menu {
     public static byte seleccionarOpcionMenuAltas() {
         System.out.println("------- ALTAS -------");
         System.out.println("[1] Instituto");
-        System.out.println("[2] Ciclo");
-        System.out.println("[3] Taller");
         System.out.println("[0] Salir");
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
@@ -146,8 +141,8 @@ public class Menu {
 
     public static byte seleccionarOpcionMenuVisualizar() {
         System.out.println("------- VISUALIZAR -------");
-        System.out.println("[1] Ciclos que usaron un taller");
-        System.out.println("[2] Ciclos de un instito");
+        System.out.println("[1] Ciclos que usaron un taller entre 2 fechas");
+        System.out.println("[2] Ciclos de un instituto");
         System.out.println("[3] Institutos donde se imparte un ciclo");
         System.out.println("[0] Salir");
         System.out.printf("Selecione una opción: ");
@@ -162,8 +157,10 @@ public class Menu {
         if (instituto != null) {
             System.out.println("--- Introduzca los datos del ciclo ---");
             Ciclo ciclo = Crear.nuevoCiclo();
+            ciclo.getInstitutos().add(instituto);
             Altas.nuevoCiclo(ciclo);
             instituto.getCiclos().add(ciclo);
+            Altas.guardar(instituto, session);
             session.close();
         } else {
             System.err.println("No existe un instituto con ese código");
@@ -177,11 +174,64 @@ public class Menu {
         Instituto instituto = Consultar.encontrarInstitutoPorCodigo(session, codigo);
         if (instituto != null) {
             Taller taller = Crear.nuevoTaller(instituto);
-            Altas.nuevoTaller(taller);
             instituto.getTalleres().add(taller);
+            taller.setInstituto(instituto);
+            Altas.nuevoTaller(taller);
             session.close();
         } else {
             System.err.println("No existe un instituto con ese código");
         }
+    }
+
+    public static void eliminarCiclo() {
+        System.out.println("--- Introduzca el codigo del ciclo que desea eliminar ---");
+        int codigo = Crear.pedirCodigo();
+        Session session = NewHibernateUtil.getSession();
+        Ciclo ciclo = Consultar.encontrarCicloPorCodigo(session, codigo);
+        session.close();
+        if (ciclo != null) {
+            Bajas.ciclo(ciclo);
+        } else {
+            System.err.println("No existe ningún ciclo con ese codigo");
+        }
+    }
+
+    public static void eliminarTaller() {
+        System.out.println("--- Introduzca el codigo del taller que desea eliminar ---");
+        int codigo = Crear.pedirCodigo();
+        Session session = NewHibernateUtil.getSession();
+        Taller taller = Consultar.encontrarTallerPorCodigo(session, codigo);
+        session.close();
+        if (taller != null) {
+            Bajas.taller(taller);
+        } else {
+            System.err.println("No existe ningún taller con ese codigo");
+        }
+    }
+
+    public static void visualizarCiclosInstituto() {
+        System.out.println("--- Instroduzca el código del instituto del que desea ver sus ciclos ---");
+        int codigo = Crear.pedirCodigo();
+        Session session = NewHibernateUtil.getSession();
+        Instituto instituto = Consultar.encontrarInstitutoPorCodigo(session, codigo);
+        if (instituto != null) {
+            Visualizar.ciclos(instituto.getCiclos());
+        } else {
+            System.err.println("No existe ningún instituto con ese código");
+        }
+        session.close();
+    }
+
+    public static void visualizarInstitutosImparteCiclo() {
+        System.out.println("--- Instroduzca el código del ciclo del que desea ver los institutos en los que se imparte ---");
+        int codigo = Crear.pedirCodigo();
+        Session session = NewHibernateUtil.getSession();
+        Ciclo ciclo = Consultar.encontrarCicloPorCodigo(session, codigo);
+        if (ciclo != null) {
+            Visualizar.institutos(ciclo.getInstitutos());
+        } else {
+            System.err.println("No existe ningún ciclo con ese código");
+        }
+        session.close();
     }
 }

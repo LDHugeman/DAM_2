@@ -6,8 +6,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
@@ -26,11 +26,11 @@ public class Uso implements Serializable {
     private Time hora;
     @Id
     @ManyToOne
-    @MapsId("ciclo")
+    @JoinColumn(name = "ciclo")
     private Ciclo ciclo;
     @Id
     @ManyToOne
-    @MapsId("taller")
+    @JoinColumn(name = "taller")
     private Taller taller;
 
     public Uso() {
@@ -59,11 +59,11 @@ public class Uso implements Serializable {
         this.hora = hora;
     }
 
-    public Ciclo getCilo() {
+    public Ciclo getCiclo() {
         return ciclo;
     }
 
-    public void setCilo(Ciclo ciclo) {
+    public void setCiclo(Ciclo ciclo) {
         this.ciclo = ciclo;
     }
 

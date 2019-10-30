@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.hibernate.Session;
 
 /**
  *
@@ -43,8 +42,10 @@ public class InstitutosCliclosTalleres {
                     Menu.menuAñadir(sentencia);
                     break;
                 case 3:
+                    Menu.menuBajas(sentencia);
                     break;
                 case 4:
+                    Menu.menuVisualizar(sentencia);
                     break;
                 case 0:
                     NewHibernateUtil.getSessionFactory().close();

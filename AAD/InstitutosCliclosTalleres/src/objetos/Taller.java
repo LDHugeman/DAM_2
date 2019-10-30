@@ -5,8 +5,13 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
@@ -20,10 +25,11 @@ import javax.persistence.Table;
 public class Taller implements Serializable{
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     private String nombre;
     @ManyToOne
-    @MapsId("instituto")
+    @JoinColumn(name = "instituto")
     private Instituto instituto;
     @OneToMany(
             mappedBy = "taller", //Referido a como se llama taller en el objeto uso
@@ -34,8 +40,7 @@ public class Taller implements Serializable{
     public Taller(){        
     }
 
-    public Taller(int codigo, String nombre, Instituto instituto) {
-        this.codigo = codigo;
+    public Taller(String nombre, Instituto instituto) {
         this.nombre = nombre;
         this.instituto = instituto;
         this.usos = new HashSet();

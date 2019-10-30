@@ -1,12 +1,17 @@
 
 package institutoscliclostalleres;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import objetos.Ciclo;
 import objetos.Instituto;
 import objetos.Taller;
+import objetos.Uso;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -45,5 +50,17 @@ public class Consultar {
             System.out.println(excepcion.getMessage());
         }
         return tallerEncontrado;
+    }
+    
+    public static List<Uso> usosTalleresEntreFechas(Session session, Date primerFecha, Date segundaFecha){
+        List<Uso> usos = new ArrayList<>();
+        try{
+                     
+            usos = session.createCriteria(Uso.class).add(Restrictions.between("fecha", primerFecha, segundaFecha)).list();
+        }catch(HibernateException excepcion) {
+            System.err.println("Error al buscar el taller");
+            System.out.println(excepcion.getMessage());
+        }
+        return usos;
     }
 }

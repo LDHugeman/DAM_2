@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -21,11 +23,14 @@ import javax.persistence.Table;
 public class Instituto implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     private String nombre;
     private String telefono;
-    @OneToMany
-    @JoinColumn(name = "instituto")
+    @OneToMany(
+            mappedBy = "instituto",
+            cascade = CascadeType.ALL
+    )
     private Set<Taller> talleres;
     @ManyToMany(
             cascade = CascadeType.ALL
@@ -40,8 +45,7 @@ public class Instituto implements Serializable {
     public Instituto() {
     }
 
-    public Instituto(int codigo, String nombre, String telefono) {
-        this.codigo = codigo;
+    public Instituto(String nombre, String telefono) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.talleres = new HashSet();

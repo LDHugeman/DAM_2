@@ -43,4 +43,15 @@ public class Altas {
             System.out.println(excepcion.getMessage());
         }
     }
+    
+    public static void guardar(Object objeto, Session session){
+        try{
+            session.beginTransaction();
+            session.save(objeto);
+            session.getTransaction().commit();
+        }catch(HibernateException excepcion){
+            System.err.println("Error al guardar");
+            System.out.println(excepcion.getMessage());
+        }
+    }
 }
