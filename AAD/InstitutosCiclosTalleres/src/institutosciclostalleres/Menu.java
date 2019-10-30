@@ -91,7 +91,7 @@ public class Menu {
                     visualizarCiclosInstituto();
                     break;
                 case 3:
-                    visualizarInstitutosImparteCiclo();
+                    visualizarInstitutosImparteCiclo();                  
                     break;
                 case 0:
                     break;
