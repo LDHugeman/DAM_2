@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="rellenoFondo">30dp</dimen>
+    <dimen name="tamañoLetraTitulo">25sp</dimen>
+    <dimen name="tamañoLetraTvValor">20sp</dimen>
+    <dimen name="tamañoLetraTvResultado">15sp</dimen>
+    <dimen name="margenInferior">20dp</dimen>
+    <dimen name="margenDerecho">15dp</dimen>
+</resources>
