@@ -8,7 +8,6 @@ import objetos.Ciclo;
 import objetos.Instituto;
 import objetos.Taller;
 import objetos.Uso;
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
