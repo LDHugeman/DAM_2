@@ -41,7 +41,12 @@ class Empresa:
         variables.calendario = self.calendario
         variables.ventana_calendario = self.ventana_calendario
         variables.fila_clientes = (self.entrada_dni, self.entrada_apelidos, self.entrada_nome, self.entry_data)
-        variables.fila_habitaciones = (self.entrada_numero, self.radiobutton_simple, self.radiobutton_doble, self.radiobutton_familiar, self.entrada_precio)
+        variables.fila_habitaciones = (
+            self.entrada_numero,
+            self.radiobutton_simple,
+            self.radiobutton_doble,
+            self.radiobutton_familiar,
+            self.entrada_precio)
         variables.lista_clientes = builder.get_object('listaClientes')
         variables.lista_habitaciones = builder.get_object('listaHabitaciones')
         variables.tree_clientes = builder.get_object('treeViewClientes')
