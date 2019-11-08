@@ -1,6 +1,7 @@
 package empresascoches;
 
 import java.sql.Statement;
+import java.util.List;
 import objetos.CocheAlquiler;
 import objetos.CocheVenta;
 import objetos.Empresa;
@@ -60,9 +61,13 @@ public class Menu {
     public static void menuVisualizar(Statement sentencia) {
         byte opcion = 0;
         do {
-            opcion = seleccionarOpcionMenuModificaciones();
+            opcion = seleccionarOpcionMenuVisualizar();
             switch (opcion) {
                 case 1:
+                    Session session = NewHibernateUtil.getSession();
+                    List<Empresa> empresas = Consultar.extraerEmpresas(session);
+                    Visualizar.mostrarEmpresasYCoches(empresas);
+                    session.close();
                     break;
                 case 2:
                     break;

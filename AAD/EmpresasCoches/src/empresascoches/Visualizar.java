@@ -1,14 +1,29 @@
 package empresascoches;
 
 import java.util.List;
+import objetos.Coche;
 import objetos.CocheAlquiler;
 import objetos.CocheVenta;
+import objetos.Empresa;
 
 /**
  *
  * @author a18luisdvp
  */
 public class Visualizar {
+    
+    public static void mostrarEmpresa(Empresa empresa) {
+        System.out.println("------------------ EMPRESA -------------------");
+        System.out.println("Cif: " + empresa.getCif());
+        System.out.println("Nombre: " + empresa.getNombre());
+        System.out.println("Teléfono: " + empresa.getTelefono());
+        System.out.println("----------------------------------------------");
+    }
+    
+    public static void mostrarCoche(Coche coche) {       
+        System.out.printf("%-15s %-15s %-15s %-15s %n", cocheVenta.getCodigo(), cocheVenta.getMarca(), cocheVenta.getModelo(), cocheVenta.getPrecio());
+        System.out.println("--------------------------------------------");
+    }
 
     public static void mostrarCocheVenta(CocheVenta cocheVenta) {
         System.out.println("---------------- COCHE EN VENTA ---------------------");
@@ -44,5 +59,19 @@ public class Visualizar {
             System.out.printf("%-15s %-15s %-15s %-15s %n", cocheAlquiler.getCodigo(), cocheAlquiler.getMarca(), cocheAlquiler.getModelo(), cocheAlquiler.getPrecio());
         }
         System.out.println("-------------------------------------------------------------");
+    }   
+    
+    public static void mostrarEmpresasYCoches(List<Empresa> empresas){
+        for(Empresa empresa:empresas){
+            mostrarEmpresa(empresa);
+            
+            for(Coche coche: empresa.getCoches()){
+                if(coche instanceof CocheVenta){
+                    mostrarCocheVenta(((CocheVenta) coche));
+                }else if( coche instanceof CocheAlquiler){
+                    mostrarCocheAlquiler(((CocheAlquiler) coche));
+                }
+            }
+        }
     }
 }

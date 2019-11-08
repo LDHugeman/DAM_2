@@ -74,6 +74,17 @@ public class Consultar {
         return cocheAlquiler;
     }
     
+    public static List extraerEmpresas(Session session) {
+        List<Empresa> empresas = new ArrayList();
+        try {            
+            empresas = session.createCriteria(Empresa.class).list();           
+        } catch (HibernateException excepcion) {
+            System.err.println("Error al extraer las empresas");
+            System.out.println(excepcion.getMessage());
+        }
+        return empresas;
+    }
+    
     public static List extraerCochesDeAlquiler() {
         List<CocheAlquiler> cochesAlquiler = new ArrayList();
         try {

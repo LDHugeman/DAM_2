@@ -57,6 +57,7 @@ public class EmpresasCoches {
                     Menu.menuModificaciones(sentencia);
                     break;
                 case 4:
+                    Menu.menuVisualizar(sentencia);
                     break;
                 case 0:
                     NewHibernateUtil.getSessionFactory().close();
