@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="objetos.Coche" table="coches">
+        <id column="codigo" name="codigo"/>
+        <property name="marca"/>
+        <property name="modelo"/>
+        
+        <many-to-one class="objetos.Empresa" name="empresa">
+            <column name="cif" not-null="true"/>
+        </many-to-one>
+        
+        <!-- Subclase coche venta -->
+        <joined-subclass name="objetos.CocheVenta" table="cochesVenta">
+            <key column="codigo"/>
+            <property name="precio"/>
+        </joined-subclass>
+        
+        <!-- Subclase coche alquiler -->
+        <joined-subclass name="objetos.CocheAlquiler" table="cochesAlquiler">
+            <key column="codigo"/>
+            <property name="precio"/>
+            <property name="estado"/>
+            <set name="usos" table="usos" inverse="true">
+                <key>
+                    <column name="cocheAlquiler"/>
+                </key>
+                <one-to-many class="objetos.Uso"/>
+            </set>
+        </joined-subclass>
+        
+    </class>
+</hibernate-mapping>
