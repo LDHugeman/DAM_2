@@ -15,7 +15,7 @@ import org.hibernate.Session;
  */
 public class Menu {
 
-    public static void menuAltas(Statement sentencia) {
+    public static void menuAltas() {
         byte opcion = 0;
         do {
             opcion = seleccionarOpcionMenuAltas();
@@ -40,7 +40,7 @@ public class Menu {
         } while (opcion != 0);
     }
 
-    public static void menuModificaciones(Statement sentencia) {
+    public static void menuModificaciones() {
         byte opcion = 0;
         do {
             opcion = seleccionarOpcionMenuModificaciones();
@@ -59,7 +59,7 @@ public class Menu {
         } while (opcion != 0);
     }
 
-    public static void menuVisualizar(Statement sentencia) {
+    public static void menuVisualizar() {
         byte opcion = 0;
         do {
             opcion = seleccionarOpcionMenuVisualizar();
@@ -265,5 +265,20 @@ public class Menu {
             System.err.println("No existe una empresa con ese cif");
         }
         session.close();
+    }
+
+    public static void bajaCocheAlquiler() {
+        Visualizar.mostrarCochesAlquiler(Consultar.extraerCochesDeAlquiler());
+        System.out.println("--- Introduzca el código del coche de alquiler que desea eliminar ---");
+        String codigo = Crear.pedirCodigo();
+        CocheAlquiler cocheAlquiler = Consultar.encontrarCocheAlquilerPorCodigo(codigo);
+        if (cocheAlquiler != null) {
+            Visualizar.mostrarCocheAlquiler(cocheAlquiler);
+            if (Pedir.duda("¿Es este el coche de alquiler que desea eliminar?")) {
+                Bajas.cocheAlquiler(cocheAlquiler);
+            }
+        } else {
+            System.err.println("No existe un coche de alquiler con ese código");
+        }
     }
 }

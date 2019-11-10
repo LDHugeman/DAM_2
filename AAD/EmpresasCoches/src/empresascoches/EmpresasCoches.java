@@ -37,27 +37,16 @@ public class EmpresasCoches {
             opcion = Menu.seleccionarOpcionMenuPrincipal();
             switch (opcion) {
                 case 1:
-                    Menu.menuAltas(sentencia);
+                    Menu.menuAltas();
                     break;
                 case 2:                   
-                    Visualizar.mostrarCochesAlquiler(Consultar.extraerCochesDeAlquiler());
-                    System.out.println("--- Introduzca el código del coche de alquiler que desea eliminar ---");                    
-                    String codigo = Crear.pedirCodigo();
-                    CocheAlquiler cocheAlquiler = Consultar.encontrarCocheAlquilerPorCodigo(codigo);
-                    if(cocheAlquiler!=null){
-                        Visualizar.mostrarCocheAlquiler(cocheAlquiler);
-                        if(Pedir.duda("¿Es este el coche de alquiler que desea eliminar?")){
-                            Bajas.cocheAlquiler(cocheAlquiler);
-                        }
-                    }else{
-                        System.err.println("No existe un coche de alquiler con ese código");
-                    }
+                    Menu.bajaCocheAlquiler();
                     break;
                 case 3:
-                    Menu.menuModificaciones(sentencia);
+                    Menu.menuModificaciones();
                     break;
                 case 4:
-                    Menu.menuVisualizar(sentencia);
+                    Menu.menuVisualizar();
                     break;
                 case 0:
                     NewHibernateUtil.getSessionFactory().close();
