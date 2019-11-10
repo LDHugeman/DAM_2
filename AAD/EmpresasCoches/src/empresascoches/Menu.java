@@ -71,40 +71,7 @@ public class Menu {
                     visualizarEmpresaCochesAlquiler();
                     break;
                 case 3:
-                    Visualizar.mostrarEmpresas(Consultar.extraerEmpresas());
-                    System.out.println("--- Introduzca el cif de la empresa de la que quiere ver la factura de un coche de alquiler ---");
-                    String cif = Crear.pedirCif();
-                    Session session = NewHibernateUtil.getSession();
-                    Empresa empresa = Consultar.encontrarEmpresaPorCif(session, cif);
-                    if (empresa != null) {
-                        Visualizar.mostrarCochesAlquiler(Consultar.extraerCochesDeAlquiler());
-                        System.out.println("--- Introduzca el código del coche de alquiler ---");
-                        String codigo = Crear.pedirCodigo();
-                        List<CocheAlquiler> cochesAlquiler = Consultar.extraerCochesDeAlquilerEmpresa(empresa.getCoches());
-                        CocheAlquiler cocheAlquilerEncontrado = null;
-                        for (CocheAlquiler cocheAlquiler : cochesAlquiler) {
-                            if (cocheAlquiler.getCodigo().equals(codigo)) {
-                                cocheAlquilerEncontrado = cocheAlquiler;
-                            }
-                        }
-                        if (cocheAlquilerEncontrado != null) {
-                            System.out.printf("Primer fecha(dd/MM/yyyy): ");
-                            Date primerFecha = Pedir.fecha();
-                            System.out.printf("Segunda fecha(dd/MM/yyyy): ");
-                            Date segundaFecha = Pedir.fecha();
-                            List<Uso> usos = Consultar.obtenerUsosCocheAlquilerEntreFechas(cocheAlquilerEncontrado.getUsos(), primerFecha, segundaFecha);
-                            if (!usos.isEmpty()) {
-                                Visualizar.facturaCocheAlquilerEntreFechas(empresa, cocheAlquilerEncontrado, usos);
-                            } else {
-                                System.err.println("Este coche de alquiler no tiene ningún uso entre esas dos fechas");
-                            }
-                        } else {
-                            System.err.println("No existe ningún coche de alquiler con ese código");
-                        }
-                    } else {
-                        System.err.println("No existe una empresa con ese cif");
-                    }
-                    session.close();
+                    visualizarFacturaCocheAlquilerEmpresa();
                     break;
                 case 0:
                     break;
@@ -202,7 +169,7 @@ public class Menu {
         if (cocheAlquiler != null) {
             Uso uso = Crear.nuevoUso(cocheAlquiler);
             cocheAlquiler.getUsos().add(uso);
-            cocheAlquiler.setEstado('R');          
+            cocheAlquiler.setEstado('R');
             session.close();
             Modificar.modificar(cocheAlquiler);
             Altas.nuevoUso(uso);
@@ -257,6 +224,43 @@ public class Menu {
         if (empresa != null) {
             Visualizar.mostrarEmpresa(empresa);
             Visualizar.mostrarCochesAlquiler(Consultar.extraerCochesDeAlquilerEmpresa(empresa.getCoches()));
+        } else {
+            System.err.println("No existe una empresa con ese cif");
+        }
+        session.close();
+    }
+
+    public static void visualizarFacturaCocheAlquilerEmpresa() {
+        Visualizar.mostrarEmpresas(Consultar.extraerEmpresas());
+        System.out.println("--- Introduzca el cif de la empresa de la que quiere ver la factura de un coche de alquiler ---");
+        String cif = Crear.pedirCif();
+        Session session = NewHibernateUtil.getSession();
+        Empresa empresa = Consultar.encontrarEmpresaPorCif(session, cif);
+        if (empresa != null) {
+            Visualizar.mostrarCochesAlquiler(Consultar.extraerCochesDeAlquiler());
+            System.out.println("--- Introduzca el código del coche de alquiler ---");
+            String codigo = Crear.pedirCodigo();
+            List<CocheAlquiler> cochesAlquiler = Consultar.extraerCochesDeAlquilerEmpresa(empresa.getCoches());
+            CocheAlquiler cocheAlquilerEncontrado = null;
+            for (CocheAlquiler cocheAlquiler : cochesAlquiler) {
+                if (cocheAlquiler.getCodigo().equals(codigo)) {
+                    cocheAlquilerEncontrado = cocheAlquiler;
+                }
+            }
+            if (cocheAlquilerEncontrado != null) {
+                System.out.printf("Primer fecha(dd/MM/yyyy): ");
+                Date primerFecha = Pedir.fecha();
+                System.out.printf("Segunda fecha(dd/MM/yyyy): ");
+                Date segundaFecha = Pedir.fecha();
+                List<Uso> usos = Consultar.obtenerUsosCocheAlquilerEntreFechas(cocheAlquilerEncontrado.getUsos(), primerFecha, segundaFecha);
+                if (!usos.isEmpty()) {
+                    Visualizar.facturaCocheAlquilerEntreFechas(empresa, cocheAlquilerEncontrado, usos);
+                } else {
+                    System.err.println("Este coche de alquiler no tiene ningún uso entre esas dos fechas");
+                }
+            } else {
+                System.err.println("No existe ningún coche de alquiler con ese código");
+            }
         } else {
             System.err.println("No existe una empresa con ese cif");
         }
