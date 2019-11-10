@@ -28,7 +28,7 @@ public class Altas {
     
     public static void nuevoUso(Uso uso){
         guardar(uso);
-    }       
+    }
     
     public static void guardar(Object objeto){
         Session session;

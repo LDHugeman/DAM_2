@@ -170,7 +170,7 @@ public class Menu {
             Uso uso = Crear.nuevoUso(cocheAlquiler);
             cocheAlquiler.getUsos().add(uso);
             cocheAlquiler.setEstado('R');
-            session.close();
+            session.close();           
             Modificar.modificar(cocheAlquiler);
             Altas.nuevoUso(uso);
         } else {
