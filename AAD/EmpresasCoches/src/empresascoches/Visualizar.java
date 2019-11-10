@@ -87,14 +87,13 @@ public class Visualizar {
         System.out.println("Nombre de la empresa: "+ empresa.getNombre());
         System.out.println("Marca: " + cocheAlquiler.getMarca());
         System.out.println("Modelo: " + cocheAlquiler.getModelo());
-        System.out.printf("Importe por cada uso: ");
+        System.out.println("Importe por cada uso: ");
         float importeTotal = 0.0f;
         for(Uso uso:usos){
             System.out.println(uso.getImporte()+ "€ ");
             importeTotal = importeTotal+ uso.getImporte();
         }
-        System.out.println("Importe total: "+ importeTotal);
-        System.out.println("");
+        System.out.println("Importe total: "+ importeTotal+ "€");
         System.out.println("----------------------------------------------");
     }
 }

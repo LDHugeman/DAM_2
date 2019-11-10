@@ -26,6 +26,17 @@ public class Modificar {
         modificar(cocheAlquiler);
     }
     
+    public static void modificar(Session session, Object objeto){
+        try{
+            session.beginTransaction();
+            session.saveOrUpdate(objeto);
+            session.getTransaction().commit();          
+        }catch(HibernateException excepcion){
+            System.err.println("Error al modificar");
+            System.out.println(excepcion.getMessage());
+        }
+    }
+    
     public static void modificar(Object objeto){
         Session session;
         try{

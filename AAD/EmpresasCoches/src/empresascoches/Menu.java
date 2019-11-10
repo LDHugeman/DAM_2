@@ -170,8 +170,8 @@ public class Menu {
             Uso uso = Crear.nuevoUso(cocheAlquiler);
             cocheAlquiler.getUsos().add(uso);
             cocheAlquiler.setEstado('R');
+            Modificar.modificar(session, cocheAlquiler);
             session.close();           
-            Modificar.modificar(cocheAlquiler);
             Altas.nuevoUso(uso);
         } else {
             System.err.println("No existe un coche de alquiler con ese código");
