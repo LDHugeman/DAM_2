@@ -255,10 +255,16 @@ class Eventos:
             print('Error al salir de acerca de')
 
     def on_botonBackupTool_clicked(self, widget):
+        variables.ventana_dialog.show()
+
+    def on_menuBarBackup_activate(self, widget):
+        variables.ventana_dialog.show()
+
+    def on_botonBackup_clicked(self, widget):
         try:
             conexion.Conexion().cerrarbbdd()
             backup = 'backup.zip'
-            destino = '/media/TEIS/a18luisdvp/copias'  # /home/pruebas/copias
+            destino = str(variables.ventana_dialog.get_filename())  # /home/pruebas/copias
             if os.path.exists(destino):
                 pass
             else:
@@ -276,9 +282,6 @@ class Eventos:
         except Exception as e:
             print('Error al comprimir base datos')
             print(e)
-
-    def on_menuBarBackup_activate(self, widget):
-        variables.ventana_dialog.show()
 
     def on_botonSalirDialog_clicked(self, widget):
         try:
