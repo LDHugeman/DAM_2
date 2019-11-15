@@ -1,3 +1,7 @@
+import os
+import shutil
+import zipfile
+
 import gi
 import conexion, variables, funcionescli, main
 import funcioneshabi
@@ -10,17 +14,15 @@ class Eventos:
 
     # Eventos generales
 
+    def salir(self):
+        conexion.Conexion.cerrarbbdd(self)
+        Gtk.main_quit()
+
     def on_ventanaPrincipal_destroy(self, widget):
-        conexion.Conexion.cerrarbbdd(self)
-        Gtk.main_quit()
+        self.salir()
 
-    def on_botonSalir_clicked(self, widget):
-        conexion.Conexion.cerrarbbdd(self)
-        Gtk.main_quit()
-
-    def on_botonSalirHabitacion_clicked(self, widget):
-        conexion.Conexion.cerrarbbdd(self)
-        Gtk.main_quit()
+    def on_botonSalirTool_clicked(self, widget):
+        self.salir()
 
     # Eventos clientes
 
@@ -192,3 +194,97 @@ class Eventos:
             variables.ventana_calendario.hide()
         except:
             print('Error al coger la fecha')
+
+    # Eventos de los botones de la toolbar
+
+    def on_botonClienteTool_clicked(self, widget):
+        try:
+            panel_actual = variables.panel.get_current_page()
+            if panel_actual != 0:
+                variables.panel.set_current_page(0)
+            else:
+                pass
+        except Exception as e:
+            print('Error botón cliente barra herramientas')
+            print(e)
+
+    def on_botonReservaTool_clicked(self, widget):
+        try:
+            panel_actual = variables.panel.get_current_page()
+            if panel_actual != 1:
+                variables.panel.set_current_page(1)
+        except Exception as e:
+            print('Error botón reserva barra herramientas')
+            print(e)
+
+    def on_botonHabitacionTool_clicked(self, widget):
+        try:
+            panel_actual = variables.panel.get_current_page()
+            if panel_actual != 2:
+                variables.panel.set_current_page(2)
+        except Exception as e:
+            print('Error botón habitación barra herramientas')
+            print(e)
+
+    def on_botonLimpiarTool_clicked(self, widget):
+        try:
+            funcionescli.limpiar_entry(variables.fila_clientes)
+            funcioneshabi.limpiar_entry(variables.fila_habitaciones)
+        except Exception as e:
+            print('Error botón limpiar barra herramientas')
+            print(e)
+
+    def on_botonCalculadoraTool_clicked(self, widget):
+        os.system('gnome-calculator')
+
+    def on_menuBarSalir_activate(self, widged):
+        try:
+            self.salir()
+        except:
+            print('Error en el menubar salir')
+
+    def on_menuBarAcercaDe_activate(self, widget):
+        variables.ventana_acerca_de.show()
+
+    def on_menuBarBackup_activate(self, widget):
+        variables.ventana_dialog.show()
+
+    def on_botonSalirDialog_clicked(self, widget):
+        try:
+            variables.ventana_dialog.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_dialog.hide()
+        except:
+            print('Error al salir de la ventana dialog')
+
+    def on_botonSalirAcercaDe_clicked(self, widget):
+        try:
+            variables.ventana_acerca_de.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_acerca_de.hide()
+        except:
+            print('Error al salir de acerca de')
+
+    '''
+    def on_botonComprimir_clicked(self, widget):
+        try:
+            import zlib
+            compression = zipfile.ZIP_DEFLATED
+            fichero = variables.ventana_dialog.get_filename()
+            backup = zipfile.ZipFile(' ', mode='w')
+            backup.write(fichero, compress_type=compression)
+        except Exception as e:
+            print('Error al comprimir base datos')
+            print(e)
+    '''
+
+    def on_botonBackupTool_clicked(self, widget):
+        try:
+            import zlib
+            conexion.Conexion().cerrarbbdd()
+            compression = zipfile.ZIP_DEFLATED
+            fichero = 'empresa.sqlite'
+            backup = zipfile.ZipFile('backup', mode='w')
+            backup.write(fichero, compress_type=compression)
+            shutil.move('/media/a18luisdvp/Pen64/Repositorios/DAM_2/DI/Empresa/backup.zip', '/home/a18luisdvp/DI')
+        except Exception as e:
+            print('Error al comprimir base datos')
+            print(e)

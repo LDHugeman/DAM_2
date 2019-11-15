@@ -7,7 +7,7 @@ import funcioneshabi
 import variables
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 '''
 El main contiene los elementos necesarios para lanzar la aplicación
@@ -22,7 +22,9 @@ class Empresa:
         builder = Gtk.Builder()
         builder.add_from_file('ventana.glade')
         self.ventana_principal = builder.get_object('ventanaPrincipal')
-
+        variables.panel = builder.get_object('panel')
+        variables.ventana_acerca_de = builder.get_object('ventanaAcercaDe')
+        variables.ventana_dialog = builder.get_object('ventanaDialog')
         self.entrada_dni = builder.get_object('entryDni')
         self.entrada_apelidos = builder.get_object('entryApelidos')
         self.entrada_nome = builder.get_object('entryNome')
@@ -59,6 +61,22 @@ class Empresa:
         conexion.Conexion().abrirbbdd()
         funcionescli.listado_clientes(variables.lista_clientes)
         funcioneshabi.listado_habitaciones(variables.lista_habitaciones)
+
+        self.set_styles()
+        menubar = builder.get_object('menuBar').get_style_context()
+        menubar.add_class('menuBar')
+        toolBar = builder.get_object('toolBar').get_style_context()
+        toolBar.add_class('toolBar')
+        menuFichero = builder.get_object('menuFichero').get_style_context()
+        menuFichero.add_class('menuFichero')
+
+    def set_styles(self):
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_path('estilos.css')
+        Gtk.StyleContext().add_provider_for_screen(
+            Gdk.Screen.get_default(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
 
 if __name__ == '__main__':
