@@ -1,6 +1,7 @@
 import os
 import shutil
 import zipfile
+from datetime import datetime
 
 import gi
 import conexion, variables, funcionescli, main
@@ -246,6 +247,36 @@ class Eventos:
     def on_menuBarAcercaDe_activate(self, widget):
         variables.ventana_acerca_de.show()
 
+    def on_botonSalirAcercaDe_clicked(self, widget):
+        try:
+            variables.ventana_acerca_de.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_acerca_de.hide()
+        except:
+            print('Error al salir de acerca de')
+
+    def on_botonBackupTool_clicked(self, widget):
+        try:
+            conexion.Conexion().cerrarbbdd()
+            backup = 'backup.zip'
+            destino = '/media/TEIS/a18luisdvp/copias'  # /home/pruebas/copias
+            if os.path.exists(destino):
+                pass
+            else:
+                os.system('mkdir ' + destino)
+                os.system('chmod 0777 ' + destino)
+            now = datetime.now()
+            print(now)
+            copia = zipfile.ZipFile(backup, 'w')
+            copia.write('empresa.sqlite', compress_type=zipfile.ZIP_DEFLATED)
+            copia.close()
+            neobackup = str(datetime.now()) + str(backup)
+            os.rename(backup, neobackup)
+            shutil.move(neobackup, destino)
+            conexion.Conexion().abrirbbdd()
+        except Exception as e:
+            print('Error al comprimir base datos')
+            print(e)
+
     def on_menuBarBackup_activate(self, widget):
         variables.ventana_dialog.show()
 
@@ -255,36 +286,3 @@ class Eventos:
             variables.ventana_dialog.hide()
         except:
             print('Error al salir de la ventana dialog')
-
-    def on_botonSalirAcercaDe_clicked(self, widget):
-        try:
-            variables.ventana_acerca_de.connect('delete-event', lambda w, e: w.hide() or True)
-            variables.ventana_acerca_de.hide()
-        except:
-            print('Error al salir de acerca de')
-
-    '''
-    def on_botonComprimir_clicked(self, widget):
-        try:
-            import zlib
-            compression = zipfile.ZIP_DEFLATED
-            fichero = variables.ventana_dialog.get_filename()
-            backup = zipfile.ZipFile(' ', mode='w')
-            backup.write(fichero, compress_type=compression)
-        except Exception as e:
-            print('Error al comprimir base datos')
-            print(e)
-    '''
-
-    def on_botonBackupTool_clicked(self, widget):
-        try:
-            import zlib
-            conexion.Conexion().cerrarbbdd()
-            compression = zipfile.ZIP_DEFLATED
-            fichero = 'empresa.sqlite'
-            backup = zipfile.ZipFile('backup', mode='w')
-            backup.write(fichero, compress_type=compression)
-            shutil.move('/media/a18luisdvp/Pen64/Repositorios/DAM_2/DI/Empresa/backup.zip', '/home/a18luisdvp/DI')
-        except Exception as e:
-            print('Error al comprimir base datos')
-            print(e)

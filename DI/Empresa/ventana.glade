@@ -1028,13 +1028,9 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="botonLimpiarTool">
+              <object class="GtkSeparatorToolItem" id="separador1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Limpiar entradas</property>
-                <property name="use_underline">True</property>
-                <property name="stock_id">gtk-refresh</property>
-                <signal name="clicked" handler="on_botonLimpiarTool_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1042,9 +1038,13 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSeparatorToolItem" id="separador1">
+              <object class="GtkToolButton" id="botonLimpiarTool">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Limpiar entradas</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-refresh</property>
+                <signal name="clicked" handler="on_botonLimpiarTool_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1163,7 +1163,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="menuBarBackup2">
+                      <object class="GtkImageMenuItem">
                         <property name="label">gtk-open</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -1196,6 +1196,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Backup</property>
                         <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuBarBackup_activate" swapped="no"/>
                       </object>
                     </child>
                     <child>
@@ -1384,8 +1385,8 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="botonComprimir">
-                <property name="label" translatable="yes">Backup</property>
+              <object class="GtkButton" id="botonRestarurarBackup">
+                <property name="label" translatable="yes">Restaurar backup</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
