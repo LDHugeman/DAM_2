@@ -11,7 +11,7 @@
         </id>
         <property name="seguroPrivado"/>
         <property name="grupoSanguineo"/>
-        <set>
+        <set name="citas" table="citas">
             <key>
                 <column name="historial"/>
             </key>

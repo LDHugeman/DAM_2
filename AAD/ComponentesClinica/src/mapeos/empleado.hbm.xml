@@ -10,7 +10,7 @@
         <property name="nombre"/>
         <property name="sueldo"/>
         <joined-subclass name="objetos.Dentista" table="dentistas">
-            <key name="dni"/>
+            <key column="dni"/>
             <set name="pacientes" table="pacientes">
                 <key>
                     <column name="dni"/>
@@ -19,15 +19,15 @@
             </set>
         </joined-subclass>
         <joined-subclass name="objetos.Limpiador" table="limpiadores">
+            <key column="dni"/>
             <set name="consultas" table="limpiadores_consultas" inverse="true">
             <key>
                 <column name ="limpiador"/>
-            </key>
-        
-            <many-to-many entity-name="objetos.Consulta">
-                <column name="consulta"/>
-            </many-to-many>
-        </set>
+            </key>       
+                <many-to-many entity-name="objetos.Consulta">
+                    <column name="consulta"/>
+                </many-to-many>
+            </set>
         </joined-subclass>
     </class>
 </hibernate-mapping>
