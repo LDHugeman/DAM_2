@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="objetos.Consulta" table="consultas">
+        <id name="numero">
+            <generator class="identity"/>
+        </id>
+        <property name="quirofano"/>
+        <property name="piso"/>
+        <set name="limpiadores" table="limpiadores_consultas" inverse="false">
+            <key>
+                <column name ="consulta"/>
+            </key>
+        
+            <many-to-many entity-name="objetos.Limpiador">
+                <column name="limpiador"/>
+            </many-to-many>
+        </set>
+        <one-to-one name="dentista" class="objetos.Dentista"/>
+    </class>
+</hibernate-mapping>
