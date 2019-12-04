@@ -15,7 +15,6 @@ public class Consulta implements Serializable{
     private boolean quirofano;
     private int piso;
     private Set<Limpiador> limpiadores;
-    private Dentista dentista;
     
     public Consulta(){        
     }
@@ -25,7 +24,6 @@ public class Consulta implements Serializable{
         this.quirofano = quirofano;
         this.piso = piso;
         this.limpiadores = new HashSet<>();
-        this.dentista = dentista;
     }
 
     public int getNumero() {
@@ -58,13 +56,5 @@ public class Consulta implements Serializable{
 
     public void setLimpiadores(Set<Limpiador> limpiadores) {
         this.limpiadores = limpiadores;
-    }
-
-    public Dentista getDentista() {
-        return dentista;
-    }
-
-    public void setDentista(Dentista dentista) {
-        this.dentista = dentista;
     }
 }

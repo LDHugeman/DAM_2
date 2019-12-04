@@ -17,6 +17,7 @@
                 </key>
                 <one-to-many class="objetos.Paciente"/>
             </set>
+            <one-to-one name="consulta" class="objetos.Consulta"/>
         </joined-subclass>
         <joined-subclass name="objetos.Limpiador" table="limpiadores">
             <key column="dni"/>

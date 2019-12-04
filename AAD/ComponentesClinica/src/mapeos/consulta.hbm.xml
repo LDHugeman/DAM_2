@@ -19,7 +19,6 @@
             <many-to-many entity-name="objetos.Limpiador">
                 <column name="limpiador"/>
             </many-to-many>
-        </set>
-        <one-to-one name="dentista" class="objetos.Dentista"/>
+        </set>       
     </class>
 </hibernate-mapping>
