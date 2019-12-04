@@ -36,6 +36,7 @@ public class ClinicaDental {
             opcion = Menu.seleccionarOpcionMenuPrincipal();
             switch (opcion) {
                 case 1:
+                    System.out.printf("ROROR");
                     break;
                 case 2:
                     System.out.println("REREROR");
