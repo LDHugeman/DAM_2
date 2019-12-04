@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="clases.Libro" table="libros">
+        <id name="idlibro" column="idlibro" type="integer">
+            <generator class="identity" />
+        </id>
+        <property name="titulo" column="titulo" />
+        <property name="precio" column="precio" />
+        <many-to-one name="autor" class="clases.Autor">
+            <column name="autor" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

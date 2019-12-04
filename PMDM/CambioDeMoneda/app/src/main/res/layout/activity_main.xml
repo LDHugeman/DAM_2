@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/rellenoFondo"
+    android:background="@color/colorFondo"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margenInferior"
+        android:textSize="@dimen/tamañoLetraTitulo"
+        android:textStyle="bold"
+        android:text="@string/titulo"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/margenInferior">
+
+        <RadioButton
+            android:id="@+id/radioButton_PtsEuros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margenDerecho"
+            android:checked="true"
+            android:text="@string/ptsEuros" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eurosPts"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margenInferior">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margenDerecho"
+            android:textSize="@dimen/tamañoLetraTvValor"
+            android:text="@string/introduceValor"
+             />
+
+        <EditText
+            android:id="@+id/editText_Valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/valor"
+            android:inputType="numberDecimal"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_Cambiar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="@string/cambiar"
+        android:layout_marginBottom="@dimen/margenInferior"/>
+
+    <TextView
+        android:id="@+id/textView_Resultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tamañoLetraTvResultado"
+        android:textStyle="bold"
+        android:text=""/>
+
+</LinearLayout>

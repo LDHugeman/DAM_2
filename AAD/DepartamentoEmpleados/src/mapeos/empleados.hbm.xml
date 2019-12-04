@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="objetos.Empleado" table="empleados">
+      <id name="numeroSegSocial"/>
+      <property name="nombre"/>
+      <property name="oficio"/>
+      <property name="direccion"/>
+      <property name="fechaAlta"/>
+      <property name="salario"/>
+      <property name="comision"/>
+      <many-to-one name="departamento" class="objetos.Departamento">
+          <column name="departamento" not-null="true"/>
+      </many-to-one>
+  </class>
+</hibernate-mapping>

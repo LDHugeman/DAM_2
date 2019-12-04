@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="objetos.Departamento" table="departamentos">
+        <id name="idDepartamento">
+            <generator class="increment"/>
+        </id>
+        <property name="nombre" unique="true"/>
+        <property name="localidad"/>
+        <set name="empleados" table="empleados" inverse="true">
+            <key>
+                <column name="departamento" not-null="true"/>
+            </key>
+            <one-to-many class="objetos.Empleado"/>
+        </set>
+    </class>
+</hibernate-mapping>

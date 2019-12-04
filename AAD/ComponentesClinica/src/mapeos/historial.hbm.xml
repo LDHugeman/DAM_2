@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="objetos.Historial" table="historiales">
+        <id name="codigo">
+            <generator class="identity"/>
+        </id>
+        <property name="seguroPrivado"/>
+        <property name="grupoSanguineo"/>
+        <set name="citas" table="citas">
+            <key>
+                <column name="historial"/>
+            </key>
+            <one-to-many class="objetos.Cita"/>
+        </set>       
+    </class>
+</hibernate-mapping>
