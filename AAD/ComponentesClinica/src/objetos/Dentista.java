@@ -17,10 +17,10 @@ public class Dentista extends Empleado implements Serializable{
     public Dentista(){       
     }
     
-    public Dentista(Set<Paciente> pacientes, String dni, String nombre, String telefono, float sueldo, Consulta consulta) {
+    public Dentista(String dni, String nombre, String telefono, float sueldo, Consulta consulta) {
         super(dni, nombre, telefono, sueldo);
-        this.pacientes = new HashSet<>();
         this.consulta = consulta;
+        this.pacientes = new HashSet<>();       
     }
 
     public Set<Paciente> getPacientes() {
