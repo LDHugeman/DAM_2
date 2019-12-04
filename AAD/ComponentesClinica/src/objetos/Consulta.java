@@ -19,7 +19,7 @@ public class Consulta implements Serializable{
     public Consulta(){        
     }
 
-    public Consulta(boolean quirofano, int piso, Set<Limpiador> limpiadores, Dentista dentista) {
+    public Consulta(boolean quirofano, int piso) {
         this.quirofano = quirofano;
         this.piso = piso;
         this.limpiadores = new HashSet<>();
