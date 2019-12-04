@@ -38,6 +38,7 @@ public class ClinicaDental {
                 case 1:
                     break;
                 case 2:
+                    System.out.println("REREROR");
                     break;
                 case 3:
                     break;
