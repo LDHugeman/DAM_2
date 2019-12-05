@@ -19,7 +19,7 @@ public class Cita implements Serializable{
     public Cita(){        
     }
 
-    public Cita(Date fecha, Time hora, String tipoTrabajo, Historial historial) {
+    public Cita(Date fecha, Date hora, String tipoTrabajo, Historial historial) {
         this.fecha = fecha;
         this.hora = hora;
         this.tipoTrabajo = tipoTrabajo;
@@ -38,7 +38,7 @@ public class Cita implements Serializable{
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(Date hora) {
         this.hora = hora;
     }
 
