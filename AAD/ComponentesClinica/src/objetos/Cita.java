@@ -19,9 +19,9 @@ public class Cita implements Serializable{
     public Cita(){        
     }
 
-    public Cita(Date fecha, Time hora, String tipoTrabajo, Historial historial) {
-        this.fecha = fecha;
-        this.hora = hora;
+    public Cita(String tipoTrabajo, Historial historial) {
+        this.fecha = new Date();
+        this.hora = new java.sql.Time(fecha.getTime());
         this.tipoTrabajo = tipoTrabajo;
         this.historial = historial;
     }
