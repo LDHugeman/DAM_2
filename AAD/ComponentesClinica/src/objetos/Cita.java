@@ -12,16 +12,16 @@ import java.util.Date;
 public class Cita implements Serializable{
     
     private Date fecha;
-    private Time hora;
+    private Date hora;
     private String tipoTrabajo;
     private Historial historial;
     
     public Cita(){        
     }
 
-    public Cita(String tipoTrabajo, Historial historial) {
-        this.fecha = new Date();
-        this.hora = new java.sql.Time(fecha.getTime());
+    public Cita(Date fecha, Time hora, String tipoTrabajo, Historial historial) {
+        this.fecha = fecha;
+        this.hora = hora;
         this.tipoTrabajo = tipoTrabajo;
         this.historial = historial;
     }
@@ -34,7 +34,7 @@ public class Cita implements Serializable{
         this.fecha = fecha;
     }
 
-    public Time getHora() {
+    public Date getHora() {
         return hora;
     }
 
