@@ -19,7 +19,7 @@ public class Historial implements Serializable{
     public Historial(){        
     }
 
-    public Historial(boolean seguroPrivado, String grupoSanguineo, Set<Cita> citas) {
+    public Historial(boolean seguroPrivado, String grupoSanguineo) {
         this.seguroPrivado = seguroPrivado;
         this.grupoSanguineo = grupoSanguineo;
         this.citas = new HashSet<>();
