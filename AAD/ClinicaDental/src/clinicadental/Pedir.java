@@ -63,6 +63,24 @@ public class Pedir {
         } while (!esFechaValida);
         return fecha;
     }
+    
+    public static Date hora() {
+        SimpleDateFormat formatoHora = new SimpleDateFormat("hh:mm");
+        Date hora = null;
+        boolean esHoraValida;
+        do {
+            try {
+                esHoraValida = true;
+                String texto = Pedir.texto();
+                hora = formatoHora.parse(texto);
+            } catch (ParseException excepcion) {
+                System.out.println("Hora incorrecta");
+                System.out.printf("Vuelva a introducirla: ");
+                esHoraValida = false;
+            }
+        } while (!esHoraValida);
+        return hora;
+    }
 
     public static int numeroEntero() {
         boolean esNumeroEnteroValido;
