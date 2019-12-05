@@ -3,6 +3,12 @@ package clinicadental;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import objetos.Cita;
+import objetos.Consulta;
+import objetos.Dentista;
+import objetos.Historial;
+import objetos.Limpiador;
+import objetos.Paciente;
 
 /**
  *
@@ -103,4 +109,58 @@ public class Crear {
             System.out.println(excepcion.getMessage());
         }
     }
+    
+   public static Dentista nuevoDentista(Consulta consulta){
+        System.out.printf("Dni: ");
+        String dni = Pedir.texto();
+        System.out.printf("Nombre: ");
+        String nombre = Pedir.texto();
+        System.out.printf("Teléfono: ");
+        String telefono = Pedir.texto();
+        System.out.printf("Sueldo: ");
+        float sueldo = Pedir.numeroRealFloat();
+        return new Dentista(dni, nombre, telefono, sueldo, consulta);       
+    }
+   
+   public static Limpiador nuevoLimpiador(){
+        System.out.printf("Dni: ");
+        String dni = Pedir.texto();
+        System.out.printf("Nombre: ");
+        String nombre = Pedir.texto();
+        System.out.printf("Teléfono: ");
+        String telefono = Pedir.texto();
+        System.out.printf("Sueldo: ");
+        float sueldo = Pedir.numeroRealFloat();
+        return new Limpiador(dni, nombre, telefono, sueldo);
+   }
+   
+   public static Paciente nuevoPaciente(Historial historial, Dentista dentista){
+        System.out.printf("Dni: ");
+        String dni = Pedir.texto();
+        System.out.printf("Nombre: ");
+        String nombre = Pedir.texto();
+        System.out.printf("Teléfono: ");
+        return new Paciente(dni, nombre, dni, historial, dentista);
+   }
+   
+   public static Consulta nuevaConsulta(){
+       String opcion = "";
+       boolean quirofano=false;
+       do{
+           System.out.println("Introduzca Si/No tiene quirófano la consulta: ");
+           opcion = Pedir.texto();          
+       }while(!opcion.equalsIgnoreCase("Si") | !opcion.equalsIgnoreCase("No"));
+       if(opcion.equalsIgnoreCase("Si")){
+          quirofano = true; 
+       } else {
+           quirofano = false;
+       }
+       System.out.printf("Piso: ");
+       int piso = Pedir.numeroEntero();
+       return new Consulta(quirofano, piso);
+   }
+   
+   public static Cita nuevaCita(){
+       
+   }
 }
