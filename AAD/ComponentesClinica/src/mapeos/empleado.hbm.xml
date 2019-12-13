@@ -9,6 +9,7 @@
         <id name="dni"/>
         <property name="nombre"/>
         <property name="sueldo"/>
+        <property name="telefono"/>
         <joined-subclass name="objetos.Dentista" table="dentistas">
             <key column="dni"/>
             <set name="pacientes" table="pacientes">
@@ -17,14 +18,14 @@
                 </key>
                 <one-to-many class="objetos.Paciente"/>
             </set>
-            <one-to-one name="consulta" class="objetos.Consulta"/>
+            <many-to-one name="consulta" class="objetos.Consulta"/>           
         </joined-subclass>
         <joined-subclass name="objetos.Limpiador" table="limpiadores">
             <key column="dni"/>
             <set name="consultas" table="limpiadores_consultas" inverse="true">
-            <key>
-                <column name ="limpiador"/>
-            </key>       
+                <key>
+                    <column name ="limpiador"/>
+                </key>       
                 <many-to-many entity-name="objetos.Consulta">
                     <column name="consulta"/>
                 </many-to-many>

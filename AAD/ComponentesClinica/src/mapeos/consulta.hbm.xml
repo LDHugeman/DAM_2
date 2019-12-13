@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="objetos.Consulta" table="consultas">
         <id name="numero">
-            <generator class="identity"/>
+            <generator class="increment"/>
         </id>
         <property name="quirofano"/>
         <property name="piso"/>
@@ -15,10 +15,9 @@
             <key>
                 <column name ="consulta"/>
             </key>
-        
             <many-to-many entity-name="objetos.Limpiador">
                 <column name="limpiador"/>
             </many-to-many>
-        </set>       
+        </set> 
     </class>
 </hibernate-mapping>
