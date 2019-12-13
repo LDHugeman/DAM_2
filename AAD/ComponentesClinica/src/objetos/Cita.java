@@ -2,8 +2,8 @@
 package objetos;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
+import util.Pedir;
 
 /**
  *
@@ -29,9 +29,17 @@ public class Cita implements Serializable{
     public Date getFecha() {
         return fecha;
     }
+    
+    public String getStringFecha(){
+        return Pedir.FORMATO_DIA_MES_ANO.format(fecha);
+    }
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+    
+    public String getStringHora() {
+        return Pedir.FORMATO_HORA.format(hora);
     }
 
     public Date getHora() {
