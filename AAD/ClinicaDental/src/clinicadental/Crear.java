@@ -1,5 +1,6 @@
 package clinicadental;
 
+import excepciones.Validar;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
@@ -19,7 +20,7 @@ public class Crear {
 
     public static void tablas(Statement sentencia) {
         try {
-            sentencia.execute("DROP DATABASE IF EXISTS ClinicaDental;");
+            //sentencia.execute("DROP DATABASE IF EXISTS ClinicaDental;");
             sentencia.execute("CREATE DATABASE IF NOT EXISTS ClinicaDental;");
             sentencia.execute("USE ClinicaDental");
 
@@ -53,6 +54,7 @@ public class Crear {
                     + "FOREIGN KEY(dni) REFERENCES empleados(dni)"
                     + " ON DELETE CASCADE"
                     + " ON UPDATE CASCADE,"
+                    + "UNIQUE INDEX FK_CONSULTA(consulta),"
                     + "FOREIGN KEY(consulta) REFERENCES consultas(numero)"
                     + " ON DELETE RESTRICT"
                     + " ON UPDATE CASCADE,"
@@ -72,9 +74,11 @@ public class Crear {
                     + "telefono CHAR(9) NOT NULL,"
                     + "dentista CHAR(9) NOT NULL,"
                     + "historial INT(5) UNSIGNED ZEROFILL NOT NULL,"
+                    + "INDEX FK_DENTISTA(dentista),"
                     + "FOREIGN KEY(dentista) REFERENCES dentistas(dni)"
                     + " ON DELETE RESTRICT"
                     + " ON UPDATE CASCADE,"
+                    + "UNIQUE INDEX FK_HISTORIAL(historial),"
                     + "FOREIGN KEY(historial) REFERENCES historiales(codigo)"
                     + " ON DELETE RESTRICT"
                     + " ON UPDATE CASCADE,"
@@ -94,7 +98,7 @@ public class Crear {
 
             sentencia.execute("CREATE TABLE IF NOT EXISTS limpiadores_consultas"
                     + "(limpiador CHAR(9) NOT NULL,"
-                    + "consulta INT(5) UNSIGNED ZEROFILL NOT NULL,"
+                    + "consulta INT(5) UNSIGNED ZEROFILL NOT NULL,"                    
                     + "FOREIGN KEY (limpiador) REFERENCES limpiadores(dni)"
                     + " ON DELETE CASCADE"
                     + " ON UPDATE CASCADE,"
@@ -112,8 +116,7 @@ public class Crear {
     }
 
     public static Dentista nuevoDentista(Consulta consulta) {
-        System.out.printf("Dni: ");
-        String dni = Pedir.texto();
+        String dni = pedirDni("Dni: ");
         System.out.printf("Nombre: ");
         String nombre = Pedir.texto();
         System.out.printf("Teléfono: ");
@@ -124,8 +127,7 @@ public class Crear {
     }
 
     public static Limpiador nuevoLimpiador() {
-        System.out.printf("Dni: ");
-        String dni = Pedir.texto();
+        String dni = pedirDni("Dni: ");
         System.out.printf("Nombre: ");
         String nombre = Pedir.texto();
         System.out.printf("Teléfono: ");
@@ -136,12 +138,12 @@ public class Crear {
     }
 
     public static Paciente nuevoPaciente(Historial historial, Dentista dentista) {
-        System.out.printf("Dni: ");
-        String dni = Pedir.texto();
+        String dni = pedirDni("Dni: ");
         System.out.printf("Nombre: ");
         String nombre = Pedir.texto();
         System.out.printf("Teléfono: ");
-        return new Paciente(dni, nombre, dni, historial, dentista);
+        String telefono = Pedir.texto();
+        return new Paciente(dni, nombre, telefono, historial, dentista);
     }
 
     public static Consulta nuevaConsulta() {
@@ -167,4 +169,14 @@ public class Crear {
         String grupoSanguineo = Pedir.texto();
         return new Historial(seguroPrivado, grupoSanguineo);
     }
+    
+    public static String pedirDni(String mensaje) {
+        String dni = "";
+        do {
+            System.out.printf(mensaje);
+            dni = Pedir.texto();
+        } while (!Validar.esDniValido(dni));
+        return dni;
+    }
+    
 }

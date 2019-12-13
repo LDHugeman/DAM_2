@@ -31,13 +31,25 @@ public class NewHibernateUtil {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-    
+    /**
+     * Abre una sesion y la guarda en caso de haber ya una abierta la retorna
+     * @return Session guardada
+     */
     public static Session getSession() {
         if (!(openedSession!=null && openedSession.isOpen())){
             openedSession = sessionFactory.openSession();
         }
         return openedSession;
         
+    }
+    
+    /**
+     * Cierra la sesion guardada en caso de existir y estar abierta
+     */
+    public static void closeSession(){
+        if (openedSession!=null && openedSession.isOpen()){
+            openedSession.close();
+        }
     }
     
 }

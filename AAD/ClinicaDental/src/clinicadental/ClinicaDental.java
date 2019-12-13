@@ -37,8 +37,10 @@ public class ClinicaDental {
                     Menu.menuAltas();
                     break;
                 case 2:
+                    
                     break;
                 case 3:
+                    Menu.menuModificaciones();
                     break;
                 case 4:
                     break;

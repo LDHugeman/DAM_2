@@ -12,12 +12,5 @@
     <mapping resource="mapeos/empleado.hbm.xml"/>
     <mapping resource="mapeos/historial.hbm.xml"/>
     <mapping resource="mapeos/paciente.hbm.xml"/>
-    <mapping resource="reverse/Citas.hbm.xml"/>
-    <mapping resource="reverse/Limpiadores.hbm.xml"/>
-    <mapping resource="reverse/Pacientes.hbm.xml"/>
-    <mapping resource="reverse/Dentistas.hbm.xml"/>
-    <mapping resource="reverse/Empleados.hbm.xml"/>
-    <mapping resource="reverse/Historiales.hbm.xml"/>
-    <mapping resource="reverse/Consultas.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -31,8 +31,7 @@ public class Altas {
             session = NewHibernateUtil.getSession();
             session.beginTransaction();
             session.save(objeto);
-            session.getTransaction().commit();
-            session.close();           
+            session.getTransaction().commit();                   
         }catch(HibernateException excepcion){
             System.err.println("Error al guardar");
             System.out.println(excepcion.getMessage());
