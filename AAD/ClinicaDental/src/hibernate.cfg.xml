@@ -5,7 +5,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/EmpresasCoches</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/ClinicaDental</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">usbw</property>
     <mapping resource="mapeos/cita.hbm.xml"/>

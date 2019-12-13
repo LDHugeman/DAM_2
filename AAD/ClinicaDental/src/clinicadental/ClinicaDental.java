@@ -12,7 +12,6 @@ import java.sql.Statement;
 public class ClinicaDental {
 
     public static void main(String[] args) {
-
         Connection conexion = null;
         Statement sentencia = null;
         String url = "jdbc:mysql://localhost:3307/?user=root&password=usbw";
@@ -22,7 +21,6 @@ public class ClinicaDental {
             System.out.println("No hay ningún Driver registrado que reconozca la URL especificada");
             System.out.println(excepcion.getMessage());
         }
-
         try {
             sentencia = conexion.createStatement();
             Crear.tablas(sentencia);
@@ -35,7 +33,8 @@ public class ClinicaDental {
         do {
             opcion = Menu.seleccionarOpcionMenuPrincipal();
             switch (opcion) {
-                case 1:                    
+                case 1:
+                    Menu.menuAltas();
                     break;
                 case 2:
                     break;

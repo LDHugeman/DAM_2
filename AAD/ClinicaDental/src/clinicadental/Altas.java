@@ -34,7 +34,7 @@ public class Altas {
             session.getTransaction().commit();
             session.close();
         }catch(HibernateException excepcion){
-            System.err.printf("Error al guardar\n");
+            System.err.println("Error al guardar");
             System.out.println(excepcion.getMessage());
         }
     }
