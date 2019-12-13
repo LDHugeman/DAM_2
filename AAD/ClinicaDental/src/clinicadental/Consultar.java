@@ -34,7 +34,6 @@ public class Consultar {
         try {
             Session session = NewHibernateUtil.getSession();
             consulta = (Consulta) session.get(Consulta.class, numeroConsulta);
-            session.close();
         } catch (HibernateException excepcion) {
             System.err.println("Error al buscar la consulta");
             System.out.println(excepcion.getMessage());

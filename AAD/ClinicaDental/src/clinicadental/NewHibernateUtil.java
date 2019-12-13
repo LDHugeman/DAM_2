@@ -14,6 +14,7 @@ import org.hibernate.SessionFactory;
 public class NewHibernateUtil {
 
     private static final SessionFactory sessionFactory;
+    private static Session openedSession;
     
     static {
         try {
@@ -32,6 +33,11 @@ public class NewHibernateUtil {
     }
     
     public static Session getSession() {
-        return sessionFactory.openSession();
+        if (!(openedSession!=null && openedSession.isOpen())){
+            openedSession = sessionFactory.openSession();
+        }
+        return openedSession;
+        
     }
+    
 }

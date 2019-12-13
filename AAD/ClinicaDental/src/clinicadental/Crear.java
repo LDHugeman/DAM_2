@@ -26,7 +26,7 @@ public class Crear {
             sentencia.execute("CREATE TABLE IF NOT EXISTS empleados"
                     + "(dni CHAR(9) NOT NULL,"
                     + "nombre VARCHAR(30) NOT NULL,"
-                    + "telefono CHAR(9) NOT NULL DEFAULT '',"
+                    + "telefono CHAR(9) NOT NULL,"
                     + "sueldo FLOAT(5) UNSIGNED NOT NULL,"
                     + "UNIQUE INDEX AK_TELEFONO(telefono),"
                     + "PRIMARY KEY(dni))"

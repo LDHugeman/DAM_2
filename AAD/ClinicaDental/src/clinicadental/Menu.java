@@ -25,7 +25,7 @@ public class Menu {
                 case 2:                   
                     Consulta consultaEncontrada = null;
                     List<Consulta> consultas = Consultar.extraerConsultas();
-                    if (consultas.size() > 0) {
+                    if (!consultas.isEmpty()) {
                         Visualizar.consultas(consultas);
                         System.out.println("--- Seleccione una consulta para el dentista ---");
                         int consultaSeleccionada = Pedir.numeroEntero();
