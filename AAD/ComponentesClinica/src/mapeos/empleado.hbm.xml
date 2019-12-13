@@ -12,12 +12,6 @@
         <property name="telefono"/>
         <joined-subclass name="objetos.Dentista" table="dentistas">
             <key column="dni"/>
-            <set name="pacientes" table="pacientes">
-                <key>
-                    <column name="dni"/>
-                </key>
-                <one-to-many class="objetos.Paciente"/>
-            </set>
             <many-to-one name="consulta" class="objetos.Consulta"/>           
         </joined-subclass>
         <joined-subclass name="objetos.Limpiador" table="limpiadores">

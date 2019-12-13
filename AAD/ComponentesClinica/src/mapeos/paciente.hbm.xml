@@ -9,7 +9,7 @@
         <id name="dni"/>
         <property name="nombre"/>
         <property name="telefono"/>
-        <one-to-one name="historial" class="objetos.Historial"/>
+        <many-to-one name="historial" class="objetos.Historial"/>
         <many-to-one name="dentista" class="objetos.Dentista">
             <column name="dentista"/>
         </many-to-one>

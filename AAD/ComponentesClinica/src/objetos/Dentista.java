@@ -11,7 +11,6 @@ import java.util.Set;
  */
 public class Dentista extends Empleado implements Serializable{
     
-    private Set<Paciente> pacientes;
     private Consulta consulta;
       
     public Dentista(){       
@@ -20,15 +19,6 @@ public class Dentista extends Empleado implements Serializable{
     public Dentista(String dni, String nombre, String telefono, float sueldo, Consulta consulta) {
         super(dni, nombre, telefono, sueldo);
         this.consulta = consulta;
-        this.pacientes = new HashSet<>();       
-    }
-
-    public Set<Paciente> getPacientes() {
-        return pacientes;
-    }
-
-    public void setPacientes(Set<Paciente> pacientes) {
-        this.pacientes = pacientes;
     }
 
     public Consulta getConsulta() {
