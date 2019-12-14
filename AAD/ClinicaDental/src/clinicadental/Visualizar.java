@@ -1,6 +1,7 @@
 
 package clinicadental;
 
+import java.util.Collection;
 import java.util.List;
 import objetos.Cita;
 import objetos.Consulta;
@@ -62,7 +63,7 @@ public class Visualizar {
         System.out.println("--------------------------------------------------------");
     }
     
-    public static void citas(List<Cita> citas){
+    public static void citas(Collection <Cita> citas){
         System.out.println("------------------ CITAS -------------------");
         mostrarPalabrasFila("FECHA", "HORA", "CONCEPTO");
         for (Cita cita : citas){
@@ -77,7 +78,7 @@ public class Visualizar {
         for (Paciente paciente : pacientes){
             mostrarPalabrasFila(paciente.getDni(), paciente.getNombre(), paciente.getTelefono());
         }
-        System.out.println("--------------------------------------------");
+        System.out.println("------------------------------------------------");
     }
     
     public static void limpiadores(List<Limpiador> limpiadores){
@@ -86,7 +87,7 @@ public class Visualizar {
         for (Limpiador limpiador : limpiadores){
             mostrarPalabrasFila(limpiador.getDni(), limpiador.getNombre(), limpiador.getTelefono(), limpiador.getSueldo()+"");
         }
-        System.out.println("--------------------------------------------");
+        System.out.println("--------------------------------------------------");
     }
     
     /**
