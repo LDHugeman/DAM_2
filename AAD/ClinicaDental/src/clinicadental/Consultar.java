@@ -11,6 +11,7 @@ import java.util.List;
 import objetos.Cita;
 import objetos.Consulta;
 import objetos.Dentista;
+import objetos.Empleado;
 import objetos.Historial;
 import objetos.Limpiador;
 import objetos.Paciente;
@@ -83,6 +84,18 @@ public class Consultar {
             System.out.println(excepcion.getMessage());
         }
         return citas;
+    }
+    
+    public static List extraerEmpleados() {
+        List<Empleado> empleados = new ArrayList();
+        try {
+            Session session = NewHibernateUtil.getSession();
+            empleados = session.createCriteria(Empleado.class).list();
+        } catch (HibernateException excepcion) {
+            System.err.println("Error al extraer los empleados");
+            System.out.println(excepcion.getMessage());
+        }
+        return empleados;
     }
     
     public static Consulta encontrarConsultaPorNumero(int numeroConsulta) {
@@ -168,4 +181,17 @@ public class Consultar {
         }
         return citas;
     }
+    
+    public static Dentista dentistaDeConsulta(int numeroConsulta){
+        Dentista dentista = null;
+        try {
+            Session session = NewHibernateUtil.getSession();
+            dentista = (Dentista) session.createQuery("FROM objetos.Dentista WHERE (consulta ='"+numeroConsulta+"')").uniqueResult();
+        } catch (HibernateException excepcion) {
+            System.err.println("Error al buscar la cita");
+            System.out.println(excepcion.getMessage());
+        }
+        return dentista;
+    }
+    
 }

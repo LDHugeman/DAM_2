@@ -30,14 +30,13 @@ public class Menu {
                     NewHibernateUtil.closeSession();
                     break;
                 case 2:
-                    Consulta consultaEncontrada = null;
                     List<Consulta> consultas = Consultar.extraerConsultas();
                     if (!consultas.isEmpty()) {
                         Visualizar.consultas(consultas);
                         System.out.println("--- Seleccione una consulta para el dentista ---");
                         System.out.printf("Número de la consulta: ");
                         int consultaSeleccionada = Pedir.numeroEntero();
-                        consultaEncontrada = Consultar.encontrarConsultaPorNumero(consultaSeleccionada);
+                       Consulta consultaEncontrada = Consultar.encontrarConsultaPorNumero(consultaSeleccionada);
                         if (consultaEncontrada != null) {
                             Dentista dentista = Crear.nuevoDentista(consultaEncontrada);
                             Altas.nuevoDentista(dentista);
@@ -50,13 +49,12 @@ public class Menu {
                     NewHibernateUtil.closeSession();
                     break;
                 case 3:
-                    Dentista dentistaEncontrado = null;
                     List<Dentista> dentistas = Consultar.extraerDentistas();
                     if (!dentistas.isEmpty()) {
                         Visualizar.dentistas(dentistas);
                         System.out.println("--- Seleccione un dentista para el paciente ---");
                         String dni = Crear.pedirDni("Dni del dentista: ");
-                        dentistaEncontrado = Consultar.encontrarDentistaPorDni(dni);
+                       Dentista dentistaEncontrado = Consultar.encontrarDentistaPorDni(dni);
                         if (dentistaEncontrado != null) {
                             System.out.println("--- Datos del historial ---");
                             Historial historial = Crear.nuevoHistorial();
@@ -308,6 +306,19 @@ public class Menu {
                     }
                     NewHibernateUtil.closeSession();
                     break;
+                case 6:
+                    Visualizar.consultas(Consultar.extraerConsultas());
+                    System.out.println("--- Seleccione el número de la consulta de la que quiere modificar el quirófano ---");
+                    System.out.printf("Número: ");
+                    int numeroConsulta = Pedir.numeroEntero();
+                    Consulta consultaEncontrada = Consultar.encontrarConsultaPorNumero(numeroConsulta);
+                    if(consultaEncontrada!=null){
+                        Modificar.quirofanoConsulta(consultaEncontrada);
+                    }else {
+                        System.err.println("No hay ninguna consulta con ese número");
+                    }
+                    NewHibernateUtil.closeSession();
+                    break;
                 case 0:
                     break;
                 default:
@@ -335,8 +346,10 @@ public class Menu {
                     }                   
                     break;
                 case 2:
+                    Visualizar.empleados(Consultar.extraerEmpleados());
                     break;
                 case 3:
+                    Visualizar.consultasConQuirófano(Consultar.extraerConsultas());
                     break;
                 case 0:
                     break;
@@ -388,6 +401,7 @@ public class Menu {
         System.out.println("[3] Consulta de un dentista");
         System.out.println("[4] Dentista de un paciente");
         System.out.println("[5] Sueldo de un limpiador");
+        System.out.println("[6] Quirófano de una consulta");
         System.out.println("[0] Salir");
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
@@ -397,7 +411,7 @@ public class Menu {
         System.out.println("------- VISUALIZAR -------");
         System.out.println("[1] Citas de un paciente entre dos fechas");
         System.out.println("[2] Todos los empleados");
-        System.out.println("[3]");
+        System.out.println("[3] Consultas que tienen quirófano");
         System.out.println("[0] Salir");
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();

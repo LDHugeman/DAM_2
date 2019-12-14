@@ -65,6 +65,13 @@ public class Modificar {
         modificar(limpiador);        
     }
     
+    public static void quirofanoConsulta(Consulta consulta){
+        Dentista dentista = Consultar.dentistaDeConsulta(consulta.getNumero());
+        consulta.addChangeListener(dentista);
+        consulta.setQuirofano(Pedir.duda("Desea que la consulta tenga quirofano?"));
+        modificar(consulta);
+    }
+    
     public static void modificar(Object objeto){
         Session session;
         try{
