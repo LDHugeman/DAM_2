@@ -14,7 +14,9 @@ import java.util.Date;
 public class Pedir {
     private static final BufferedReader LEE = new BufferedReader(new InputStreamReader (System.in));
     public static final SimpleDateFormat FORMATO_DIA_MES_ANO = new SimpleDateFormat("dd/MM/yyyy");
+    public static final SimpleDateFormat FORMATO_ANO_MES_DIA = new SimpleDateFormat("yyyy/MM/dd");
     public static final SimpleDateFormat FORMATO_HORA = new SimpleDateFormat("hh:mm");
+    public static final SimpleDateFormat FORMATO_HORA_SEGUNDOS = new SimpleDateFormat("hh:mm:ss");
     
     public static String texto() {
         boolean esTextoValido;
