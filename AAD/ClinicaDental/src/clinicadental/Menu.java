@@ -2,6 +2,7 @@ package clinicadental;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import objetos.Cita;
 import objetos.Consulta;
 import objetos.Dentista;
@@ -76,8 +77,9 @@ public class Menu {
                     String dni = Crear.pedirDni("Dni: ");
                     Paciente pacienteSeleccionado = Consultar.encontrarPacientePorDni(dni);
                     if (pacienteSeleccionado != null) {
-                        Cita cita = Crear.nuevaCita(pacienteSeleccionado.getHistorial());
-                        pacienteSeleccionado.getHistorial().getCitas().add(cita);
+                        Historial historialPaciente = pacienteSeleccionado.getHistorial();
+                        Cita cita = Crear.nuevaCita(historialPaciente);
+                        historialPaciente.getCitas().add(cita);
                         Altas.nuevaCita(cita);
                     } else {
                         System.err.println("No hay ningún paciente con ese dni");
@@ -123,7 +125,7 @@ public class Menu {
                     if (dentistaSeleccionado != null) {
                         Bajas.eliminar(dentistaSeleccionado);
                     } else {
-                        System.err.println("No existe ningun paciente con ese dni");
+                        System.err.println("No existe ningun dentista con ese dni");
                     }
                     NewHibernateUtil.closeSession();
                     break;
@@ -145,21 +147,30 @@ public class Menu {
                     dni = Crear.pedirDni("Dni del paciente: ");
                     Paciente pacienteEncontrado = Consultar.encontrarPacientePorDni(dni);
                     if (pacienteEncontrado != null) {
-                        Visualizar.citas(pacienteEncontrado.getHistorial().getCitas());
-                        System.out.println("--- Seleccione la fecha de la cita que desea dar de baja ---");
-                        System.out.printf("Fecha(dd/MM/yyyy): ");
-                        Date fecha = Pedir.fecha();
-                        System.out.println("--- Seleccione la hora de la cita que desea dar de baja ---");
-                        System.out.printf("Hora(hh:mm): ");
-                        Date hora = Pedir.hora();
-                        Cita citaSeleccionada = Consultar.encontrarCitaPorFechaHoraHistorial(pacienteEncontrado.getHistorial().getCodigo(), fecha, hora);
-                        if (citaSeleccionada != null) {
-                            Bajas.eliminar(citaSeleccionada);
+                        Set<Cita> citas = pacienteEncontrado.getHistorial().getCitas();
+                        if (!citas.isEmpty()) {
+                            Visualizar.citas(citas);
+                            System.out.println("--- Seleccione la fecha de la cita que desea dar de baja ---");
+                            System.out.printf("Fecha(dd/MM/yyyy): ");
+                            Date fecha = Pedir.fecha();
+                            System.out.println("--- Seleccione la hora de la cita que desea dar de baja ---");
+                            System.out.printf("Hora(hh:mm): ");
+                            Date hora = Pedir.hora();
+                            Cita citaSeleccionada = Consultar.encontrarCitaPorFechaHoraHistorial(pacienteEncontrado.getHistorial().getCodigo(), fecha, hora);
+                            if (citaSeleccionada != null) {
+                                if (Pedir.duda("¿Está seguro de que quiere eliminar esta cita?")) {
+                                    Bajas.eliminar(citaSeleccionada);
+                                } else {
+                                    System.out.println("Operacion cancelada");
+                                }
+                            } else {
+                                System.err.println("No existe ninguna cita con esos datos");
+                            }
                         } else {
-                            System.out.println("No existe ninguna cita con esos datos");
+                            System.err.println("Este paciente no tiene ninguna cita");
                         }
                     } else {
-                        System.out.println("No existe ningún paciente con ese dni");
+                        System.err.println("No existe ningún paciente con ese dni");
                     }
                     NewHibernateUtil.closeSession();
                     break;
@@ -271,10 +282,10 @@ public class Menu {
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
     }
-    
+
     public static byte seleccionarOpcionMenuVisualizar() {
         System.out.println("------- VISUALIZAR -------");
-        System.out.println("[1] Citas de un paciente");
+        System.out.println("[1] Citas de un paciente entre dos fechas");
         System.out.println("[2]");
         System.out.println("[3]");
         System.out.println("[0] Salir");

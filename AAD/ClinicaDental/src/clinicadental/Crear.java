@@ -74,7 +74,6 @@ public class Crear {
                     + "telefono CHAR(9) NOT NULL,"
                     + "dentista CHAR(9) NOT NULL,"
                     + "historial INT(5) UNSIGNED ZEROFILL NOT NULL,"
-                    + "INDEX FK_DENTISTA(dentista),"
                     + "FOREIGN KEY(dentista) REFERENCES dentistas(dni)"
                     + " ON DELETE RESTRICT"
                     + " ON UPDATE CASCADE,"
@@ -156,7 +155,7 @@ public class Crear {
     public static Cita nuevaCita(Historial historial) {
         System.out.printf("Fecha(dd/MM/yyyy): ");
         Date fecha = Pedir.fecha();
-        System.out.printf("Hora: ");
+        System.out.printf("Hora(hh:mm): ");
         Date hora = Pedir.hora();
         System.out.printf("Concepto de la cita: ");
         String tipoTrabajo = Pedir.texto();

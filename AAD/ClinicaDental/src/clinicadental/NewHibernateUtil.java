@@ -36,7 +36,7 @@ public class NewHibernateUtil {
      * @return Session guardada
      */
     public static Session getSession() {
-        if (!(openedSession!=null && openedSession.isOpen())){
+        if (!(estaSesionAbierta())){
             openedSession = sessionFactory.openSession();
         }
         return openedSession;
@@ -47,9 +47,12 @@ public class NewHibernateUtil {
      * Cierra la sesion guardada en caso de existir y estar abierta
      */
     public static void closeSession(){
-        if (openedSession!=null && openedSession.isOpen()){
+        if (estaSesionAbierta()){
             openedSession.close();
         }
     }
     
+    private static boolean estaSesionAbierta(){
+        return openedSession!=null && openedSession.isOpen();
+    }    
 }
