@@ -1,21 +1,20 @@
-
 package objetos;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
  * @author a18luisdvp
  */
-public class Dentista extends Empleado implements Serializable{
-    
+public class Dentista extends Empleado implements Serializable, PropertyChangeListener {
+
     private Consulta consulta;
-      
-    public Dentista(){       
+
+    public Dentista() {
     }
-    
+
     public Dentista(String dni, String nombre, String telefono, float sueldo, Consulta consulta) {
         super(dni, nombre, telefono, sueldo);
         this.consulta = consulta;
@@ -27,5 +26,19 @@ public class Dentista extends Empleado implements Serializable{
 
     public void setConsulta(Consulta consulta) {
         this.consulta = consulta;
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getPropertyName().equals("quirofano")) {
+            boolean esQuirofano = (boolean) evt.getNewValue();
+            if (esQuirofano) {
+                System.out.println("Salario del dentista aumentado");
+                super.setSueldo(super.getSueldo() + 200);
+            } else {
+                System.out.println("Salario del dentista disminuido");
+                super.setSueldo(super.getSueldo() - 200);
+            }
+        }
     }
 }

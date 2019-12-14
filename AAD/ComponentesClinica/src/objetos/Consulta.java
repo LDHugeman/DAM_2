@@ -1,6 +1,7 @@
-
 package objetos;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,20 +10,31 @@ import java.util.Set;
  *
  * @author a18luisdvp
  */
-public class Consulta implements Serializable{
-    
+public class Consulta implements Serializable {
+
     private int numero;
     private boolean quirofano;
     private int piso;
     private Set<Limpiador> limpiadores;
-    
-    public Consulta(){        
+    private PropertyChangeSupport propertySupport;
+
+    public Consulta() {
+        this.propertySupport = new PropertyChangeSupport(this);
+    }
+
+    public void addChangeListener(PropertyChangeListener listener) {
+        propertySupport.addPropertyChangeListener(listener);
+    }
+
+    public void removeChangeListener(PropertyChangeListener listener) {
+        propertySupport.removePropertyChangeListener(listener);
     }
 
     public Consulta(boolean quirofano, int piso) {
         this.quirofano = quirofano;
         this.piso = piso;
         this.limpiadores = new HashSet<>();
+        this.propertySupport = new PropertyChangeSupport(this);
     }
 
     public int getNumero() {
@@ -38,6 +50,11 @@ public class Consulta implements Serializable{
     }
 
     public void setQuirofano(boolean quirofano) {
+        boolean oldQuirofano = this.quirofano;
+        if (oldQuirofano != quirofano) {
+            System.out.println("Tirado evento de modificacion");
+            propertySupport.firePropertyChange("quirofano", oldQuirofano, quirofano);
+        }
         this.quirofano = quirofano;
     }
 
