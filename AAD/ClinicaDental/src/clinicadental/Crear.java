@@ -29,7 +29,6 @@ public class Crear {
                     + "nombre VARCHAR(30) NOT NULL,"
                     + "telefono CHAR(9) NOT NULL,"
                     + "sueldo FLOAT(5) UNSIGNED NOT NULL,"
-                    + "UNIQUE INDEX AK_TELEFONO(telefono),"
                     + "PRIMARY KEY(dni))"
                     + "ENGINE INNODB;");
 
@@ -79,7 +78,7 @@ public class Crear {
                     + " ON UPDATE CASCADE,"
                     + "UNIQUE INDEX FK_HISTORIAL(historial),"
                     + "FOREIGN KEY(historial) REFERENCES historiales(codigo)"
-                    + " ON DELETE RESTRICT"
+                    + " ON DELETE CASCADE"
                     + " ON UPDATE CASCADE,"
                     + "PRIMARY KEY(dni))"
                     + "ENGINE INNODB;");

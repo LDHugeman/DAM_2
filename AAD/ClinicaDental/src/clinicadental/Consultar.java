@@ -11,6 +11,7 @@ import java.util.List;
 import objetos.Cita;
 import objetos.Consulta;
 import objetos.Dentista;
+import objetos.Historial;
 import objetos.Limpiador;
 import objetos.Paciente;
 import org.hibernate.Criteria;
@@ -129,6 +130,18 @@ public class Consultar {
             System.out.println(excepcion.getMessage());
         }
         return limpiador;
+    }
+    
+    public static Historial encontrarHistorialPorCodigo(int codigo) {
+        Historial historial = null;
+        try {
+            Session session = NewHibernateUtil.getSession();
+            historial = (Historial) session.get(Historial.class, codigo);
+        } catch (HibernateException excepcion) {
+            System.err.println("Error al buscar el historial");
+            System.out.println(excepcion.getMessage());
+        }
+        return historial;
     }
     
     public static Cita encontrarCitaPorFechaHoraHistorial(int codigo, Date fecha, Date hora) {

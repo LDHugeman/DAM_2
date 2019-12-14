@@ -107,11 +107,18 @@ public class Menu {
                 case 1:
                     Visualizar.pacientes(Consultar.extraerPacientes());
                     System.out.println("--- Seleccione el dni del paciente que desea dar de baja ---");
-                    String dni = Crear.pedirDni("Dni del paciente: ");
-                    Paciente pacienteSeleccionado = Consultar.encontrarPacientePorDni(dni);
+                    String dniPaciente = Crear.pedirDni("Dni del paciente: ");
+                    Paciente pacienteSeleccionado = Consultar.encontrarPacientePorDni(dniPaciente);
                     if (pacienteSeleccionado != null) {
-                        Bajas.eliminar(pacienteSeleccionado.getHistorial());
-                        Bajas.eliminar(pacienteSeleccionado);
+                        if (Pedir.duda("¿Está seguro de que quiere eliminar este paciente?")) {
+                            Bajas.eliminar(pacienteSeleccionado);
+                            for (Cita cita : pacienteSeleccionado.getHistorial().getCitas()) {
+                                Bajas.eliminar(cita);
+                            }
+                            Bajas.eliminar(pacienteSeleccionado.getHistorial());
+                        } else {
+                            System.out.println("Operación cancelada");
+                        }
                     } else {
                         System.err.println("No existe ningun paciente con ese dni");
                     }
@@ -120,10 +127,14 @@ public class Menu {
                 case 2:
                     Visualizar.dentistas(Consultar.extraerDentistas());
                     System.out.println("--- Seleccione el dni del dentista que desea dar de baja ---");
-                    dni = Crear.pedirDni("Dni del dentista: ");
-                    Dentista dentistaSeleccionado = Consultar.encontrarDentistaPorDni(dni);
+                    String dniDentista = Crear.pedirDni("Dni del dentista: ");
+                    Dentista dentistaSeleccionado = Consultar.encontrarDentistaPorDni(dniDentista);
                     if (dentistaSeleccionado != null) {
-                        Bajas.eliminar(dentistaSeleccionado);
+                        if (Pedir.duda("¿Está seguro de que quiere eliminar este dentista?")) {
+                            Bajas.eliminar(dentistaSeleccionado);
+                        } else {
+                            System.out.println("Operación cancelada");
+                        }
                     } else {
                         System.err.println("No existe ningun dentista con ese dni");
                     }
@@ -132,10 +143,15 @@ public class Menu {
                 case 3:
                     Visualizar.consultas(Consultar.extraerConsultas());
                     System.out.println("--- Seleccione el numero de consulta que desea dar de baja ---");
+                    System.out.printf("Número: ");
                     int numero = Pedir.numeroEntero();
                     Consulta consultaSeleccionada = Consultar.encontrarConsultaPorNumero(numero);
                     if (consultaSeleccionada != null) {
-                        Bajas.eliminar(consultaSeleccionada);
+                        if (Pedir.duda("¿Está seguro de que quiere eliminar esta consulta?")) {
+                            Bajas.eliminar(consultaSeleccionada);
+                        } else {
+                            System.out.println("Operación cancelada");
+                        }
                     } else {
                         System.err.println("No existe ninguna consulta con ese numero");
                     }
@@ -144,8 +160,8 @@ public class Menu {
                 case 4:
                     Visualizar.pacientes(Consultar.extraerPacientes());
                     System.out.println("--- Seleccione el paciente del que desea dar de baja la cita ---");
-                    dni = Crear.pedirDni("Dni del paciente: ");
-                    Paciente pacienteEncontrado = Consultar.encontrarPacientePorDni(dni);
+                    String dniPaciente2 = Crear.pedirDni("Dni del paciente: ");
+                    Paciente pacienteEncontrado = Consultar.encontrarPacientePorDni(dniPaciente2);
                     if (pacienteEncontrado != null) {
                         Set<Cita> citas = pacienteEncontrado.getHistorial().getCitas();
                         if (!citas.isEmpty()) {
@@ -177,10 +193,14 @@ public class Menu {
                 case 5:
                     Visualizar.limpiadores(Consultar.extraerLimpiadores());
                     System.out.println("--- Seleccione el dni del limpiador que desea dar de baja ---");
-                    dni = Crear.pedirDni("Dni del limpiador: ");
-                    Limpiador limpiadorSeleccionado = Consultar.encontrarLimpiadorPorDni(dni);
+                    String dniLimpiador = Crear.pedirDni("Dni del limpiador: ");
+                    Limpiador limpiadorSeleccionado = Consultar.encontrarLimpiadorPorDni(dniLimpiador);
                     if (limpiadorSeleccionado != null) {
-                        Bajas.eliminar(limpiadorSeleccionado);
+                        if (Pedir.duda("¿Está seguro de que quiere eliminar este limpiador?")) {
+                            Bajas.eliminar(limpiadorSeleccionado);
+                        } else {
+                            System.out.println("Operación cancelada");
+                        }
                     } else {
                         System.err.println("No existe ningun limpiador con ese dni");
                     }
@@ -218,11 +238,38 @@ public class Menu {
                             System.err.println("No hay ningún limpiador con ese dni");
                         }
                     } else {
-                        System.err.println("No hay una consulta con ese número");
+                        System.err.println("No hay ninguna consulta con ese número");
                     }
                     NewHibernateUtil.closeSession();
                     break;
                 case 2:
+                    Visualizar.pacientes(Consultar.extraerPacientes());
+                    System.out.println("--- Seleccione el paciente del que desea modificar una cita ---");
+                    String dni = Crear.pedirDni("Dni del paciente: ");
+                    Paciente pacienteEncontrado = Consultar.encontrarPacientePorDni(dni);
+                    if (pacienteEncontrado != null) {
+                        Set<Cita> citas = pacienteEncontrado.getHistorial().getCitas();
+                        if (!citas.isEmpty()) {
+                            Visualizar.citas(citas);
+                            System.out.println("--- Seleccione la fecha de la cita que desea modificar ---");
+                            System.out.printf("Fecha(dd/MM/yyyy): ");
+                            Date fecha = Pedir.fecha();
+                            System.out.println("--- Seleccione la hora de la cita que desea modificar ---");
+                            System.out.printf("Hora(hh:mm): ");
+                            Date hora = Pedir.hora();
+                            Cita citaSeleccionada = Consultar.encontrarCitaPorFechaHoraHistorial(pacienteEncontrado.getHistorial().getCodigo(), fecha, hora);
+                            if (citaSeleccionada != null) {
+                                Modificar.fechaHoraCita(citaSeleccionada);
+                            } else {
+                                System.err.println("No existe ninguna cita con esos datos");
+                            }
+                        } else {
+                            System.err.println("Este paciente no tiene ninguna cita");
+                        }
+                    } else {
+                        System.err.println("No hay ningún paciente con ese dni");
+                    }
+                    NewHibernateUtil.closeSession();
                     break;
                 case 3:
                     break;
@@ -276,8 +323,10 @@ public class Menu {
     public static byte seleccionarOpcionMenuModificaciones() {
         System.out.println("------- MODIFICACIONES -------");
         System.out.println("[1] Añadir un limpiador a una consulta");
-        System.out.println("[2] Modificar fecha y hora de una cita");
-        System.out.println("[3]");
+        System.out.println("[2] Fecha y hora de una cita");
+        System.out.println("[3] Consulta de un dentista");
+        System.out.println("[4] Paciente de un dentista");
+        System.out.println("[5] Sueldo de un limpiador");
         System.out.println("[0] Salir");
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
