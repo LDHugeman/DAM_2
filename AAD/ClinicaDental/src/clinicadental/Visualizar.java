@@ -14,33 +14,7 @@ import objetos.Paciente;
  * @author luisd
  */
 public class Visualizar {
-    
-    public static void mostrarConsulta(Consulta consulta){
-        String quirofano = "No";
-        if (consulta.isQuirofano()){
-            quirofano = "Si";
-        }
-        mostrarPalabrasFila(consulta.getNumero()+"", consulta.getPiso()+"", quirofano);
-    }
-    
-    public static void mostrarDentista(Dentista dentista){
-        mostrarPalabrasFila(dentista.getDni(), dentista.getNombre(), dentista.getTelefono(), dentista.getSueldo()+"");
-    }
-    
-    
-    public static void mostrarCita(Cita cita){
-        System.out.println("------------------ CITA -------------------");
-        System.out.println("Fecha: " + cita.getStringFecha());
-        System.out.println("Hora: " + cita.getStringHora());
-        System.out.println("Concepto: " + cita.getTipoTrabajo());
-        System.out.println("-------------------------------------------");
-    }
-    
-    public static void mostrarCitaSola(Cita cita){
-        mostrarPalabrasFila("FECHA", "HORA", "CONCEPTO");
-        mostrarCita(cita);
-    }
-    
+        
     public static void consultas(List<Consulta> consultas){
         System.out.println("------------------ CONSULTAS -------------------");
         mostrarPalabrasFila("NÚMERO", "PISO", "QUIRÓFANO");
@@ -91,7 +65,7 @@ public class Visualizar {
     }
     
     /**
-     * Metodo que muestra una fila de Strings formateada
+     * Método que muestra una fila de Strings formateada
      * @param valores Pueden entrar Uno o mas Strings
      */
     public static void mostrarPalabrasFila(String... valores){

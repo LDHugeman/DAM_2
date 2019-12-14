@@ -17,6 +17,7 @@ import objetos.Paciente;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import util.Pedir;
 
 /**
@@ -154,5 +155,17 @@ public class Consultar {
             System.out.println(excepcion.getMessage());
         }
         return cita;
+    }
+    
+    public static List<Cita> citasEntreFechas(Date primerFecha, Date segundaFecha){
+        List<Cita> citas = new ArrayList<>();
+        try{
+            Session session = NewHibernateUtil.getSession();
+            citas = session.createCriteria(Cita.class).add(Restrictions.between("fecha", primerFecha, segundaFecha)).list();
+        }catch(HibernateException excepcion) {
+            System.err.println("Error al buscar las citas");
+            System.out.println(excepcion.getMessage());
+        }
+        return citas;
     }
 }

@@ -9,6 +9,7 @@ import objetos.Dentista;
 import objetos.Historial;
 import objetos.Limpiador;
 import objetos.Paciente;
+import org.hibernate.Session;
 import util.Pedir;
 
 /**
@@ -16,9 +17,9 @@ import util.Pedir;
  * @author a18luisdvp
  */
 public class Menu {
-
+    
     public static void menuAltas() {
-
+        
         byte opcion = 0;
         do {
             opcion = seleccionarOpcionMenuAltas();
@@ -98,7 +99,7 @@ public class Menu {
             }
         } while (opcion != 0);
     }
-
+    
     public static void menuBajas() {
         byte opcion = 0;
         do {
@@ -213,7 +214,7 @@ public class Menu {
             }
         } while (opcion != 0);
     }
-
+    
     public static void menuModificaciones() {
         byte opcion = 0;
         do {
@@ -272,10 +273,40 @@ public class Menu {
                     NewHibernateUtil.closeSession();
                     break;
                 case 3:
+                    Visualizar.dentistas(Consultar.extraerDentistas());
+                    System.out.println("--- Seleccione el dni del dentista al que desea modificar su consulta ---");
+                    String dniDentista = Crear.pedirDni("Dni del dentista: ");
+                    Dentista dentistaSeleccionado = Consultar.encontrarDentistaPorDni(dniDentista);
+                    if (dentistaSeleccionado != null) {
+                        Modificar.consultaDelDentista(dentistaSeleccionado);
+                    } else {
+                        System.err.println("No hay ningún dentista con ese dni");
+                    }
+                    NewHibernateUtil.closeSession();
                     break;
                 case 4:
+                    Visualizar.pacientes(Consultar.extraerPacientes());
+                    System.out.println("--- Seleccione el paciente al que desea modificar su dentista ---");
+                    String dniPaciente = Crear.pedirDni("Dni del paciente: ");
+                    Paciente pacienteSeleccionado = Consultar.encontrarPacientePorDni(dniPaciente);
+                    if (pacienteSeleccionado != null) {
+                        Modificar.dentistaDelPaciente(pacienteSeleccionado);
+                    } else {
+                        System.err.println("No hay ningún paciente con ese dni");
+                    }
+                    NewHibernateUtil.closeSession();
                     break;
                 case 5:
+                    Visualizar.limpiadores(Consultar.extraerLimpiadores());
+                    System.out.println("--- Seleccione el limpiador al que desea modificar su sueldo ---");
+                    String dniLimpiador = Crear.pedirDni("Dni del limpiador: ");
+                    Limpiador limpiador = Consultar.encontrarLimpiadorPorDni(dniLimpiador);
+                    if (limpiador != null) {
+                        Modificar.sueldoLimpiador(limpiador);
+                    } else {
+                        System.err.println("No hay ningún limpiador con ese dni");
+                    }
+                    NewHibernateUtil.closeSession();
                     break;
                 case 0:
                     break;
@@ -284,7 +315,37 @@ public class Menu {
             }
         } while (opcion != 0);
     }
-
+    
+    public static void menuVisualizar() {
+        byte opcion = 0;
+        do {
+            opcion = seleccionarOpcionMenuVisualizar();
+            switch (opcion) {
+                case 1:
+                    System.out.println("--- Introduzca las fechas entre las que desea ver las citas ---");
+                    System.out.printf("Primer fecha(dd/MM/yyyy): ");
+                    Date primerFecha = Pedir.fecha();
+                    System.out.printf("Segunda fecha(dd/MM/yyyy): ");
+                    Date segundaFecha = Pedir.fecha();
+                    List<Cita> citas =Consultar.citasEntreFechas(primerFecha, segundaFecha);
+                    if(!citas.isEmpty()){
+                        Visualizar.citas(citas);
+                    } else {
+                        System.err.println("Este paciente no tiene citas entre esas dos fechas");
+                    }                   
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.err.println("No existe esa opción");
+            }
+        } while (opcion != 0);
+    }
+    
     public static byte seleccionarOpcionMenuPrincipal() {
         System.out.println("------- MENÚ -------");
         System.out.println("[1] Altas");
@@ -295,7 +356,7 @@ public class Menu {
         System.out.printf("Seleccione una opción: ");
         return Pedir.numeroByte();
     }
-
+    
     public static byte seleccionarOpcionMenuAltas() {
         System.out.println("------- ALTAS -------");
         System.out.println("[1] Consulta");
@@ -307,7 +368,7 @@ public class Menu {
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
     }
-
+    
     public static byte seleccionarOpcionMenuBajas() {
         System.out.println("------- BAJAS -------");
         System.out.println("[1] Paciente");
@@ -319,23 +380,23 @@ public class Menu {
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
     }
-
+    
     public static byte seleccionarOpcionMenuModificaciones() {
         System.out.println("------- MODIFICACIONES -------");
         System.out.println("[1] Añadir un limpiador a una consulta");
         System.out.println("[2] Fecha y hora de una cita");
         System.out.println("[3] Consulta de un dentista");
-        System.out.println("[4] Paciente de un dentista");
+        System.out.println("[4] Dentista de un paciente");
         System.out.println("[5] Sueldo de un limpiador");
         System.out.println("[0] Salir");
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
     }
-
+    
     public static byte seleccionarOpcionMenuVisualizar() {
         System.out.println("------- VISUALIZAR -------");
         System.out.println("[1] Citas de un paciente entre dos fechas");
-        System.out.println("[2]");
+        System.out.println("[2] Todos los empleados");
         System.out.println("[3]");
         System.out.println("[0] Salir");
         System.out.printf("Selecione una opción: ");
