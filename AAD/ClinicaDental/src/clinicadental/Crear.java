@@ -14,13 +14,12 @@ import util.Pedir;
 
 /**
  *
- * @author a18luisdvp
+ * @authors Alberto y David
  */
 public class Crear {
 
     public static void tablas(Statement sentencia) {
         try {
-            //sentencia.execute("DROP DATABASE IF EXISTS ClinicaDental;");
             sentencia.execute("CREATE DATABASE IF NOT EXISTS ClinicaDental;");
             sentencia.execute("USE ClinicaDental");
 
@@ -96,7 +95,7 @@ public class Crear {
 
             sentencia.execute("CREATE TABLE IF NOT EXISTS limpiadores_consultas"
                     + "(limpiador CHAR(9) NOT NULL,"
-                    + "consulta INT(5) UNSIGNED ZEROFILL NOT NULL,"                    
+                    + "consulta INT(5) UNSIGNED ZEROFILL NOT NULL,"
                     + "FOREIGN KEY (limpiador) REFERENCES limpiadores(dni)"
                     + " ON DELETE CASCADE"
                     + " ON UPDATE CASCADE,"
@@ -167,7 +166,7 @@ public class Crear {
         String grupoSanguineo = Pedir.texto();
         return new Historial(seguroPrivado, grupoSanguineo);
     }
-    
+
     public static String pedirDni(String mensaje) {
         String dni = "";
         do {
@@ -176,5 +175,4 @@ public class Crear {
         } while (!Validar.esDniValido(dni));
         return dni;
     }
-    
 }

@@ -1,30 +1,12 @@
 package clinicadental;
-import objetos.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 /**
  *
- * @author a16albertolg
+ * @authors Alberto y David
  */
 public class Altas {
-    public static void nuevoLimpiador(Limpiador limpiador){
-        guardar(limpiador);
-    }
-    public static void nuevoDentista(Dentista dentista){
-        guardar(dentista);
-    }
-    public static void nuevaConsulta(Consulta consulta){
-        guardar(consulta);
-    }
-    public static void nuevoPaciente(Paciente paciente){
-        guardar(paciente);
-    }
-    public static void nuevoHistorial(Historial historial){
-        guardar(historial);
-    }
-    public static void nuevaCita(Cita cita){
-        guardar(cita);
-    }
+
     public static void guardar(Object objeto){
         Session session;
         try{

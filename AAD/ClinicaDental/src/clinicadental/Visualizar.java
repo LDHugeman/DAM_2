@@ -11,7 +11,7 @@ import objetos.Paciente;
 
 /**
  *
- * @author luisd
+ * @authors Alberto y David
  */
 public class Visualizar {
 
@@ -42,15 +42,15 @@ public class Visualizar {
         }
         System.out.println("------------------------------------------------");
     }
-    
+
     public static void consultasConQuirófano(List<Consulta> consultas) {
         System.out.println("------------------ CONSULTAS -------------------");
         mostrarPalabrasFila("NÚMERO", "PISO", "QUIRÓFANO");
         for (Consulta consulta : consultas) {
             if (consulta.isQuirofano()) {
-              String  quirofano = "Si";
+                String quirofano = "Si";
                 mostrarPalabrasFila(consulta.getNumero() + "", consulta.getPiso() + "", quirofano);
-            }           
+            }
         }
         System.out.println("------------------------------------------------");
     }
@@ -94,7 +94,7 @@ public class Visualizar {
     /**
      * Método que muestra una fila de Strings formateada
      *
-     * @param valores Pueden entrar Uno o mas Strings
+     * @param valores Pueden entrar uno o más Strings
      */
     public static void mostrarPalabrasFila(String... valores) {
         for (String valor : valores) {

@@ -2,7 +2,7 @@ package excepciones;
 
 /**
  *
- * @author a18luisdvp
+ * @authors Alberto y David
  */
 public class Excepcion extends Exception {
 

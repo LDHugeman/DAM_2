@@ -1,12 +1,11 @@
 package excepciones;
 
-
 /**
  *
- * @author a18luisdvp
+ * @authors Alberto y David
  */
 public class Validar {
-    
+
     public static boolean esDniValido(String texto) {
         boolean dniEsValido = true;
         try {
@@ -21,7 +20,7 @@ public class Validar {
             if (!texto.substring(8).matches("[A-Za-z]")) {
                 dniEsValido = false;
                 throw new Excepcion("Letra errónea");
-            }           
+            }
         } catch (Excepcion excepcion) {
             System.out.println(excepcion.getError());
         }

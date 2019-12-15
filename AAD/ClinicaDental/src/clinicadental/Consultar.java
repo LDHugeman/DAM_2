@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clinicadental;
 
 import java.util.ArrayList;
@@ -15,7 +10,6 @@ import objetos.Empleado;
 import objetos.Historial;
 import objetos.Limpiador;
 import objetos.Paciente;
-import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -23,9 +17,10 @@ import util.Pedir;
 
 /**
  *
- * @author luisd
+ * @authors Alberto y David
  */
 public class Consultar {
+
     public static List extraerConsultas() {
         List<Consulta> consultas = new ArrayList();
         try {
@@ -37,7 +32,7 @@ public class Consultar {
         }
         return consultas;
     }
-    
+
     public static List extraerDentistas() {
         List<Dentista> dentistas = new ArrayList();
         try {
@@ -49,7 +44,7 @@ public class Consultar {
         }
         return dentistas;
     }
-    
+
     public static List extraerPacientes() {
         List<Paciente> pacientes = new ArrayList();
         try {
@@ -61,7 +56,7 @@ public class Consultar {
         }
         return pacientes;
     }
-    
+
     public static List extraerLimpiadores() {
         List<Limpiador> limpiadores = new ArrayList();
         try {
@@ -73,7 +68,7 @@ public class Consultar {
         }
         return limpiadores;
     }
-    
+
     public static List extraerCitas() {
         List<Cita> citas = new ArrayList();
         try {
@@ -85,7 +80,7 @@ public class Consultar {
         }
         return citas;
     }
-    
+
     public static List extraerEmpleados() {
         List<Empleado> empleados = new ArrayList();
         try {
@@ -97,7 +92,7 @@ public class Consultar {
         }
         return empleados;
     }
-    
+
     public static Consulta encontrarConsultaPorNumero(int numeroConsulta) {
         Consulta consulta = null;
         try {
@@ -109,7 +104,7 @@ public class Consultar {
         }
         return consulta;
     }
-    
+
     public static Dentista encontrarDentistaPorDni(String dni) {
         Dentista dentista = null;
         try {
@@ -121,7 +116,7 @@ public class Consultar {
         }
         return dentista;
     }
-    
+
     public static Paciente encontrarPacientePorDni(String dni) {
         Paciente paciente = null;
         try {
@@ -133,7 +128,7 @@ public class Consultar {
         }
         return paciente;
     }
-    
+
     public static Limpiador encontrarLimpiadorPorDni(String dni) {
         Limpiador limpiador = null;
         try {
@@ -145,7 +140,7 @@ public class Consultar {
         }
         return limpiador;
     }
-    
+
     public static Historial encontrarHistorialPorCodigo(int codigo) {
         Historial historial = null;
         try {
@@ -157,41 +152,40 @@ public class Consultar {
         }
         return historial;
     }
-    
+
     public static Cita encontrarCitaPorFechaHoraHistorial(int codigo, Date fecha, Date hora) {
         Cita cita = null;
         try {
             Session session = NewHibernateUtil.getSession();
-            cita = (Cita) session.createQuery("FROM objetos.Cita WHERE (fecha = '"+Pedir.FORMATO_ANO_MES_DIA.format(fecha)+"') AND (hora = '"+Pedir.FORMATO_HORA_SEGUNDOS.format(hora)+"') AND historial = ("+codigo+")").uniqueResult();
+            cita = (Cita) session.createQuery("FROM objetos.Cita WHERE (fecha = '" + Pedir.FORMATO_ANO_MES_DIA.format(fecha) + "') AND (hora = '" + Pedir.FORMATO_HORA_SEGUNDOS.format(hora) + "') AND historial = (" + codigo + ")").uniqueResult();
         } catch (HibernateException excepcion) {
             System.err.println("Error al buscar la cita");
             System.out.println(excepcion.getMessage());
         }
         return cita;
     }
-    
-    public static List<Cita> citasEntreFechas(Date primerFecha, Date segundaFecha){
+
+    public static List<Cita> citasEntreFechas(Date primerFecha, Date segundaFecha) {
         List<Cita> citas = new ArrayList<>();
-        try{
+        try {
             Session session = NewHibernateUtil.getSession();
             citas = session.createCriteria(Cita.class).add(Restrictions.between("fecha", primerFecha, segundaFecha)).list();
-        }catch(HibernateException excepcion) {
+        } catch (HibernateException excepcion) {
             System.err.println("Error al buscar las citas");
             System.out.println(excepcion.getMessage());
         }
         return citas;
     }
-    
-    public static Dentista dentistaDeConsulta(int numeroConsulta){
+
+    public static Dentista dentistaDeConsulta(int numeroConsulta) {
         Dentista dentista = null;
         try {
             Session session = NewHibernateUtil.getSession();
-            dentista = (Dentista) session.createQuery("FROM objetos.Dentista WHERE (consulta ='"+numeroConsulta+"')").uniqueResult();
+            dentista = (Dentista) session.createQuery("FROM objetos.Dentista WHERE (consulta ='" + numeroConsulta + "')").uniqueResult();
         } catch (HibernateException excepcion) {
             System.err.println("Error al buscar la cita");
             System.out.println(excepcion.getMessage());
         }
         return dentista;
     }
-    
 }
