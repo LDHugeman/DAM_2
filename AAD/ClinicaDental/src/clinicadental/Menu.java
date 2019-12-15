@@ -363,10 +363,10 @@ public class Menu {
             Visualizar.limpiadores(Consultar.extraerLimpiadores());
             System.out.println("--- Seleccione el dni del limpiador ---");
             String dni = Crear.pedirDni("Dni: ");
-            Limpiador limpiadorSeleccionado = Consultar.encontrarLimpiadorPorDni(dni);
-            if (limpiadorSeleccionado != null) {
-                consulta.getLimpiadores().add(limpiadorSeleccionado);
-                limpiadorSeleccionado.getConsultas().add(consulta);
+            Limpiador limpiador = Consultar.encontrarLimpiadorPorDni(dni);
+            if (limpiador != null) {
+                consulta.getLimpiadores().add(limpiador);
+                limpiador.getConsultas().add(consulta);
                 Altas.guardar(consulta);
             } else {
                 System.err.println("No hay ningún limpiador con ese dni");
