@@ -1,4 +1,3 @@
-
 package objetos;
 
 import java.io.Serializable;
@@ -7,13 +6,13 @@ import java.util.Set;
 
 /**
  *
- * @author a18luisdvp
+ * @authors Alberto y David
  */
-public class Limpiador extends Empleado implements Serializable{
-    
+public class Limpiador extends Empleado implements Serializable {
+
     private Set<Consulta> consultas;
-    
-    public Limpiador(){        
+
+    public Limpiador() {
     }
 
     public Limpiador(String dni, String nombre, String telefono, float sueldo) {
@@ -27,5 +26,5 @@ public class Limpiador extends Empleado implements Serializable{
 
     public void setConsultas(Set<Consulta> consultas) {
         this.consultas = consultas;
-    } 
+    }
 }

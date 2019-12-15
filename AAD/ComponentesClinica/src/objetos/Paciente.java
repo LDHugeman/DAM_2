@@ -1,21 +1,20 @@
-
 package objetos;
 
 import java.io.Serializable;
 
 /**
  *
- * @author a18luisdvp
+ * @authors Alberto y David
  */
-public class Paciente implements Serializable{
-    
+public class Paciente implements Serializable {
+
     private String dni;
     private String nombre;
     private String telefono;
     private Historial historial;
     private Dentista dentista;
-    
-    public Paciente(){        
+
+    public Paciente() {
     }
 
     public Paciente(String dni, String nombre, String telefono, Historial historial, Dentista dentista) {

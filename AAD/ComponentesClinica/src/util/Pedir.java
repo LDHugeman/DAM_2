@@ -9,15 +9,16 @@ import java.util.Date;
 
 /**
  *
- * @author David
+ * @authors Alberto y David
  */
 public class Pedir {
-    private static final BufferedReader LEE = new BufferedReader(new InputStreamReader (System.in));
+
+    private static final BufferedReader LEE = new BufferedReader(new InputStreamReader(System.in));
     public static final SimpleDateFormat FORMATO_DIA_MES_ANO = new SimpleDateFormat("dd/MM/yyyy");
-    public static final SimpleDateFormat FORMATO_ANO_MES_DIA = new SimpleDateFormat("yyyy/MM/dd");
     public static final SimpleDateFormat FORMATO_HORA = new SimpleDateFormat("HH:mm");
+    public static final SimpleDateFormat FORMATO_ANO_MES_DIA = new SimpleDateFormat("yyyy/MM/dd");
     public static final SimpleDateFormat FORMATO_HORA_SEGUNDOS = new SimpleDateFormat("HH:mm:ss");
-    
+
     public static String texto() {
         boolean esTextoValido;
         String texto = "";
@@ -66,7 +67,7 @@ public class Pedir {
         } while (!esFechaValida);
         return fecha;
     }
-    
+
     public static Date hora() {
         Date hora = null;
         boolean esHoraValida;
@@ -170,5 +171,5 @@ public class Pedir {
             esSeguroContinuar = true;
         }
         return esSeguroContinuar;
-    }    
+    }
 }

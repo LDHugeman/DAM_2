@@ -1,4 +1,3 @@
-
 package objetos;
 
 import java.io.Serializable;
@@ -7,16 +6,16 @@ import java.util.Set;
 
 /**
  *
- * @author a18luisdvp
+ * @authors Alberto y David
  */
-public class Historial implements Serializable{
-    
+public class Historial implements Serializable {
+
     private int codigo;
     private boolean seguroPrivado;
     private String grupoSanguineo;
     private Set<Cita> citas;
-    
-    public Historial(){        
+
+    public Historial() {
     }
 
     public Historial(boolean seguroPrivado, String grupoSanguineo) {

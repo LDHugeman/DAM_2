@@ -1,20 +1,19 @@
-
 package objetos;
 
 import java.io.Serializable;
 
 /**
  *
- * @author a18luisdvp
+ * @authors Alberto y David
  */
-public class Empleado implements Serializable{
-    
+public class Empleado implements Serializable {
+
     private String dni;
     private String nombre;
     private String telefono;
     private float sueldo;
-    
-    public Empleado(){        
+
+    public Empleado() {
     }
 
     public Empleado(String dni, String nombre, String telefono, float sueldo) {

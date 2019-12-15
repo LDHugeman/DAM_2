@@ -8,7 +8,7 @@ import java.util.Set;
 
 /**
  *
- * @author a18luisdvp
+ * @authors Alberto y David
  */
 public class Consulta implements Serializable {
 
@@ -18,6 +18,8 @@ public class Consulta implements Serializable {
     private Set<Limpiador> limpiadores;
     private PropertyChangeSupport propertySupport;
 
+    /*Hibernate emplea el constructor vacío, 
+    por ello es necesario inicializar properySupport dentro*/
     public Consulta() {
         this.propertySupport = new PropertyChangeSupport(this);
     }
@@ -49,6 +51,8 @@ public class Consulta implements Serializable {
         return quirofano;
     }
 
+    /*Esta clase es el bean fuente, 
+    que notifica al bean oyente ante un cambio de la propiedad quirófano*/
     public void setQuirofano(boolean quirofano) {
         boolean oldQuirofano = this.quirofano;
         if (oldQuirofano != quirofano) {

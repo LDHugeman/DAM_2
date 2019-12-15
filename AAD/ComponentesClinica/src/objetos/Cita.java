@@ -1,4 +1,3 @@
-
 package objetos;
 
 import java.io.Serializable;
@@ -7,16 +6,16 @@ import util.Pedir;
 
 /**
  *
- * @author a18luisdvp
+ * @authors Alberto y David
  */
-public class Cita implements Serializable{
-    
+public class Cita implements Serializable {
+
     private Date fecha;
     private Date hora;
     private String tipoTrabajo;
     private Historial historial;
-    
-    public Cita(){        
+
+    public Cita() {
     }
 
     public Cita(Date fecha, Date hora, String tipoTrabajo, Historial historial) {
@@ -29,15 +28,15 @@ public class Cita implements Serializable{
     public Date getFecha() {
         return fecha;
     }
-    
-    public String getStringFecha(){
+
+    public String getStringFecha() {
         return Pedir.FORMATO_DIA_MES_ANO.format(fecha);
     }
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
+
     public String getStringHora() {
         return Pedir.FORMATO_HORA.format(hora);
     }

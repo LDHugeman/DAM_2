@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author a18luisdvp
+ * @authors Alberto y David
  */
 public class Dentista extends Empleado implements Serializable, PropertyChangeListener {
 
@@ -28,6 +28,8 @@ public class Dentista extends Empleado implements Serializable, PropertyChangeLi
         this.consulta = consulta;
     }
 
+    /*Esta clase es el bean oyente, 
+    que espera el cambio de la propiedad quirófano en el bean fuente: Consulta*/
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("quirofano")) {
