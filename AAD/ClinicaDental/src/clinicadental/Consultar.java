@@ -157,7 +157,9 @@ public class Consultar {
         Cita cita = null;
         try {
             Session session = NewHibernateUtil.getSession();
-            cita = (Cita) session.createQuery("FROM objetos.Cita WHERE (fecha = '" + Pedir.FORMATO_ANO_MES_DIA.format(fecha) + "') AND (hora = '" + Pedir.FORMATO_HORA_SEGUNDOS.format(hora) + "') AND historial = (" + codigo + ")").uniqueResult();
+            cita = (Cita) session.createQuery("FROM objetos.Cita WHERE (fecha = '" 
+                    + Pedir.FORMATO_ANO_MES_DIA.format(fecha) + "') AND (hora = '" 
+                    + Pedir.FORMATO_HORA_SEGUNDOS.format(hora) + "') AND historial = (" + codigo + ")").uniqueResult();
         } catch (HibernateException excepcion) {
             System.err.println("Error al buscar la cita");
             System.out.println(excepcion.getMessage());
