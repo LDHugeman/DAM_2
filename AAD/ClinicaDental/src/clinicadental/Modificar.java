@@ -66,7 +66,9 @@ public class Modificar {
 
     public static void quirofanoConsulta(Consulta consulta) {
         Dentista dentista = Consultar.dentistaDeConsulta(consulta.getNumero());
-        consulta.addChangeListener(dentista);
+        if(dentista!=null){
+            consulta.addChangeListener(dentista);
+        }        
         consulta.setQuirofano(Pedir.duda("Desea que la consulta tenga quirofano?"));
         modificar(consulta);
     }

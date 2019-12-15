@@ -185,7 +185,7 @@ public class Consultar {
             Session session = NewHibernateUtil.getSession();
             dentista = (Dentista) session.createQuery("FROM objetos.Dentista WHERE (consulta ='" + numeroConsulta + "')").uniqueResult();
         } catch (HibernateException excepcion) {
-            System.err.println("Error al buscar la cita");
+            System.err.println("Error al buscar dentista por consulta");
             System.out.println(excepcion.getMessage());
         }
         return dentista;
