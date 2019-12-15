@@ -69,7 +69,7 @@ public class Modificar {
         if(dentista!=null){
             consulta.addChangeListener(dentista);
         }        
-        consulta.setQuirofano(Pedir.duda("Desea que la consulta tenga quirofano?"));
+        consulta.setQuirofano(Pedir.duda("¿Desea que la consulta tenga quirófano?"));
         modificar(consulta);
     }
 
