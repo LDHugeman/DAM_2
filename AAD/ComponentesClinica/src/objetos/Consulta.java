@@ -56,7 +56,6 @@ public class Consulta implements Serializable {
     public void setQuirofano(boolean quirofano) {
         boolean oldQuirofano = this.quirofano;
         if (oldQuirofano != quirofano) {
-            System.out.println("Tirado evento de modificacion");
             propertySupport.firePropertyChange("quirofano", oldQuirofano, quirofano);
         }
         this.quirofano = quirofano;
