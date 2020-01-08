@@ -20,7 +20,15 @@ public class AdaptadorPersonalizado extends ArrayAdapter {
     private String[] arrayDescripcion;
     private TypedArray arrayIdFotos;
     private TypedArray arrayIdColores;
-    public AdaptadorPersonalizado(@NonNull Activity context, String[] arrayAnimales, String[] arrayDescripcion, @NonNull TypedArray arrayIdFotos, TypedArray arrayIdColores){
+    private View fila;
+    private TextView nombreAnimal;
+    private TextView descripcionAnimal;
+    private ImageView fotoAnimal;
+    private ImageView imagenColor;
+
+    public AdaptadorPersonalizado(@NonNull Activity context, String[] arrayAnimales,
+                           String[] arrayDescripcion, @NonNull TypedArray arrayIdFotos,
+                           TypedArray arrayIdColores){
         super(context,R.layout.layout_fila,arrayAnimales);
         this.context=context;
         this.arrayAnimales=arrayAnimales;
@@ -33,20 +41,25 @@ public class AdaptadorPersonalizado extends ArrayAdapter {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View fila = inflater.inflate(R.layout.layout_fila,null);
-        TextView tvanimal = (TextView)fila.findViewById(R.id.tvanimal);
-        ListView lv = (ListView)fila.findViewById(R.id.lv);
-        TextView tvdescripcion = (TextView)fila.findViewById(R.id.tvdescripcion);
-        LinearLayout lyanimal = (LinearLayout)fila.findViewById(R.id.lyanimales);
-        ImageView imagen = (ImageView)fila.findViewById(R.id.imganimal);
-        tvanimal.setText(arrayAnimales[position]);
-        tvdescripcion.setText(arrayDescripcion[position]);
-        imagen.setImageResource(arrayIdFotos.getResourceId(position,-1));
-        if(position%2==0 | position==0){
-            fila.setBackgroundResource(R.color.paleblue);
-        }else {
+        inicializarVista(inflater);
+        nombreAnimal.setText(arrayAnimales[position]);
+        descripcionAnimal.setText(arrayDescripcion[position]);
+        fotoAnimal.setImageResource(arrayIdFotos.getResourceId(position,-1));
+        imagenColor.setImageResource(arrayIdColores.getResourceId(position,-1));
+        if(position%2==0){
             fila.setBackgroundResource(R.color.lightblue);
+        }else {
+            fila.setBackgroundResource(R.color.paleblue);
         }
         return fila;
+    }
+
+
+    private void inicializarVista(LayoutInflater inflater) {
+        fila = inflater.inflate(R.layout.layout_fila, null);
+        nombreAnimal =  (TextView) fila.findViewById(R.id.tvanimal);
+        descripcionAnimal = (TextView)  fila.findViewById(R.id.tvdescripcion);
+        fotoAnimal = (ImageView)  fila.findViewById(R.id.imganimal);
+        imagenColor = (ImageView) fila.findViewById(R.id.imagen_Color);
     }
 }
