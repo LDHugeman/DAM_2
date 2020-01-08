@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PantallaLibro</string>
+    <string name="titulo">Título</string>
+    <string name="tecleaTitulo">Teclea título</string>
+    <string name="autor">Autor</string>
+    <string name="tecleaAutor">Teclea autor</string>
+    <string name="tema">Tema:</string>
+    <string name="tecnico">Técnico</string>
+    <string name="lectura">Lectura</string>
+    <string name="traducido">Traducido a:</string>
+    <string name="ingles">Inglés</string>
+    <string name="frances">Francés</string>
+    <string name="aceptar">ACEPTAR</string>
+</resources>

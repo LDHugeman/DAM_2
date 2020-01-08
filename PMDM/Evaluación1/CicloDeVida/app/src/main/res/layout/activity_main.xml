@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CICLO DE VIDA"/>
+
+    <EditText
+        android:id="@+id/editText_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Teclea algo aquí"/>
+
+    <Button
+        android:id="@+id/boton_Finalizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finalizar activity"/>
+
+    <Button
+        android:id="@+id/boton_IrActivity2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ir a Activity 2"/>
+
+    <Button
+        android:id="@+id/boton_IrActivity3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ir a Activity 3"/>
+
+    <Button
+        android:id="@+id/boton_IrActivityExterna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ir a Activity externa"/>
+
+</LinearLayout>

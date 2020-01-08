@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c01115f9-1a42-4b40-a5e3-543600efab1a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../AAD/EmpresasCoches/src/empresascoches/NewHibernateUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AAD/EmpresasCoches/src/empresascoches/Pedir.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AAD/EmpresasCoches/src/excepciones/Excepcion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Empresa/funcioneshabi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/androidTest/java/com/example/ciclodevida/ExampleInstrumentedTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/java/com/example/ciclodevida/MainActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/java/com/example/ciclodevida/SegundaActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/java/com/example/ciclodevida/TerceraActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/layout/activity_segunda.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/layout/activity_tercera.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/app/src/test/java/com/example/ciclodevida/ExampleUnitTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/CicloDeVida/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/GiraEtiqueta/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/androidTest/java/com/example/tresactividades/ExampleInstrumentedTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/java/com/example/tresactividades/MainActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/java/com/example/tresactividades/SegundaActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/java/com/example/tresactividades/TerceraActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/layout/activity_segunda.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/layout/activity_tercera.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/app/src/test/java/com/example/tresactividades/ExampleUnitTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/TresActividades/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/androidTest/java/com/example/versionkotlin/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/java/com/example/versionkotlin/MainActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/app/src/test/java/com/example/versionkotlin/ExampleUnitTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PMDM/VersionKotlin/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/AutorLibros/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../AAD/AutorLibros/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/AutorLibros/manifest.mf" beforeDir="false" afterPath="$PROJECT_DIR$/../../AAD/AutorLibros/manifest.mf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/AutorLibros/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../AAD/AutorLibros/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/AutorLibros/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../AAD/AutorLibros/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/AutorLibros/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../AAD/AutorLibros/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/AutorLibros/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../AAD/AutorLibros/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/AutorLibros/src/Objetos/Autor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../AAD/AutorLibros/src/Objetos/Autor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/AutorLibrosH2/LibreriaH2.mv.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/manifest.mf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/nbproject/build-impl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/nbproject/genfiles.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/nbproject/project.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/nbproject/project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/hibernate.cfg.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Altas.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Bajas.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Consultar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Crear.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/InstitutosCliclosTalleres.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/NewHibernateUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Pedir.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Visualizar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/objetos/Ciclo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/objetos/Instituto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/objetos/Taller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/objetos/Uso.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/objetos/UsoPK.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Compresor/#ventana.glade#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Compresor/archivo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Compresor/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Compresor/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Compresor/ventana.glade" beforeDir="false" afterPath="$PROJECT_DIR$/../Compresor/ventana.glade" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temperaturas/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Temperaturas/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temperaturas/funciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Temperaturas/funciones.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temperaturas/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Temperaturas/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temperaturas/ventana.glade" beforeDir="false" afterPath="$PROJECT_DIR$/../Temperaturas/ventana.glade" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/proguard-rules.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/androidTest/java/com/example/cambiodemoneda/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/androidTest/java/com/example/cambiodemoneda/ExampleInstrumentedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/java/com/example/cambiodemoneda/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/java/com/example/cambiodemoneda/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/values/dimens.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/test/java/com/example/cambiodemoneda/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/app/src/test/java/com/example/cambiodemoneda/ExampleUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/CambioDeMoneda/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/proguard-rules.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/androidTest/java/com/example/pulsaetiqueta/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/androidTest/java/com/example/pulsaetiqueta/ExampleInstrumentedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/java/com/example/pulsaetiqueta/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/java/com/example/pulsaetiqueta/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/test/java/com/example/pulsaetiqueta/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/app/src/test/java/com/example/pulsaetiqueta/ExampleUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../PMDM/PulsaEtiqueta/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/cadenas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/cadenas.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/manifest.mf" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/manifest.mf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/src/aletorio/mayus/AleatorioMayus.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorio+Mayus/src/aletorio/mayus/AleatorioMayus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios/aleatorioshijo.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios/aleatorioshijo.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios/manifest.mf" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios/manifest.mf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios/src/aleatorios/Aleatorios.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios/src/aleatorios/Aleatorios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios2/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios2/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios2/manifest.mf" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios2/manifest.mf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios2/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios2/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios2/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios2/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios2/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios2/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios2/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios2/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios2/src/aleatorios2/Aleatorios2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios2/src/aleatorios2/Aleatorios2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayusculas/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayusculas/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayusculas/manifest.mf" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayusculas/manifest.mf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayusculas/mayusculashijo.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayusculas/mayusculashijo.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayusculas/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayusculas/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayusculas/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayusculas/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayusculas/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayusculas/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayusculas/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayusculas/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayusculas/src/mayusculas/Mayusculas.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayusculas/src/mayusculas/Mayusculas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/cadenas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/cadenas.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/manifest.mf" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/manifest.mf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/src/mayúsculas/Mayúsculas.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/src/mayúsculas/Mayúsculas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/PruebaHijo/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/PruebaHijo/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/PruebaHijo/manifest.mf" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/PruebaHijo/manifest.mf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/PruebaHijo/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/PruebaHijo/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/PruebaHijo/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/PruebaHijo/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/PruebaHijo/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/PruebaHijo/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/PruebaHijo/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/PruebaHijo/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/PruebaHijo/src/pruebahijo/PruebaHijo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/PruebaHijo/src/pruebahijo/PruebaHijo.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1SWTNIdYOUSo0uGSnOaHUpCvAHF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Empresa" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="eventos" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="XeradorLoterias" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/eventos.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="XeradorLoterias" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.eventos" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c01115f9-1a42-4b40-a5e3-543600efab1a" name="Default Changelist" comment="" />
+      <created>1571678310362</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1571678310362</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

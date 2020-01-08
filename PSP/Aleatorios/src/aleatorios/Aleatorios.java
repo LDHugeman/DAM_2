@@ -4,46 +4,47 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 // probamos crear un proceso hijo, comunicarnos con él E/S y finalizar su ejecución
 public class Aleatorios {
 
     
     public static void main(String[] args) {
-       String line;
-       if (args.length <= 0) {
-                       System.err.println("Se necesita un programa a ejecutar");
-                       System.exit(-1);
-                        }
-       //args es  aleatoriosHijo.exe
-      try{
-		Process hijo = new ProcessBuilder(args).start();
-                BufferedReader br = new BufferedReader(new
-                            InputStreamReader(hijo.getInputStream()));
-                //br es un stream de entrada conectado  (mediante una pipe) a la salida estándar del proceso hijo
-                // el proceso aleatorios (padre) leerá en él la información que el proceso hijo le deja.
-                // en este caso un nuevo número aleatorio
-                PrintStream ps = new PrintStream(hijo.getOutputStream());
-                // ps es un stream de salida conectado (mediante una pipe) a la entrada estandar del hijo.
-                //  el p.padre envía cadenas al hijo ( aquí solicitando un número aleatorio más)
-                BufferedReader in = new BufferedReader(new
+        aplicacion(args);
+    }
+    
+    public static void aplicacion(String [] rutaProceso){
+        String linea = "";
+        if (rutaProceso.length <= 0) {
+            System.err.println("Se necesita un programa a ejecutar");
+            System.exit(-1);
+        }
+        try {
+            Process procesoHijo = new ProcessBuilder(rutaProceso).start();
+            BufferedReader lecturaHijo = new BufferedReader(new
+                            InputStreamReader(procesoHijo.getInputStream()));
+            PrintStream escrituraHijo = new PrintStream(procesoHijo.getOutputStream());
+            BufferedReader entrada = new BufferedReader(new
                                    InputStreamReader(System.in));
-                
-                while ((in.readLine()).compareTo("fin") != 0 ) {
-                    ps.println(" "); //No es necesario escribir nada en concreto, da igual  que cadena 
-                    // de hecho la cadena tecleada por usuario no la recojemos.
-                    ps.flush(); // Asegura que los datos se han enviado
-                    
-                    if ((line = br.readLine()) != null) {
-                                    System.out.println(line);
-                           }
-                }//fin while
-                //usuario teclea "fin", padre finaliza el proceso hijo
-                System.out.println("Finalizando");
-                hijo.destroy();
-                //el proceso padre finaliza  la ejecución del proceso hijo, al leer "fin"
-                
-      }catch (IOException e) {
-        System.out.println("Error ocurrió durante la ejecución.Descripción del error:" + e.getMessage());
-        }         
+            procesoPrincipal(entrada, lecturaHijo, escrituraHijo, linea);
+            System.out.println("Finalizando");
+            procesoHijo.destroy();
+        } catch (IOException ex) {
+            System.out.println("Error");
+        }
+    }
+    
+    public static void procesoPrincipal(BufferedReader entrada, BufferedReader 
+            lecturaHijo, PrintStream escrituraHijo, String linea) throws IOException{
+        while (!entrada.readLine().equals("fin")) {
+            escrituraHijo.println();
+            escrituraHijo.flush();
+            linea = lecturaHijo.readLine();
+            if (linea != null) {
+                System.out.println(linea);
+            }
+        }
+        
     }
 }

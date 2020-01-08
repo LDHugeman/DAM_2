@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='ProvinciasYLocalidades_v2'

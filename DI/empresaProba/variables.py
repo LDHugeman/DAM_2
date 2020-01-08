@@ -1,0 +1,10 @@
+mensajes_label = ()
+panel = None
+listado = ()
+fila_clientes = ()
+lista_clientes = ()
+tree_clientes = ()
+ventana_calendario = None
+ventana_acerca_de = None
+calendario = None
+ventana_dialog_salir = None

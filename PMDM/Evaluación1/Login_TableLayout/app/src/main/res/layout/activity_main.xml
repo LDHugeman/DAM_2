@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorFondo"
+    android:stretchColumns="0"
+    android:gravity="center">
+
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/altura"
+            android:gravity="center"
+            android:textColor="@color/colorLetra"
+            android:text="@string/conectar"/>
+    </TableRow>
+
+    <TableRow>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/altura"
+            android:layout_marginHorizontal="@dimen/margenHorizontal"
+            android:hint="@string/usuario"/>
+    </TableRow>
+
+    <TableRow>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/altura"
+            android:inputType="textPassword"
+            android:layout_marginHorizontal="@dimen/margenHorizontal"
+            android:hint="@string/contraseña"/>
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/altura"
+            android:layout_marginHorizontal="@dimen/margenHorizontal"
+            android:text="@string/iniciarSesion" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/altura"
+            android:gravity="center"
+            android:textColor="@color/colorLetra"
+            android:text="@string/olvidarContraseña"/>
+    </TableRow>
+
+</TableLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AP-Figs</string>
+    <string name="botonEmpezar">Begin</string>
+    <string name="botonTerminar">End</string>
+    <string name="bienvenido">Wellcome</string>
+    <string name="sinValor">You must enter a value</string>
+</resources>

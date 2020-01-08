@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/paddingLayout"
+    android:background="@color/colorFondo"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/conectar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:gravity="center"
+        android:textSize="@dimen/tamañoLetra"
+        android:textColor="@color/colorLetra"
+        android:text="@string/conectar"/>
+    <EditText
+        android:id="@+id/usuario"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:layout_below="@id/conectar"
+        android:hint="@string/usuario"/>
+    <EditText
+        android:id="@+id/contraseña"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:layout_below="@id/usuario"
+        android:inputType="textPassword"
+        android:hint="@string/contraseña"/>
+    <Button
+        android:id="@+id/iniciarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:layout_below="@id/contraseña"
+        android:text="@string/iniciarSesion"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:gravity="center"
+        android:layout_below="@id/iniciarSesion"
+        android:textColor="@color/colorLetra"
+        android:text="@string/olvidarContraseña"/>
+</RelativeLayout>

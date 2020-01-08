@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/paddinLayout"
+    android:background="@color/colorFondo"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="@dimen/tamañoLetra"
+        android:textColor="@color/colorLetra"
+        android:text="@string/conectar"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:layout_weight="1"
+        android:hint="@string/usuario"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:layout_weight="1"
+        android:inputType="textPassword"
+        android:hint="@string/contraseña"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:layout_weight="1"
+        android:text="@string/iniciarSesion"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/colorLetra"
+        android:text="@string/olvidarContraseña"/>
+
+</LinearLayout>

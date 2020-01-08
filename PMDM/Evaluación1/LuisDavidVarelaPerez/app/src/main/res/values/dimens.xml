@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marginYPadding">24dp</dimen>
+    <dimen name="letra">24sp</dimen>
+    <dimen name="altura">0dp</dimen>
+    <dimen name="margenDerecho">24dp</dimen>
+    <dimen name="margenSupInf">5dp</dimen>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tamañoLetra">20sp</dimen>
+    <dimen name="paddinLayout">40dp</dimen>
+    <dimen name="margenDerecho">30dp</dimen>
+    <dimen name="altura">0dp</dimen>
+    <dimen name="paddingLayoutDoble">80dp</dimen>
+    <dimen name="tamañoLetraDoble">40sp</dimen>
+    <dimen name="margenDerechoDoble">60dp</dimen>
+</resources>

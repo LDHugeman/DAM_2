@@ -1,12 +1,37 @@
 package mayusculas;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Mayusculas {
 
     
     public static void main(String[] args) {
-        
-     String line=null;
+        aplicacionAntigua();
+    }
+    
+    public static void aplicacion(){
+        String linea = "";
+        try {
+            Process procesoHijo = new ProcessBuilder("mayusculashijo.exe").start();
+            BufferedReader lecturaHijo = new BufferedReader(new InputStreamReader(procesoHijo.getInputStream()));
+            PrintStream escrituraHijo = new PrintStream(procesoHijo.getOutputStream());
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+            while (!linea.equals("kk")){
+                linea = entrada.readLine();
+                escrituraHijo.println(linea);
+                escrituraHijo.flush();
+                linea = lecturaHijo.readLine();
+                if (!linea.equals("kk")){
+                    System.out.println(linea);
+                }
+            }
+            System.out.println("Fin proceso");
+        } catch (IOException ex) {}
+    }
+    
+    public static void aplicacionAntigua(){
+        String line=null;
      
      try{
           Process hijo = new ProcessBuilder("mayusculashijo.exe").start();
@@ -40,6 +65,6 @@ public class Mayusculas {
          } catch (IOException e) {
                        System.out.println("Error ocurrió durante la ejecución "
                                + "Descripción del error: " + e.getMessage());
-                             }
+                             } 
     }
 }

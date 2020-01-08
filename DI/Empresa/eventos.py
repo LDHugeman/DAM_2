@@ -6,6 +6,7 @@ from datetime import datetime
 import gi
 import conexion, variables, funcionescli, main
 import funcioneshabi
+import funcionesreserva
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -54,7 +55,12 @@ class Eventos:
             elif variables.fila_habitaciones[3].get_active():
                 tipo = 'Familiar'
             precio = variables.fila_habitaciones[4].get_text()
-            registro = (numero, tipo, precio)
+            precio = precio.replace(',', '.')
+            if variables.fila_habitaciones[5].get_active():
+                libre = 'Si'
+            else:
+                libre = 'No'
+            registro = (numero, tipo, precio, libre)
             if numero != '' and precio != '':
                 funcioneshabi.insertarhabitacion(registro)
                 funcioneshabi.listado_habitaciones(variables.lista_habitaciones)
@@ -119,7 +125,11 @@ class Eventos:
             elif variables.fila_habitaciones[3].get_active():
                 tipo = 'Familiar'
             precio = variables.fila_habitaciones[4].get_text()
-            registro = (numero, tipo, precio)
+            if variables.fila_habitaciones[5].get_active():
+                libre = 'Si'
+            else:
+                libre = 'No'
+            registro = (numero, tipo, precio, libre)
             if numero != '':
                 funcioneshabi.modificar_habitacion(registro, numero_busqueda)
                 funcioneshabi.listado_habitaciones(variables.lista_habitaciones)
@@ -160,6 +170,7 @@ class Eventos:
                 numero_seleccionado = model.get_value(iter, 0)
                 tipo_seleccionado = model.get_value(iter, 1)
                 precio_seleccionado = model.get_value(iter, 2)
+                libre_seleccionado = model.get_value(iter, 3)
                 variables.fila_habitaciones[0].set_text(str(numero_seleccionado))
                 if tipo_seleccionado == 'Simple':
                     variables.fila_habitaciones[1].set_active(True)
@@ -168,6 +179,10 @@ class Eventos:
                 elif tipo_seleccionado == 'Familar':
                     variables.fila_habitaciones[3].set_active(True)
                 variables.fila_habitaciones[4].set_text(str(precio_seleccionado))
+                if libre_seleccionado == 'Si':
+                    variables.fila_habitaciones[5].set_active(True)
+                else:
+                    variables.fila_habitaciones[5].set_active(False)
         except Exception as e:
             print('Error carga habitación')
             print(e)
@@ -255,16 +270,13 @@ class Eventos:
             print('Error al salir de acerca de')
 
     def on_botonBackupTool_clicked(self, widget):
-        variables.ventana_dialog.show()
-
-    def on_menuBarBackup_activate(self, widget):
-        variables.ventana_dialog.show()
+        variables.ventana_dialog_backup.show()
 
     def on_botonBackup_clicked(self, widget):
         try:
             conexion.Conexion().cerrarbbdd()
             backup = 'backup.zip'
-            destino = str(variables.ventana_dialog.get_filename())  # /home/pruebas/copias
+            destino = str(variables.ventana_dialog_backup.get_filename())  # /home/pruebas/copias
             if os.path.exists(destino):
                 pass
             else:
@@ -285,7 +297,90 @@ class Eventos:
 
     def on_botonSalirDialog_clicked(self, widget):
         try:
-            variables.ventana_dialog.connect('delete-event', lambda w, e: w.hide() or True)
-            variables.ventana_dialog.hide()
+            variables.ventana_dialog_backup.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_dialog_backup.hide()
         except:
             print('Error al salir de la ventana dialog')
+
+    def on_menuBarBackup_activate(self, widget):
+        variables.ventana_dialog_restaurar_backup.show()
+
+    def on_botonRestaurarBackup_clicked(self, widget):
+        try:
+            conexion.Conexion().cerrarbbdd()
+            fichero = variables.ventana_dialog_restaurar_backup.get_filename()
+            copia = zipfile.ZipFile(fichero, 'r')
+            os.system('rm empresa.sqlite')
+            copia.extract("empresa.sqlite")
+            copia.close()
+            conexion.Conexion().abrirbbdd()
+        except:
+            print('Error al restaurar backup')
+
+    def on_botonSalirDialogRestaurarBackup_clicked(self, widget):
+        variables.ventana_dialog_restaurar_backup.connect('delete-event', lambda w, e: w.hide() or True)
+        variables.ventana_dialog_restaurar_backup.hide()
+
+    def on_botonAltaReserva_clicked(self, widget):
+        try:
+            dni_reserva = variables.fila_reservas[0].get_text()
+            habitacion = variables.fila_reservas[2].get_active()
+            check_in = variables.fila_reservas[3].get_text()
+            check_out = variables.fila_reservas[4].get_text()
+            noches = variables.fila_reservas[5].get_text()
+            registro = (dni_reserva, habitacion, check_in, check_out, noches)
+            if variables.reserva == 1:
+                funcionesreserva.insertar_reserva(registro)
+                funcionesreserva.listado_reservas(variables.lista_reservas)
+
+        except:
+            print('Error alta clientes')
+
+
+
+
+
+
+
+'''
+        try:
+            dni = variables.fila_clientes[0].get_text()
+            apelidos = variables.fila_clientes[1].get_text()
+            nome = variables.fila_clientes[2].get_text()
+            data = variables.fila_clientes[3].get_text()
+            registro = (dni, apelidos, nome, data)
+            if funcionescli.es_dni_valido(dni):
+                funcionescli.insertarcliente(registro)
+                funcionescli.listado_clientes(variables.lista_clientes)
+                funcionescli.limpiar_entry(variables.fila_clientes)
+                funcionescli.mostrar_operacion('Cliente dado de alta correctamente')
+            else:
+                print('Dni erróneo')
+        except:
+            print('Error alta clientes')
+'''
+
+def on_treeReservas_cursor_changed(self, widget):
+    try:
+        model, iter = variables.tree_reservas.get_selection().get_selected()
+        if iter!=None:
+            sdni = model.get_value(iter, 1)
+            sapelidos = model.get_value(iter, 2)
+            shabitacion = model.get_value(iter, 3)
+            sentrada = model.get_value(iter, 4)
+            ssalida = model.get_value(iter, 5)
+            snoches = model.get_value(iter, 6)
+            variables.fila_reservas[0].set_text(sdni)
+            variables.fila_reservas[1].set_text(sapelidos)
+            listado = funcionesreserva.listado_numero_habitaciones()
+            for i in range(len(listado)):
+                habitacion ="("+shabitacion+",)"
+                if(str(habitacion) == str(listado[i])):
+                    variables.fila_reservas[2].set_active(i)
+            variables.fila_reservas[3].set_text(str(sentrada))
+            variables.fila_reservas[4].set_text(str(ssalida))
+            variables.fila_reservas[5].set_text(snoches)
+
+    except Exception as e:
+        print(e)
+        print("error carga reservas")

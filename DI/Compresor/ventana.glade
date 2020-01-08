@@ -109,6 +109,7 @@
     <property name="modal">True</property>
     <property name="type_hint">dialog</property>
     <property name="transient_for">ventanaPrincipal</property>
+    <signal name="destroy" handler="on_ventanaAbrir_destroy" swapped="no"/>
     <signal name="selection-changed" handler="on_ventanaAbrir_selection_changed" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkBox">

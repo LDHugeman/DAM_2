@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1fc3c674-8938-4d5c-a56d-1a06fb8b5ca8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../AAD/EmpresasCoches/src/empresascoches/Pedir.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AAD/EmpresasCoches/src/excepciones/Excepcion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DI/Empresa/funcioneshabi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/androidTest/java/com/example/ciclodevida/ExampleInstrumentedTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/java/com/example/ciclodevida/MainActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/app/src/test/java/com/example/ciclodevida/ExampleUnitTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CicloDeVida/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/androidTest/java/com/example/versionkotlin/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/java/com/example/versionkotlin/MainActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/app/src/test/java/com/example/versionkotlin/ExampleUnitTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VersionKotlin/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/AutorLibrosH2/LibreriaH2.mv.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/manifest.mf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/nbproject/build-impl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/nbproject/genfiles.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/nbproject/project.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/nbproject/project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/hibernate.cfg.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Altas.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Bajas.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Consultar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Crear.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/InstitutosCliclosTalleres.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/NewHibernateUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Pedir.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/institutoscliclostalleres/Visualizar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/objetos/Ciclo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/objetos/Instituto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/objetos/Taller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/objetos/Uso.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AAD/InstitutosCliclosTalleres/src/objetos/UsoPK.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Compresor/#ventana.glade#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Compresor/archivo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Compresor/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../DI/Compresor/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Compresor/ventana.glade" beforeDir="false" afterPath="$PROJECT_DIR$/../../DI/Compresor/ventana.glade" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Temperaturas/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../DI/Temperaturas/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Temperaturas/funciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../DI/Temperaturas/funciones.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Temperaturas/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../DI/Temperaturas/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Temperaturas/ventana.glade" beforeDir="false" afterPath="$PROJECT_DIR$/../../DI/Temperaturas/ventana.glade" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Aleatorios/src/aleatorios/Aleatorios.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Aleatorios/src/aleatorios/Aleatorios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayusculas/src/mayusculas/Mayusculas.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayusculas/src/mayusculas/Mayusculas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/cadenas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Mayúsculas 2/cadenas.txt" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="3.4_WQVGA_API_23" />
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-214" />
+    <option name="y" value="445" />
+    <option name="width" value="1874" />
+    <option name="height" value="1096" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PulsaEtiqueta" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1fc3c674-8938-4d5c-a56d-1a06fb8b5ca8" name="Default Changelist" comment="" />
+      <created>1572979478284</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1572979478284</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.14120126" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Build Variants" order="4" side_tool="true" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Designer" order="6" />
+      <window_info id="Resources Explorer" order="7" />
+      <window_info id="Capture Tool" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Logcat" order="1" />
+      <window_info anchor="bottom" id="TODO" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Build" order="5" visible="true" weight="0.032502707" />
+      <window_info anchor="bottom" id="Android Profiler" order="6" show_stripe_button="false" />
+      <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Gradle" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info anchor="right" id="Preview" order="4" weight="0.23720682" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/giraetiqueta/MainActivity.java" />
+  </component>
+</project>

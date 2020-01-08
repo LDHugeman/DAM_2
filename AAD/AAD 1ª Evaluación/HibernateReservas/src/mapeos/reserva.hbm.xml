@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="objetos.Reserva" table="reservas">
+        <composite-id>
+            <key-property name="fechaEntrega" column="fechaEntrega"/>
+            <key-many-to-one name="habitacion" class="objetos.Habitacion"/>
+        </composite-id>
+        <many-to-one class="objetos.Hotel" name="hotel">
+            <column name="hotel"/>
+        </many-to-one>
+        <property name="fechaSalida"/>
+        <many-to-one class="objetos.Cliente" name="cliente">
+            <column name="cliente"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

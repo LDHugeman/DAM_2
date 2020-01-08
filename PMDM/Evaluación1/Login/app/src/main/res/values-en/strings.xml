@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Login</string>
+    <string name="conectar">Connect</string>
+    <string name="olvidarContraseña">¿Did you forget your password?</string>
+    <string name="usuario">User</string>
+    <string name="contraseña">Password</string>
+    <string name="iniciarSesion">LOG IN</string>
+</resources>

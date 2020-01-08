@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Login_RelativeLayout</string>
+    <string name="conectar">Conectar</string>
+    <string name="olvidarContraseña">¿Olvidaste tu contraseña?</string>
+    <string name="usuario">Usuario</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="iniciarSesion">INICIAR SESIÓN</string>
+</resources>

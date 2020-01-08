@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SaludoPersonalizado</string>
+    <string name="tecleaNombre">Enter your name: </string>
+    <string name="nombre">Name</string>
+    <string name="botonHola">Hello</string>
+    <string name="faltanDatos">No data</string>
+    <string name="saludo">Hello</string>
+</resources>

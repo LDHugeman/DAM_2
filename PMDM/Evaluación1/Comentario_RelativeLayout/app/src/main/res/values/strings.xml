@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Comentario_RelativeLayout</string>
+    <string name="comentario">Comentario</string>
+    <string name="texto">HOLA. ESTO ES UN COMENTARIO LARGO, LARGO,
+        LARGO, MUY LARGO, Y ESCRITO EN LETRA MAYUSCULA</string>
+    <string name="Boton1">Guardar</string>
+    <string name="Boton2">Cancelar</string>
+</resources>

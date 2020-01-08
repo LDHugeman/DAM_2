@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorFondo"
+    android:orientation="vertical"
+    android:padding="@dimen/marginYPadding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@color/colorCuadroSupInf">
+
+        <TextView
+            android:id="@+id/textView_masInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/marginYPadding"
+            android:textSize="24sp"
+            android:text="Más información en:"/>
+
+        <TextView
+            android:id="@+id/textView_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorLetra"
+            android:textStyle="bold"
+            android:textSize="@dimen/letra"
+            android:onClick="onClickUrl"
+            android:text="https://ingemecanica.com/tutoriales/areas.html"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@color/colorCuadroSupInf"
+        android:layout_marginTop="@dimen/margenSupInf"
+        android:layout_marginBottom="@dimen/margenSupInf"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/textView_llamanum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/marginYPadding"
+            android:textSize="@dimen/letra"
+            android:text="O llamando al número:"/>
+
+        <TextView
+            android:id="@+id/textView_numero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorLetra"
+            android:textStyle="bold"
+            android:textSize="@dimen/letra"
+            android:onClick="onClickNumero"
+            android:text="34986110011"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorCuadroSupInf"
+        android:layout_height="@dimen/altura"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+
+        <Button
+            android:id="@+id/boton_atras"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Atrás"/>
+
+        <Button
+            android:id="@+id/boton_fin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fin app"/>
+    </LinearLayout>
+
+</LinearLayout>
+</ScrollView>

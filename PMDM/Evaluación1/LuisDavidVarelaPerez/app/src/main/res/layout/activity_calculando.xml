@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorFondo"
+    android:orientation="vertical"
+    android:padding="@dimen/marginYPadding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:background="@color/colorCuadroSupInf">
+
+        <TextView
+            android:id="@+id/textView_opcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/marginYPadding"
+            android:text="Elige opción"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radiobutton_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Area"/>
+            <RadioButton
+                android:id="@+id/radiobutton_perimetro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perimetro"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura"
+        android:layout_weight="1"
+        android:background="@color/colorCuadroSupInf"
+        android:layout_marginTop="@dimen/margenSupInf"
+        android:layout_marginBottom="@dimen/margenSupInf"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textView_figura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/marginYPadding"
+            android:text="Elige figura"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radiobutton_cuadrado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Cuadrado"/>
+            <RadioButton
+                android:id="@+id/radiobutton_circulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Circulo"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorCuadroSupInf"
+        android:layout_height="@dimen/altura"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <EditText
+                android:id="@+id/editText_valor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="Lado"
+                android:inputType="number"/>
+
+            <Button
+                android:id="@+id/boton_mostrarResultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mostrar resultado"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/boton_continuar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continuar"/>
+    </LinearLayout>
+
+</LinearLayout>

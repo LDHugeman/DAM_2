@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="letraComentario">25sp</dimen>
+    <dimen name="letraCajaTexto">20sp</dimen>
+    <dimen name="alturaCajaTexto">180dp</dimen>
+    <dimen name="margenSuperior">12dp</dimen>
+    <dimen name="margenInferior">12dp</dimen>
+    <dimen name="alturaLinea">4dp</dimen>
+</resources>

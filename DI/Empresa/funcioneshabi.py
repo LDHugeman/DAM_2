@@ -8,6 +8,7 @@ def limpiar_entry(fila):
     fila[0].set_text('')
     fila[2].set_active(True)
     fila[4].set_text('')
+    fila[5].set_active(True)
 
 
 def listar_habitaciones():
@@ -23,7 +24,7 @@ def listar_habitaciones():
 
 def insertarhabitacion(fila):
     try:
-        conexion.cursor.execute('insert into habitaciones(numero, tipo, precio) values(?,?,?)', fila)
+        conexion.cursor.execute('insert into habitaciones(numero, tipo, precio, libre) values(?,?,?,?)', fila)
         conexion.conexion.commit()
 
     except sqlite3.OperationalError as excepcion:
@@ -54,7 +55,7 @@ def baja_habitacion(numero):
 
 def modificar_habitacion(registro, numero):
     try:
-        conexion.cursor.execute('update habitaciones set numero = ?, tipo = ?, precio = ? where numero = ?',
+        conexion.cursor.execute('update habitaciones set numero = ?, tipo = ?, precio = ?, libre = ? where numero = ?',
                                 (registro[0],
                                  registro[1],
                                  registro[2],

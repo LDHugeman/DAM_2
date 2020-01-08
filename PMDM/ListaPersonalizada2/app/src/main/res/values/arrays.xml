@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="textoAnimales">
+        <item>Águila</item>
+        <item>Ballena</item>
+        <item>Caballo</item>
+        <item>Canario</item>
+        <item>Delfín</item>
+        <item>Gato</item>
+    </string-array>
+
+    <integer-array name="imagenes">
+        <item>@drawable/aguila</item>
+        <item>@drawable/ballena</item>
+        <item>@drawable/caballo</item>
+        <item>@drawable/canario</item>
+        <item>@drawable/delfin</item>
+        <item>@drawable/gato</item>
+    </integer-array>
+</resources>

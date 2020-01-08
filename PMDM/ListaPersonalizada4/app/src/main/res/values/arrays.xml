@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="animales">
+        <item>Aguila</item>
+        <item>Ballena</item>
+        <item>Caballo</item>
+        <item>Canario</item>
+        <item>Delfín</item>
+        <item>Gato</item>
+        <item>Perro</item>
+        <item>Vaca</item>
+    </string-array>
+    <string-array name="descripcion">
+        <item>Un pájaro</item>
+        <item>Un animal grande</item>
+        <item>Una montura</item>
+        <item>Un pájaro doméstico</item>
+        <item>Un mamífero marino</item>
+        <item>Un animal doméstico</item>
+        <item>Otro animal doméstico</item>
+        <item>Ganado</item>
+    </string-array>
+    <integer-array name="fotosanimales">
+        <item>@drawable/aguila</item>
+        <item>@drawable/ballena</item>
+        <item>@drawable/caballo</item>
+        <item>@drawable/canario</item>
+        <item>@drawable/delfin</item>
+        <item>@drawable/gato</item>
+        <item>@drawable/perro</item>
+        <item>@drawable/vaca</item>
+    </integer-array>
+    <integer-array name="colores">
+        <item>@drawable/color_verde</item>
+        <item>@drawable/color_azul</item>
+        <item>@drawable/color_rosa</item>
+        <item>@drawable/color_negro</item>
+        <item>@drawable/color_blanco</item>
+        <item>@drawable/color_azul</item>
+        <item>@drawable/color_verde</item>
+        <item>@drawable/color_negro</item>
+    </integer-array>
+
+</resources>

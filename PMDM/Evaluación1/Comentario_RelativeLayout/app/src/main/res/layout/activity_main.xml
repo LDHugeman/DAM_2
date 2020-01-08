@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/comentario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/comentario"
+        android:textColor="@color/colorComentario"
+        android:textSize="@dimen/letraComentario"/>
+
+    <EditText
+        android:id="@+id/cajaTexto"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/alturaCajaTexto"
+        android:layout_marginTop="@dimen/margenSuperior"
+        android:layout_marginBottom="@dimen/margenInferior"
+        android:layout_below="@id/comentario"
+        android:textSize="@dimen/letraCajaTexto"
+        android:textColor="@color/colorLetraCajaTexto"
+        android:background="@color/colorFondoCajaTexto"
+        android:inputType="textCapCharacters|textMultiLine"
+        android:text="@string/texto"/>
+
+    <View
+        android:id="@+id/linea"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/alturaLinea"
+        android:layout_below="@id/cajaTexto"
+        android:background="@color/colorLinea"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margenSuperior"
+        android:layout_below="@id/linea"
+        android:text="@string/Boton1"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margenSuperior"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/linea"
+        android:text="@string/Boton2"/>
+
+</RelativeLayout>

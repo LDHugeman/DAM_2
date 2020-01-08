@@ -1,11 +1,8 @@
 # coding=utf-8
 
 import gi
-
 import funciones
-
 gi.require_version('Gtk', '3.0')
-
 from gi.repository import Gtk
 
 __autor__ = 'david'
@@ -44,6 +41,27 @@ class Conversor:
                 grados_kelvin = funciones.celsius_to_kelvin(self.entrada_temperatura.get_text())
                 self.resultado_conversion.set_text('')
                 self.resultado_conversion.set_text(str(grados_kelvin))
+            elif valor_combo_entrada == 'Kelvin' and valor_combo_salida == 'Celsius':
+                grados_celsius = funciones.kelvin_to_celsius(self.entrada_temperatura.get_text())
+                grados_celsius = round(grados_celsius, 2)
+                self.resultado_conversion.set_text('')
+                self.resultado_conversion.set_text(str(grados_celsius))
+            elif valor_combo_entrada == 'Fahrenheit' and valor_combo_salida == 'Celsius':
+                grados_celsius = funciones.fahrenheit_to_celsius(self.entrada_temperatura.get_text())
+                grados_celsius = round(grados_celsius, 2)
+                self.resultado_conversion.set_text('')
+                self.resultado_conversion.set_text(str(grados_celsius))
+            elif valor_combo_entrada == 'Kelvin' and valor_combo_salida == 'Fahrenheit':
+                grados_fahrenheit = funciones.kelvin_to_fahrenheit(self.entrada_temperatura.get_text())
+                grados_fahrenheit = round(grados_fahrenheit, 2)
+                self.resultado_conversion.set_text('')
+                self.resultado_conversion.set_text(str(grados_fahrenheit))
+            elif valor_combo_entrada == 'Fahrenheit' and valor_combo_salida == 'Kelvin':
+                grados_kelvin = funciones.fahrenheit_to_kelvin(self.entrada_temperatura.get_text())
+                grados_kelvin = round(grados_kelvin, 2)
+                self.resultado_conversion.set_text('')
+                self.resultado_conversion.set_text(str(grados_kelvin))
+
         except Exception as e:
             print(e)
             print('algún error')

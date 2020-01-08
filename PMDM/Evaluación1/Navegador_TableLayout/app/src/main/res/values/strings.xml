@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Navegador_TableLayout</string>
+    <string name="pregunta">¿Utilizas iExplorer?</string>
+    <string name="boton1">Sí</string>
+    <string name="boton2">No</string>
+    <string name="boton3">A veces</string>
+</resources>

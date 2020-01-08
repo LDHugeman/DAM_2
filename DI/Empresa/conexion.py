@@ -1,6 +1,8 @@
 import os
 import sqlite3
 
+import variables
+
 
 class Conexion:
 

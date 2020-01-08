@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SaludoPersonalizado</string>
+    <string name="tecleaNombre">Enter your name: </string>
+    <string name="tecleaEdad">Enter your age: </string>
+    <string name="nombre">Name</string>
+    <string name="edad">Age</string>
+    <string name="botonHola">Hello</string>
+    <string name="faltanDatos">No data</string>
+    <string name="saludo">Hello</string>
+    <string name="eligeDespedida">Choose your farewell</string>
+    <string name="adios">Goodbye</string>
+    <string name="hastaluego">See you later</string>
+    <string name="volver">Return</string>
+</resources>
