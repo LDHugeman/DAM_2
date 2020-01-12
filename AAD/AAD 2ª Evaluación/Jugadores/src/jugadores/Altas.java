@@ -4,7 +4,6 @@ package jugadores;
 import objetos.Jugador;
 import objetos.Pais;
 import org.neodatis.odb.ODB;
-import org.neodatis.odb.ODBFactory;
 
 /**
  *
@@ -13,14 +12,12 @@ import org.neodatis.odb.ODBFactory;
 public class Altas {
     
     public static void jugador(Jugador jugador){
-        ODB odb = ODBFactory.open("Jugadores.db");
+        ODB odb = Conexion.getSession();
         odb.store(jugador);
-        odb.close();
     }
     
     public static void pais(Pais pais){
-        ODB odb = ODBFactory.open("Jugadores.db");
+        ODB odb = Conexion.getSession();
         odb.store(pais);
-        odb.close();
     }
 }

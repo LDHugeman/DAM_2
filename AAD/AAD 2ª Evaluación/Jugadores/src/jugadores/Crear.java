@@ -11,8 +11,7 @@ import objetos.Pais;
 public class Crear {
     
     public static Jugador nuevoJugador(Pais pais){
-        System.out.printf("Nombre: ");
-        String nombre = Pedir.texto();
+        String nombre = pedirNombre();
         System.out.printf("Deporte: ");
         String deporte = Pedir.texto();
         System.out.printf("Ciudad: ");
@@ -25,8 +24,12 @@ public class Crear {
     public static Pais nuevoPais(){
         System.out.printf("Id del país: ");
         int id = Pedir.numeroEntero();
-        System.out.printf("Nombre: ");
-        String nombre = Pedir.texto();
+        String nombre = pedirNombre();
         return new Pais(id, nombre);        
+    }
+    
+    public static String pedirNombre(){
+        System.out.printf("Nombre: ");
+        return Pedir.texto();
     }
 }
