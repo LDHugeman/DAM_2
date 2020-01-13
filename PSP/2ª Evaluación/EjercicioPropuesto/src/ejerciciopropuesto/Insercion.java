@@ -8,7 +8,6 @@ public class Insercion {
 // acceder a la lista para insertar un nuevo elemento.
 //el código definido como sincronizado será un bloque atómico..    
     public synchronized static void insercionOrd(LinkedList<Persona> lista, Persona p) {
-
             lista.add(p);
             lista.sort(new Comparator<Persona>() {
                 @Override
