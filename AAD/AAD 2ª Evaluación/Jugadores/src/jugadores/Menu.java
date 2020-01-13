@@ -110,7 +110,7 @@ public class Menu {
         System.out.println("------- MENÚ -------");
         System.out.println("[1] Altas");
         System.out.println("[2] Bajas");
-        System.out.println("[3] Modificar deporte de un jugador");
+        System.out.println("[3] Modificaciones");
         System.out.println("[4] Visualizar");
         System.out.println("[0] Salir");
         System.out.printf("Seleccione una opción: ");
@@ -192,14 +192,14 @@ public class Menu {
     private static void modificarDeporteJugador() {
         String nombre = Crear.pedirNombre();
         Jugador jugador = Consultar.encontrarJugadorPorNombre(nombre);
-        Modificar.deporteJugador(jugador);
+            Modificar.deporteJugador(jugador);
         Conexion.closeSession();
     }
-    
-    private static void modificarPaisJugador(){
+
+    private static void modificarPaisJugador() {
         String nombre = Crear.pedirNombre();
         Jugador jugador = Consultar.encontrarJugadorPorNombre(nombre);
-        Modificar.paisJugador(jugador);
+            Modificar.paisJugador(jugador);
         Conexion.closeSession();
     }
 

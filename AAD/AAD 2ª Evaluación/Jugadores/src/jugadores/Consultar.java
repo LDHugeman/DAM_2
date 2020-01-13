@@ -1,5 +1,7 @@
 package jugadores;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import objetos.Jugador;
 import objetos.Pais;
@@ -89,27 +91,27 @@ public class Consultar {
         return jugadores;
     }
 
-    public static int sumaTotalEdades() {
+    public static BigDecimal sumaTotalEdades() {
         ODB odb = Conexion.getSession();
         Values values = odb.getValues(new ValuesCriteriaQuery(Jugador.class).sum("edad"));
         ObjectValues objectValues = values.nextValues();
-        int sumaTotalEdades = (int) objectValues.getByAlias("edad");
+        BigDecimal sumaTotalEdades = (BigDecimal) objectValues.getByAlias("edad");
         return sumaTotalEdades;
     }
 
-    public static int numeroJugadoresTotales() {
+    public static BigInteger numeroJugadoresTotales() {
         ODB odb = Conexion.getSession();
         Values values = odb.getValues(new ValuesCriteriaQuery(Jugador.class).count("nombre"));
         ObjectValues objectValues = values.nextValues();
-        int jugadores = (int) objectValues.getByAlias("nombre");
+        BigInteger jugadores = (BigInteger) objectValues.getByAlias("nombre");
         return jugadores;
     }
     
-    public static float mediaEdadJugadores(){
+    public static BigDecimal mediaEdadJugadores(){
         ODB odb = Conexion.getSession();
         Values values = odb.getValues(new ValuesCriteriaQuery(Jugador.class).avg("edad"));
         ObjectValues objectValues = values.nextValues();
-        float edad = (float) objectValues.getByAlias("edad");
+        BigDecimal edad = (BigDecimal) objectValues.getByAlias("edad");
         return edad;
     }
     
