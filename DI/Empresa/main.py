@@ -1,104 +1,131 @@
 import gi
 
-import conexion
 import eventos
+import funciones_habitacion
+import funciones_reserva
 import funcionescli
-import funcioneshabi
-import funcionesreserva
+import funcionesvar
 import variables
+from conexion import Conexion
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
-
 '''
-El main contiene los elementos necesarios para lanzar la aplicación
+El main contiene los elementos necesarios para lanzar la aplicación,
 así como la declaración de los widgets que se usarán. También los módulos
-que tenemos que importar de las librerías gráficas
+que tenemos que importar de las librerías gráficas.
 
 '''
 
 
 class Empresa:
     def __init__(self):
+        # Iniciamos la libreria Gtk
         builder = Gtk.Builder()
         builder.add_from_file('ventana.glade')
-        self.ventana_principal = builder.get_object('ventanaPrincipal')
-        variables.panel = builder.get_object('panel')
-        variables.ventana_acerca_de = builder.get_object('ventanaAcercaDe')
-        variables.ventana_dialog_backup = builder.get_object('ventanaDialogBackup')
-        variables.ventana_dialog_restaurar_backup = builder.get_object('ventanaDialogRestaurarBackup')
-        self.entrada_dni = builder.get_object('entryDni')
-        self.entrada_apelidos = builder.get_object('entryApelidos')
-        self.entrada_nome = builder.get_object('entryNome')
-        self.salida_validez_dni = builder.get_object('labelErrorDni')
-        self.codigo_cliente = builder.get_object('labelCodigoCliente')
-        self.operacion_hecha = builder.get_object('labelOperacionHecha')
-        self.fecha = builder.get_object('labelFecha')
-        self.ventana_calendario = builder.get_object('ventanaCalendario')
-        self.calendario = builder.get_object('calendario')
-        self.entry_data = builder.get_object('entryData')
-        self.entrada_numero = builder.get_object('entryNumero')
-        self.radiobutton_simple = builder.get_object('radioButtonSimple')
-        self.radiobutton_doble = builder.get_object('radioButtonDoble')
-        self.radiobutton_familiar = builder.get_object('radioButtonFamiliar')
-        self.entrada_precio = builder.get_object('entryPrecio')
-        self.switch_habitacion = builder.get_object('switchHabitacion')
-        self.label_mostrar_dni = builder.get_object('labelMostrarDni')
-        self.label_mostrar_apellidos = builder.get_object('labelMostrarApellidos')
-        self.combo_habitaciones = builder.get_object('comboBoxHabitaciones')
-        self.entry_check_in = builder.get_object('entryCheckIn')
-        self.entry_check_out = builder.get_object('entryCheckOut')
-        self.label_mostrar_noches = builder.get_object('labelMostrarNumeroNoches')
-        variables.combo_habitaciones = self.combo_habitaciones
-        variables.calendario = self.calendario
-        variables.ventana_calendario = self.ventana_calendario
-        variables.fila_clientes = (self.entrada_dni, self.entrada_apelidos, self.entrada_nome, self.entry_data)
-        variables.fila_habitaciones = (
-            self.entrada_numero,
-            self.radiobutton_simple,
-            self.radiobutton_doble,
-            self.radiobutton_familiar,
-            self.entrada_precio,
-            self.switch_habitacion)
-        variables.fila_reservas = (
-            self.label_mostrar_dni,
-            self.label_mostrar_apellidos,
-            self.combo_habitaciones,
-            self.entry_check_in,
-            self.entry_check_out,
-            self.label_mostrar_noches)
-        variables.lista_clientes = builder.get_object('listaClientes')
-        variables.lista_habitaciones = builder.get_object('listaHabitaciones')
-        variables.lista_reservas = builder.get_object('listaReservas')
-        variables.tree_clientes = builder.get_object('treeViewClientes')
-        variables.tree_habitaciones = builder.get_object('treeViewHabitaciones')
-        variables.tree_reservas = builder.get_object('treeViewReservas')
-        variables.mensajeserror = (self.salida_validez_dni, self.codigo_cliente, self.operacion_hecha, self.fecha)
-        builder.connect_signals(eventos.Eventos())
-        self.ventana_principal.show()
-        self.ventana_principal.maximize()
-        funcionescli.mostrar_fecha()
-        conexion.Conexion().abrirbbdd()
-        funcionescli.listado_clientes(variables.lista_clientes)
-        funcioneshabi.listado_habitaciones(variables.lista_habitaciones)
 
-        self.set_styles()
+        # Cargamos los widgets con algún evente asociado o que son referenciados
+        vprincipal = builder.get_object('venPrincipal')
+        builder.vendialog = builder.get_object('venDialog')
+        variables.venacercade = builder.get_object('venAcercade')
+        variables.panel = builder.get_object('Panel')
+        variables.filechooserbackup = builder.get_object('fileChooserbackup')
         menubar = builder.get_object('menuBar').get_style_context()
-        menubar.add_class('menuBar')
-        toolBar = builder.get_object('toolBar').get_style_context()
-        toolBar.add_class('toolBar')
-        menuFichero = builder.get_object('menuFichero').get_style_context()
-        menuFichero.add_class('menuFichero')
 
-    def set_styles(self):
+        # Declaración de wigdets
+        entdni = builder.get_object('entDni')
+        entapel = builder.get_object('entApel')
+        entnome = builder.get_object('entNome')
+        entdatacli = builder.get_object('entDatacli')
+        lblerrdni = builder.get_object('lblErrdni')
+        lblcodcli = builder.get_object('lblCodcli')
+        lblnumnoches = builder.get_object('lblNumnoches')
+        lbldirbackup = builder.get_object('lblFolderbackup')
+        lbldnires = builder.get_object('lblDnires')
+        lblapelres = builder.get_object('lblApelres')
+        variables.vencalendar = builder.get_object('venCalendar')
+        variables.vendialogsalir = builder.get_object('vendialogSalir')
+        variables.calendar = builder.get_object('Calendar')
+        variables.entries_cliente = (entdni, entapel, entnome, entdatacli)
+        variables.listclientes = builder.get_object('listaClientes')
+        variables.treereservas = builder.get_object('treeReservas')
+        variables.listreservas = builder.get_object('listaReservas')
+        variables.treeclientes = builder.get_object('treeClientes')
+        variables.menslabel = (lblerrdni, lblcodcli, lblnumnoches, lbldirbackup, lbldnires, lblapelres)
+
+        # Widgets habitaciones
+        entnumhab = builder.get_object('entNumhab')
+        entprezohab = builder.get_object('entPrezohab')
+        rbtsimple = builder.get_object('rbtSimple')
+        rbtdoble = builder.get_object('rbtDoble')
+        rbtfamily = builder.get_object('rbtFamily')
+        variables.treehab = builder.get_object('treeHab')
+        variables.listhab = builder.get_object('listaHabitaciones')
+        variables.filahab = (entnumhab, entprezohab)
+        variables.filarbt = (rbtsimple, rbtdoble, rbtfamily)
+        variables.listcmbhab = builder.get_object('listaComboHabitaciones')
+        variables.cmbhab = builder.get_object('cmbNumres')
+        variables.switch = builder.get_object('switch')
+
+        # Widgets reservas
+
+        entdatain = builder.get_object('entDatain')
+        entdataout = builder.get_object('entDataout')
+        variables.switch_reservas = builder.get_object('switchReservas')
+
+        variables.filareserva = (entdni, entapel, entdatain, entdataout)
+
+        # Widgets factura
+
+        label_dni_factura = builder.get_object('labelDniFactura')
+        label_apelidos_factura = builder.get_object('labelApelidosFactura')
+        label_nome_factura = builder.get_object('labelNomeFactura')
+        label_codigo_reserva_factura = builder.get_object('labelCodigoReservaFactura')
+        label_habitacion_factura = builder.get_object('labelHabitacionFactura')
+        label_fecha_factura = builder.get_object('labelFechaFactura')
+        label_unidades_factura = builder.get_object('labelUnidades')
+        label_precio_unidad_factura = builder.get_object('labelPrecioUnidad')
+        label_total_factura = builder.get_object('labelTotal')
+
+        variables.labels_factura = (
+            label_dni_factura,
+            label_apelidos_factura,
+            label_nome_factura,
+            label_codigo_reserva_factura,
+            label_habitacion_factura,
+            label_fecha_factura,
+            label_unidades_factura,
+            label_precio_unidad_factura,
+            label_total_factura)
+
+        # Conectamos eventos
+        builder.connect_signals(eventos.Eventos())
+
+        # Conexion estilos
+
+        self.set_style()
+        menubar.add_class('menuBar')
+        '''
+        for i in range(len(variables.menserror)):
+            variables.menserror[i].add_class('label')
+        '''
+        vprincipal.show_all()
+        vprincipal.maximize()
+        Conexion().abrirbbdd()
+        funciones_habitacion.listado_numeros_habitaciones()
+        funcionescli.carga_lista_clientes(variables.listclientes)
+        funciones_habitacion.carga_lista_habitaciones(variables.listhab)
+        funciones_reserva.recargar_lista_reservas()
+        funcionesvar.controlhab()
+
+    def set_style(self):
         css_provider = Gtk.CssProvider()
         css_provider.load_from_path('estilos.css')
         Gtk.StyleContext().add_provider_for_screen(
             Gdk.Screen.get_default(),
             css_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-
-    # funcionesreserva.listado_numero_habitaciones()
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
 
 
 if __name__ == '__main__':

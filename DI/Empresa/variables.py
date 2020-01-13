@@ -1,31 +1,40 @@
-'''
+"""
 El módulo variables almacena variables que necesitamos
-en otros módulos
-fila_clientes almacena los valores del entry
-lista_clientes almacena los valores a mostrar en el treeview (modelo del glade)
-treeclientes almacena el widget que contiene los valores de lista_clientes
-listado almacena el select
-'''
+en otros móudlos
+entries_cliente almacena los valores del entry
+listcliente almacena los valores a mostrar en el treeview
+treecliente almacena el widget que contien los valore de listcliente
+"""
 
-fila_clientes = ()
-fila_habitaciones = ()
-fila_reservas = ()
-lista_clientes = ()
-lista_habitaciones = ()
-lista_reservas = ()
-tree_clientes = ()
-tree_habitaciones = ()
-tree_reservas = ()
-mensajeserror = ()
-labels = ()
+
+entries_cliente = ()
+listclientes = ()
+treeclientes = ()
+treereservas = ()
+listreservas = ()
+menslabel = ()
+labels_factura = ()
 listado = ()
-listado_habitaciones = ()
-listado_reservas = ()
-combo_habitaciones = None
-ventana_acerca_de = None
+vencalendar = None
+calendar = None
+filahab = ()
+filarbt = ()
+treehab = ()
+listhab = ()
+venacercade = None
 panel = None
-ventana_calendario = None
-calendario = None
-ventana_dialog_backup = None
-ventana_dialog_restaurar_backup = None
+listcmbhab = ()
+cmbhab = None
+filareserva = ()
+semaforo = None
+check = ()
+filechooserbackup = None
+neobackup = None
+numhabres = None
 reserva = None
+vendialogsalir = None
+t = None
+cod = None
+switch = None
+switch_reservas = None
+
