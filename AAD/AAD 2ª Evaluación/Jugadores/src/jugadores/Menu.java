@@ -84,14 +84,19 @@ public class Menu {
                     break;
                 case 4:
                     System.out.println("La suma total de las edades es de " + Consultar.sumaTotalEdades());
+                    Conexion.closeSession();
                     break;
                 case 5:
                     System.out.println("El número de jugadores totales es " + Consultar.numeroJugadoresTotales());
+                    Conexion.closeSession();
                     break;
                 case 6:
                     System.out.println("La media de la edad de los jugadores es de " + Consultar.mediaEdadJugadores());
+                    Conexion.closeSession();
                     break;
                 case 7:
+                    Consultar.mostrarNumeroJugadoresCiudad();
+                    Conexion.closeSession();
                     break;
                 case 0:
                     break;

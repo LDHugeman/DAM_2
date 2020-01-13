@@ -113,10 +113,9 @@ public class Consultar {
         return edad;
     }
     
-    public static void numeroJugadoresCiudad(){
+    public static void mostrarNumeroJugadoresCiudad(){
         ODB odb = Conexion.getSession();
         Values values = odb.getValues(new ValuesCriteriaQuery(Jugador.class).field("ciudad").count("nombre").groupBy("ciudad"));
-        //int jugadores = (int) objectValues.getByAlias("edad");
         while(values.hasNext()){
            ObjectValues objectValues = values.next();
             System.out.println("Jugadores de la ciudad de "+ objectValues.getByAlias("ciudad")+ ": "+ objectValues.getByIndex(1));
