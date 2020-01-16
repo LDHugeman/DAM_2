@@ -17,11 +17,12 @@ public class CuentasBancariasCliente {
                     Menu.menuAltas();
                     break;
                 case 2:
+                    Menu.bajaCuentaPlazoDelCliente();
                     break;
                 case 3:
+                    Menu.menuModificaciones();
                     break;
                 case 4:
-
                     break;
                 case 0:
                     break;

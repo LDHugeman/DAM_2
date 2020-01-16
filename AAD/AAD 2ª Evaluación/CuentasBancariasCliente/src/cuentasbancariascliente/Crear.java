@@ -13,9 +13,8 @@ import objetos.Movimiento;
  */
 public class Crear {
 
-    public static Cliente nuevoCliente(String dni) {
-        System.out.printf("Nombre: ");
-        String nombre = Pedir.texto();
+    public static Cliente nuevoCliente(String dni) {      
+        String nombre = pedirNombre();
         System.out.printf("Dirección: ");
         String direccion = Pedir.texto();
         return new Cliente(dni, nombre, direccion);
@@ -45,9 +44,7 @@ public class Crear {
 
     public static Movimiento nuevoMovimiento(CuentaCorriente cuentaCorriente) {
         float cantidad = pedirCantidad();
-        System.out.printf("Saldo: ");
-        float saldoActual = Pedir.numeroRealFloat();
-        return new Movimiento(cuentaCorriente, cantidad, saldoActual);
+        return new Movimiento(cuentaCorriente, cantidad);
     }
 
     public static String pedirDni() {
@@ -61,6 +58,11 @@ public class Crear {
     
     public static String pedirNumero(){
         System.out.printf("Número: ");
+        return Pedir.texto();
+    }
+    
+    public static String pedirNombre(){
+        System.out.printf("Nombre: ");
         return Pedir.texto();
     }
 

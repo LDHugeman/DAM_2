@@ -1,3 +1,4 @@
+
 package cuentasbancariascliente;
 
 import objetos.Cuenta;
@@ -5,12 +6,12 @@ import org.neodatis.odb.ODB;
 
 /**
  *
- * @author a18luisdvp
+ * @author luisd
  */
-public class Altas {
-
-    public static void nuevaCuenta(Cuenta cuenta) {
+public class Bajas {
+    
+    public static void cuenta(Cuenta cuenta){
         ODB odb = Conexion.getSession();
-        odb.store(cuenta);
+        odb.delete(cuenta);
     }
 }

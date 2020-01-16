@@ -14,14 +14,12 @@ public class Movimiento implements Serializable{
     private Date fechaMovimiento;
     private Time hora;
     private float cantidad;
-    private double saldoActual;
 
-    public Movimiento(CuentaCorriente cuentaCorriente, float cantidad, double saldoActual) {
+    public Movimiento(CuentaCorriente cuentaCorriente, float cantidad) {
         this.cuentaCorriente = cuentaCorriente;
         this.fechaMovimiento = new Date();
         this.hora = new Time(fechaMovimiento.getTime()); 
         this.cantidad = cantidad;
-        this.saldoActual = saldoActual;
     }
 
     public CuentaCorriente getCuentaCorriente() {
@@ -54,13 +52,5 @@ public class Movimiento implements Serializable{
 
     public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public double getSaldoActual() {
-        return saldoActual;
-    }
-
-    public void setSaldoActual(double saldoActual) {
-        this.saldoActual = saldoActual;
     }
 }
