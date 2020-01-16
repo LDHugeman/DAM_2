@@ -10,26 +10,24 @@ import java.util.Date;
  * @author a18luisdvp
  */
 public class Movimiento implements Serializable{
-    private String numeroCuenta;
+    private CuentaCorriente cuentaCorriente;
     private Date fechaMovimiento;
     private Time hora;
     private float cantidad;
-    private double saldoActual;
 
-    public Movimiento(String numero, Date fechaMovimiento, Time hora, float cantidad, double saldoActual) {
-        this.numeroCuenta = numero;
-        this.fechaMovimiento = fechaMovimiento;
-        this.hora = hora;
+    public Movimiento(CuentaCorriente cuentaCorriente, float cantidad) {
+        this.cuentaCorriente = cuentaCorriente;
+        this.fechaMovimiento = new Date();
+        this.hora = new Time(fechaMovimiento.getTime()); 
         this.cantidad = cantidad;
-        this.saldoActual = saldoActual;
     }
 
-    public String getNumeroCuenta() {
-        return numeroCuenta;
+    public CuentaCorriente getCuentaCorriente() {
+        return cuentaCorriente;
     }
 
-    public void setNumeroCuenta(String numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
+    public void setCuentaCorriente(CuentaCorriente cuentaCorriente) {
+        this.cuentaCorriente = cuentaCorriente;
     }
 
     public Date getFechaMovimiento() {
@@ -54,13 +52,5 @@ public class Movimiento implements Serializable{
 
     public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public double getSaldoActual() {
-        return saldoActual;
-    }
-
-    public void setSaldoActual(double saldoActual) {
-        this.saldoActual = saldoActual;
     }
 }
