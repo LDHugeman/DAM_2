@@ -3,6 +3,7 @@ package objetos;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -20,6 +21,16 @@ public class Movimiento implements Serializable{
         this.fechaMovimiento = new Date();
         this.hora = new Time(fechaMovimiento.getTime()); 
         this.cantidad = cantidad;
+    }
+    
+    public String getStringFechaMovimiento(){
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        return formatoFecha.format(fechaMovimiento);
+    }
+    
+    public String getStringHora(){
+        SimpleDateFormat formatoHora = new SimpleDateFormat("hh:mm");
+        return formatoHora.format(hora);
     }
 
     public CuentaCorriente getCuentaCorriente() {
