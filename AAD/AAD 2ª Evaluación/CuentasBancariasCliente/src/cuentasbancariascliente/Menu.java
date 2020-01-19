@@ -1,5 +1,7 @@
 package cuentasbancariascliente;
 
+import java.util.ArrayList;
+import java.util.Date;
 import objetos.Cliente;
 import objetos.Cuenta;
 import objetos.CuentaCorriente;
@@ -200,4 +202,116 @@ public class Menu {
         }
         Conexion.closeSession();
     }
+
+    private static byte seleccionarOpcionMenuVisualizar() {
+        System.out.println("------- VISUALIZAR -------");
+        System.out.println("[1] Todos los clientes cuyo nombre empiece por 'C'");
+        System.out.println("[2] Clientes cuyo saldo es mayor a 200.000€");
+        System.out.println("[3] Cantidad de clientes en números rojos");
+        System.out.println("[4] Saldo medio de las cuentas a plazo de todos los clientes");
+        System.out.println("[5] Movimientos realizados sobre una cuenta corriente entre dos fechas");
+        System.out.println("[0] Salir");
+        System.out.printf("Selecione una opción: ");
+        return Pedir.numeroByte();
+    }
+
+    public static void menuVisualizar() {
+        byte opcion = 0;
+        do {
+            opcion = seleccionarOpcionMenuVisualizar();
+            switch (opcion) {
+                case 1:
+                    visualizarClientesEmpiezanC();
+                    break;
+                case 2:
+                    visualizarClientesSaldoSuperiorACantidad();
+                    break;
+                case 3:
+                    verNumeroClientesSaldoNegativo();
+                    break;
+                case 4:
+                    System.out.println("Saldo medio de las cuentas a plazo: " + Consultar.obtenerSaldoMedioCuentasPlazo());
+                    break;
+                case 5:
+                    visualizarMovimientosCuentaCorrienteEntreFechas();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.err.println("No existe esa opción");
+            }
+        } while (opcion != 0);
+    }
+
+    private static void visualizarClientesEmpiezanC() {
+        ArrayList<Cliente> clientes = Consultar.encontrarClientesEmpiezanPorC();
+        if (!clientes.isEmpty()) {
+            Visualizar.clientes(clientes);
+        } else {
+            System.err.println("No hay ningún cliente que empiece por 'C'");
+        }
+        Conexion.closeSession();
+    }
+
+    private static void visualizarClientesSaldoSuperiorACantidad() {
+        ArrayList<CuentaCorriente> cuentasCorriente = Consultar.encontrarCuentasCorrienteSaldoSuperior(200000);
+        if (!cuentasCorriente.isEmpty()) {
+            for (CuentaCorriente cuentaCorriente : cuentasCorriente) {
+                Visualizar.clientes(cuentaCorriente.getClientes());
+            }
+        } else {
+            System.err.println("No hay ningún cliente con un saldo en cuenta corriente superior a 200.000");
+        }
+        Conexion.closeSession();
+    }
+
+    private static void verNumeroClientesSaldoNegativo() {
+        ArrayList<Cuenta> cuentas = Consultar.encontrarCuentasSaldoNegativo();
+        int clientesConSaldoNegativo = 0;
+        if (!cuentas.isEmpty()) {
+            for (Cuenta cuenta : cuentas) {
+                clientesConSaldoNegativo += cuenta.getClientes().size();
+            }
+            System.out.println("--- Hay " + clientesConSaldoNegativo + " cliente(s) con saldo negativo ---");
+        } else {
+            System.err.println("No hay ningún cliente en números rojos");
+        }
+        Conexion.closeSession();
+    }
+
+    private static void visualizarMovimientosCuentaCorrienteEntreFechas() {
+        ArrayList<Movimiento> movimientosCuentaCorriente = new ArrayList<>();
+        System.out.println("--- Introduzca el número de cuenta corriente de la que desea ver movimientos entre 2 fechas ---");
+        String numero = Crear.pedirNumero();
+        Cuenta cuenta = Consultar.encontrarCuentaPorNumero(numero);
+        if (cuenta != null) {
+            if (cuenta instanceof CuentaCorriente) {
+                CuentaCorriente cuentaCorriente = (CuentaCorriente) cuenta;
+                System.out.printf("Fecha inicial (dd/MM/yyyy): ");
+                Date fechaInicial = Pedir.fecha();
+                System.out.printf("Fecha final (dd/MM/yyyy): ");
+                Date fechaFinal = Pedir.fecha();
+                ArrayList<Movimiento> movimientos = Consultar.obtenerMovimientosEntreFechas(fechaInicial, fechaFinal);
+                if (!movimientos.isEmpty()) {
+                    for (Movimiento movimiento : movimientos) {
+                        if (cuentaCorriente.getMovimientos().contains(movimiento)) {
+                            movimientosCuentaCorriente.add(movimiento);
+                        }
+                    }
+                    if (!movimientosCuentaCorriente.isEmpty()) {
+                        Visualizar.movimientos(movimientosCuentaCorriente);
+                    } else {
+                        System.err.println("Esta cuenta corriente no tiene ningún movimiento entre esas dos fechas");
+                    }
+                } else {
+                    System.err.println("No hay ningún movimiento entre esas dos fechas");
+                }
+            }else {
+                System.err.println("Ese numero no corresponde a una cuenta corriente, es de una cuenta a plazo");
+            }
+        } else {
+            System.err.println("No hay ninguna cuenta corriente con ese número");
+        }
+    }
+
 }

@@ -23,6 +23,7 @@ public class CuentasBancariasCliente {
                     Menu.menuModificaciones();
                     break;
                 case 4:
+                    Menu.menuVisualizar();
                     break;
                 case 0:
                     break;
