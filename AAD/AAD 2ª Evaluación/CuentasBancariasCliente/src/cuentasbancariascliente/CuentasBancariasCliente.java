@@ -31,5 +31,5 @@ public class CuentasBancariasCliente {
                     System.err.println("No existe esa opción");
             }
         } while (opcion != 0);
-    }    
+    }
 }

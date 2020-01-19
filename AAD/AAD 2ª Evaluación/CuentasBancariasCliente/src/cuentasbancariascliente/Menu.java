@@ -97,6 +97,7 @@ public class Menu {
             Movimiento movimiento = Crear.nuevoMovimiento(cuentaCorriente);
             double nuevoSaldo = cuentaCorriente.getSaldo() + movimiento.getCantidad();
             if (nuevoSaldo >= 0) {
+                movimiento.setCuentaCorriente(cuentaCorriente);
                 cuentaCorriente.getMovimientos().add(movimiento);
                 cuentaCorriente.setSaldo(nuevoSaldo);
                 System.out.println("Saldo actualizado");
@@ -280,38 +281,23 @@ public class Menu {
     }
 
     private static void visualizarMovimientosCuentaCorrienteEntreFechas() {
-        ArrayList<Movimiento> movimientosCuentaCorriente = new ArrayList<>();
         System.out.println("--- Introduzca el número de cuenta corriente de la que desea ver movimientos entre 2 fechas ---");
         String numero = Crear.pedirNumero();
         Cuenta cuenta = Consultar.encontrarCuentaPorNumero(numero);
-        if (cuenta != null) {
-            if (cuenta instanceof CuentaCorriente) {
-                CuentaCorriente cuentaCorriente = (CuentaCorriente) cuenta;
-                System.out.printf("Fecha inicial (dd/MM/yyyy): ");
-                Date fechaInicial = Pedir.fecha();
-                System.out.printf("Fecha final (dd/MM/yyyy): ");
-                Date fechaFinal = Pedir.fecha();
-                ArrayList<Movimiento> movimientos = Consultar.obtenerMovimientosEntreFechas(fechaInicial, fechaFinal);
-                if (!movimientos.isEmpty()) {
-                    for (Movimiento movimiento : movimientos) {
-                        if (cuentaCorriente.getMovimientos().contains(movimiento)) {
-                            movimientosCuentaCorriente.add(movimiento);
-                        }
-                    }
-                    if (!movimientosCuentaCorriente.isEmpty()) {
-                        Visualizar.movimientos(movimientosCuentaCorriente);
-                    } else {
-                        System.err.println("Esta cuenta corriente no tiene ningún movimiento entre esas dos fechas");
-                    }
-                } else {
-                    System.err.println("No hay ningún movimiento entre esas dos fechas");
-                }
-            }else {
-                System.err.println("Ese numero no corresponde a una cuenta corriente, es de una cuenta a plazo");
+        if (cuenta != null && cuenta instanceof CuentaCorriente) {
+            System.out.printf("Fecha inicial (dd/MM/yyyy): ");
+            Date fechaInicial = Pedir.fecha();
+            System.out.printf("Fecha final (dd/MM/yyyy): ");
+            Date fechaFinal = Pedir.fecha();
+            ArrayList movimientos = Consultar.obtenerMovimientosEntreFechasCuenta(fechaInicial, fechaFinal, numero);
+            if (!movimientos.isEmpty()) {
+                Visualizar.movimientos(movimientos); 
+            } else {
+                System.err.println("No hay ningún movimiento entre esas dos fechas");
             }
         } else {
             System.err.println("No hay ninguna cuenta corriente con ese número");
         }
+        Conexion.closeSession();
     }
-
 }

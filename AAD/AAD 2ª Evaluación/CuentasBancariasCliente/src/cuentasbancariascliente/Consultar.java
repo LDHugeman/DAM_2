@@ -131,10 +131,13 @@ public class Consultar {
         return saldoMedio;
     }
     
-    public static ArrayList<Movimiento> obtenerMovimientosEntreFechas(Date primeraFecha, Date segundaFecha ) {
+    public static ArrayList<Movimiento> obtenerMovimientosEntreFechasCuenta(Date primeraFecha, Date segundaFecha, String numeroCuenta) {
         ArrayList<Movimiento> movimientos = new ArrayList<>();
-        ODB odb = Conexion.getSession();
-        ICriterion icriterion = new And().add(Where.gt("fechaMovimiento", primeraFecha)).add(Where.lt("fechaMovimiento", segundaFecha));
+        ODB odb = Conexion.getSession();   
+        ICriterion icriterion = new And()
+                .add(Where.gt("fechaMovimiento", primeraFecha))
+                .add(Where.lt("fechaMovimiento", segundaFecha))
+                .add(Where.like("cuentaCorriente.numero", numeroCuenta));
         CriteriaQuery query = new CriteriaQuery(Movimiento.class, icriterion);
         Objects resultado = odb.getObjects(query);
             while (resultado.hasNext()) {
@@ -142,5 +145,5 @@ public class Consultar {
                 movimientos.add(movimiento);
             }
         return movimientos;
-    }
+    } 
 }
