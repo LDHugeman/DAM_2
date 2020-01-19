@@ -6,7 +6,12 @@ Limpiarentry vaciará el contenido de los entry
 """
 
 import sqlite3
+
+import funciones_excel
 import variables
+from typing import List
+from xlrd.sheet import Cell
+from xlrd import sheet
 from conexion import Conexion
 
 
@@ -37,13 +42,23 @@ def es_dni_valido(dni):
         return None
 
 
-def insertar_cliente(fila):
+def insertar_cliente_BD(cliente):
     try:
-        Conexion.cursor.execute('insert into  clientes(dni,apel,nome, data) values(?,?,?,?)', fila)
+        Conexion.cursor.execute('insert into  clientes(dni,apel,nome, data) values(?,?,?,?)', cliente)
         Conexion.conexion.commit()
     except sqlite3.OperationalError as e:
         print(e)
         Conexion.conexion.rollback()
+
+
+def insertar_cliente_excel_BD(celdas_clientes: List[Cell]):
+    cliente = []
+    for celda_cliente in celdas_clientes:
+        if celda_cliente.ctype == sheet.XL_CELL_DATE:
+            cliente.append(funciones_excel.formatear_fecha_excel(celda_cliente))
+        else:
+            cliente.append(celda_cliente.value)
+    insertar_cliente_BD(cliente)
 
 
 def obtener_listado_clientes():
@@ -90,6 +105,17 @@ def modificar_cliente(registro, cod):
 def obtener_id_cliente_por_dni(dni):
     try:
         Conexion.cursor.execute('select id from clientes where dni = ?', (dni,))
+        listado = Conexion.cursor.fetchone()
+        Conexion.conexion.commit()
+        return listado
+    except sqlite3.OperationalError as e:
+        print(e)
+        Conexion.conexion.rollback()
+
+
+def obtener_nombre_apellidos_por_dni(dni):
+    try:
+        Conexion.cursor.execute('select apel, nome from clientes where dni = ?', (dni, ))
         listado = Conexion.cursor.fetchone()
         Conexion.conexion.commit()
         return listado

@@ -3,7 +3,7 @@ import gi
 import eventos
 import funciones_habitacion
 import funciones_reserva
-import funcionescli
+import funciones_clientes
 import funcionesvar
 import variables
 from conexion import Conexion
@@ -113,7 +113,7 @@ class Empresa:
         vprincipal.maximize()
         Conexion().abrirbbdd()
         funciones_habitacion.listado_numeros_habitaciones()
-        funcionescli.carga_lista_clientes(variables.listclientes)
+        funciones_clientes.carga_lista_clientes(variables.listclientes)
         funciones_habitacion.carga_lista_habitaciones(variables.listhab)
         funciones_reserva.recargar_lista_reservas()
         funcionesvar.controlhab()

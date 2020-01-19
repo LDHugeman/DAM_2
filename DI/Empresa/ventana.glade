@@ -1545,21 +1545,20 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-new</property>
+                      <object class="GtkMenuItem" id="menuBarImportarClientes">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="label" translatable="yes">Importar clientes</property>
+                        <signal name="activate" handler="on_menuBarImportarClientes_activate" swapped="no"/>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-open</property>
+                      <object class="GtkMenuItem" id="menuBarExportarClientes">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Exportar clientes</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menuBarExportarClientes_activate" swapped="no"/>
                       </object>
                     </child>
                     <child>
@@ -2442,9 +2441,9 @@
     <property name="program_name">HOTEL LITE</property>
     <property name="version">v0.0.1</property>
     <property name="copyright" translatable="yes">All rights reserverd</property>
-    <property name="comments" translatable="yes">Proyecto desarrollado en DI 2ºDAM 19_20
+    <property name="comments" translatable="yes">Proyecto desarrollado en DI 2ºDAM 
 </property>
-    <property name="authors">Juan Carlos Pérez </property>
+    <property name="authors">Luis David Varela Pérez</property>
     <property name="logo">img/logohotel.png</property>
     <property name="license_type">lgpl-2-1</property>
     <child>

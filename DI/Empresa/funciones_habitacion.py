@@ -15,15 +15,6 @@ def limpiar_entries(entries):
         entries[i].set_text('')
 
 
-def insertar_habitacion(habitacion):
-    try:
-        Conexion.cursor.execute('insert into habitacion(numero,tipo,prezo,libre) values(?,?,?,?)', habitacion)
-        Conexion.conexion.commit()
-    except sqlite3.OperationalError as e:
-        print(e)
-        Conexion.conexion.rollback()
-
-
 def obtener_listado_habitaciones():
     try:
         Conexion.cursor.execute('select * from habitacion')
@@ -45,9 +36,18 @@ def carga_lista_habitaciones(lista_habitaciones):
         print("Error en carga_lista_habitaciones")
 
 
-def baja_habitacion(numhab):
+def insertar_habitacion_BD(habitacion):
     try:
-        Conexion.cursor.execute('delete from habitacion where numero = ?', (numhab,))
+        Conexion.cursor.execute('insert into habitacion(numero,tipo,prezo,libre) values(?,?,?,?)', habitacion)
+        Conexion.conexion.commit()
+    except sqlite3.OperationalError as e:
+        print(e)
+        Conexion.conexion.rollback()
+
+
+def baja_habitacion(numero_habitacion):
+    try:
+        Conexion.cursor.execute('delete from habitacion where numero = ?', (numero_habitacion,))
         Conexion.conexion.commit()
     except sqlite3.OperationalError as e:
         print(e)

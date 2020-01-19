@@ -2,15 +2,18 @@ import os
 import shutil
 
 import gi
+import xlrd
+import xlwt
 
 import conexion
 import facturacion
 import funciones_habitacion
 import funciones_reserva
-import funcionescli
+import funciones_clientes
 import funcionesvar
 import impresion
 import variables
+from typing import List
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -23,7 +26,7 @@ class Eventos():
         try:
             variables.venacercade.show()
         except:
-            print('error abrira acerca de')
+            print('Error en on_acercade_activate')
 
     def on_btnCerrarabout_clicked(self, widget):
         try:
@@ -71,10 +74,10 @@ class Eventos():
             nome = variables.entries_cliente[2].get_text()
             data = variables.entries_cliente[3].get_text()
             registro = (dni, apel, nome, data)
-            if funcionescli.es_dni_valido(dni):
-                funcionescli.insertar_cliente(registro)
-                funcionescli.carga_lista_clientes(variables.listclientes)
-                funcionescli.limpiarentry(variables.entries_cliente)
+            if funciones_clientes.es_dni_valido(dni):
+                funciones_clientes.insertar_cliente_BD(registro)
+                funciones_clientes.carga_lista_clientes(variables.listclientes)
+                funciones_clientes.limpiarentry(variables.entries_cliente)
             else:
                 variables.menslabel[0].set_text('ERROR DNI')
         except:
@@ -84,9 +87,9 @@ class Eventos():
         try:
             dni = variables.entries_cliente[0].get_text()
             if dni != '':
-                funcionescli.baja_cliente(dni)
-                funcionescli.carga_lista_clientes(variables.listclientes)
-                funcionescli.limpiarentry(variables.entries_cliente)
+                funciones_clientes.baja_cliente(dni)
+                funciones_clientes.carga_lista_clientes(variables.listclientes)
+                funciones_clientes.limpiarentry(variables.entries_cliente)
             else:
                 print('falta dni u otro error')
         except:
@@ -102,9 +105,9 @@ class Eventos():
             data = variables.entries_cliente[3].get_text()
             registro = (dni, apel, nome, data)
             if dni != '':
-                funcionescli.modificar_cliente(registro, cod)
-                funcionescli.carga_lista_clientes(variables.listclientes)
-                funcionescli.limpiarentry(variables.entries_cliente)
+                funciones_clientes.modificar_cliente(registro, cod)
+                funciones_clientes.carga_lista_clientes(variables.listclientes)
+                funciones_clientes.limpiarentry(variables.entries_cliente)
             else:
                 print('falta el dni')
         except:
@@ -114,7 +117,7 @@ class Eventos():
     def on_entDni_focus_out_event(self, widget, dni):
         try:
             dni = variables.entries_cliente[0].get_text()
-            if funcionescli.es_dni_valido(dni):
+            if funciones_clientes.es_dni_valido(dni):
                 variables.menslabel[0].set_text('')
                 pass
             else:
@@ -128,7 +131,7 @@ class Eventos():
             # model es el modelo de la tabla de datos
             # iter es el número que identifica a la fila que marcamos
             variables.menslabel[0].set_text('')
-            funcionescli.limpiarentry(variables.entries_cliente)
+            funciones_clientes.limpiarentry(variables.entries_cliente)
             if iter != None:
                 sdni = model.get_value(iter, 0)
                 sapel = model.get_value(iter, 1)
@@ -136,7 +139,7 @@ class Eventos():
                 sdata = model.get_value(iter, 3)
                 if sdata == None:
                     sdata = ''
-                cod = funcionescli.obtener_id_cliente_por_dni(sdni)
+                cod = funciones_clientes.obtener_id_cliente_por_dni(sdni)
                 variables.menslabel[1].set_text(str(cod[0]))
                 variables.entries_cliente[0].set_text(str(sdni))
                 variables.entries_cliente[1].set_text(str(sapel))
@@ -175,7 +178,7 @@ class Eventos():
     def on_Calendar_day_selected_double_click(self, widget):
         try:
             agno, mes, dia = variables.calendar.get_date()
-            fecha = "%s/" % dia + "%s/" % (mes + 1) + "%s" % agno
+            fecha = "%02d/" % dia + "%02d/" % (mes + 1) + "%s" % agno
             if variables.semaforo == 1:
                 variables.entries_cliente[3].set_text(fecha)
             elif variables.semaforo == 2:
@@ -214,7 +217,7 @@ class Eventos():
                 libre = 'NO'
             registro = (numhab, tipo, prezohab, libre)
             if numhab is not None:
-                funciones_habitacion.insertar_habitacion(registro)
+                funciones_habitacion.insertar_habitacion_BD(registro)
                 funciones_habitacion.carga_lista_habitaciones(variables.listhab)
                 funciones_habitacion.listado_numeros_habitaciones()
                 funciones_habitacion.limpiar_entries(variables.filahab)
@@ -336,7 +339,7 @@ class Eventos():
     def on_btnRefresh_clicked(self, widget):
         try:
             funciones_habitacion.limpiar_entries(variables.filahab)
-            funcionescli.limpiarentry(variables.entries_cliente)
+            funciones_clientes.limpiarentry(variables.entries_cliente)
             funciones_reserva.limpiarentry(variables.filareserva)
             facturacion.limpiar_labels_factura(variables.labels_factura)
         except:
@@ -434,6 +437,12 @@ class Eventos():
                 variables.menslabel[2].set_text(str(numero_noches_seleccionadas))
                 variables.filareserva[2].set_text(str(check_in_seleccionado))
                 variables.filareserva[3].set_text(str(check_out_seleccionado))
+                variables.datos_factura = (variables.cod,
+                                           numero_noches_seleccionadas,
+                                           dni_seleccionado,
+                                           numero_habitacion_seleccionado,
+                                           check_out_seleccionado,
+                                           funciones_reserva.obtener_precio_habitacion_por_numero_habitacion(numero_habitacion_seleccionado))
                 facturacion.obtener_factura(dni_seleccionado,
                                             apellidos_seleccionados,
                                             nombre_seleccionado,
@@ -476,6 +485,47 @@ class Eventos():
 
     def on_botonImprimirFactura_clicked(self, widget):
         try:
-            impresion.factura()
+            impresion.factura(variables.datos_factura)
         except:
             print('Error en on_botonImprimirFactura_clicked')
+
+    def on_menuBarImportarClientes_activate(self, widget):
+        try:
+            fichero_excel = xlrd.open_workbook("clientes.xls")
+            hoja_clientes = fichero_excel.sheet_by_index(0)
+            numero_filas_clientes = hoja_clientes.nrows
+            numero_columnas_clientes = hoja_clientes.ncols
+
+            for i in range(numero_filas_clientes):
+                celdas_cliente = []
+                if i > 0:
+                    for j in range(numero_columnas_clientes):
+                        celdas_cliente.append(hoja_clientes.cell(i, j))
+                    funciones_clientes.insertar_cliente_excel_BD(celdas_cliente)
+                    funciones_clientes.carga_lista_clientes(variables.listclientes)
+        except Exception as e:
+            print(e)
+            print('Error en on_menuBarImportarClientes_activate')
+
+
+    def on_menuBarExportarClientes_activate(self, widget):
+        try:
+            estilo_cabecera = xlwt.easyxf('font: name Times New Roman, colour red, bold on')
+            estilo_celda = xlwt.easyxf(num_format_str='DD-MM-YY')
+            fichero_excel = xlwt.Workbook()
+
+            hoja_excel = fichero_excel.add_sheet('NuevoClientes', cell_overwrite_ok=True)
+            hoja_excel.write(0, 0, 'DNI', estilo_cabecera)
+            hoja_excel.write(0, 1, 'APELIDOS', estilo_cabecera)
+            hoja_excel.write(0, 2, 'NOMBRE', estilo_cabecera)
+            hoja_excel.write(0, 3, 'FECHA_ALTA', estilo_cabecera)
+
+            listado_clientes: List[List] = funciones_clientes.obtener_listado_clientes()
+
+            for i in range(len(listado_clientes)):
+                for j in range(len(listado_clientes[0])):
+                    hoja_excel.write(i, j, listado_clientes[i][j], estilo_celda)
+            fichero_excel.save('clientes_exportados.xls')
+        except Exception as e:
+            print(e)
+            print('Error en on_menuBarExportarClientes_activate')

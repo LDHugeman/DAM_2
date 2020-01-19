@@ -14,6 +14,7 @@ treereservas = ()
 listreservas = ()
 menslabel = ()
 labels_factura = ()
+datos_factura = ()
 listado = ()
 vencalendar = None
 calendar = None
