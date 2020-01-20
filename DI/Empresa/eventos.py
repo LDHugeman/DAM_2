@@ -507,7 +507,6 @@ class Eventos():
             print(e)
             print('Error en on_menuBarImportarClientes_activate')
 
-
     def on_menuBarExportarClientes_activate(self, widget):
         try:
             estilo_cabecera = xlwt.easyxf('font: name Times New Roman, colour red, bold on')

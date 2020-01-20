@@ -24,7 +24,3 @@ class Conexion:
             print("Base de datos cerrada correctamente ")
         except sqlite3.OperationalError as e:
             print("Error al cerrar: ", e)
-
-
-
-
