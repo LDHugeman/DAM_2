@@ -4,6 +4,8 @@ from reportlab.lib.pagesizes import A4
 import funciones_clientes
 import os
 
+import funciones_reserva
+
 
 def basico():
     try:
@@ -70,11 +72,16 @@ def factura(datos_factura):
         factura.setFont('Helvetica', size=8)
         factura.drawString(350, 680, nombre_y_apellidos[1])
 
-        factura.setFont('Helvetica-Bold', size=10)
+        alojamiento = ['Noches', str(datos_factura[1]), str(datos_factura[5][0]), str(float(str(datos_factura[1])) * float(funciones_reserva.obtener_precio_habitacion_por_numero_habitacion(datos_factura[3])[0]))]
+
         cabecera = ['CONCEPTO', 'UNIDADES', 'PRECIO/UNIDAD', 'TOTAL']
+
         x = 75
         for i in range(0, 4):
+            factura.setFont('Helvetica-Bold', size=10)
             factura.drawString(x, 655, cabecera[i])
+            factura.setFont('Helvetica', size=8)
+            factura.drawString(x, 625, alojamiento[i])
             x += 130
         factura.line(50, 645, 540, 645)
 

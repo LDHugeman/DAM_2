@@ -352,7 +352,8 @@ class Eventos():
             variables.neobackup = str(os.path.abspath(variables.neobackup))
             print(variables.neobackup)
 
-        except:
+        except Exception as e:
+            print(e)
             print('error abrir file choorse backup')
 
     def on_btnGrabarbackup_clicked(self, widget):
@@ -453,7 +454,6 @@ class Eventos():
             print(e)
             print('Error en on_treeReservas_cursor_changed')
 
-    '''
     def on_botonModificarReservas_clicked(self, widget):
         try:
             codigo = variables.cod
@@ -468,7 +468,6 @@ class Eventos():
         except Exception as e:
             print(e)
             print('Error en on_botonModificarReservas_clicked')
-    '''
 
     def on_botonCheckout_clicked(self, widget):
         try:

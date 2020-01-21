@@ -34,23 +34,6 @@ def controlhab():
 def cerrartimer():
     variables.t.join(0)
 
-'''
-def controlhab():
-    try:
-        time_of_day = time.strftime("%H:%M:%S")
-        target_time = '19:57:00'
-        print(time_of_day)
-        print(target_time)
-        while True:
-            while str(time_of_day) != str(target_time):
-                time.sleep(.1)
-            actualizarhab()
-            while time_of_day == target_time:
-                print('hola')
-                time.sleep(.1)
-    except:
-        print('error control habitacion')
 
-'''
 def actualizarhab():
     print('hola actualizasdor de habitaciones')
