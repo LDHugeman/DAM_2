@@ -8,10 +8,10 @@ class Conexion:
     def abrirbbdd(self):
         try:
             global bbdd, conex, cur
-            bbdd = 'empresa.sqlite'         #variable que almacena la base de datos
-            conex = sqlite3.connect(bbdd)   #la abrimos
+            bbdd = 'empresa.sqlite'
+            conex = sqlite3.connect(bbdd)
             Conexion.conexion = conex
-            Conexion.cursor = conex.cursor()            #la variable cursor que hará las operaciones
+            Conexion.cursor = conex.cursor()
             cur = conex.cursor()
             print("Conexión realizada correctamente")
         except sqlite3.OperationalError as e:

@@ -136,8 +136,8 @@ def obtener_precio_habitacion_por_numero_habitacion(numero_habitacion):
 
 def modificar_reserva(reserva, codigo):
     try:
-        Conexion.cursor.execute('update reservas set checkin = ?, checkout = ?, noches = ? where codreser = ?',
-                                (reserva[0], reserva[1], reserva[2], codigo))
+        Conexion.cursor.execute('update reservas set checkout = ?, noches = ? where codreser = ?',
+                                (reserva[1], reserva[2], codigo))
         Conexion.conexion.commit()
     except sqlite3.OperationalError as e:
         print(e)
