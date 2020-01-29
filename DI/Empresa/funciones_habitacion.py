@@ -1,9 +1,3 @@
-"""
-Aquí vendrán todas las funciones que afectan a la ¡gestión de los
-habitaciones
-Limpiarentry vaciará el contenido de los entry
-
-"""
 
 import sqlite3
 import variables

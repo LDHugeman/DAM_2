@@ -1,11 +1,14 @@
 import os
 import shutil
+import zipfile
+from datetime import datetime
 
 import gi
 import xlrd
 import xlwt
 
 import conexion
+from conexion import Conexion
 import facturacion
 import funciones_habitacion
 import funciones_reserva
@@ -22,52 +25,48 @@ from gi.repository import Gtk
 class Eventos():
 
     # eventos generales
-    def on_acercade_activate(self, widget):
+    def on_menuBarAcercaDe_activate(self, widget):
         try:
-            variables.venacercade.show()
+            variables.ventana_acerca_de.show()
         except:
-            print('Error en on_acercade_activate')
+            print('Error en on_menuBarAcercaDe_activate')
 
-    def on_btnCerrarabout_clicked(self, widget):
+    def on_botonCerrarVentanaAcercaDe_clicked(self, widget):
         try:
-            variables.venacercade.connect('delete-event', lambda w, e: w.hide() or True)
-            variables.venacercade.hide()
+            variables.ventana_acerca_de.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_acerca_de.hide()
         except:
-            print('error abrir calendario')
-
-    def on_menuBarsalir_activate(self, widget):
-        try:
-            self.salir()
-        except:
-            print('salir en menubar')
+            print('Error en on_botonCerrarVentanaAcercaDe_clicked')
 
     def salir(self):
         try:
-            conexion.Conexion.cerrarbbdd(self)
+            Conexion().cerrarbbdd()
             funcionesvar.cerrartimer()
             Gtk.main_quit()
         except Exception as e:
             print(e)
-            print('error función salir')
+            print('Error en salir')
 
-    def on_venPrincipal_destroy(self, widget):
+    def on_menuBarSalir_activate(self, widget):
+        try:
+            self.salir()
+        except:
+            print('Error en on_menuBarSalir_activate')
+
+    def on_botonSalirToolBar_clicked(self, widget):
+        variables.ventana_dialog_salir.show()
+
+    def on_ventanaPrincipal_destroy(self, widget):
         self.salir()
 
-    def on_btnSalirtool_clicked(self, widget):
-        variables.vendialogsalir.show()
+    def on_botonCancelarSalir_clicked(self, widget):
+        variables.ventana_dialog_salir.connect('delete-event', lambda w, e: w.hide() or True)
+        variables.ventana_dialog_salir.hide()
 
-    def on_btnCancelarsalir_clicked(self, widget):
-        variables.vendialogsalir.connect('delete-event', lambda w, e: w.hide() or True)
-        variables.vendialogsalir.hide()
-
-    def on_btnAceptarsalir_clicked(self, widget):
+    def on_botonAceptarSalir_clicked(self, widget):
         self.salir()
 
-    """
-    Eventos Clientes
-    """
-
-    def on_btnAltacli_clicked(self, widget):
+    def on_botonAltaCliente_clicked(self, widget):
         try:
             dni = variables.entries_cliente[0].get_text()
             apel = variables.entries_cliente[1].get_text()
@@ -76,108 +75,105 @@ class Eventos():
             registro = (dni, apel, nome, data)
             if funciones_clientes.es_dni_valido(dni):
                 funciones_clientes.insertar_cliente_BD(registro)
-                funciones_clientes.carga_lista_clientes(variables.listclientes)
+                funciones_clientes.carga_lista_clientes(variables.lista_clientes)
                 funciones_clientes.limpiarentry(variables.entries_cliente)
             else:
-                variables.menslabel[0].set_text('ERROR DNI')
+                variables.mensajes_label[0].set_text('ERROR DNI')
         except:
-            print("Error alta cliente")
+            print("Error en on_botonAltaCliente_clicked")
 
-    def on_btnBajacli_clicked(self, widget):
+    def on_botonBajaCliente_clicked(self, widget):
         try:
             dni = variables.entries_cliente[0].get_text()
             if dni != '':
                 funciones_clientes.baja_cliente(dni)
-                funciones_clientes.carga_lista_clientes(variables.listclientes)
+                funciones_clientes.carga_lista_clientes(variables.lista_clientes)
                 funciones_clientes.limpiarentry(variables.entries_cliente)
             else:
-                print('falta dni u otro error')
+                print('Falta dni u otro error')
         except:
-            print("error en botón baja cliente")
+            print("Error en on_botonBajaCliente_clicked")
 
     #  modificamos cliente
-    def on_btnModifcli_clicked(self, widget):
+    def on_botonModificarCliente_clicked(self, widget):
         try:
-            cod = variables.menslabel[1].get_text()
+            codigo_cliente = variables.mensajes_label[1].get_text()
             dni = variables.entries_cliente[0].get_text()
-            apel = variables.entries_cliente[1].get_text()
-            nome = variables.entries_cliente[2].get_text()
-            data = variables.entries_cliente[3].get_text()
-            registro = (dni, apel, nome, data)
+            apellidos = variables.entries_cliente[1].get_text()
+            nombre = variables.entries_cliente[2].get_text()
+            fecha_alta = variables.entries_cliente[3].get_text()
+            cliente = (dni, apellidos, nombre, fecha_alta)
             if dni != '':
-                funciones_clientes.modificar_cliente(registro, cod)
-                funciones_clientes.carga_lista_clientes(variables.listclientes)
+                funciones_clientes.modificar_cliente(cliente, codigo_cliente)
+                funciones_clientes.carga_lista_clientes(variables.lista_clientes)
                 funciones_clientes.limpiarentry(variables.entries_cliente)
             else:
-                print('falta el dni')
+                print('Falta el dni')
         except:
-            print('error en botón modificar')
+            print('Error en on_botonModificarCliente_clicked')
 
     # controla el valor del deni
-    def on_entDni_focus_out_event(self, widget, dni):
+    def on_entryDni_focus_out_event(self, widget, dni):
         try:
             dni = variables.entries_cliente[0].get_text()
             if funciones_clientes.es_dni_valido(dni):
-                variables.menslabel[0].set_text('')
+                variables.mensajes_label[0].set_text('')
                 pass
             else:
-                variables.menslabel[0].set_text('ERROR')
+                variables.mensajes_label[0].set_text('ERROR')
         except:
-            print("Error alta cliente en out focus")
+            print("Error en on_entryDni_focus_out_event")
 
     def on_treeClientes_cursor_changed(self, widget):
         try:
-            model, iter = variables.treeclientes.get_selection().get_selected()
-            # model es el modelo de la tabla de datos
-            # iter es el número que identifica a la fila que marcamos
-            variables.menslabel[0].set_text('')
+            model, iter = variables.tree_clientes.get_selection().get_selected()
+            variables.mensajes_label[0].set_text('')
             funciones_clientes.limpiarentry(variables.entries_cliente)
             if iter != None:
-                sdni = model.get_value(iter, 0)
-                sapel = model.get_value(iter, 1)
-                snome = model.get_value(iter, 2)
-                sdata = model.get_value(iter, 3)
-                if sdata == None:
-                    sdata = ''
-                cod = funciones_clientes.obtener_id_cliente_por_dni(sdni)
-                variables.menslabel[1].set_text(str(cod[0]))
-                variables.entries_cliente[0].set_text(str(sdni))
-                variables.entries_cliente[1].set_text(str(sapel))
-                variables.entries_cliente[2].set_text(str(snome))
-                variables.entries_cliente[3].set_text(str(sdata))
-                variables.menslabel[4].set_text(str(sdni))
-                variables.menslabel[5].set_text(str(sapel))
+                dni_seleccionado = model.get_value(iter, 0)
+                apellidos_seleccionados = model.get_value(iter, 1)
+                nombre_seleccionado = model.get_value(iter, 2)
+                fecha_alta_seleccionada = model.get_value(iter, 3)
+                if fecha_alta_seleccionada == None:
+                    fecha_alta_seleccionada = ''
+                cod = funciones_clientes.obtener_id_cliente_por_dni(dni_seleccionado)
+                variables.mensajes_label[1].set_text(str(cod[0]))
+                variables.entries_cliente[0].set_text(str(dni_seleccionado))
+                variables.entries_cliente[1].set_text(str(apellidos_seleccionados))
+                variables.entries_cliente[2].set_text(str(nombre_seleccionado))
+                variables.entries_cliente[3].set_text(str(fecha_alta_seleccionada))
+                variables.mensajes_label[4].set_text(str(dni_seleccionado))
+                variables.mensajes_label[5].set_text(str(apellidos_seleccionados))
         except:
-            print("error carga cliente")
+            print("Error en on_treeClientes_cursor_changed")
 
-    def on_btnCalendar_clicked(self, widget):
+    def on_botonCalendario_clicked(self, widget):
         try:
             variables.semaforo = 1
-            variables.vencalendar.connect('delete-event', lambda w, e: w.hide() or True)
-            variables.vencalendar.show()
-
+            variables.ventana_calendario.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_calendario.show()
         except:
-            print('error abrir calendario')
+            print('Error en on_botonCalendario_clicked')
 
-    def on_btnCalendarResIn_clicked(self, widget):
+    def on_botonCalendarioCheckIn_clicked(self, widget):
         try:
             variables.semaforo = 2
-            variables.vencalendar.connect('delete-event', lambda w, e: w.hide() or True)
-            variables.vencalendar.show()
+            variables.ventana_calendario.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_calendario.show()
         except:
-            print('error abrir calendario')
+            print('Error en on_botonCalendarioCheckIn_clicked')
 
-    def on_btnCalendarResOut_clicked(self, widget):
+    def on_botonCalendarioCheckOut_clicked(self, widget):
         try:
             variables.semaforo = 3
-            variables.vencalendar.connect('delete-event', lambda w, e: w.hide() or True)
-            variables.vencalendar.show()
+            variables.ventana_calendario.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_calendario.show()
         except:
-            print('error abrir calendario')
+            print('Error en on_botonCalendarioCheckOut_clicked')
 
-    def on_Calendar_day_selected_double_click(self, widget):
+    def on_calendario_day_selected_double_click(self, widget):
         try:
-            agno, mes, dia = variables.calendar.get_date()
+            agno, mes, dia = variables.calendario.get_date()
             fecha = "%02d/" % dia + "%02d/" % (mes + 1) + "%s" % agno
             if variables.semaforo == 1:
                 variables.entries_cliente[3].set_text(fecha)
@@ -185,121 +181,117 @@ class Eventos():
                 variables.filareserva[2].set_text(fecha)
             elif variables.semaforo == 3:
                 variables.filareserva[3].set_text(fecha)
-                funciones_reserva.calculardias()
+                funciones_reserva.calcular_noches()
             else:
                 pass
-            # variables.semaforo = 0
-            variables.vencalendar.hide()
+            variables.ventana_calendario.hide()
         except:
-            print('error al coger la fecha')
+            print('Error en on_calendario_day_selected_double_click')
 
     # Eventos de las habitaciones
 
-    def on_btnAltahab_clicked(self, widget):
+    def on_botonAltaHabitacion_clicked(self, widget):
         try:
-            numhab = variables.filahab[0].get_text()
-            prezohab = variables.filahab[1].get_text()
-            prezohab = prezohab.replace(',', '.')
-            prezohab = float(prezohab)
-            prezohab = round(prezohab, 2)
-            if variables.filarbt[0].get_active():
+            numero_habitacion = variables.entries_habitacion[0].get_text()
+            precio_habitacion = variables.entries_habitacion[1].get_text()
+            precio_habitacion = precio_habitacion.replace(',', '.')
+            precio_habitacion = float(precio_habitacion)
+            precio_habitacion = round(precio_habitacion, 2)
+            if variables.radiobuttons_tipo_habitacion[0].get_active():
                 tipo = 'simple'
-            elif variables.filarbt[1].get_active():
+            elif variables.radiobuttons_tipo_habitacion[1].get_active():
                 tipo = 'doble'
-            elif variables.filarbt[2].get_active():
+            elif variables.radiobuttons_tipo_habitacion[2].get_active():
                 tipo = 'family'
             else:
                 pass
 
-            if variables.switch.get_active():
+            if variables.switch_habitaciones.get_active():
                 libre = 'SI'
             else:
                 libre = 'NO'
-            registro = (numhab, tipo, prezohab, libre)
-            if numhab is not None:
+            registro = (numero_habitacion, tipo, precio_habitacion, libre)
+            if numero_habitacion is not None:
                 funciones_habitacion.insertar_habitacion_BD(registro)
-                funciones_habitacion.carga_lista_habitaciones(variables.listhab)
+                funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
                 funciones_habitacion.listado_numeros_habitaciones()
-                funciones_habitacion.limpiar_entries(variables.filahab)
+                funciones_habitacion.limpiar_entries(variables.entries_habitacion)
             else:
                 pass
         except Exception as e:
             print(e)
-            print("Error alta habitacion")
+            print("Error en on_botonAltaHabitacion_clicked")
 
-    def on_treeHab_cursor_changed(self, widget):
+    def on_treeHabitaciones_cursor_changed(self, widget):
         try:
-            model, iter = variables.treehab.get_selection().get_selected()
-            # model es el modelo de la tabla de datos
-            # iter es el número que identifica a la fila que marcamos
-            funciones_habitacion.limpiar_entries(variables.filahab)
+            model, iter = variables.tree_habitaciones.get_selection().get_selected()
+            funciones_habitacion.limpiar_entries(variables.entries_habitacion)
             if iter != None:
-                snumhab = model.get_value(iter, 0)
-                stipo = model.get_value(iter, 1)
-                sprezo = model.get_value(iter, 2)
-                sprezo = round(sprezo, 2)
-                variables.filahab[0].set_text(str(snumhab))
-                variables.filahab[1].set_text(str(sprezo))
-                if stipo == str('simple'):
-                    variables.filarbt[0].set_active(True)
-                elif stipo == str('doble'):
-                    variables.filarbt[1].set_active(True)
-                elif stipo == str('family'):
-                    variables.filarbt[2].set_active(True)
-                slibre = model.get_value(iter, 3)
-                if slibre == str('SI'):
-                    variables.switch.set_active(True)
+                numero_habitacion_seleccionado = model.get_value(iter, 0)
+                tipo_seleccionado = model.get_value(iter, 1)
+                precio_seleccionado = model.get_value(iter, 2)
+                precio_seleccionado = round(precio_seleccionado, 2)
+                variables.entries_habitacion[0].set_text(str(numero_habitacion_seleccionado))
+                variables.entries_habitacion[1].set_text(str(precio_seleccionado))
+                if tipo_seleccionado == str('simple'):
+                    variables.radiobuttons_tipo_habitacion[0].set_active(True)
+                elif tipo_seleccionado == str('doble'):
+                    variables.radiobuttons_tipo_habitacion[1].set_active(True)
+                elif tipo_seleccionado == str('family'):
+                    variables.radiobuttons_tipo_habitacion[2].set_active(True)
+                estado_libre_seleccionado = model.get_value(iter, 3)
+                if estado_libre_seleccionado == str('SI'):
+                    variables.switch_habitaciones.set_active(True)
                 else:
-                    variables.switch.set_active(False)
+                    variables.switch_habitaciones.set_active(False)
         except Exception as e:
             print(e)
-            print("error carga habitacion")
+            print("Error en on_treeHabitaciones_cursor_changed")
 
-    def on_btnBajahab_clicked(self, widget):
+    def on_botonBajaHabitacion_clicked(self, widget):
         try:
-            numhab = variables.filahab[0].get_text()
-            if numhab != '':
-                funciones_habitacion.baja_habitacion(numhab)
-                funciones_habitacion.limpiar_entries(variables.filahab)
-                funciones_habitacion.carga_lista_habitaciones(variables.listhab)
+            numero_habitacion = variables.entries_habitacion[0].get_text()
+            if numero_habitacion != '':
+                funciones_habitacion.baja_habitacion(numero_habitacion)
+                funciones_habitacion.limpiar_entries(variables.entries_habitacion)
+                funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
             else:
                 pass
         except:
-            print('borrar baja hab')
+            print('Error en on_botonBajaHabitacion_clicked')
 
-    def on_btnModifhab_clicked(self, widget):
+    def on_botonModificarHabitacion_clicked(self, widget):
         try:
-            numero_habitacion = variables.filahab[0].get_text()
-            prezo = variables.filahab[1].get_text()
-            if variables.switch.get_active():
+            numero_habitacion = variables.entries_habitacion[0].get_text()
+            prezo = variables.entries_habitacion[1].get_text()
+            if variables.switch_habitaciones.get_active():
                 libre = 'SI'
             else:
                 libre = 'NO'
-            if variables.filarbt[0].get_active():
+            if variables.radiobuttons_tipo_habitacion[0].get_active():
                 tipo = 'simple'
-            elif variables.filarbt[1].get_active():
+            elif variables.radiobuttons_tipo_habitacion[1].get_active():
                 tipo = 'doble'
-            elif variables.filarbt[2].get_active():
+            elif variables.radiobuttons_tipo_habitacion[2].get_active():
                 tipo = 'family'
             habitacion = (prezo, tipo, libre)
             if numero_habitacion != '':
                 funciones_habitacion.modificar_habitacion(habitacion, numero_habitacion)
-                funciones_habitacion.carga_lista_habitaciones(variables.listhab)
-                funciones_habitacion.limpiar_entries(variables.filahab)
+                funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
+                funciones_habitacion.limpiar_entries(variables.entries_habitacion)
             else:
-                print('falta el numhab')
+                print('Falta el número de la habitación')
         except Exception as e:
             print(e)
-            print('error modif hab')
+            print('Error en on_botonModificarHabitacion_clicked')
 
-    # eventos de los botones del toolbar
-    def on_Panel_select_page(self, widget):
+    def on_panel_select_page(self, widget):
         try:
             funciones_habitacion.listado_numeros_habitaciones()
         except:
-            print("error botón cliente barra herramientas")
+            print("Error en on_panel_select_page")
 
-    def on_btnClitool_clicked(self, widget):
+    def on_botonClientesToolBar_clicked(self, widget):
         try:
             panelactual = variables.panel.get_current_page()
             if panelactual != 0:
@@ -307,20 +299,20 @@ class Eventos():
             else:
                 pass
         except:
-            print("error botón cliente barra herramientas")
+            print("Error en on_botonClientesToolBar_clicked")
 
-    def on_btnReservatool_clicked(self, widget):
+    def on_botonReservasToolBar_clicked(self, widget):
         try:
-            panelactual = variables.panel.get_current_page()
-            if panelactual != 1:
+            panel_actual = variables.panel.get_current_page()
+            if panel_actual != 1:
                 variables.panel.set_current_page(1)
                 funciones_habitacion.listado_numeros_habitaciones()
             else:
                 pass
         except:
-            print("error botón cliente barra herramientas")
+            print("Error en on_botonReservasToolBar_clicked")
 
-    def on_btnHabita_clicked(self, widget):
+    def on_botonHabitacionesToolBar_clicked(self, widget):
         try:
             panelactual = variables.panel.get_current_page()
             if panelactual != 2:
@@ -328,88 +320,124 @@ class Eventos():
             else:
                 pass
         except:
-            print("error botón habitacion barra herramientas")
+            print("Error en on_botonHabitacionesToolBar_clicked")
 
-    def on_btnCalc_clicked(self, widget):
+    def on_botonCalculadoraToolBar_clicked(self, widget):
         try:
             os.system('/snap/bin/gnome-calculator')
         except:
-            print('error lanzar calculadora')
+            print('Error en on_botonCalculadoraToolBar_clicked')
 
-    def on_btnRefresh_clicked(self, widget):
+    def on_botonRefrescarToolBar_clicked(self, widget):
         try:
-            funciones_habitacion.limpiar_entries(variables.filahab)
+            funciones_habitacion.limpiar_entries(variables.entries_habitacion)
             funciones_clientes.limpiarentry(variables.entries_cliente)
             funciones_reserva.limpiarentry(variables.filareserva)
             facturacion.limpiar_labels_factura(variables.labels_factura)
         except:
-            print('error referes')
+            print('Error en on_botonRefrescarToolBar_clicked')
 
-    def on_btnBackup_clicked(self, widget):
+    # Eventos backup
+
+    def on_botonBackupToolBar_clicked(self, widget):
         try:
-            variables.filechooserbackup.show()
-            variables.neobackup = funcionesvar.backup()
-            variables.neobackup = str(os.path.abspath(variables.neobackup))
-            print(variables.neobackup)
+            variables.ventana_backup.show()
+        except:
+            print("Error en on_botonBackupToolBar_clicked")
 
+    def on_botonBackupVentana_clicked(self, widget):
+        try:
+            conexion.Conexion().cerrarbbdd()
+            backup = 'backup.zip'
+            destino = str(variables.ventana_backup.get_filename())
+            if os.path.exists(destino):
+                pass
+            else:
+                os.system('mkdir ' + destino)
+                os.system('chmod 0777 ' + destino)
+            copia = zipfile.ZipFile(backup, 'w')
+            copia.write('empresa.sqlite', compress_type=zipfile.ZIP_DEFLATED)
+            copia.close()
+            neobackup = str(datetime.now()) + str(backup)
+            os.rename(backup, neobackup)
+            shutil.move(neobackup, destino)
+            Conexion().abrirbbdd()
         except Exception as e:
+            Conexion().abrirbbdd()
             print(e)
-            print('error abrir file choorse backup')
+            print("Error en on_botonBackupVentana_clicked")
 
-    def on_btnGrabarbackup_clicked(self, widget):
+    def on_botonSalirVentanaBackup_clicked(self, widget):
         try:
-            destino = variables.filechooserbackup.get_filename()
-            destino = destino + '/'
-            variables.menslabel[3].set_text(str(destino))
-            if shutil.move(str(variables.neobackup), str(destino)):
-                variables.menslabel[3].set_text('Copia de Seguridad Creada')
+            variables.ventana_backup.connect('delete_event', lambda w, e: w.hide() or True)
+            variables.ventana_backup.hide()
         except:
-            print('error dselect fichero')
+            print('Error en on_botonSalirVentanaBackup_clicked')
 
-    def on_btnCancelfilechooserbackup_clicked(self, widget):
+    def on_menuBarBackup_activate(self, widget):
         try:
-            variables.filechooserbackup.connect('delete-event', lambda w, e: w.hide() or True)
-            variables.filechooserbackup.hide()
+            variables.ventana_restaurar_backup.show()
         except:
-            print('error cerrar file chooser')
+            print("Error en on_menuBarBackup_activate")
 
-    ## reservas
-
-    def on_cmbNumres_changed(self, widget):
+    def on_botonRestaurarBackup_clicked(self, widget):
         try:
-            index = variables.cmbhab.get_active()
-            model = variables.cmbhab.get_model()
+            Conexion().cerrarbbdd()
+            fichero = variables.ventana_restaurar_backup.get_filename()
+            copia = zipfile.ZipFile(fichero, 'r')
+            os.system("rm empresa.sqlite")
+            copia.extract("empresa.sqlite")
+            copia.close()
+            Conexion().abrirbbdd()
+        except Exception as e:
+            Conexion().abrirbbdd()
+            print(e)
+            print("Error en on_botonRestaurarBackup_clicked")
+
+    def on_botonSalirRestaurarBackup_clicked(self, widget):
+        try:
+            variables.ventana_restaurar_backup.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_restaurar_backup.hide()
+        except:
+            print('Error en on_botonSalirRestaurarBackup_clicked')
+
+    # Eventos reservas
+
+    def on_comboBoxHabitacionesReserva_changed(self, widget):
+        try:
+            index = variables.combo_habitaciones.get_active()
+            model = variables.combo_habitaciones.get_model()
             if index != -1:
                 item = model[index]
-                variables.numhabres = item[0]
+                variables.numero_habitacion_reserva = item[0]
         except Exception as e:
-            print(e.with_traceback())
-            print('error mostrar habitacion combo')
+            print(e)
+            print('Error en on_comboBoxHabitacionesReserva_changed')
 
-    def on_btnAltares_clicked(self, widget):
+    def on_botonAltaReservas_clicked(self, widget):
         try:
             if variables.reserva == 1:
-                dni_reserva = variables.menslabel[4].get_text()
+                dni_reserva = variables.mensajes_label[4].get_text()
                 check_in = variables.filareserva[2].get_text()
                 check_out = variables.filareserva[3].get_text()
-                noches = int(variables.menslabel[2].get_text())
-                reserva = (dni_reserva, variables.numhabres, check_in, check_out, noches, 'SI')
-                if funciones_reserva.esta_libre(variables.numhabres) and dni_reserva != '':
+                noches = int(variables.mensajes_label[2].get_text())
+                reserva = (dni_reserva, variables.numero_habitacion_reserva, check_in, check_out, noches, 'SI')
+                if funciones_reserva.esta_libre(variables.numero_habitacion_reserva) and dni_reserva != '':
                     funciones_reserva.insertar_reserva(reserva)
                     funciones_reserva.recargar_lista_reservas()
-                    funciones_habitacion.cambiar_estado_habitacion('NO', variables.numhabres)
-                    funciones_habitacion.carga_lista_habitaciones(variables.listhab)
-                    funciones_habitacion.limpiar_entries(variables.filahab)
+                    funciones_habitacion.cambiar_estado_habitacion('NO', variables.numero_habitacion_reserva)
+                    funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
+                    funciones_habitacion.limpiar_entries(variables.entries_habitacion)
                     funciones_reserva.limpiarentry(variables.filareserva)
                 else:
                     print('Habitación ocupada o falta el dni del cliente')
         except Exception as e:
             print(e)
-            print('error en alta res')
+            print('Error en on_botonAltaReservas_clicked')
 
     def on_btnRefreshcmbhab_clicked(self, widget):
         try:
-            variables.cmbhab.set_active(-1)
+            variables.combo_habitaciones.set_active(-1)
             funciones_habitacion.listado_numeros_habitaciones()
         except:
             print('error limpiar combo hotel')
@@ -429,13 +457,13 @@ class Eventos():
                 for i, x in enumerate(listado_habitaciones):
                     if str(x[0]) == str(numero_habitacion_seleccionado):
                         m = i
-                variables.cmbhab.set_active(m)
+                variables.combo_habitaciones.set_active(m)
                 check_in_seleccionado = model.get_value(iter, 3)
                 check_out_seleccionado = model.get_value(iter, 4)
                 numero_noches_seleccionadas = model.get_value(iter, 5)
-                variables.menslabel[4].set_text(str(dni_seleccionado))
-                variables.menslabel[5].set_text(str(apellidos_seleccionados[0]))
-                variables.menslabel[2].set_text(str(numero_noches_seleccionadas))
+                variables.mensajes_label[4].set_text(str(dni_seleccionado))
+                variables.mensajes_label[5].set_text(str(apellidos_seleccionados[0]))
+                variables.mensajes_label[2].set_text(str(numero_noches_seleccionadas))
                 variables.filareserva[2].set_text(str(check_in_seleccionado))
                 variables.filareserva[3].set_text(str(check_out_seleccionado))
                 variables.datos_factura = (variables.cod,
@@ -459,9 +487,8 @@ class Eventos():
             codigo = variables.cod
             check_in = variables.filareserva[2].get_text()
             check_out = variables.filareserva[3].get_text()
-            noches = int(variables.menslabel[2].get_text())
+            noches = int(variables.mensajes_label[2].get_text())
             reserva = (check_in, check_out, noches)
-
             funciones_reserva.modificar_reserva(reserva, codigo)
             funciones_reserva.recargar_lista_reservas()
             funciones_reserva.limpiarentry(variables.filareserva)
@@ -471,8 +498,8 @@ class Eventos():
 
     def on_botonCheckout_clicked(self, widget):
         try:
-            funciones_habitacion.cambiar_estado_habitacion('SI', variables.numhabres)
-            funciones_habitacion.carga_lista_habitaciones(variables.listhab)
+            funciones_habitacion.cambiar_estado_habitacion('SI', variables.numero_habitacion_reserva)
+            funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
             funciones_reserva.cambiar_estado_reserva(variables.cod, 'NO')
             funciones_reserva.recargar_lista_reservas()
         except Exception as e:
@@ -501,7 +528,7 @@ class Eventos():
                     for j in range(numero_columnas_clientes):
                         celdas_cliente.append(hoja_clientes.cell(i, j))
                     funciones_clientes.insertar_cliente_excel_BD(celdas_cliente)
-                    funciones_clientes.carga_lista_clientes(variables.listclientes)
+                    funciones_clientes.carga_lista_clientes(variables.lista_clientes)
         except Exception as e:
             print(e)
             print('Error en on_menuBarImportarClientes_activate')

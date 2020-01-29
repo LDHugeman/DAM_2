@@ -8,23 +8,23 @@ from conexion import Conexion
 def limpiarentry(fila):
     for i in range(len(fila)):
         fila[i].set_text('')
-    for i in range(len(variables.menslabel)):
-        variables.menslabel[i].set_text('')
-    variables.cmbhab.set_active(-1)
+    for i in range(len(variables.mensajes_label)):
+        variables.mensajes_label[i].set_text('')
+    variables.combo_habitaciones.set_active(-1)
 
 
-def calculardias():
+def calcular_noches():
     diain = variables.filareserva[2].get_text()
     date_in = datetime.strptime(diain, '%d/%m/%Y').date()
     diaout = variables.filareserva[3].get_text()
     date_out = datetime.strptime(diaout, '%d/%m/%Y').date()
     noches = (date_out - date_in).days
     if noches <= 0:
-        variables.menslabel[2].set_text('Check-Out debe ser posterior')
+        variables.mensajes_label[2].set_text('Check-Out debe ser posterior')
         variables.reserva = 0
     else:
         variables.reserva = 1
-        variables.menslabel[2].set_text(str(noches))
+        variables.mensajes_label[2].set_text(str(noches))
 
 
 def insertar_reserva(reserva):

@@ -72,7 +72,7 @@ def factura(datos_factura):
         factura.setFont('Helvetica', size=8)
         factura.drawString(350, 680, nombre_y_apellidos[1])
 
-        alojamiento = ['Noches', str(datos_factura[1]), str(datos_factura[5][0]), str(float(str(datos_factura[1])) * float(funciones_reserva.obtener_precio_habitacion_por_numero_habitacion(datos_factura[3])[0]))]
+        alojamiento = ['Noches', str(datos_factura[1]), str(datos_factura[5][0]), str(float(str(datos_factura[1])) * float(datos_factura[5][0]))]
 
         cabecera = ['CONCEPTO', 'UNIDADES', 'PRECIO/UNIDAD', 'TOTAL']
 

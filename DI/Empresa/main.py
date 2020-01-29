@@ -10,12 +10,6 @@ from conexion import Conexion
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
-'''
-El main contiene los elementos necesarios para lanzar la aplicación,
-así como la declaración de los widgets que se usarán. También los módulos
-que tenemos que importar de las librerías gráficas.
-
-'''
 
 
 class Empresa:
@@ -24,48 +18,53 @@ class Empresa:
         builder = Gtk.Builder()
         builder.add_from_file('ventana.glade')
 
-        # Cargamos los widgets con algún evente asociado o que son referenciados
-        vprincipal = builder.get_object('venPrincipal')
-        builder.vendialog = builder.get_object('venDialog')
-        variables.venacercade = builder.get_object('venAcercade')
-        variables.panel = builder.get_object('Panel')
-        variables.filechooserbackup = builder.get_object('fileChooserbackup')
-        menubar = builder.get_object('menuBar').get_style_context()
+        # Widgets generales
+        ventana_principal = builder.get_object('ventanaPrincipal')
+        variables.ventana_dialog_salir = builder.get_object('ventanaDialogSalir')
+        variables.ventana_acerca_de = builder.get_object('ventanaAcercaDe')
+        variables.panel = builder.get_object('panel')
+        variables.ventana_backup = builder.get_object('ventanaBackup')
+        variables.ventana_restaurar_backup = builder.get_object('ventanaRestaurarBackup')
+        variables.ventana_calendario = builder.get_object('ventanaCalendario')
+        variables.calendario = builder.get_object('calendario')
+        menu_bar = builder.get_object('menuBar').get_style_context()
 
-        # Declaración de wigdets
-        entdni = builder.get_object('entDni')
-        entapel = builder.get_object('entApel')
-        entnome = builder.get_object('entNome')
-        entdatacli = builder.get_object('entDatacli')
-        lblerrdni = builder.get_object('lblErrdni')
-        lblcodcli = builder.get_object('lblCodcli')
-        lblnumnoches = builder.get_object('lblNumnoches')
-        lbldirbackup = builder.get_object('lblFolderbackup')
-        lbldnires = builder.get_object('lblDnires')
-        lblapelres = builder.get_object('lblApelres')
-        variables.vencalendar = builder.get_object('venCalendar')
-        variables.vendialogsalir = builder.get_object('vendialogSalir')
-        variables.calendar = builder.get_object('Calendar')
-        variables.entries_cliente = (entdni, entapel, entnome, entdatacli)
-        variables.listclientes = builder.get_object('listaClientes')
+        # Widgets cliente
+        entry_dni = builder.get_object('entryDni')
+        entry_apellidos = builder.get_object('entryApellidos')
+        entry_nombre = builder.get_object('entryNome')
+        entry_fecha_cliente = builder.get_object('entryFechaCliente')
+        label_error_dni = builder.get_object('labelErrorDni')
+        label_codigo_cliente = builder.get_object('labelCodigoCliente')
+        label_numero_noches = builder.get_object('labelNumeroNoches')
+        label_directorio_backup = builder.get_object('lblFolderbackup')
+        label_dni_reserva = builder.get_object('labelDniReserva')
+        label_apellidos_reserva = builder.get_object('labelApellidosReserva')
+        variables.entries_cliente = (entry_dni, entry_apellidos, entry_nombre, entry_fecha_cliente)
+        variables.lista_clientes = builder.get_object('listaClientes')
         variables.treereservas = builder.get_object('treeReservas')
         variables.listreservas = builder.get_object('listaReservas')
-        variables.treeclientes = builder.get_object('treeClientes')
-        variables.menslabel = (lblerrdni, lblcodcli, lblnumnoches, lbldirbackup, lbldnires, lblapelres)
+        variables.tree_clientes = builder.get_object('treeClientes')
+        variables.mensajes_label = (label_error_dni, 
+                                    label_codigo_cliente, 
+                                    label_numero_noches, 
+                                    label_directorio_backup, 
+                                    label_dni_reserva, 
+                                    label_apellidos_reserva)
 
         # Widgets habitaciones
         entnumhab = builder.get_object('entNumhab')
         entprezohab = builder.get_object('entPrezohab')
-        rbtsimple = builder.get_object('rbtSimple')
-        rbtdoble = builder.get_object('rbtDoble')
-        rbtfamily = builder.get_object('rbtFamily')
-        variables.treehab = builder.get_object('treeHab')
-        variables.listhab = builder.get_object('listaHabitaciones')
-        variables.filahab = (entnumhab, entprezohab)
-        variables.filarbt = (rbtsimple, rbtdoble, rbtfamily)
+        radiobutton_simple = builder.get_object('rbtSimple')
+        radiobutton_doble = builder.get_object('rbtDoble')
+        radiobutton_familiar = builder.get_object('rbtFamily')
+        variables.tree_habitaciones = builder.get_object('treeHabitaciones')
+        variables.lista_habitaciones = builder.get_object('listaHabitaciones')
+        variables.entries_habitacion = (entnumhab, entprezohab)
+        variables.radiobuttons_tipo_habitacion = (radiobutton_simple, radiobutton_doble, radiobutton_familiar)
         variables.listcmbhab = builder.get_object('listaComboHabitaciones')
-        variables.cmbhab = builder.get_object('cmbNumres')
-        variables.switch = builder.get_object('switch')
+        variables.combo_habitaciones = builder.get_object('comboBoxHabitacionesReserva')
+        variables.switch_habitaciones = builder.get_object('switchHabitaciones')
 
         # Widgets reservas
 
@@ -73,7 +72,7 @@ class Empresa:
         entdataout = builder.get_object('entDataout')
         variables.switch_reservas = builder.get_object('switchReservas')
 
-        variables.filareserva = (entdni, entapel, entdatain, entdataout)
+        variables.filareserva = (entry_dni, entry_apellidos, entdatain, entdataout)
 
         # Widgets factura
 
@@ -104,17 +103,14 @@ class Empresa:
         # Conexion estilos
 
         self.set_style()
-        menubar.add_class('menuBar')
-        '''
-        for i in range(len(variables.menserror)):
-            variables.menserror[i].add_class('label')
-        '''
-        vprincipal.show_all()
-        vprincipal.maximize()
+        menu_bar.add_class('menuBar')
+
+        ventana_principal.show_all()
+        ventana_principal.maximize()
         Conexion().abrirbbdd()
         funciones_habitacion.listado_numeros_habitaciones()
-        funciones_clientes.carga_lista_clientes(variables.listclientes)
-        funciones_habitacion.carga_lista_habitaciones(variables.listhab)
+        funciones_clientes.carga_lista_clientes(variables.lista_clientes)
+        funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
         funciones_reserva.recargar_lista_reservas()
         funcionesvar.controlhab()
 

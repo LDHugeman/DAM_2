@@ -1,9 +1,3 @@
-"""
-Aquí vendrán todas las funciones que afectan a la ¡gestión de los
-clientes
-Limpiarentry vaciará el contenido de los entry
-
-"""
 
 import sqlite3
 
@@ -72,12 +66,12 @@ def obtener_listado_clientes():
         Conexion.conexion.rollback()
 
 
-def carga_lista_clientes(listclientes):
+def carga_lista_clientes(lista_clientes):
     try:
         variables.listado = obtener_listado_clientes()
-        listclientes.clear()
+        lista_clientes.clear()
         for registro in variables.listado:
-            listclientes.append(registro[1:5])
+            lista_clientes.append(registro[1:5])
     except Exception as e:
         print(e)
         print("Error en carga_lista_clientes")
@@ -122,12 +116,3 @@ def obtener_nombre_apellidos_por_dni(dni):
     except sqlite3.OperationalError as e:
         print(e)
         Conexion.conexion.rollback()
-
-
-'''
-def limpiarentry(entries):
-
-    variables.menslabel[1].set_text('')
-    for i in range(len(entries)):
-        entries[i].set_text('')
-'''

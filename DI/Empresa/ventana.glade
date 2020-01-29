@@ -10,12 +10,12 @@
   <object class="GtkImage" id="imgBackup">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">img/backup.jpg</property>
+    <property name="pixbuf">img/databackup_theapplication_dedatos_3366.png</property>
   </object>
   <object class="GtkImage" id="imgCalc">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">img/calculadora.jpg</property>
+    <property name="pixbuf">img/business-color_calculator_icon-icons.com_53466.png</property>
   </object>
   <object class="GtkImage" id="imgCalendar">
     <property name="visible">True</property>
@@ -34,22 +34,22 @@
   <object class="GtkImage" id="imgClitool">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">img/clitool.jpeg</property>
+    <property name="pixbuf">img/customer_person_people_man_you_1625.png</property>
   </object>
   <object class="GtkImage" id="imgDouble">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">img/doble.png</property>
+    <property name="pixbuf">img/bedDouble.png</property>
   </object>
   <object class="GtkImage" id="imgHabitatool">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">img/habit.png</property>
+    <property name="pixbuf">img/bed_4731.png</property>
   </object>
   <object class="GtkImage" id="imgImpress">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">img/imgimpress.png</property>
+    <property name="pixbuf">img/apps_printer_15747.png</property>
   </object>
   <object class="GtkImage" id="imgRefresh">
     <property name="visible">True</property>
@@ -59,12 +59,12 @@
   <object class="GtkImage" id="imgReservatool">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">img/reserva.jpeg</property>
+    <property name="pixbuf">img/Letter_R_black_34894.png</property>
   </object>
   <object class="GtkImage" id="imgSalirtool">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">img/exit.jpg</property>
+    <property name="pixbuf">img/1486564399-close_81512.ico</property>
   </object>
   <object class="GtkImage" id="imglitera">
     <property name="visible">True</property>
@@ -122,13 +122,13 @@
       <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkWindow" id="venPrincipal">
+  <object class="GtkWindow" id="ventanaPrincipal">
     <property name="can_focus">False</property>
     <property name="vexpand">True</property>
     <property name="title" translatable="yes">HOTEL LITE</property>
     <property name="window_position">center</property>
     <property name="gravity">center</property>
-    <signal name="destroy" handler="on_venPrincipal_destroy" swapped="no"/>
+    <signal name="destroy" handler="on_ventanaPrincipal_destroy" swapped="no"/>
     <child>
       <placeholder/>
     </child>
@@ -142,7 +142,7 @@
         <property name="margin_bottom">3</property>
         <property name="vexpand">True</property>
         <child>
-          <object class="GtkNotebook" id="Panel">
+          <object class="GtkNotebook" id="panel">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="margin_left">3</property>
@@ -150,7 +150,7 @@
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
             <property name="scrollable">True</property>
-            <signal name="select-page" handler="on_Panel_select_page" swapped="no"/>
+            <signal name="select-page" handler="on_panel_select_page" swapped="no"/>
             <child>
               <object class="GtkBox" id="boxcliente">
                 <property name="visible">True</property>
@@ -200,7 +200,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkEntry" id="entNome">
+                              <object class="GtkEntry" id="entryNome">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="margin_top">3</property>
@@ -225,7 +225,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkEntry" id="entApel">
+                              <object class="GtkEntry" id="entryApellidos">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="margin_top">3</property>
@@ -238,13 +238,13 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkEntry" id="entDni">
+                              <object class="GtkEntry" id="entryDni">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="halign">start</property>
                                 <property name="margin_top">3</property>
                                 <property name="margin_bottom">3</property>
-                                <signal name="focus-out-event" handler="on_entDni_focus_out_event" swapped="no"/>
+                                <signal name="focus-out-event" handler="on_entryDni_focus_out_event" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left_attach">2</property>
@@ -276,7 +276,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="lblCodcli">
+                              <object class="GtkLabel" id="labelCodigoCliente">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">baseline</property>
@@ -291,7 +291,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="lblErrdni">
+                              <object class="GtkLabel" id="labelErrorDni">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">start</property>
@@ -318,7 +318,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkEntry" id="entDatacli">
+                              <object class="GtkEntry" id="entryFechaCliente">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="halign">start</property>
@@ -331,7 +331,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkButton" id="btnCalendar">
+                              <object class="GtkButton" id="botonCalendario">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
@@ -339,7 +339,7 @@
                                 <property name="valign">center</property>
                                 <property name="margin_top">2</property>
                                 <property name="image">imgCalendar</property>
-                                <signal name="clicked" handler="on_btnCalendar_clicked" swapped="no"/>
+                                <signal name="clicked" handler="on_botonCalendario_clicked" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -411,7 +411,7 @@
                     <property name="spacing">5</property>
                     <property name="layout_style">start</property>
                     <child>
-                      <object class="GtkButton" id="btnAltacli">
+                      <object class="GtkButton" id="botonAltaCliente">
                         <property name="label" translatable="yes">Alta</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -420,7 +420,7 @@
                         <property name="margin_right">3</property>
                         <property name="margin_top">3</property>
                         <property name="margin_bottom">3</property>
-                        <signal name="clicked" handler="on_btnAltacli_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_botonAltaCliente_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -429,7 +429,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="btnBajacli">
+                      <object class="GtkButton" id="botonBajaCliente">
                         <property name="label" translatable="yes">Baja</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -438,7 +438,7 @@
                         <property name="margin_right">3</property>
                         <property name="margin_top">3</property>
                         <property name="margin_bottom">3</property>
-                        <signal name="clicked" handler="on_btnBajacli_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_botonBajaCliente_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -447,7 +447,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="btnModifcli">
+                      <object class="GtkButton" id="botonModificarCliente">
                         <property name="label" translatable="yes">Modificar</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -456,7 +456,7 @@
                         <property name="margin_right">2</property>
                         <property name="margin_top">3</property>
                         <property name="margin_bottom">3</property>
-                        <signal name="clicked" handler="on_btnModifcli_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_botonModificarCliente_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -710,7 +710,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="lblNumnoches">
+                      <object class="GtkLabel" id="labelNumeroNoches">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="margin_left">3</property>
@@ -725,7 +725,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBox" id="cmbNumres">
+                      <object class="GtkComboBox" id="comboBoxHabitacionesReserva">
                         <property name="width_request">100</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -734,7 +734,7 @@
                         <property name="margin_bottom">3</property>
                         <property name="hexpand">True</property>
                         <property name="model">listaComboHabitaciones</property>
-                        <signal name="changed" handler="on_cmbNumres_changed" swapped="no"/>
+                        <signal name="changed" handler="on_comboBoxHabitacionesReserva_changed" swapped="no"/>
                         <child>
                           <object class="GtkCellRendererText" id="numcmbHab"/>
                           <attributes>
@@ -748,7 +748,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="btnCalendarResIn">
+                      <object class="GtkButton" id="botonCalendarioCheckIn">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -756,7 +756,7 @@
                         <property name="margin_top">2</property>
                         <property name="margin_bottom">2</property>
                         <property name="image">imageCalendar2</property>
-                        <signal name="clicked" handler="on_btnCalendarResIn_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_botonCalendarioCheckIn_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -796,7 +796,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="btnCalendarResOut">
+                      <object class="GtkButton" id="botonCalendarioCheckOut">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -804,7 +804,7 @@
                         <property name="margin_top">3</property>
                         <property name="margin_bottom">3</property>
                         <property name="image">imgCalendar1</property>
-                        <signal name="clicked" handler="on_btnCalendarResOut_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_botonCalendarioCheckOut_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -825,7 +825,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="lblDnires">
+                      <object class="GtkLabel" id="labelDniReserva">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -842,7 +842,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="lblApelres">
+                      <object class="GtkLabel" id="labelApellidosReserva">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -883,7 +883,7 @@
                     <property name="hexpand">True</property>
                     <property name="layout_style">start</property>
                     <child>
-                      <object class="GtkButton" id="btnAltares">
+                      <object class="GtkButton" id="botonAltaReservas">
                         <property name="label" translatable="yes">Alta</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -893,7 +893,7 @@
                         <property name="margin_top">2</property>
                         <property name="margin_bottom">2</property>
                         <property name="relief">half</property>
-                        <signal name="clicked" handler="on_btnAltares_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_botonAltaReservas_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -912,6 +912,7 @@
                         <property name="margin_top">2</property>
                         <property name="margin_bottom">2</property>
                         <property name="relief">half</property>
+                        <signal name="clicked" handler="on_botonModificarReservas_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -1285,7 +1286,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSwitch" id="switch">
+                      <object class="GtkSwitch" id="switchHabitaciones">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="active">True</property>
@@ -1333,7 +1334,7 @@
                     <property name="homogeneous">True</property>
                     <property name="layout_style">center</property>
                     <child>
-                      <object class="GtkButton" id="btnAltahab">
+                      <object class="GtkButton" id="botonAltaHabitacion">
                         <property name="label" translatable="yes">Alta</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -1342,7 +1343,7 @@
                         <property name="margin_right">3</property>
                         <property name="margin_top">3</property>
                         <property name="margin_bottom">3</property>
-                        <signal name="clicked" handler="on_btnAltahab_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_botonAltaHabitacion_clicked" swapped="no"/>
                         <style>
                           <class name="estilos.css"/>
                         </style>
@@ -1354,7 +1355,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="btnBajahab">
+                      <object class="GtkButton" id="botonBajaHabitacion">
                         <property name="label" translatable="yes">Baja</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -1363,7 +1364,7 @@
                         <property name="margin_right">3</property>
                         <property name="margin_top">3</property>
                         <property name="margin_bottom">3</property>
-                        <signal name="clicked" handler="on_btnBajahab_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_botonBajaHabitacion_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -1372,7 +1373,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="btnModifhab">
+                      <object class="GtkButton" id="botonModificarHabitacion">
                         <property name="label" translatable="yes">Modificar</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -1381,7 +1382,7 @@
                         <property name="margin_right">2</property>
                         <property name="margin_top">3</property>
                         <property name="margin_bottom">3</property>
-                        <signal name="clicked" handler="on_btnModifhab_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_botonModificarHabitacion_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -1419,13 +1420,13 @@
                     <property name="vexpand">True</property>
                     <property name="shadow_type">in</property>
                     <child>
-                      <object class="GtkTreeView" id="treeHab">
+                      <object class="GtkTreeView" id="treeHabitaciones">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="model">listaHabitaciones</property>
                         <property name="ubuntu_almost_fixed_height_mode">True</property>
                         <property name="enable_grid_lines">both</property>
-                        <signal name="cursor-changed" handler="on_treeHab_cursor_changed" swapped="no"/>
+                        <signal name="cursor-changed" handler="on_treeHabitaciones_cursor_changed" swapped="no"/>
                         <child internal-child="selection">
                           <object class="GtkTreeSelection"/>
                         </child>
@@ -1580,11 +1581,12 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="menuBarbackup">
+                      <object class="GtkMenuItem" id="menuBarBackup">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Backup</property>
                         <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuBarBackup_activate" swapped="no"/>
                       </object>
                     </child>
                     <child>
@@ -1594,13 +1596,13 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="menuBarsalir">
+                      <object class="GtkImageMenuItem" id="menuBarSalir">
                         <property name="label">gtk-quit</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
-                        <signal name="activate" handler="on_menuBarsalir_activate" swapped="no"/>
+                        <signal name="activate" handler="on_menuBarSalir_activate" swapped="no"/>
                       </object>
                     </child>
                   </object>
@@ -1688,13 +1690,13 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkImageMenuItem" id="acercade">
+                      <object class="GtkImageMenuItem" id="menuBarAcercaDe">
                         <property name="label">gtk-about</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
-                        <signal name="activate" handler="on_acercade_activate" swapped="no"/>
+                        <signal name="activate" handler="on_menuBarAcercaDe_activate" swapped="no"/>
                       </object>
                     </child>
                   </object>
@@ -1719,7 +1721,7 @@
             <property name="margin_bottom">2</property>
             <property name="hexpand">True</property>
             <child>
-              <object class="GtkToolButton" id="btnClitool">
+              <object class="GtkToolButton" id="botonClientesToolBar">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_left">2</property>
@@ -1728,7 +1730,7 @@
                 <property name="margin_bottom">2</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">imgClitool</property>
-                <signal name="clicked" handler="on_btnClitool_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_botonClientesToolBar_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1736,12 +1738,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="btnReservatool">
+              <object class="GtkToolButton" id="botonReservasToolBar">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">imgReservatool</property>
-                <signal name="clicked" handler="on_btnReservatool_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_botonReservasToolBar_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1749,7 +1751,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="btnHabitatool">
+              <object class="GtkToolButton" id="botonHabitacionesToolBar">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_left">2</property>
@@ -1758,7 +1760,7 @@
                 <property name="margin_bottom">2</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">imgHabitatool</property>
-                <signal name="clicked" handler="on_btnHabita_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_botonHabitacionesToolBar_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1776,12 +1778,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="btnRefresh">
+              <object class="GtkToolButton" id="botonRefrescarToolBar">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-refresh</property>
-                <signal name="clicked" handler="on_btnRefresh_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_botonRefrescarToolBar_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1789,7 +1791,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="btnCalc">
+              <object class="GtkToolButton" id="botonCalculadoraToolBar">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_left">2</property>
@@ -1798,7 +1800,7 @@
                 <property name="margin_bottom">2</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">imgCalc</property>
-                <signal name="clicked" handler="on_btnCalc_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_botonCalculadoraToolBar_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1819,14 +1821,14 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="btnBackup">
+              <object class="GtkToolButton" id="botonBackupToolBar">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="tooltip_text" translatable="yes">Copia de Seguridad</property>
                 <property name="label" translatable="yes">Backup</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">imgBackup</property>
-                <signal name="clicked" handler="on_btnBackup_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_botonBackupToolBar_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1844,7 +1846,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="btnSalirtool">
+              <object class="GtkToolButton" id="botonSalirToolBar">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_left">2</property>
@@ -1853,7 +1855,7 @@
                 <property name="margin_bottom">2</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">imgSalirtool</property>
-                <signal name="clicked" handler="on_btnSalirtool_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_botonSalirToolBar_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1913,7 +1915,7 @@
                         <property name="margin_right">3</property>
                         <property name="margin_top">5</property>
                         <property name="margin_bottom">5</property>
-                        <property name="label" translatable="yes">CLIENTE</property>
+                        <property name="label" translatable="yes">=== FACTURACION CLIENTES ===</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
                           <attribute name="foreground" value="#a4a400000000"/>
@@ -2342,18 +2344,8 @@
                 </child>
               </object>
             </child>
-            <child type="label">
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="label" translatable="yes">FACTURACIÓN</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                  <attribute name="foreground" value="#a4a400000000"/>
-                </attributes>
-              </object>
+            <child type="label_item">
+              <placeholder/>
             </child>
           </object>
           <packing>
@@ -2364,80 +2356,14 @@
       </object>
     </child>
   </object>
-  <object class="GtkFileChooserDialog" id="fileChooserbackup">
-    <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Seleccione Destino Copia Seguridad</property>
-    <property name="modal">True</property>
-    <property name="window_position">center</property>
-    <property name="type_hint">dialog</property>
-    <property name="gravity">center</property>
-    <property name="transient_for">venPrincipal</property>
-    <child internal-child="vbox">
-      <object class="GtkBox">
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
-            <child>
-              <object class="GtkButton" id="btnGrabarbackup">
-                <property name="label" translatable="yes">Backup</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_btnGrabarbackup_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="btnCancelfilechooserbackup">
-                <property name="label" translatable="yes">Cancelar</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_btnCancelfilechooserbackup_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="lblFolderbackup">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkAboutDialog" id="venAcercade">
+  <object class="GtkAboutDialog" id="ventanaAcercaDe">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Acerca De</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
     <property name="type_hint">dialog</property>
     <property name="gravity">center</property>
-    <property name="transient_for">venPrincipal</property>
+    <property name="transient_for">ventanaPrincipal</property>
     <property name="program_name">HOTEL LITE</property>
     <property name="version">v0.0.1</property>
     <property name="copyright" translatable="yes">All rights reserverd</property>
@@ -2459,14 +2385,14 @@
             <property name="can_focus">False</property>
             <property name="layout_style">center</property>
             <child>
-              <object class="GtkButton" id="btnCerrarabout">
+              <object class="GtkButton" id="botonCerrarVentanaAcercaDe">
                 <property name="label" translatable="yes">Cerrar</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="halign">end</property>
                 <property name="relief">none</property>
-                <signal name="clicked" handler="on_btnCerrarabout_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_botonCerrarVentanaAcercaDe_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -2488,32 +2414,99 @@
       </object>
     </child>
   </object>
-  <object class="GtkWindow" id="venCalendar">
+  <object class="GtkFileChooserDialog" id="ventanaBackup">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Seleccione Destino Copia Seguridad</property>
+    <property name="modal">True</property>
+    <property name="window_position">center</property>
+    <property name="type_hint">dialog</property>
+    <property name="gravity">center</property>
+    <property name="transient_for">ventanaPrincipal</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="botonBackupVentana">
+                <property name="label" translatable="yes">Backup</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_botonBackupVentana_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="botonSalirVentanaBackup">
+                <property name="label" translatable="yes">Salir</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_botonSalirVentanaBackup_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblFolderbackup">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Seleccionar la base de datos</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="ventanaCalendario">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Elixa Data</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
     <property name="gravity">center</property>
-    <property name="transient_for">venPrincipal</property>
+    <property name="transient_for">ventanaPrincipal</property>
     <child>
       <placeholder/>
     </child>
     <child>
-      <object class="GtkCalendar" id="Calendar">
+      <object class="GtkCalendar" id="calendario">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
-        <signal name="day-selected-double-click" handler="on_Calendar_day_selected_double_click" swapped="no"/>
+        <signal name="day-selected-double-click" handler="on_calendario_day_selected_double_click" swapped="no"/>
       </object>
     </child>
   </object>
-  <object class="GtkDialog" id="vendialogSalir">
+  <object class="GtkDialog" id="ventanaDialogSalir">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">HOTEL LITE</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
     <property name="type_hint">dialog</property>
     <property name="gravity">center</property>
-    <property name="transient_for">venPrincipal</property>
+    <property name="transient_for">ventanaPrincipal</property>
     <child>
       <placeholder/>
     </child>
@@ -2529,12 +2522,12 @@
             <property name="homogeneous">True</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="btnAceptarsalir">
+              <object class="GtkButton" id="botonAceptarSalir">
                 <property name="label" translatable="yes">Aceptar</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_btnAceptarsalir_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_botonAceptarSalir_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -2543,12 +2536,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="btnCancelarsalir">
+              <object class="GtkButton" id="botonCancelarSalir">
                 <property name="label" translatable="yes">Cancelar</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_btnCancelarsalir_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_botonCancelarSalir_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -2617,6 +2610,70 @@
             <property name="fill">True</property>
             <property name="padding">3</property>
             <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkFileChooserDialog" id="ventanaRestaurarBackup">
+    <property name="can_focus">False</property>
+    <property name="modal">True</property>
+    <property name="type_hint">dialog</property>
+    <property name="transient_for">ventanaPrincipal</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="botonRestaurarBackup">
+                <property name="label" translatable="yes">Restaurar</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_botonRestaurarBackup_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="botonSalirRestaurarBackup">
+                <property name="label" translatable="yes">Salir</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_botonSalirRestaurarBackup_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Selecciona la base de datos a recuperar</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>
