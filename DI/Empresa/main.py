@@ -4,7 +4,7 @@ import eventos
 import funciones_habitacion
 import funciones_reserva
 import funciones_clientes
-import funcionesvar
+import funciones_varias
 import variables
 from conexion import Conexion
 
@@ -42,8 +42,8 @@ class Empresa:
         label_apellidos_reserva = builder.get_object('labelApellidosReserva')
         variables.entries_cliente = (entry_dni, entry_apellidos, entry_nombre, entry_fecha_cliente)
         variables.lista_clientes = builder.get_object('listaClientes')
-        variables.treereservas = builder.get_object('treeReservas')
-        variables.listreservas = builder.get_object('listaReservas')
+        variables.tree_reservas = builder.get_object('treeReservas')
+        variables.lista_reservas = builder.get_object('listaReservas')
         variables.tree_clientes = builder.get_object('treeClientes')
         variables.mensajes_label = (label_error_dni, 
                                     label_codigo_cliente, 
@@ -53,26 +53,26 @@ class Empresa:
                                     label_apellidos_reserva)
 
         # Widgets habitaciones
-        entnumhab = builder.get_object('entNumhab')
-        entprezohab = builder.get_object('entPrezohab')
-        radiobutton_simple = builder.get_object('rbtSimple')
-        radiobutton_doble = builder.get_object('rbtDoble')
-        radiobutton_familiar = builder.get_object('rbtFamily')
+        entry_numero_habitacion = builder.get_object('entryNumeroHabitacion')
+        entry_precio_habitacion = builder.get_object('entryPrecioHabitacion')
+        radiobutton_simple = builder.get_object('radioButtonSimple')
+        radiobutton_doble = builder.get_object('radioButtonDoble')
+        radiobutton_familiar = builder.get_object('radioButtonFamiliar')
         variables.tree_habitaciones = builder.get_object('treeHabitaciones')
         variables.lista_habitaciones = builder.get_object('listaHabitaciones')
-        variables.entries_habitacion = (entnumhab, entprezohab)
+        variables.entries_habitacion = (entry_numero_habitacion, entry_precio_habitacion)
         variables.radiobuttons_tipo_habitacion = (radiobutton_simple, radiobutton_doble, radiobutton_familiar)
-        variables.listcmbhab = builder.get_object('listaComboHabitaciones')
+        variables.lista_combo_habitaciones = builder.get_object('listaComboHabitaciones')
         variables.combo_habitaciones = builder.get_object('comboBoxHabitacionesReserva')
         variables.switch_habitaciones = builder.get_object('switchHabitaciones')
 
         # Widgets reservas
 
-        entdatain = builder.get_object('entDatain')
-        entdataout = builder.get_object('entDataout')
+        entry_fecha_check_in = builder.get_object('entryCheckIn')
+        entry_fecha_check_out = builder.get_object('entryCheckOut')
         variables.switch_reservas = builder.get_object('switchReservas')
 
-        variables.filareserva = (entry_dni, entry_apellidos, entdatain, entdataout)
+        variables.entries_reserva = (entry_fecha_check_in, entry_fecha_check_out)
 
         # Widgets factura
 
@@ -112,7 +112,7 @@ class Empresa:
         funciones_clientes.carga_lista_clientes(variables.lista_clientes)
         funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
         funciones_reserva.recargar_lista_reservas()
-        funcionesvar.controlhab()
+        funciones_varias.control_habitacion()
 
     def set_style(self):
         css_provider = Gtk.CssProvider()

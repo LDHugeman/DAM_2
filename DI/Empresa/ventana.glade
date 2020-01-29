@@ -764,7 +764,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="entDatain">
+                      <object class="GtkEntry" id="entryCheckIn">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="halign">end</property>
@@ -777,7 +777,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="btnRefreshcmbhab">
+                      <object class="GtkButton" id="botonRefrescarComboHabitaciones">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -788,7 +788,7 @@
                         <property name="margin_bottom">2</property>
                         <property name="image">imgRefresh</property>
                         <property name="always_show_image">True</property>
-                        <signal name="clicked" handler="on_btnRefreshcmbhab_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_botonRefrescarComboHabitaciones_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -812,7 +812,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="entDataout">
+                      <object class="GtkEntry" id="entryCheckOut">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="halign">end</property>
@@ -1187,7 +1187,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkRadioButton" id="rbtSimple">
+                      <object class="GtkRadioButton" id="radioButtonSimple">
                         <property name="label" translatable="yes">Simple</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -1197,7 +1197,7 @@
                         <property name="always_show_image">True</property>
                         <property name="active">True</property>
                         <property name="draw_indicator">True</property>
-                        <property name="group">rbtDoble</property>
+                        <property name="group">radioButtonDoble</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -1205,7 +1205,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkRadioButton" id="rbtDoble">
+                      <object class="GtkRadioButton" id="radioButtonDoble">
                         <property name="label" translatable="yes">Doble</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -1222,7 +1222,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkRadioButton" id="rbtFamily">
+                      <object class="GtkRadioButton" id="radioButtonFamiliar">
                         <property name="label" translatable="yes">Familiar</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -1232,7 +1232,7 @@
                         <property name="always_show_image">True</property>
                         <property name="active">True</property>
                         <property name="draw_indicator">True</property>
-                        <property name="group">rbtDoble</property>
+                        <property name="group">radioButtonDoble</property>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -1240,7 +1240,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="entNumhab">
+                      <object class="GtkEntry" id="entryNumeroHabitacion">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="halign">start</property>
@@ -1256,7 +1256,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="entPrezohab">
+                      <object class="GtkEntry" id="entryPrecioHabitacion">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="halign">start</property>

@@ -1,4 +1,5 @@
-import os, sqlite3
+import sqlite3
+
 
 class Conexion:
 

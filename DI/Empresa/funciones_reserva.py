@@ -14,10 +14,10 @@ def limpiarentry(fila):
 
 
 def calcular_noches():
-    diain = variables.filareserva[2].get_text()
-    date_in = datetime.strptime(diain, '%d/%m/%Y').date()
-    diaout = variables.filareserva[3].get_text()
-    date_out = datetime.strptime(diaout, '%d/%m/%Y').date()
+    dia_check_in = variables.entries_reserva[0].get_text()
+    date_in = datetime.strptime(dia_check_in, '%d/%m/%Y').date()
+    dia_check_out = variables.entries_reserva[1].get_text()
+    date_out = datetime.strptime(dia_check_out, '%d/%m/%Y').date()
     noches = (date_out - date_in).days
     if noches <= 0:
         variables.mensajes_label[2].set_text('Check-Out debe ser posterior')
@@ -107,9 +107,9 @@ def carga_lista_reservas(lista_reservas, formulario_lista):
 
 def recargar_lista_reservas():
     if variables.switch_reservas.get_active():
-        carga_lista_reservas(obtener_listado_reservas(), variables.listreservas)
+        carga_lista_reservas(obtener_listado_reservas(), variables.lista_reservas)
     else:
-        carga_lista_reservas(obtener_listado_reservas_activas(), variables.listreservas)
+        carga_lista_reservas(obtener_listado_reservas_activas(), variables.lista_reservas)
 
 
 def obtener_nombre_cliente_por_dni(dni):

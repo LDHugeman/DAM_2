@@ -62,9 +62,9 @@ def listado_numeros_habitaciones():
     try:
         Conexion.cursor.execute('select numero from habitacion')
         listado = Conexion.cursor.fetchall()
-        variables.listcmbhab.clear()
+        variables.lista_combo_habitaciones.clear()
         for row in listado:
-            variables.listcmbhab.append(row)
+            variables.lista_combo_habitaciones.append(row)
         Conexion.conexion.commit()
 
     except sqlite3.OperationalError as e:

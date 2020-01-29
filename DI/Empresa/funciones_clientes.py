@@ -86,10 +86,10 @@ def baja_cliente(dni):
         Conexion.conexion.rollback()
 
 
-def modificar_cliente(registro, cod):
+def modificar_cliente(registro, codigo_cliente):
     try:
         Conexion.cursor.execute('update clientes set dni = ?, apel= ?, nome = ?, data = ? where id = ?',
-                                (registro[0], registro[1], registro[2], registro[3], cod))
+                                (registro[0], registro[1], registro[2], registro[3], codigo_cliente))
         Conexion.conexion.commit()
     except sqlite3.OperationalError as e:
         print(e)

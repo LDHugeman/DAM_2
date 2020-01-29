@@ -12,7 +12,7 @@ def obtener_factura(dni, apellidos, nombre, numero_habitacion, check_out, noches
         variables.labels_factura[0].set_text(str(dni))
         variables.labels_factura[1].set_text(str(apellidos[0]))
         variables.labels_factura[2].set_text(str(nombre[0]))
-        variables.labels_factura[3].set_text(str(variables.cod))
+        variables.labels_factura[3].set_text(str(variables.codigo_reserva))
         variables.labels_factura[4].set_text(str(numero_habitacion))
         variables.labels_factura[5].set_text(str(check_out))
         variables.labels_factura[6].set_text(str(noches))
