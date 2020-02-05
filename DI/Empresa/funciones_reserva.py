@@ -1,4 +1,4 @@
-
+# coding=utf-8
 import sqlite3
 import variables
 from datetime import datetime

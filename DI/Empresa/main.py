@@ -1,3 +1,4 @@
+# coding=utf-8
 import gi
 
 import eventos
@@ -20,12 +21,15 @@ class Empresa:
 
         # Widgets generales
         ventana_principal = builder.get_object('ventanaPrincipal')
+        variables.ventana_precios = builder.get_object('ventanaPrecios')
         variables.ventana_dialog_salir = builder.get_object('ventanaDialogSalir')
         variables.ventana_acerca_de = builder.get_object('ventanaAcercaDe')
         variables.panel = builder.get_object('panel')
         variables.ventana_backup = builder.get_object('ventanaBackup')
         variables.ventana_restaurar_backup = builder.get_object('ventanaRestaurarBackup')
         variables.ventana_calendario = builder.get_object('ventanaCalendario')
+        variables.ventana_importar_clientes = builder.get_object('ventanaImportarClientes')
+        variables.ventana_exportar_clientes = builder.get_object('ventanaExportarClientes')
         variables.calendario = builder.get_object('calendario')
         menu_bar = builder.get_object('menuBar').get_style_context()
 
@@ -97,6 +101,30 @@ class Empresa:
             label_precio_unidad_factura,
             label_total_factura)
 
+        # Widgets Servicios
+
+        label_codigo_reserva_servicios = builder.get_object('labelCodigoReservaServicios')
+        label_habitacion_servicios = builder.get_object('labelHabitacionServicios')
+        variables.labels_servicios = (label_codigo_reserva_servicios, label_habitacion_servicios)
+        radiobutton_solo_alojamiento = builder.get_object('radioButtonSoloAlojamiento')
+        radiobutton_desayuno = builder.get_object('radioButtonDesayuno')
+        radiobutton_comida = builder.get_object('radioButtonComida')
+        variables.radiobuttons_servicios_basicos = (radiobutton_solo_alojamiento,
+                                                    radiobutton_desayuno,
+                                                    radiobutton_comida)
+        variables.checbox_parking = builder.get_object('checkBoxParking')
+        entry_tipo_servicio = builder.get_object('entryTipoServicio')
+        entry_precio_servicio = builder.get_object('entryPrecioServicio')
+        variables.entries_servicios_adicionales = (entry_tipo_servicio, entry_precio_servicio)
+        variables.tree_servicios = builder.get_object('treeServicios')
+        variables.lista_servicios = builder.get_object('listaServicios')
+
+        entry_precio_parking = builder.get_object('entryPrecioParking')
+        entry_precio_desayuno = builder.get_object('entryPrecioDesayuno')
+        entry_precio_pension_completa = builder.get_object('entryPrecioPensionCompleta')
+        variables.entries_precios_servicios_basicos = (entry_precio_parking,
+                                                       entry_precio_desayuno,
+                                                       entry_precio_pension_completa)
         # Conectamos eventos
         builder.connect_signals(eventos.Eventos())
 
@@ -105,11 +133,14 @@ class Empresa:
         self.set_style()
         menu_bar.add_class('menuBar')
 
+        pantalla = Gdk.Screen.get_default()
+        anchura = pantalla.get_width()
+        altura = pantalla.get_height()
         ventana_principal.show_all()
-        ventana_principal.maximize()
+        ventana_principal.resize(anchura, altura)
         Conexion().abrirbbdd()
         funciones_habitacion.listado_numeros_habitaciones()
-        funciones_clientes.carga_lista_clientes(variables.lista_clientes)
+        funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
         funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
         funciones_reserva.recargar_lista_reservas()
         funciones_varias.control_habitacion()

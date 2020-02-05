@@ -1,3 +1,4 @@
+# coding=utf-8
 import os
 import shutil
 import zipfile
@@ -16,7 +17,6 @@ import funciones_clientes
 import funciones_varias
 import impresion
 import variables
-from typing import List
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -25,6 +25,13 @@ from gi.repository import Gtk
 class Eventos():
 
     # eventos generales
+    def on_menuBarPrecios_activate(self, widget):
+        variables.ventana_precios.show()
+
+    def on_botonSalirVentanaPrecios_clicked(self, widget):
+        variables.ventana_precios.connect('delete-event', lambda w, e: w.hide() or True)
+        variables.ventana_precios.hide()
+
     def on_menuBarAcercaDe_activate(self, widget):
         try:
             variables.ventana_acerca_de.show()
@@ -75,8 +82,8 @@ class Eventos():
             registro = (dni, apel, nome, data)
             if funciones_clientes.es_dni_valido(dni):
                 funciones_clientes.insertar_cliente_BD(registro)
-                funciones_clientes.carga_lista_clientes(variables.lista_clientes)
-                funciones_clientes.limpiarentry(variables.entries_cliente)
+                funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
+                funciones_clientes.limpiar_entries(variables.entries_cliente)
             else:
                 variables.mensajes_label[0].set_text('ERROR DNI')
         except:
@@ -87,8 +94,8 @@ class Eventos():
             dni = variables.entries_cliente[0].get_text()
             if dni != '':
                 funciones_clientes.baja_cliente(dni)
-                funciones_clientes.carga_lista_clientes(variables.lista_clientes)
-                funciones_clientes.limpiarentry(variables.entries_cliente)
+                funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
+                funciones_clientes.limpiar_entries(variables.entries_cliente)
             else:
                 print('Falta dni u otro error')
         except:
@@ -105,8 +112,8 @@ class Eventos():
             cliente = (dni, apellidos, nombre, fecha_alta)
             if dni != '':
                 funciones_clientes.modificar_cliente(cliente, codigo_cliente)
-                funciones_clientes.carga_lista_clientes(variables.lista_clientes)
-                funciones_clientes.limpiarentry(variables.entries_cliente)
+                funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
+                funciones_clientes.limpiar_entries(variables.entries_cliente)
             else:
                 print('Falta el dni')
         except:
@@ -128,7 +135,7 @@ class Eventos():
         try:
             model, iter = variables.tree_clientes.get_selection().get_selected()
             variables.mensajes_label[0].set_text('')
-            funciones_clientes.limpiarentry(variables.entries_cliente)
+            funciones_clientes.limpiar_entries(variables.entries_cliente)
             if iter != None:
                 dni_seleccionado = model.get_value(iter, 0)
                 apellidos_seleccionados = model.get_value(iter, 1)
@@ -332,7 +339,7 @@ class Eventos():
     def on_botonRefrescarToolBar_clicked(self, widget):
         try:
             funciones_habitacion.limpiar_entries(variables.entries_habitacion)
-            funciones_clientes.limpiarentry(variables.entries_cliente)
+            funciones_clientes.limpiar_entries(variables.entries_cliente)
             funciones_reserva.limpiarentry(variables.entries_reserva)
             facturacion.limpiar_labels_factura(variables.labels_factura)
         except:
@@ -479,6 +486,8 @@ class Eventos():
                                             numero_habitacion_seleccionado,
                                             check_out_seleccionado,
                                             numero_noches_seleccionadas)
+                variables.labels_servicios[0].set_text(str(variables.codigo_reserva))
+                variables.labels_servicios[1].set_text(str(numero_habitacion_seleccionado))
         except Exception as e:
             print(e)
             print('Error en on_treeReservas_cursor_changed')
@@ -516,8 +525,9 @@ class Eventos():
         except:
             print('Error en on_botonImprimirFactura_clicked')
 
-    def on_menuBarImportarClientes_activate(self, widget):
+    def on_botonImportarClientes_clicked(self,widget):
         try:
+            fichero = variables.ventana_importar_clientes.get_filename()
             fichero_excel = xlrd.open_workbook("clientes.xls")
             hoja_clientes = fichero_excel.sheet_by_index(0)
             numero_filas_clientes = hoja_clientes.nrows
@@ -529,12 +539,12 @@ class Eventos():
                     for j in range(numero_columnas_clientes):
                         celdas_cliente.append(hoja_clientes.cell(i, j))
                     funciones_clientes.insertar_cliente_excel_BD(celdas_cliente)
-                    funciones_clientes.carga_lista_clientes(variables.lista_clientes)
+                    funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
         except Exception as e:
             print(e)
-            print('Error en on_menuBarImportarClientes_activate')
+            print('Error en on_botonImportarClientes_clicked')
 
-    def on_menuBarExportarClientes_activate(self, widget):
+    def on_botonExportarClientes_clicked(self, widget):
         try:
             estilo_cabecera = xlwt.easyxf('font: name Times New Roman, colour red, bold on')
             estilo_celda = xlwt.easyxf(num_format_str='DD-MM-YY')
@@ -546,7 +556,7 @@ class Eventos():
             hoja_excel.write(0, 2, 'NOMBRE', estilo_cabecera)
             hoja_excel.write(0, 3, 'FECHA_ALTA', estilo_cabecera)
 
-            listado_clientes: List[List] = funciones_clientes.obtener_listado_clientes()
+            listado_clientes = funciones_clientes.obtener_listado_clientes()
 
             for i in range(len(listado_clientes)):
                 for j in range(len(listado_clientes[0])):
@@ -554,4 +564,34 @@ class Eventos():
             fichero_excel.save('clientes_exportados.xls')
         except Exception as e:
             print(e)
+            print('Error en on_botonExportarClientes_clicked')
+
+    def on_menuBarImportarClientes_activate(self, widget):
+        try:
+            variables.ventana_importar_clientes.show()
+        except Exception as e:
+            print(e)
+            print('Error en on_menuBarImportarClientes_activate')
+
+    def on_botonSalirVentanaImportar_clicked(self, widget):
+        try:
+            variables.ventana_importar_clientes.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_importar_clientes.hide()
+        except Exception as e:
+            print(e)
+            print('Error en on_botonSalirVentanaImportar_clicked')
+
+    def on_menuBarExportarClientes_activate(self, widget):
+        try:
+            variables.ventana_exportar_clientes.show()
+        except Exception as e:
+            print(e)
             print('Error en on_menuBarExportarClientes_activate')
+
+    def on_botonSalirVentanaExportar_clicked(self, widget):
+        try:
+            variables.ventana_exportar_clientes.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_exportar_clientes.hide()
+        except Exception as e:
+            print(e)
+            print('Error en on_botonSalirVentanaExportar_clicked')

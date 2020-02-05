@@ -1,3 +1,4 @@
+# coding=utf-8
 import threading
 import time
 import variables
@@ -12,8 +13,10 @@ def control_habitacion():
     if str(fecha_control) == str(fecha_hoy):
         actualizar_habitacion()
 
+
 def cerrar_timer():
     variables.hilo_demonio.join(0)
+
 
 def actualizar_habitacion():
     print('Actualizador de habitaciones')

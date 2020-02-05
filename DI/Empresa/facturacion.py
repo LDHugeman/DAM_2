@@ -1,3 +1,4 @@
+# coding=utf-8
 import funciones_reserva
 import variables
 
