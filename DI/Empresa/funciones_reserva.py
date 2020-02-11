@@ -133,17 +133,16 @@ def obtener_listado_reservas_activas():
         Conexion.conexion.rollback()
 
 
-def carga_lista_reservas(lista_reservas, formulario_lista):
+def carga_lista_reservas(lista_reservas):
     '''
-
-    :param lista_reservas: listado de reservas para actualizar
-    :param formulario_lista:
-    :return:
+    Actualiza el listado de reservas
+        :param lista_reservas: listado de reservas para actualizar
+        :return:
     '''
     try:
-        formulario_lista.clear()
+        variables.lista_reservas.clear()
         for reserva in lista_reservas:
-            formulario_lista.append(reserva)
+            variables.lista_reservas.append(reserva)
     except Exception as e:
         print(e)
         Conexion.conexion.rollback()
@@ -155,12 +154,17 @@ def actualizar_lista_reservas():
         :return: void
     '''
     if variables.switch_reservas.get_active():
-        carga_lista_reservas(obtener_listado_reservas(), variables.lista_reservas)
+        carga_lista_reservas(obtener_listado_reservas())
     else:
-        carga_lista_reservas(obtener_listado_reservas_activas(), variables.lista_reservas)
+        carga_lista_reservas(obtener_listado_reservas_activas())
 
 
 def obtener_nombre_cliente_por_dni(dni):
+    '''
+    Devuelve el nombre de un cliente.
+        :param dni: dni del cliente del que queremos obtener su nombre
+        :return nombre: nombre del cliente
+    '''
     try:
         Conexion.cursor.execute('select nome from clientes where dni = ?', (dni,))
         nombre = Conexion.cursor.fetchone()
@@ -172,6 +176,11 @@ def obtener_nombre_cliente_por_dni(dni):
 
 
 def obtener_precio_habitacion_por_numero_habitacion(numero_habitacion):
+    '''
+    Devuelve el precio de la habitación.
+    :param numero_habitacion: número de la habitación de la que queremos saber su precio
+    :return precio_habitacion: precio de la habitación
+    '''
     try:
         Conexion.cursor.execute('select prezo from habitacion where numero = ?', (numero_habitacion,))
         precio_habitacion = Conexion.cursor.fetchone()
@@ -183,6 +192,12 @@ def obtener_precio_habitacion_por_numero_habitacion(numero_habitacion):
 
 
 def modificar_reserva(reserva, codigo):
+    '''
+    Modifica los datos de una reserva.
+        :param reserva: contiene un listado con los nuevos datos para la reserva
+        :param codigo: código de la reserva que queremos modificar
+        :return: void
+    '''
     try:
         Conexion.cursor.execute('update reservas set checkout = ?, noches = ? where codreser = ?',
                                 (reserva[1], reserva[2], codigo))
