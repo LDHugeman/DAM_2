@@ -122,7 +122,16 @@
       <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkListStore" id="listaServicios"/>
+  <object class="GtkListStore" id="listaServicios">
+    <columns>
+      <!-- column-name codigoServicio -->
+      <column type="gint"/>
+      <!-- column-name concepto -->
+      <column type="gchararray"/>
+      <!-- column-name precio -->
+      <column type="gdouble"/>
+    </columns>
+  </object>
   <object class="GtkWindow" id="ventanaPrincipal">
     <property name="can_focus">False</property>
     <property name="vexpand">True</property>
@@ -1525,6 +1534,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">start</property>
                         <property name="margin_left">2</property>
                         <property name="margin_right">2</property>
                         <property name="margin_top">2</property>
@@ -1543,7 +1553,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
+                        <property name="halign">start</property>
                         <property name="margin_left">2</property>
                         <property name="margin_right">2</property>
                         <property name="margin_top">2</property>
@@ -1713,6 +1723,7 @@
                         <property name="margin_right">80</property>
                         <property name="margin_top">3</property>
                         <property name="margin_bottom">3</property>
+                        <signal name="clicked" handler="on_botonAltaServiciosBasicos_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -1913,6 +1924,9 @@
                             <property name="alignment">0.5</property>
                             <child>
                               <object class="GtkCellRendererText" id="codigoServicio"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
                             </child>
                           </object>
                         </child>
@@ -1923,6 +1937,9 @@
                             <property name="alignment">0.5</property>
                             <child>
                               <object class="GtkCellRendererText" id="concepto"/>
+                              <attributes>
+                                <attribute name="text">1</attribute>
+                              </attributes>
                             </child>
                           </object>
                         </child>
@@ -1932,6 +1949,9 @@
                             <property name="alignment">0.5</property>
                             <child>
                               <object class="GtkCellRendererText" id="precio"/>
+                              <attributes>
+                                <attribute name="text">2</attribute>
+                              </attributes>
                             </child>
                           </object>
                         </child>
@@ -3104,6 +3124,140 @@
       </object>
     </child>
   </object>
+  <object class="GtkFileChooserDialog" id="ventanaExportarClientes">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Seleccione Destino Copia Seguridad</property>
+    <property name="modal">True</property>
+    <property name="window_position">center</property>
+    <property name="type_hint">dialog</property>
+    <property name="gravity">center</property>
+    <property name="transient_for">ventanaPrincipal</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="botonExportarClientes">
+                <property name="label" translatable="yes">Exportar</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_botonExportarClientes_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="botonSalirVentanaExportar">
+                <property name="label" translatable="yes">Salir</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_botonSalirVentanaExportar_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblFolderbackup2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Seleccionar el lugar donde desea guardar el fichero de clientes</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkFileChooserDialog" id="ventanaImportarClientes">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Seleccione Destino Copia Seguridad</property>
+    <property name="modal">True</property>
+    <property name="window_position">center</property>
+    <property name="type_hint">dialog</property>
+    <property name="gravity">center</property>
+    <property name="transient_for">ventanaPrincipal</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="botonImportarClientes">
+                <property name="label" translatable="yes">Importar</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_botonImportarClientes_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="botonSalirVentanaImportar">
+                <property name="label" translatable="yes">Salir</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_botonSalirVentanaImportar_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblFolderbackup1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Seleccionar el fichero de clientes que desea importar</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkWindow" id="ventanaPrecios">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Precios</property>
@@ -3236,6 +3390,7 @@
                 <property name="margin_right">3</property>
                 <property name="margin_top">3</property>
                 <property name="margin_bottom">3</property>
+                <signal name="clicked" handler="on_botonModificarPrecios_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -3347,140 +3502,6 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Selecciona la base de datos a recuperar</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkFileChooserDialog" id="ventanaExportarClientes">
-    <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Seleccione Destino Copia Seguridad</property>
-    <property name="modal">True</property>
-    <property name="window_position">center</property>
-    <property name="type_hint">dialog</property>
-    <property name="gravity">center</property>
-    <property name="transient_for">ventanaPrincipal</property>
-    <child internal-child="vbox">
-      <object class="GtkBox">
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
-            <child>
-              <object class="GtkButton" id="botonExportarClientes">
-                <property name="label" translatable="yes">Exportar</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_botonExportarClientes_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="botonSalirVentanaExportar">
-                <property name="label" translatable="yes">Salir</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_botonSalirVentanaExportar_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="lblFolderbackup2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Seleccionar el lugar donde desea guardar el fichero de clientes</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkFileChooserDialog" id="ventanaImportarClientes">
-    <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Seleccione Destino Copia Seguridad</property>
-    <property name="modal">True</property>
-    <property name="window_position">center</property>
-    <property name="type_hint">dialog</property>
-    <property name="gravity">center</property>
-    <property name="transient_for">ventanaPrincipal</property>
-    <child internal-child="vbox">
-      <object class="GtkBox">
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
-            <child>
-              <object class="GtkButton" id="botonImportarClientes">
-                <property name="label" translatable="yes">Importar</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_botonImportarClientes_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="botonSalirVentanaImportar">
-                <property name="label" translatable="yes">Salir</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_botonSalirVentanaImportar_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="lblFolderbackup1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Seleccionar el fichero de clientes que desea importar</property>
           </object>
           <packing>
             <property name="expand">False</property>

@@ -5,15 +5,24 @@ from datetime import datetime
 from conexion import Conexion
 
 
-def limpiarentry(fila):
-    for i in range(len(fila)):
-        fila[i].set_text('')
+def limpiar_entry(entries):
+    '''
+    Vacía los entries de la reserva tras ejecutar un evento.
+        :param entries: contiene un listado de entries de la reserva
+        :return: void
+    '''
+    for i in range(len(entries)):
+        entries[i].set_text('')
     for i in range(len(variables.mensajes_label)):
         variables.mensajes_label[i].set_text('')
     variables.combo_habitaciones.set_active(-1)
 
 
 def calcular_noches():
+    '''
+    Calcula el número de noches y lo muestra.
+        :return: void
+    '''
     dia_check_in = variables.entries_reserva[0].get_text()
     date_in = datetime.strptime(dia_check_in, '%d/%m/%Y').date()
     dia_check_out = variables.entries_reserva[1].get_text()
@@ -28,6 +37,11 @@ def calcular_noches():
 
 
 def insertar_reserva(reserva):
+    '''
+    Inserta una  en la base de datos.
+        :param reserva: contiene un listado con los datos de una reserva
+        :return: void
+    '''
     try:
         Conexion.cursor.execute('insert into  reservas'
                                 '(dni, numhab, checkin, checkout, noches, activa) values(?,?,?,?,?,?)',
@@ -39,17 +53,27 @@ def insertar_reserva(reserva):
 
 
 def obtener_apellidos_cliente_por_dni(dni):
+    '''
+    Devuelve los apellidos de un cliente.
+        :param dni: dni del cliente del que queremos obtener sus apellidos
+        :return: apellidos del cliente
+    '''
     try:
         Conexion.cursor.execute('select apel from clientes where dni = ?', (dni,))
-        apelidos = Conexion.cursor.fetchone()
+        apellidos = Conexion.cursor.fetchone()
         Conexion.conexion.commit()
-        return apelidos
+        return apellidos
     except sqlite3.OperationalError as e:
         print(e)
         Conexion.conexion.rollback()
 
 
 def esta_libre(numero_habitacion):
+    '''
+    Nos dice si la habitación está o no libre.
+        :param numero_habitacion: número de la habitación de la cual queremos saber su estado
+        :return: boolean
+    '''
     try:
         Conexion.cursor.execute('select libre from habitacion where numero = ?', (numero_habitacion,))
         lista = Conexion.cursor.fetchone()
@@ -64,6 +88,12 @@ def esta_libre(numero_habitacion):
 
 
 def cambiar_estado_reserva(codigo, activa):
+    '''
+    Cambia el estado de la reserva.
+        :param codigo: código de la reserva que queremos modificar su estado
+        :param activa: nuevo estado para la reserva
+        :return: void
+    '''
     try:
         Conexion.cursor.execute('update reservas set activa = ? where codreser = ?', (activa, codigo))
         Conexion.conexion.commit()
@@ -73,17 +103,25 @@ def cambiar_estado_reserva(codigo, activa):
 
 
 def obtener_listado_reservas():
+    '''
+    Devuelve un listado con las reservas de la base de datos.
+        :return reservas: listado de reservas
+    '''
     try:
         Conexion.cursor.execute('select codreser, dni, numhab, checkin, checkout, noches from reservas')
-        listado = Conexion.cursor.fetchall()
+        reservas = Conexion.cursor.fetchall()
         Conexion.conexion.commit()
-        return listado
+        return reservas
     except sqlite3.OperationalError as e:
         print(e)
         Conexion.conexion.rollback()
 
 
 def obtener_listado_reservas_activas():
+    '''
+    Devuelve un listado con las reservas con estado activo.
+        :return reservas_activas: listado de reservas activas
+    '''
     try:
         Conexion.cursor.execute('select codreser, dni, numhab, checkin, checkout, noches '
                                 'from reservas where activa = ?', ('SI',))
@@ -96,6 +134,12 @@ def obtener_listado_reservas_activas():
 
 
 def carga_lista_reservas(lista_reservas, formulario_lista):
+    '''
+
+    :param lista_reservas: listado de reservas para actualizar
+    :param formulario_lista:
+    :return:
+    '''
     try:
         formulario_lista.clear()
         for reserva in lista_reservas:
@@ -105,7 +149,11 @@ def carga_lista_reservas(lista_reservas, formulario_lista):
         Conexion.conexion.rollback()
 
 
-def recargar_lista_reservas():
+def actualizar_lista_reservas():
+    '''
+    Actualiza el listado de reservas para mostrar las activas o todas.
+        :return: void
+    '''
     if variables.switch_reservas.get_active():
         carga_lista_reservas(obtener_listado_reservas(), variables.lista_reservas)
     else:

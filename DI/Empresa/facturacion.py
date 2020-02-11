@@ -1,14 +1,30 @@
 # coding=utf-8
+
 import funciones_reserva
 import variables
 
 
 def limpiar_labels_factura(labels_factura):
+    '''
+    Vacía los labels tras ejecutar un evento.
+        :param labels_factura: contiene un listado de labels de la factura
+        :return: void
+    '''
     for i in range(len(labels_factura)):
         labels_factura[i].set_text('')
 
 
 def obtener_factura(dni, apellidos, nombre, numero_habitacion, check_out, noches):
+    '''
+        Muestra los datos de la factura.
+            :param dni: dni del cliente
+            :param apellidos: apellidos del cliente
+            :param nombre: nombre del cliente
+            :param numero_habitacion: numero de habitación del cliente
+            :param check_out: fecha de la factura
+            :param noches: número de noches
+            :return: void
+        '''
     try:
         variables.labels_factura[0].set_text(str(dni))
         variables.labels_factura[1].set_text(str(apellidos[0]))

@@ -1,4 +1,5 @@
 # coding=utf-8
+
 import sqlite3
 
 
@@ -8,6 +9,10 @@ class Conexion:
     conexion = None
 
     def abrirbbdd(self):
+        '''
+        Abre una conexión con la base de datos.
+            :return:void
+        '''
         try:
             global bbdd, conex, cur
             bbdd = 'empresa.sqlite'
@@ -18,6 +23,10 @@ class Conexion:
             print("Error al abrir: ", e)
 
     def cerrarbbdd(self):
+        '''
+        Cierra la conexión con la base de datos.
+            :return: void
+        '''
         try:
             Conexion.cursor.close()
             Conexion.conexion.close()

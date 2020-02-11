@@ -5,6 +5,7 @@ import eventos
 import funciones_habitacion
 import funciones_reserva
 import funciones_clientes
+import funciones_servicios
 import funciones_varias
 import variables
 from conexion import Conexion
@@ -139,10 +140,11 @@ class Empresa:
         ventana_principal.show_all()
         ventana_principal.resize(anchura, altura)
         Conexion().abrirbbdd()
-        funciones_habitacion.listado_numeros_habitaciones()
+        funciones_habitacion.actualizar_numeros_habitacion()
         funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
-        funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
-        funciones_reserva.recargar_lista_reservas()
+        funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
+        funciones_reserva.actualizar_lista_reservas()
+        funciones_servicios.actualizar_lista_servicios(variables.lista_servicios)
         funciones_varias.control_habitacion()
 
     def set_style(self):

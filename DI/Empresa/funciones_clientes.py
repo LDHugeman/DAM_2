@@ -1,47 +1,4 @@
 # coding=utf-8
-""" Módulo que gestiona los clientes.
-
-Este módulo contiene las funciones siguientes:
-* limpiar_entries:
-    Vacía los entries tras ejecutar un evento.
-    - :param entries: contiene un listado de entries del cliente
-    :return: void
-* es_dni_valido:
-    Controla que el dni es correcto.
-    - :param dni: valor del dni del cliente
-    :return: boolean
-* insertar_cliente_BD:
-    Inserta un cliente en la base de datos
-    - :param cliente: contiene un listado con los datos del cliente
-    :return: void
-* insertar_cliente_excel_BD:
-    Inserta los clientes provenientes de un excel en la base de datos
-    - :param celdas_clientes: contiene los datos de un cliente del excel
-    :return: void
-* obtener_listado_clientes:
-    Devuelve un listado con los clientes de la base de datos
-    :return: listado de clientes
-* actualizar_lista_clientes:
-    Actualiza el listado de los clientes
-    - :param lista_clientes: listado de los clientes para actualizar
-    :return: void
-* baja_cliente:
-    Elimina un cliente de la base de datos
-    - :param dni: dni del cliente que deseamos eliminar
-    :return: void
-* modificar_cliente:
-    Modifica los datos de un cliente
-    - :param cliente: contiene un listado con los nuevos datos para el cliente
-    :return: void
-* obtener_id_cliente_por_dni:
-    Devuelve el id de un cliente
-    - :param dni: dni del cliente
-    :return: id del cliente
-* obtener_nombre_apellidos_por_dni:
-    Devuelve el nombre y apellidos de un cliente
-    - :param dni: dni del cliente
-    :return: nombre y apellidos del cliente en un listado
-"""
 
 from xlrd import sheet
 import funciones_excel
@@ -51,11 +8,21 @@ import variables
 
 
 def limpiar_entries(entries):
+    '''
+    Vacía los entries del cliente tras ejecutar un evento.
+        :param entries: contiene un listado de entries del cliente
+        :return: void
+    '''
     for i in range(len(entries)):
         entries[i].set_text('')
 
 
 def es_dni_valido(dni):
+    '''
+    Controla que el dni es correcto.
+        :param dni: valor del dni del cliente
+        :return: boolean
+    '''
     try:
         tabla = "TRWAGMYFPDXBNJZSQVHLCKE"  # Letras del dni, es estándar
         dig_ext = "XYZ"
@@ -78,6 +45,11 @@ def es_dni_valido(dni):
 
 
 def insertar_cliente_BD(cliente):
+    '''
+    Inserta un cliente en la base de datos.
+        :param cliente: contiene un listado con los datos de un cliente
+        :return: void
+    '''
     try:
         Conexion.cursor.execute('insert into  clientes(dni,apel,nome, data) values(?,?,?,?)', cliente)
         Conexion.conexion.commit()
@@ -87,6 +59,11 @@ def insertar_cliente_BD(cliente):
 
 
 def insertar_cliente_excel_BD(celdas_clientes):
+    '''
+    Inserta los clientes provenientes de un excel en la base de datos.
+        :param celdas_clientes: contiene los datos de un cliente del excel
+        :return: void
+    '''
     cliente = []
     for celda_cliente in celdas_clientes:
         if celda_cliente.ctype == sheet.XL_CELL_DATE:
@@ -97,17 +74,26 @@ def insertar_cliente_excel_BD(celdas_clientes):
 
 
 def obtener_listado_clientes():
+    '''
+    Devuelve un listado con los clientes de la base de datos.
+        :return clientes: listado de clientes
+    '''
     try:
         Conexion.cursor.execute('select * from clientes')
-        listado_clientes = Conexion.cursor.fetchall()
+        clientes = Conexion.cursor.fetchall()
         Conexion.conexion.commit()
-        return listado_clientes
+        return clientes
     except sqlite3.OperationalError as e:
         print(e)
         Conexion.conexion.rollback()
 
 
 def actualizar_lista_clientes(lista_clientes):
+    '''
+    Actualiza el listado de los clientes.
+        :param lista_clientes: listado de los clientes para actualizar
+        :return: void
+    '''
     try:
         variables.listado = obtener_listado_clientes()
         lista_clientes.clear()
@@ -119,6 +105,11 @@ def actualizar_lista_clientes(lista_clientes):
 
 
 def baja_cliente(dni):
+    '''
+    Elimina un cliente de la base de datos.
+        :param dni: dni del cliente que deseamos eliminar
+        :return: void
+    '''
     try:
         Conexion.cursor.execute('delete from clientes where dni = ?', (dni,))
         Conexion.conexion.commit()
@@ -128,6 +119,12 @@ def baja_cliente(dni):
 
 
 def modificar_cliente(cliente, codigo_cliente):
+    '''
+    Modifica los datos de un cliente.
+        :param cliente: contiene un listado con los nuevos datos para el cliente
+        :param codigo_cliente: id del cliente que queremos modificar
+        :return: void
+    '''
     try:
         Conexion.cursor.execute('update clientes set dni = ?, apel= ?, nome = ?, data = ? where id = ?',
                                 (cliente[0], cliente[1], cliente[2], cliente[3], codigo_cliente))
@@ -138,6 +135,11 @@ def modificar_cliente(cliente, codigo_cliente):
 
 
 def obtener_id_cliente_por_dni(dni):
+    '''
+    Devuelve el id de un cliente.
+        :param dni: dni del cliente
+        :return: id del cliente
+    '''
     try:
         Conexion.cursor.execute('select id from clientes where dni = ?', (dni,))
         id_cliente = Conexion.cursor.fetchone()
@@ -149,6 +151,11 @@ def obtener_id_cliente_por_dni(dni):
 
 
 def obtener_nombre_apellidos_por_dni(dni):
+    '''
+    Devuelve el nombre y apellidos de un cliente.
+        :param dni: dni del cliente
+        :return: nombre y apellidos del cliente en un listado
+    '''
     try:
         Conexion.cursor.execute('select apel, nome from clientes where dni = ?', (dni,))
         nombre_y_apellidos = Conexion.cursor.fetchone()

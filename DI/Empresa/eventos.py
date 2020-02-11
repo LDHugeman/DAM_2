@@ -9,6 +9,7 @@ import xlrd
 import xlwt
 
 import conexion
+import funciones_servicios
 from conexion import Conexion
 import facturacion
 import funciones_habitacion
@@ -26,6 +27,10 @@ class Eventos():
 
     # eventos generales
     def on_menuBarPrecios_activate(self, widget):
+        precios = funciones_servicios.obtener_precios_servicios_basicos()
+        variables.entries_precios_servicios_basicos[0].set_text(str(precios[0]))
+        variables.entries_precios_servicios_basicos[1].set_text(str(precios[1]))
+        variables.entries_precios_servicios_basicos[2].set_text(str(precios[2]))
         variables.ventana_precios.show()
 
     def on_botonSalirVentanaPrecios_clicked(self, widget):
@@ -79,9 +84,9 @@ class Eventos():
             apel = variables.entries_cliente[1].get_text()
             nome = variables.entries_cliente[2].get_text()
             data = variables.entries_cliente[3].get_text()
-            registro = (dni, apel, nome, data)
+            cliente = (dni, apel, nome, data)
             if funciones_clientes.es_dni_valido(dni):
-                funciones_clientes.insertar_cliente_BD(registro)
+                funciones_clientes.insertar_cliente_BD(cliente)
                 funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
                 funciones_clientes.limpiar_entries(variables.entries_cliente)
             else:
@@ -221,8 +226,8 @@ class Eventos():
             registro = (numero_habitacion, tipo, precio_habitacion, libre)
             if numero_habitacion is not None:
                 funciones_habitacion.insertar_habitacion_BD(registro)
-                funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
-                funciones_habitacion.listado_numeros_habitaciones()
+                funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
+                funciones_habitacion.actualizar_numeros_habitacion()
                 funciones_habitacion.limpiar_entries(variables.entries_habitacion)
             else:
                 pass
@@ -262,7 +267,7 @@ class Eventos():
             if numero_habitacion != '':
                 funciones_habitacion.baja_habitacion(numero_habitacion)
                 funciones_habitacion.limpiar_entries(variables.entries_habitacion)
-                funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
+                funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
             else:
                 pass
         except:
@@ -285,7 +290,7 @@ class Eventos():
             habitacion = (prezo, tipo, libre)
             if numero_habitacion != '':
                 funciones_habitacion.modificar_habitacion(habitacion, numero_habitacion)
-                funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
+                funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
                 funciones_habitacion.limpiar_entries(variables.entries_habitacion)
             else:
                 print('Falta el número de la habitación')
@@ -295,7 +300,7 @@ class Eventos():
 
     def on_panel_select_page(self, widget):
         try:
-            funciones_habitacion.listado_numeros_habitaciones()
+            funciones_habitacion.actualizar_numeros_habitacion()
         except:
             print("Error en on_panel_select_page")
 
@@ -314,7 +319,7 @@ class Eventos():
             panel_actual = variables.panel.get_current_page()
             if panel_actual != 1:
                 variables.panel.set_current_page(1)
-                funciones_habitacion.listado_numeros_habitaciones()
+                funciones_habitacion.actualizar_numeros_habitacion()
             else:
                 pass
         except:
@@ -338,9 +343,13 @@ class Eventos():
 
     def on_botonRefrescarToolBar_clicked(self, widget):
         try:
+            funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
+            funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
+            funciones_reserva.actualizar_lista_reservas()
+            funciones_servicios.actualizar_lista_servicios(variables.lista_servicios)
             funciones_habitacion.limpiar_entries(variables.entries_habitacion)
             funciones_clientes.limpiar_entries(variables.entries_cliente)
-            funciones_reserva.limpiarentry(variables.entries_reserva)
+            funciones_reserva.limpiar_entry(variables.entries_reserva)
             facturacion.limpiar_labels_factura(variables.labels_factura)
         except:
             print('Error en on_botonRefrescarToolBar_clicked')
@@ -432,11 +441,11 @@ class Eventos():
                 reserva = (dni_reserva, variables.numero_habitacion_reserva, check_in, check_out, noches, 'SI')
                 if funciones_reserva.esta_libre(variables.numero_habitacion_reserva) and dni_reserva != '':
                     funciones_reserva.insertar_reserva(reserva)
-                    funciones_reserva.recargar_lista_reservas()
+                    funciones_reserva.actualizar_lista_reservas()
                     funciones_habitacion.cambiar_estado_habitacion('NO', variables.numero_habitacion_reserva)
-                    funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
+                    funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
                     funciones_habitacion.limpiar_entries(variables.entries_habitacion)
-                    funciones_reserva.limpiarentry(variables.entries_reserva)
+                    funciones_reserva.limpiar_entry(variables.entries_reserva)
                 else:
                     print('Habitación ocupada o falta el dni del cliente')
         except Exception as e:
@@ -446,14 +455,14 @@ class Eventos():
     def on_botonRefrescarComboHabitaciones_clicked(self, widget):
         try:
             variables.combo_habitaciones.set_active(-1)
-            funciones_habitacion.listado_numeros_habitaciones()
+            funciones_habitacion.actualizar_numeros_habitacion()
         except:
             print('Error en on_botonRefrescarComboHabitaciones_clicked')
 
     def on_treeReservas_cursor_changed(self, widget):
         try:
             model, iter = variables.tree_reservas.get_selection().get_selected()
-            funciones_reserva.limpiarentry(variables.entries_reserva)
+            funciones_reserva.limpiar_entry(variables.entries_reserva)
             if iter != None:
                 variables.codigo_reserva = model.get_value(iter, 0)
                 dni_seleccionado = model.get_value(iter, 1)
@@ -500,8 +509,8 @@ class Eventos():
             noches = int(variables.mensajes_label[2].get_text())
             reserva = (check_in, check_out, noches)
             funciones_reserva.modificar_reserva(reserva, codigo)
-            funciones_reserva.recargar_lista_reservas()
-            funciones_reserva.limpiarentry(variables.entries_reserva)
+            funciones_reserva.actualizar_lista_reservas()
+            funciones_reserva.limpiar_entry(variables.entries_reserva)
         except Exception as e:
             print(e)
             print('Error en on_botonModificarReservas_clicked')
@@ -509,15 +518,15 @@ class Eventos():
     def on_botonCheckout_clicked(self, widget):
         try:
             funciones_habitacion.cambiar_estado_habitacion('SI', variables.numero_habitacion_reserva)
-            funciones_habitacion.carga_lista_habitaciones(variables.lista_habitaciones)
+            funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
             funciones_reserva.cambiar_estado_reserva(variables.codigo_reserva, 'NO')
-            funciones_reserva.recargar_lista_reservas()
+            funciones_reserva.actualizar_lista_reservas()
         except Exception as e:
             print(e)
             print('Error en on_botonCheckout_clicked')
 
     def on_switchReservas_state_set(self, widget, value):
-        funciones_reserva.recargar_lista_reservas()
+        funciones_reserva.actualizar_lista_reservas()
 
     def on_botonImprimirFactura_clicked(self, widget):
         try:
@@ -528,7 +537,7 @@ class Eventos():
     def on_botonImportarClientes_clicked(self,widget):
         try:
             fichero = variables.ventana_importar_clientes.get_filename()
-            fichero_excel = xlrd.open_workbook("clientes.xls")
+            fichero_excel = xlrd.open_workbook(fichero)
             hoja_clientes = fichero_excel.sheet_by_index(0)
             numero_filas_clientes = hoja_clientes.nrows
             numero_columnas_clientes = hoja_clientes.ncols
@@ -540,12 +549,15 @@ class Eventos():
                         celdas_cliente.append(hoja_clientes.cell(i, j))
                     funciones_clientes.insertar_cliente_excel_BD(celdas_cliente)
                     funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
+            variables.ventana_importar_clientes.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_importar_clientes.hide()
         except Exception as e:
             print(e)
             print('Error en on_botonImportarClientes_clicked')
 
     def on_botonExportarClientes_clicked(self, widget):
         try:
+            directorio = variables.ventana_exportar_clientes.get_filename()
             estilo_cabecera = xlwt.easyxf('font: name Times New Roman, colour red, bold on')
             estilo_celda = xlwt.easyxf(num_format_str='DD-MM-YY')
             fichero_excel = xlwt.Workbook()
@@ -561,7 +573,9 @@ class Eventos():
             for i in range(len(listado_clientes)):
                 for j in range(len(listado_clientes[0])):
                     hoja_excel.write(i, j, listado_clientes[i][j], estilo_celda)
-            fichero_excel.save('clientes_exportados.xls')
+            fichero_excel.save(str(directorio)+'/clientes_exportados.xls')
+            variables.ventana_exportar_clientes.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_exportar_clientes.hide()
         except Exception as e:
             print(e)
             print('Error en on_botonExportarClientes_clicked')
@@ -595,3 +609,34 @@ class Eventos():
         except Exception as e:
             print(e)
             print('Error en on_botonSalirVentanaExportar_clicked')
+
+    def on_botonModificarPrecios_clicked(self, widget):
+        try:
+            precio_parking = variables.entries_precios_servicios_basicos[0].get_text()
+            precio_desayuno = variables.entries_precios_servicios_basicos[1].get_text()
+            precio_pension_completa = variables.entries_precios_servicios_basicos[2].get_text()
+            precios = (precio_parking, precio_desayuno, precio_pension_completa)
+            funciones_servicios.modificar_precios_servicios_basicos(precios)
+            variables.ventana_precios.connect('delete-event', lambda w, e: w.hide() or True)
+            variables.ventana_precios.hide()
+        except Exception as e:
+            print(e)
+            print('Error en on_botonModificarPrecios_clicked')
+
+    def on_botonAltaServiciosBasicos_clicked(self, widget):
+        try:
+            precios = funciones_servicios.obtener_precios_servicios_basicos()
+            if variables.radiobuttons_servicios_basicos[0].get_active():
+                pass
+            elif variables.radiobuttons_servicios_basicos[1].get_active():
+                concepto = 'Desayuno'
+                precio = precios[1]
+            elif variables.radiobuttons_servicios_basicos[2].get_active():
+                concepto = 'Comida'
+                precio = precios[2]
+            servicio = (concepto, precio)
+            funciones_servicios.insertar_servicio_basico(servicio)
+            funciones_servicios.actualizar_lista_servicios(variables.lista_servicios)
+        except Exception as e:
+            print(e)
+            print('Error en on_botonAltaServiciosBasicos_clicked')
