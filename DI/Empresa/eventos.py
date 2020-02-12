@@ -26,8 +26,11 @@ from gi.repository import Gtk
 
 class Eventos():
 
-    # eventos generales
     def on_menuBarPrecios_activate(self, widget):
+        '''
+        Evento que se lanza al hacer click en la opción Precios del submenú de Gestión.
+            :return: void
+        '''
         precios = funciones_servicios.obtener_precios_servicios_basicos()
         variables.entries_precios_servicios_basicos[0].set_text(str(precios[0]))
         variables.entries_precios_servicios_basicos[1].set_text(str(precios[1]))
@@ -35,6 +38,10 @@ class Eventos():
         variables.ventana_precios.show()
 
     def on_botonSalirVentanaPrecios_clicked(self, widget):
+        '''
+        Evento que se lanza al hacer click en el botón Salir de la ventana de precios.
+            :return: void
+        '''
         variables.ventana_precios.connect('delete-event', lambda w, e: w.hide() or True)
         variables.ventana_precios.hide()
 
@@ -106,7 +113,6 @@ class Eventos():
         except:
             print("Error en on_botonBajaCliente_clicked")
 
-    #  modificamos cliente
     def on_botonModificarCliente_clicked(self, widget):
         try:
             codigo_cliente = variables.mensajes_label[1].get_text()
@@ -124,7 +130,6 @@ class Eventos():
         except:
             print('Error en on_botonModificarCliente_clicked')
 
-    # controla el valor del deni
     def on_entryDni_focus_out_event(self, widget, dni):
         try:
             dni = variables.entries_cliente[0].get_text()
@@ -200,8 +205,6 @@ class Eventos():
         except Exception as e:
             print(e)
             print('Error en on_calendario_day_selected_double_click')
-
-    # Eventos de las habitaciones
 
     def on_botonAltaHabitacion_clicked(self, widget):
         try:
@@ -417,8 +420,6 @@ class Eventos():
             variables.ventana_restaurar_backup.hide()
         except:
             print('Error en on_botonSalirRestaurarBackup_clicked')
-
-    # Eventos reservas
 
     def on_comboBoxHabitacionesReserva_changed(self, widget):
         try:
