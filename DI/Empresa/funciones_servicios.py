@@ -1,4 +1,6 @@
 # coding=utf-8
+'''Módulo que gestiona los servicios.
+'''
 import sqlite3
 
 import variables

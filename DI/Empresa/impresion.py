@@ -1,14 +1,18 @@
 # coding=utf-8
+'''Módulo que gestiona el pdf de la factura.
+'''
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 
 import funciones_clientes
 import os
 
-import funciones_reserva
-
 
 def basico():
+    '''
+    Genera el pdf con el encabezado y el pie de la factura
+        :return: void
+    '''
     try:
         factura = canvas.Canvas('prueba.pdf', pagesize=A4)
         texto_bienvenida = 'Bienvenido a nuestro hotel'
@@ -31,6 +35,11 @@ def basico():
 
 
 def factura(datos_factura):
+    '''
+    Genera una factura con los datos del cliente y el importe de los distintos servicios
+        :param datos_factura: listado con los datos que se van a mostrar en la factura
+        :return: void
+    '''
     try:
         factura = basico()
         factura.setTitle('FACTURA')

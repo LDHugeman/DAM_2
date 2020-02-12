@@ -1,4 +1,6 @@
 # coding=utf-8
+'''Módulo que gestiona los eventos.
+'''
 import os
 import shutil
 import zipfile
@@ -15,7 +17,6 @@ import facturacion
 import funciones_habitacion
 import funciones_reserva
 import funciones_clientes
-import funciones_varias
 import impresion
 import variables
 
@@ -53,7 +54,6 @@ class Eventos():
     def salir(self):
         try:
             Conexion().cerrarbbdd()
-            funciones_varias.cerrar_timer()
             Gtk.main_quit()
         except Exception as e:
             print(e)

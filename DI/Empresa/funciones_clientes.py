@@ -1,5 +1,6 @@
 # coding=utf-8
-
+'''Módulo que gestiona los clientes.
+'''
 from xlrd import sheet
 import funciones_excel
 from conexion import Conexion

@@ -1,4 +1,6 @@
 # coding=utf-8
+'''Módulo que gestiona las reservas.
+'''
 import sqlite3
 import variables
 from datetime import datetime

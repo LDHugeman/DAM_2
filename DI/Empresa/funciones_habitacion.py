@@ -1,5 +1,6 @@
 # coding=utf-8
-
+'''Módulo que gestiona las habitaciones.
+'''
 import sqlite3
 import variables
 from conexion import Conexion

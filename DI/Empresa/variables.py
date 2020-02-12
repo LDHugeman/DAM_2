@@ -1,5 +1,6 @@
 # coding=utf-8
-# Variables generales
+'''Módulo que contiene variables de carácter general para usar en cualquier otro módulo.
+'''
 mensajes_label = ()
 listado = ()
 ventana_calendario = None
@@ -9,19 +10,15 @@ panel = None
 semaforo = None
 ventana_backup = None
 ventana_restaurar_backup = None
-neobackup = None
 ventana_dialog_salir = None
-hilo_demonio = None
 ventana_precios = None
 ventana_importar_clientes = None
 ventana_exportar_clientes = None
 
-# Variables clientes
 entries_cliente = ()
 lista_clientes = ()
 tree_clientes = ()
 
-# Variables habitación
 entries_habitacion = ()
 lista_habitaciones = ()
 tree_habitaciones = ()
@@ -30,7 +27,6 @@ lista_combo_habitaciones = ()
 combo_habitaciones = None
 switch_habitaciones = None
 
-# Variables reserva
 entries_reserva = ()
 lista_reservas = ()
 tree_reservas = ()
@@ -39,14 +35,12 @@ codigo_reserva = None
 switch_reservas = None
 reserva = None
 
-# Variables factura
 labels_factura = ()
 datos_factura = ()
 
-# Widgets servicios
 labels_servicios = ()
 radiobuttons_servicios_basicos = ()
-checbox_parking = None
+checkbox_parking = None
 entries_servicios_adicionales = ()
 lista_servicios = ()
 tree_servicios = ()

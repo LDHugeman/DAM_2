@@ -1,5 +1,6 @@
 # coding=utf-8
-
+'''Módulo que gestiona la conexión con la base de datos.
+'''
 import sqlite3
 
 

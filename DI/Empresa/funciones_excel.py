@@ -1,5 +1,6 @@
 # coding=utf-8
-
+'''Módulo con funciones relacionadas con excel.
+'''
 
 import datetime
 

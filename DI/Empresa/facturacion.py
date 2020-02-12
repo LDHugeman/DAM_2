@@ -1,5 +1,6 @@
 # coding=utf-8
-
+'''Módulo que gestiona la previsualización de la factura.
+'''
 import funciones_reserva
 import variables
 
