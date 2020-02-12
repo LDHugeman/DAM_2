@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Socios>
+
+	<socio codigo="0001">
+		<nombre>Mortadelo</nombre>
+		<telefono>986000000</telefono>
+		<direccion>Rua 13 Percebe</direccion>
+		<cuota>40</cuota>
+	</socio>
+	
+	<socio codigo="0002">
+		<nombre>Filemon</nombre>
+		<telefono>986111111</telefono>
+		<direccion>Rua 13 Percebe</direccion>
+		<cuota>50</cuota>
+	</socio>
+	
+	<socio codigo="0003">
+		<nombre>Ofelia</nombre>
+		<telefono>986222222</telefono>
+		<direccion>Calle de Rompetechos</direccion>
+		<cuota>60</cuota>
+	</socio>
+	
+	<socio codigo="0004">
+		<nombre>Bacterio</nombre>
+		<telefono>9864333333</telefono>
+		<direccion>Calle del Batracio</direccion>
+		<cuota>45</cuota>
+	</socio>
+	
+	<socio codigo="0005">
+		<nombre>Vicente</nombre>
+		<telefono>986999999</telefono>
+		<direccion>Ministerio de defensa</direccion>
+		<cuota>50</cuota>
+	</socio>
+	
+	<socio codigo="0006">
+		<nombre>Anacleto</nombre>
+		<telefono>986444444</telefono>
+		<direccion>Calle del secreto</direccion>
+		<cuota>40</cuota>
+	</socio>
+</Socios>
