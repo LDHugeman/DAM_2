@@ -28,7 +28,7 @@ class Eventos():
 
     def on_menuBarPrecios_activate(self, widget):
         '''
-        Evento que se lanza al hacer click en la opción Precios del submenú de Gestión.
+        Muestra la ventana de precios de servicios básicos.
             :return: void
         '''
         precios = funciones_servicios.obtener_precios_servicios_basicos()
@@ -39,19 +39,27 @@ class Eventos():
 
     def on_botonSalirVentanaPrecios_clicked(self, widget):
         '''
-        Evento que se lanza al hacer click en el botón Salir de la ventana de precios.
+        Cierra la ventana de precios de servicios básicos.
             :return: void
         '''
         variables.ventana_precios.connect('delete-event', lambda w, e: w.hide() or True)
         variables.ventana_precios.hide()
 
     def on_menuBarAcercaDe_activate(self, widget):
+        '''
+        Muestra la ventana Acerca De.
+            :return: void
+        '''
         try:
             variables.ventana_acerca_de.show()
         except:
             print('Error en on_menuBarAcercaDe_activate')
 
     def on_botonCerrarVentanaAcercaDe_clicked(self, widget):
+        '''
+        Cierra la ventana Acerca De.
+            :return: void
+        '''
         try:
             variables.ventana_acerca_de.connect('delete-event', lambda w, e: w.hide() or True)
             variables.ventana_acerca_de.hide()
@@ -59,6 +67,10 @@ class Eventos():
             print('Error en on_botonCerrarVentanaAcercaDe_clicked')
 
     def salir(self):
+        '''
+        Cierra la ventana principal del programa.
+            :return: void
+        '''
         try:
             Conexion().cerrarbbdd()
             Gtk.main_quit()
@@ -67,25 +79,49 @@ class Eventos():
             print('Error en salir')
 
     def on_menuBarSalir_activate(self, widget):
+        '''
+        Cierra la ventana principal del programa al hacer click en la opción Salir del submenú de Archivo.
+            :return: void
+        '''
         try:
             self.salir()
         except:
             print('Error en on_menuBarSalir_activate')
 
     def on_botonSalirToolBar_clicked(self, widget):
+        '''
+        Cierra la ventana principal del programa al hacer click en el botón Salir de la barra de herramientas.
+            :return: void
+        '''
         variables.ventana_dialog_salir.show()
 
     def on_ventanaPrincipal_destroy(self, widget):
+        '''
+        Cierra la ventana principal del programa al hacer click en el botón de salir.
+            :return: void
+        '''
         self.salir()
 
     def on_botonCancelarSalir_clicked(self, widget):
+        '''
+        Cierra la ventana de diálogo al hacer click el en botón Cancelar.
+            :return: void
+        '''
         variables.ventana_dialog_salir.connect('delete-event', lambda w, e: w.hide() or True)
         variables.ventana_dialog_salir.hide()
 
     def on_botonAceptarSalir_clicked(self, widget):
+        '''
+        Cierra la ventana principal del programa al hacer click en el botón Aceptar de la ventana de diálogo.
+            :return: void
+        '''
         self.salir()
 
     def on_botonAltaCliente_clicked(self, widget):
+        '''
+        Inserta un cliente en la base de datos comprobando que su dni sea válido.
+            :return: void
+        '''
         try:
             dni = variables.entries_cliente[0].get_text()
             apel = variables.entries_cliente[1].get_text()
@@ -102,6 +138,10 @@ class Eventos():
             print("Error en on_botonAltaCliente_clicked")
 
     def on_botonBajaCliente_clicked(self, widget):
+        '''
+        Elimina un cliente de la base de datos.
+            :return: void
+        '''
         try:
             dni = variables.entries_cliente[0].get_text()
             if dni != '':
@@ -114,6 +154,10 @@ class Eventos():
             print("Error en on_botonBajaCliente_clicked")
 
     def on_botonModificarCliente_clicked(self, widget):
+        '''
+        Modifica los datos de un cliente.
+            :return: void
+        '''
         try:
             codigo_cliente = variables.mensajes_label[1].get_text()
             dni = variables.entries_cliente[0].get_text()
@@ -131,6 +175,10 @@ class Eventos():
             print('Error en on_botonModificarCliente_clicked')
 
     def on_entryDni_focus_out_event(self, widget, dni):
+        '''
+        Muestra un mensaje al usuario si el dni no es válido.
+            :return: void
+        '''
         try:
             dni = variables.entries_cliente[0].get_text()
             if funciones_clientes.es_dni_valido(dni):
@@ -142,6 +190,10 @@ class Eventos():
             print("Error en on_entryDni_focus_out_event")
 
     def on_treeClientes_cursor_changed(self, widget):
+        '''
+        Muestra los datos de un cliente al seleccionarlo en el TreeView.
+            :return: void
+        '''
         try:
             model, iter = variables.tree_clientes.get_selection().get_selected()
             variables.mensajes_label[0].set_text('')
@@ -165,6 +217,10 @@ class Eventos():
             print("Error en on_treeClientes_cursor_changed")
 
     def on_botonCalendario_clicked(self, widget):
+        '''
+        Muestra un calendario para seleccionar una fecha en el panel de clientes.
+            :return: void
+        '''
         try:
             variables.semaforo = 1
             variables.ventana_calendario.connect('delete-event', lambda w, e: w.hide() or True)
@@ -173,6 +229,10 @@ class Eventos():
             print('Error en on_botonCalendario_clicked')
 
     def on_botonCalendarioCheckIn_clicked(self, widget):
+        '''
+        Muestra un calendario para seleccionar una fecha en el panel de reservas.
+            :return: void
+        '''
         try:
             variables.semaforo = 2
             variables.ventana_calendario.connect('delete-event', lambda w, e: w.hide() or True)
@@ -181,6 +241,10 @@ class Eventos():
             print('Error en on_botonCalendarioCheckIn_clicked')
 
     def on_botonCalendarioCheckOut_clicked(self, widget):
+        '''
+        Muestra un calendario para seleccionar una fecha en el panel de reservas.
+            :return: void
+        '''
         try:
             variables.semaforo = 3
             variables.ventana_calendario.connect('delete-event', lambda w, e: w.hide() or True)
@@ -189,6 +253,10 @@ class Eventos():
             print('Error en on_botonCalendarioCheckOut_clicked')
 
     def on_calendario_day_selected_double_click(self, widget):
+        '''
+        Muestra la fecha seleccionada en el entry correspondiente.
+            :return: void
+        '''
         try:
             agno, mes, dia = variables.calendario.get_date()
             fecha = "%02d/" % dia + "%02d/" % (mes + 1) + "%s" % agno
@@ -207,6 +275,10 @@ class Eventos():
             print('Error en on_calendario_day_selected_double_click')
 
     def on_botonAltaHabitacion_clicked(self, widget):
+        '''
+        Inserta una habitación en la base de datos.
+            :return: void
+        '''
         try:
             numero_habitacion = variables.entries_habitacion[0].get_text()
             precio_habitacion = variables.entries_habitacion[1].get_text()
@@ -239,6 +311,10 @@ class Eventos():
             print("Error en on_botonAltaHabitacion_clicked")
 
     def on_treeHabitaciones_cursor_changed(self, widget):
+        '''
+        Muestra los datos de una habitación al seleccionarla en el TreeView.
+            :return: void
+        '''
         try:
             model, iter = variables.tree_habitaciones.get_selection().get_selected()
             funciones_habitacion.limpiar_entries(variables.entries_habitacion)
@@ -265,6 +341,10 @@ class Eventos():
             print("Error en on_treeHabitaciones_cursor_changed")
 
     def on_botonBajaHabitacion_clicked(self, widget):
+        '''
+        Elimina una habitación de la base de datos.
+            :return: void
+        '''
         try:
             numero_habitacion = variables.entries_habitacion[0].get_text()
             if numero_habitacion != '':
@@ -277,6 +357,10 @@ class Eventos():
             print('Error en on_botonBajaHabitacion_clicked')
 
     def on_botonModificarHabitacion_clicked(self, widget):
+        '''
+        Modifica los datos de una habitación.
+            :return: void
+        '''
         try:
             numero_habitacion = variables.entries_habitacion[0].get_text()
             prezo = variables.entries_habitacion[1].get_text()
@@ -302,12 +386,20 @@ class Eventos():
             print('Error en on_botonModificarHabitacion_clicked')
 
     def on_panel_select_page(self, widget):
+        '''
+        Actualiza el combo box de habitaciones en reservas al cambiar de panel.
+            :return: void
+        '''
         try:
             funciones_habitacion.actualizar_numeros_habitacion()
         except:
             print("Error en on_panel_select_page")
 
     def on_botonClientesToolBar_clicked(self, widget):
+        '''
+        Cambia del panel actual al panel de clientes.
+            :return: void
+        '''
         try:
             panelactual = variables.panel.get_current_page()
             if panelactual != 0:
@@ -318,6 +410,10 @@ class Eventos():
             print("Error en on_botonClientesToolBar_clicked")
 
     def on_botonReservasToolBar_clicked(self, widget):
+        '''
+        Cambia del panel actual al panel de reservas.
+            :return: void
+        '''
         try:
             panel_actual = variables.panel.get_current_page()
             if panel_actual != 1:
@@ -329,6 +425,10 @@ class Eventos():
             print("Error en on_botonReservasToolBar_clicked")
 
     def on_botonHabitacionesToolBar_clicked(self, widget):
+        '''
+        Cambia del panel actual al panel de habitaciones.
+            :return:
+        '''
         try:
             panelactual = variables.panel.get_current_page()
             if panelactual != 2:
@@ -339,12 +439,20 @@ class Eventos():
             print("Error en on_botonHabitacionesToolBar_clicked")
 
     def on_botonCalculadoraToolBar_clicked(self, widget):
+        '''
+        Muestra la calculadora.
+            :return: void
+        '''
         try:
             os.system('/snap/bin/gnome-calculator')
         except:
             print('Error en on_botonCalculadoraToolBar_clicked')
 
     def on_botonRefrescarToolBar_clicked(self, widget):
+        '''
+        Actualiza los TreeViews y limpia todos los entries.
+            :return: void
+        '''
         try:
             funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
             funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
@@ -360,12 +468,20 @@ class Eventos():
     # Eventos backup
 
     def on_botonBackupToolBar_clicked(self, widget):
+        '''
+        Muestra una ventana para seleccionar un archivo de base de datos para hacer copia de seguridad.
+            :return: void
+        '''
         try:
             variables.ventana_backup.show()
         except:
             print("Error en on_botonBackupToolBar_clicked")
 
     def on_botonBackupVentana_clicked(self, widget):
+        '''
+        Realiza la copia de seguridad de la base de datos seleccionada.
+            :return: void
+        '''
         try:
             conexion.Conexion().cerrarbbdd()
             backup = 'backup.zip'
@@ -388,6 +504,10 @@ class Eventos():
             print("Error en on_botonBackupVentana_clicked")
 
     def on_botonSalirVentanaBackup_clicked(self, widget):
+        '''
+        Cierra la ventana de selección de archivo de base de datos.
+            :return: void
+        '''
         try:
             variables.ventana_backup.connect('delete_event', lambda w, e: w.hide() or True)
             variables.ventana_backup.hide()
@@ -395,12 +515,20 @@ class Eventos():
             print('Error en on_botonSalirVentanaBackup_clicked')
 
     def on_menuBarBackup_activate(self, widget):
+        '''
+        Muestra una ventana para seleccionar la copia de seguridad que queremos restaurar.
+            :return: void
+        '''
         try:
             variables.ventana_restaurar_backup.show()
         except:
             print("Error en on_menuBarBackup_activate")
 
     def on_botonRestaurarBackup_clicked(self, widget):
+        '''
+        Restaura la copia de seguridad de la base de datos.
+            :return: void
+        '''
         try:
             Conexion().cerrarbbdd()
             fichero = variables.ventana_restaurar_backup.get_filename()
@@ -415,6 +543,10 @@ class Eventos():
             print("Error en on_botonRestaurarBackup_clicked")
 
     def on_botonSalirRestaurarBackup_clicked(self, widget):
+        '''
+        Cierra la ventana de selección de archivo de copia de seguridad.
+            :return: void
+        '''
         try:
             variables.ventana_restaurar_backup.connect('delete-event', lambda w, e: w.hide() or True)
             variables.ventana_restaurar_backup.hide()
@@ -422,6 +554,10 @@ class Eventos():
             print('Error en on_botonSalirRestaurarBackup_clicked')
 
     def on_comboBoxHabitacionesReserva_changed(self, widget):
+        '''
+        Selecciona la habitación del combo box.
+            :return: void
+        '''
         try:
             index = variables.combo_habitaciones.get_active()
             model = variables.combo_habitaciones.get_model()
@@ -433,6 +569,10 @@ class Eventos():
             print('Error en on_comboBoxHabitacionesReserva_changed')
 
     def on_botonAltaReservas_clicked(self, widget):
+        '''
+        Inserta una reserva en la base de datos.
+            :return: void
+        '''
         try:
             if variables.reserva == 1:
                 dni_reserva = variables.mensajes_label[4].get_text()
@@ -454,6 +594,10 @@ class Eventos():
             print('Error en on_botonAltaReservas_clicked')
 
     def on_botonRefrescarComboHabitaciones_clicked(self, widget):
+        '''
+        Actualiza la lista de habitaciones del combo box.
+            :return: void
+        '''
         try:
             variables.combo_habitaciones.set_active(-1)
             funciones_habitacion.actualizar_numeros_habitacion()
@@ -461,6 +605,10 @@ class Eventos():
             print('Error en on_botonRefrescarComboHabitaciones_clicked')
 
     def on_treeReservas_cursor_changed(self, widget):
+        '''
+        Muestra los datos de una reserva al seleccionarla en el TreeView.
+            :return: void
+        '''
         try:
             model, iter = variables.tree_reservas.get_selection().get_selected()
             funciones_reserva.limpiar_entry(variables.entries_reserva)
@@ -503,6 +651,10 @@ class Eventos():
             print('Error en on_treeReservas_cursor_changed')
 
     def on_botonModificarReservas_clicked(self, widget):
+        '''
+        Modifica los datos de una reserva.
+            :return: void
+        '''
         try:
             codigo = variables.codigo_reserva
             check_in = variables.entries_reserva[0].get_text()
@@ -517,6 +669,10 @@ class Eventos():
             print('Error en on_botonModificarReservas_clicked')
 
     def on_botonCheckout_clicked(self, widget):
+        '''
+        Cambia el estado de la habitación a libre y hace que la reserva deje de ser activa.
+            :return: void
+        '''
         try:
             funciones_habitacion.cambiar_estado_habitacion('SI', variables.numero_habitacion_reserva)
             funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
@@ -527,15 +683,27 @@ class Eventos():
             print('Error en on_botonCheckout_clicked')
 
     def on_switchReservas_state_set(self, widget, value):
+        '''
+        Muestra todas las reservas o sólo las activas.
+            :return: void
+        '''
         funciones_reserva.actualizar_lista_reservas()
 
     def on_botonImprimirFactura_clicked(self, widget):
+        '''
+        Genera la factura de la reserva seleccionada.
+            :return: void
+        '''
         try:
             impresion.factura(variables.datos_factura)
         except:
             print('Error en on_botonImprimirFactura_clicked')
 
     def on_botonImportarClientes_clicked(self,widget):
+        '''
+        Importa los clientes del archivo de excel a la base de datos.
+            :return: void
+        '''
         try:
             fichero = variables.ventana_importar_clientes.get_filename()
             fichero_excel = xlrd.open_workbook(fichero)
@@ -557,6 +725,10 @@ class Eventos():
             print('Error en on_botonImportarClientes_clicked')
 
     def on_botonExportarClientes_clicked(self, widget):
+        '''
+        Exporta los clientes de la base de datos a un archivo de excel.
+            :return: void
+        '''
         try:
             directorio = variables.ventana_exportar_clientes.get_filename()
             estilo_cabecera = xlwt.easyxf('font: name Times New Roman, colour red, bold on')
@@ -582,6 +754,10 @@ class Eventos():
             print('Error en on_botonExportarClientes_clicked')
 
     def on_menuBarImportarClientes_activate(self, widget):
+        '''
+        Muestra una ventana para seleccionar el archivo de excel con clientes para importar a la base de datos.
+            :return: void
+        '''
         try:
             variables.ventana_importar_clientes.show()
         except Exception as e:
@@ -589,6 +765,10 @@ class Eventos():
             print('Error en on_menuBarImportarClientes_activate')
 
     def on_botonSalirVentanaImportar_clicked(self, widget):
+        '''
+        Cierra la ventana de selección de archivo de excel para importar clientes.
+            :return: void
+        '''
         try:
             variables.ventana_importar_clientes.connect('delete-event', lambda w, e: w.hide() or True)
             variables.ventana_importar_clientes.hide()
@@ -597,6 +777,10 @@ class Eventos():
             print('Error en on_botonSalirVentanaImportar_clicked')
 
     def on_menuBarExportarClientes_activate(self, widget):
+        '''
+        Muestra una ventana para seleccionar el directorio dónde se guardará el archivo de excel con los clientes exportados.
+        :return:
+        '''
         try:
             variables.ventana_exportar_clientes.show()
         except Exception as e:
@@ -604,6 +788,10 @@ class Eventos():
             print('Error en on_menuBarExportarClientes_activate')
 
     def on_botonSalirVentanaExportar_clicked(self, widget):
+        '''
+        Cierra la ventana de selección de directorio del archivo de clientes exportados.
+            :return: void
+        '''
         try:
             variables.ventana_exportar_clientes.connect('delete-event', lambda w, e: w.hide() or True)
             variables.ventana_exportar_clientes.hide()
@@ -612,6 +800,10 @@ class Eventos():
             print('Error en on_botonSalirVentanaExportar_clicked')
 
     def on_botonModificarPrecios_clicked(self, widget):
+        '''
+        Modifica los precios de los servicios básicos.
+            :return: void
+        '''
         try:
             precio_parking = variables.entries_precios_servicios_basicos[0].get_text()
             precio_desayuno = variables.entries_precios_servicios_basicos[1].get_text()
@@ -625,6 +817,10 @@ class Eventos():
             print('Error en on_botonModificarPrecios_clicked')
 
     def on_botonAltaServiciosBasicos_clicked(self, widget):
+        '''
+        Inserta un servicio básico en la base de datos.
+            :return: void
+        '''
         try:
             precios = funciones_servicios.obtener_precios_servicios_basicos()
             if variables.radiobuttons_servicios_basicos[0].get_active():
