@@ -35,6 +35,7 @@ class Eventos():
         variables.entries_precios_servicios_basicos[0].set_text(str(precios[0]))
         variables.entries_precios_servicios_basicos[1].set_text(str(precios[1]))
         variables.entries_precios_servicios_basicos[2].set_text(str(precios[2]))
+        variables.ventana_precios.connect('delete-event', lambda w, e: w.hide() or True)
         variables.ventana_precios.show()
 
     def on_botonSalirVentanaPrecios_clicked(self, widget):
@@ -457,7 +458,7 @@ class Eventos():
             funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
             funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
             funciones_reserva.actualizar_lista_reservas()
-            funciones_servicios.actualizar_lista_servicios(variables.lista_servicios)
+            funciones_servicios.actualizar_lista_servicios(variables.lista_servicios, variables.codigo_reserva)
             funciones_habitacion.limpiar_entries(variables.entries_habitacion)
             funciones_clientes.limpiar_entries(variables.entries_cliente)
             funciones_reserva.limpiar_entry(variables.entries_reserva)
@@ -465,7 +466,6 @@ class Eventos():
         except:
             print('Error en on_botonRefrescarToolBar_clicked')
 
-    # Eventos backup
 
     def on_botonBackupToolBar_clicked(self, widget):
         '''
@@ -646,6 +646,7 @@ class Eventos():
                                             numero_noches_seleccionadas)
                 variables.labels_servicios[0].set_text(str(variables.codigo_reserva))
                 variables.labels_servicios[1].set_text(str(numero_habitacion_seleccionado))
+                funciones_servicios.actualizar_lista_servicios(variables.lista_servicios, variables.codigo_reserva)
         except Exception as e:
             print(e)
             print('Error en on_treeReservas_cursor_changed')
@@ -822,7 +823,13 @@ class Eventos():
             :return: void
         '''
         try:
+            codigo_reserva = variables.labels_servicios[0].get_text()
             precios = funciones_servicios.obtener_precios_servicios_basicos()
+            if variables.checkbox_parking.get_active():
+                concepto = 'Parking'
+                precio = precios[0]
+            else:
+                pass
             if variables.radiobuttons_servicios_basicos[0].get_active():
                 pass
             elif variables.radiobuttons_servicios_basicos[1].get_active():
@@ -831,9 +838,14 @@ class Eventos():
             elif variables.radiobuttons_servicios_basicos[2].get_active():
                 concepto = 'Comida'
                 precio = precios[2]
-            servicio = (concepto, precio)
-            funciones_servicios.insertar_servicio_basico(servicio)
-            funciones_servicios.actualizar_lista_servicios(variables.lista_servicios)
+            servicio = (concepto, precio,codigo_reserva)
+            if codigo_reserva !="":
+                funciones_servicios.insertar_servicio_basico(servicio)
+                funciones_servicios.actualizar_lista_servicios(variables.lista_servicios, codigo_reserva)
+            else:
+                print("Falta el código de reserva")
         except Exception as e:
             print(e)
             print('Error en on_botonAltaServiciosBasicos_clicked')
+
+

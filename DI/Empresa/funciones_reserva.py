@@ -193,6 +193,22 @@ def obtener_precio_habitacion_por_numero_habitacion(numero_habitacion):
         Conexion.conexion.rollback()
 
 
+def obtener_noches_por_codigo_reserva(codigo_reserva):
+    '''
+    Devuelve el precio de la habitación.
+    :param codigo_reserva: código de la reserva de la que queremos saber el número de noches
+    :return noches: número de noches de la reserva
+    '''
+    try:
+        Conexion.cursor.execute('select noches from reservas where codreser = ?', (codigo_reserva,))
+        noches = Conexion.cursor.fetchone()
+        Conexion.conexion.commit()
+        return noches
+    except sqlite3.OperationalError as e:
+        print(e)
+        Conexion.conexion.rollback()
+
+
 def modificar_reserva(reserva, codigo):
     '''
     Modifica los datos de una reserva.

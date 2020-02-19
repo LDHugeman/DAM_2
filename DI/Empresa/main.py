@@ -136,7 +136,6 @@ class Empresa:
         funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
         funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
         funciones_reserva.actualizar_lista_reservas()
-        funciones_servicios.actualizar_lista_servicios(variables.lista_servicios)
 
     def set_style(self):
         '''

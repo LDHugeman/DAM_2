@@ -37,13 +37,13 @@ def modificar_precios_servicios_basicos(precios):
         Conexion.conexion.rollback()
 
 
-def obtener_listado_servicios():
+def obtener_listado_servicios_de_una_reserva(codigo_reserva):
     '''
-    Devuelve un listado con los servicios de la base de datos.
+    Devuelve un listado con los servicios de una reserva de la base de datos.
         :return servicios: listado de servicios
     '''
     try:
-        Conexion.cursor.execute('select * from servicios')
+        Conexion.cursor.execute('select codigoServicio, concepto, precio from servicios where codigoReserva = ?', (codigo_reserva,))
         servicios = Conexion.cursor.fetchall()
         Conexion.conexion.commit()
         return servicios
@@ -52,14 +52,14 @@ def obtener_listado_servicios():
         Conexion.conexion.rollback()
 
 
-def actualizar_lista_servicios(lista_servicios):
+def actualizar_lista_servicios(lista_servicios, codigo_reserva):
     '''
     Actualiza el listado de servicios.
         :param lista_servicios: listado de los servicios para actualizar
         :return: void
     '''
     try:
-        variables.listado = obtener_listado_servicios()
+        variables.listado = obtener_listado_servicios_de_una_reserva(codigo_reserva)
         lista_servicios.clear()
         for servicio in variables.listado:
             lista_servicios.append(servicio)
@@ -75,7 +75,7 @@ def insertar_servicio_basico(servicio):
         :return: void
     '''
     try:
-        Conexion.cursor.execute('insert into  servicios(concepto,precio) values(?,?)', servicio)
+        Conexion.cursor.execute('insert into  servicios(concepto,precio,codigoReserva) values(?,?,?)', servicio)
         Conexion.conexion.commit()
     except sqlite3.OperationalError as e:
         print(e)

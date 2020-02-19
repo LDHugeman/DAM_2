@@ -289,7 +289,7 @@
                               <object class="GtkLabel" id="labelCodigoCliente">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="halign">baseline</property>
+                                <property name="halign">start</property>
                                 <attributes>
                                   <attribute name="weight" value="ultrabold"/>
                                   <attribute name="foreground" value="#20204a4a8787"/>
@@ -1839,9 +1839,10 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="margin_left">3</property>
-                        <property name="margin_right">90</property>
+                        <property name="margin_right">80</property>
                         <property name="margin_top">3</property>
                         <property name="margin_bottom">3</property>
+                        <property name="hexpand">True</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -1853,7 +1854,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="margin_left">3</property>
-                        <property name="margin_right">3</property>
+                        <property name="margin_right">30</property>
                         <property name="margin_top">3</property>
                         <property name="margin_bottom">3</property>
                         <property name="hexpand">True</property>
@@ -1965,7 +1966,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton">
+                  <object class="GtkButton" id="botonEliminarServicio">
                     <property name="label" translatable="yes">Eliminar</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -3274,18 +3275,17 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="row_homogeneous">True</property>
-        <property name="column_homogeneous">True</property>
         <child>
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">end</property>
+            <property name="halign">start</property>
             <property name="valign">center</property>
-            <property name="margin_left">3</property>
+            <property name="margin_left">10</property>
             <property name="margin_right">3</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
-            <property name="label" translatable="yes">Parking (€):</property>
+            <property name="label" translatable="yes">Parking (€/dia):</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -3296,9 +3296,8 @@
           <object class="GtkEntry" id="entryPrecioParking">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="halign">start</property>
             <property name="margin_left">3</property>
-            <property name="margin_right">3</property>
+            <property name="margin_right">10</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
           </object>
@@ -3311,13 +3310,13 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">end</property>
+            <property name="halign">start</property>
             <property name="valign">center</property>
-            <property name="margin_left">3</property>
+            <property name="margin_left">10</property>
             <property name="margin_right">3</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
-            <property name="label" translatable="yes">Desayuno (€):</property>
+            <property name="label" translatable="yes">Desayuno (€/dia):</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -3329,7 +3328,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="margin_left">3</property>
-            <property name="margin_right">3</property>
+            <property name="margin_right">10</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
           </object>
@@ -3343,7 +3342,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="margin_left">3</property>
-            <property name="margin_right">3</property>
+            <property name="margin_right">10</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
           </object>
@@ -3356,13 +3355,13 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">end</property>
+            <property name="halign">start</property>
             <property name="valign">center</property>
-            <property name="margin_left">3</property>
-            <property name="margin_right">4</property>
+            <property name="margin_left">10</property>
+            <property name="margin_right">3</property>
             <property name="margin_top">3</property>
             <property name="margin_bottom">3</property>
-            <property name="label" translatable="yes">Pensión completa (€):</property>
+            <property name="label" translatable="yes">Pensión completa (€/día):</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
