@@ -7,6 +7,26 @@ import variables
 from conexion import Conexion
 
 
+def limpiar_entries_servicios(entries):
+    '''
+    Vacía los entries de la pestaña de servicios tras ejecutar un evento.
+        :param entries: contiene un listado de entries de servicios
+        :return: void
+    '''
+    for i in range(len(entries)):
+        entries[i].set_text('')
+
+
+def limpiar_labels_servicios(labels):
+    '''
+    Vacía los labels de la pestaña de servicios tras ejecutar un evento.
+        :param labels: contiene un listado de labels de servicios
+        :return: void
+    '''
+    for i in range(len(labels)):
+        labels[i].set_text('')
+
+
 def obtener_precios_servicios_basicos():
     '''
     Devuelve un listado con los precios de los servicios básicos.
@@ -43,7 +63,8 @@ def obtener_listado_servicios_de_una_reserva(codigo_reserva):
         :return servicios: listado de servicios
     '''
     try:
-        Conexion.cursor.execute('select codigoServicio, concepto, precio from servicios where codigoReserva = ?', (codigo_reserva,))
+        Conexion.cursor.execute('select codigoServicio, concepto, precio from servicios where codigoReserva = ?',
+                                (codigo_reserva,))
         servicios = Conexion.cursor.fetchall()
         Conexion.conexion.commit()
         return servicios
@@ -55,6 +76,7 @@ def obtener_listado_servicios_de_una_reserva(codigo_reserva):
 def actualizar_lista_servicios(lista_servicios, codigo_reserva):
     '''
     Actualiza el listado de servicios.
+        :param codigo_reserva: código de la reserva
         :param lista_servicios: listado de los servicios para actualizar
         :return: void
     '''
@@ -68,9 +90,9 @@ def actualizar_lista_servicios(lista_servicios, codigo_reserva):
         print("Error en actualizar_lista_servicios")
 
 
-def insertar_servicio_basico(servicio):
+def insertar_servicio(servicio):
     '''
-    Inserta un servicio básico en la base de datos.
+    Inserta un servicio en la base de datos.
         :param servicio: contiene un listado con los datos de un servicio básico
         :return: void
     '''
@@ -80,3 +102,31 @@ def insertar_servicio_basico(servicio):
     except sqlite3.OperationalError as e:
         print(e)
         Conexion.conexion.rollback()
+
+
+def baja_servicio(codigo_servicio):
+    '''
+    Elimina un servicio de la base de datos.
+        :param codigo_servicio: código del servicio que deseamos eliminar
+        :return: void
+    '''
+    try:
+        Conexion.cursor.execute('delete from servicios where codigoServicio = ?', (codigo_servicio,))
+        Conexion.conexion.commit()
+    except sqlite3.OperationalError as e:
+        print(e)
+        Conexion.conexion.rollback()
+
+
+def existe_servicio_en_reserva(concepto, codigo_reserva):
+    '''
+    Comprueba si existe un servicio en la reserva
+        :param concepto: concepto del servicio que queremos ver si ya está en la reserva
+        :param codigo_reserva: código de la reserva
+        :return: boolean
+    '''
+    servicios = obtener_listado_servicios_de_una_reserva(codigo_reserva)
+    for servicio in servicios:
+        if servicio[1] == concepto:
+            return True
+    return False

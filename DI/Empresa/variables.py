@@ -14,6 +14,9 @@ ventana_dialog_salir = None
 ventana_precios = None
 ventana_importar_clientes = None
 ventana_exportar_clientes = None
+ventana_aviso = None
+label_ventana_aviso = None
+grid_factura = None
 
 entries_cliente = ()
 lista_clientes = ()
@@ -45,3 +48,4 @@ entries_servicios_adicionales = ()
 lista_servicios = ()
 tree_servicios = ()
 entries_precios_servicios_basicos = ()
+codigo_servicio = None

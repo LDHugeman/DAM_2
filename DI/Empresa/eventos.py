@@ -12,6 +12,7 @@ import xlwt
 
 import conexion
 import funciones_servicios
+import utils
 from conexion import Conexion
 import facturacion
 import funciones_habitacion
@@ -132,7 +133,7 @@ class Eventos():
             if funciones_clientes.es_dni_valido(dni):
                 funciones_clientes.insertar_cliente_BD(cliente)
                 funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
-                funciones_clientes.limpiar_entries(variables.entries_cliente)
+                funciones_clientes.limpiar_entries_cliente(variables.entries_cliente)
             else:
                 variables.mensajes_label[0].set_text('ERROR DNI')
         except:
@@ -148,7 +149,7 @@ class Eventos():
             if dni != '':
                 funciones_clientes.baja_cliente(dni)
                 funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
-                funciones_clientes.limpiar_entries(variables.entries_cliente)
+                funciones_clientes.limpiar_entries_cliente(variables.entries_cliente)
             else:
                 print('Falta dni u otro error')
         except:
@@ -169,7 +170,7 @@ class Eventos():
             if dni != '':
                 funciones_clientes.modificar_cliente(cliente, codigo_cliente)
                 funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
-                funciones_clientes.limpiar_entries(variables.entries_cliente)
+                funciones_clientes.limpiar_entries_cliente(variables.entries_cliente)
             else:
                 print('Falta el dni')
         except:
@@ -198,7 +199,7 @@ class Eventos():
         try:
             model, iter = variables.tree_clientes.get_selection().get_selected()
             variables.mensajes_label[0].set_text('')
-            funciones_clientes.limpiar_entries(variables.entries_cliente)
+            funciones_clientes.limpiar_entries_cliente(variables.entries_cliente)
             if iter != None:
                 dni_seleccionado = model.get_value(iter, 0)
                 apellidos_seleccionados = model.get_value(iter, 1)
@@ -304,7 +305,7 @@ class Eventos():
                 funciones_habitacion.insertar_habitacion_BD(registro)
                 funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
                 funciones_habitacion.actualizar_numeros_habitacion()
-                funciones_habitacion.limpiar_entries(variables.entries_habitacion)
+                funciones_habitacion.limpiar_entries_habitacion(variables.entries_habitacion)
             else:
                 pass
         except Exception as e:
@@ -318,7 +319,7 @@ class Eventos():
         '''
         try:
             model, iter = variables.tree_habitaciones.get_selection().get_selected()
-            funciones_habitacion.limpiar_entries(variables.entries_habitacion)
+            funciones_habitacion.limpiar_entries_habitacion(variables.entries_habitacion)
             if iter != None:
                 numero_habitacion_seleccionado = model.get_value(iter, 0)
                 tipo_seleccionado = model.get_value(iter, 1)
@@ -350,7 +351,7 @@ class Eventos():
             numero_habitacion = variables.entries_habitacion[0].get_text()
             if numero_habitacion != '':
                 funciones_habitacion.baja_habitacion(numero_habitacion)
-                funciones_habitacion.limpiar_entries(variables.entries_habitacion)
+                funciones_habitacion.limpiar_entries_habitacion(variables.entries_habitacion)
                 funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
             else:
                 pass
@@ -379,7 +380,7 @@ class Eventos():
             if numero_habitacion != '':
                 funciones_habitacion.modificar_habitacion(habitacion, numero_habitacion)
                 funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
-                funciones_habitacion.limpiar_entries(variables.entries_habitacion)
+                funciones_habitacion.limpiar_entries_habitacion(variables.entries_habitacion)
             else:
                 print('Falta el número de la habitación')
         except Exception as e:
@@ -458,14 +459,15 @@ class Eventos():
             funciones_clientes.actualizar_lista_clientes(variables.lista_clientes)
             funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
             funciones_reserva.actualizar_lista_reservas()
-            funciones_servicios.actualizar_lista_servicios(variables.lista_servicios, variables.codigo_reserva)
-            funciones_habitacion.limpiar_entries(variables.entries_habitacion)
-            funciones_clientes.limpiar_entries(variables.entries_cliente)
-            funciones_reserva.limpiar_entry(variables.entries_reserva)
+            funciones_servicios.actualizar_lista_servicios(variables.lista_servicios, -1)
+            funciones_habitacion.limpiar_entries_habitacion(variables.entries_habitacion)
+            funciones_clientes.limpiar_entries_cliente(variables.entries_cliente)
+            funciones_reserva.limpiar_entries_reserva(variables.entries_reserva)
+            funciones_servicios.limpiar_entries_servicios(variables.entries_servicios_adicionales)
+            funciones_servicios.limpiar_labels_servicios(variables.labels_servicios)
             facturacion.limpiar_labels_factura(variables.labels_factura)
         except:
             print('Error en on_botonRefrescarToolBar_clicked')
-
 
     def on_botonBackupToolBar_clicked(self, widget):
         '''
@@ -585,8 +587,8 @@ class Eventos():
                     funciones_reserva.actualizar_lista_reservas()
                     funciones_habitacion.cambiar_estado_habitacion('NO', variables.numero_habitacion_reserva)
                     funciones_habitacion.actualizar_lista_habitaciones(variables.lista_habitaciones)
-                    funciones_habitacion.limpiar_entries(variables.entries_habitacion)
-                    funciones_reserva.limpiar_entry(variables.entries_reserva)
+                    funciones_habitacion.limpiar_entries_habitacion(variables.entries_habitacion)
+                    funciones_reserva.limpiar_entries_reserva(variables.entries_reserva)
                 else:
                     print('Habitación ocupada o falta el dni del cliente')
         except Exception as e:
@@ -611,7 +613,7 @@ class Eventos():
         '''
         try:
             model, iter = variables.tree_reservas.get_selection().get_selected()
-            funciones_reserva.limpiar_entry(variables.entries_reserva)
+            funciones_reserva.limpiar_entries_reserva(variables.entries_reserva)
             if iter != None:
                 variables.codigo_reserva = model.get_value(iter, 0)
                 dni_seleccionado = model.get_value(iter, 1)
@@ -637,7 +639,8 @@ class Eventos():
                                            dni_seleccionado,
                                            numero_habitacion_seleccionado,
                                            check_out_seleccionado,
-                                           funciones_reserva.obtener_precio_habitacion_por_numero_habitacion(numero_habitacion_seleccionado))
+                                           funciones_reserva.obtener_precio_habitacion_por_numero_habitacion(
+                                               numero_habitacion_seleccionado))
                 facturacion.obtener_factura(dni_seleccionado,
                                             apellidos_seleccionados,
                                             nombre_seleccionado,
@@ -664,7 +667,7 @@ class Eventos():
             reserva = (check_in, check_out, noches)
             funciones_reserva.modificar_reserva(reserva, codigo)
             funciones_reserva.actualizar_lista_reservas()
-            funciones_reserva.limpiar_entry(variables.entries_reserva)
+            funciones_reserva.limpiar_entries_reserva(variables.entries_reserva)
         except Exception as e:
             print(e)
             print('Error en on_botonModificarReservas_clicked')
@@ -700,7 +703,7 @@ class Eventos():
         except:
             print('Error en on_botonImprimirFactura_clicked')
 
-    def on_botonImportarClientes_clicked(self,widget):
+    def on_botonImportarClientes_clicked(self, widget):
         '''
         Importa los clientes del archivo de excel a la base de datos.
             :return: void
@@ -747,7 +750,7 @@ class Eventos():
             for i in range(len(listado_clientes)):
                 for j in range(len(listado_clientes[0])):
                     hoja_excel.write(i, j, listado_clientes[i][j], estilo_celda)
-            fichero_excel.save(str(directorio)+'/clientes_exportados.xls')
+            fichero_excel.save(str(directorio) + '/clientes_exportados.xls')
             variables.ventana_exportar_clientes.connect('delete-event', lambda w, e: w.hide() or True)
             variables.ventana_exportar_clientes.hide()
         except Exception as e:
@@ -825,6 +828,8 @@ class Eventos():
         try:
             codigo_reserva = variables.labels_servicios[0].get_text()
             precios = funciones_servicios.obtener_precios_servicios_basicos()
+            concepto = ""
+            precio = None
             if variables.checkbox_parking.get_active():
                 concepto = 'Parking'
                 precio = precios[0]
@@ -838,14 +843,81 @@ class Eventos():
             elif variables.radiobuttons_servicios_basicos[2].get_active():
                 concepto = 'Comida'
                 precio = precios[2]
-            servicio = (concepto, precio,codigo_reserva)
-            if codigo_reserva !="":
-                funciones_servicios.insertar_servicio_basico(servicio)
-                funciones_servicios.actualizar_lista_servicios(variables.lista_servicios, codigo_reserva)
+            servicio = (concepto, precio, codigo_reserva)
+            if codigo_reserva != "":
+                if concepto != "" and precio is not None and not funciones_servicios.existe_servicio_en_reserva(concepto, codigo_reserva):
+                    funciones_servicios.insertar_servicio(servicio)
+                    funciones_servicios.actualizar_lista_servicios(variables.lista_servicios, codigo_reserva)
+                else:
+                    utils.mostrar_ventana_aviso('Esta reserva ya cuenta con ese servicio.')
             else:
-                print("Falta el código de reserva")
+                utils.mostrar_ventana_aviso('Debe seleccionar una reserva.')
         except Exception as e:
             print(e)
             print('Error en on_botonAltaServiciosBasicos_clicked')
 
+    def on_treeServicios_cursor_changed(self, widget):
+        '''
+        Muestra los datos de un servicio al seleccionarlo en el TreeView.
+            :return: void
+        '''
+        try:
+            model, iter = variables.tree_servicios.get_selection().get_selected()
+            if iter != None:
+                variables.codigo_servicio = model.get_value(iter, 0)
+        except Exception as e:
+            print(e)
+            print('Error en on_treeServicios_cursor_changed')
 
+    def on_botonEliminarServicio_clicked(self, widget):
+        '''
+        Elimina un servicio de la base de datos.
+            :return: void
+        '''
+        try:
+            if variables.codigo_servicio is not None:
+                funciones_servicios.baja_servicio(variables.codigo_servicio)
+                funciones_servicios.actualizar_lista_servicios(variables.lista_servicios, variables.codigo_reserva)
+            else:
+                utils.mostrar_ventana_aviso('Falta el código del servicio a eliminar.')
+        except Exception as e:
+            print(e)
+            print('on_botonEliminarServicio_clicked')
+
+    def on_botonAltaServiciosAdicionales_clicked(self, widget):
+        '''
+        Inserta un servicio adicional en la base de datos.
+            :return: void
+        '''
+        try:
+            variables.grid_factura.insert_row(1)
+            codigo_reserva = variables.labels_servicios[0].get_text()
+            concepto = variables.entries_servicios_adicionales[0].get_text()
+            precio = variables.entries_servicios_adicionales[1].get_text()
+            servicio = (concepto, precio, codigo_reserva)
+            if codigo_reserva != "":
+                if concepto != "":
+                    if precio != "":
+                        if not funciones_servicios.existe_servicio_en_reserva(concepto, codigo_reserva):
+                            funciones_servicios.insertar_servicio(servicio)
+                            funciones_servicios.actualizar_lista_servicios(variables.lista_servicios, codigo_reserva)
+                            funciones_servicios.limpiar_entries_servicios(variables.entries_servicios_adicionales)
+                        else:
+                            utils.mostrar_ventana_aviso('Esta reserva ya cuenta con ese servicio.')
+                    else:
+                        utils.mostrar_ventana_aviso('Falta el precio del servicio.')
+                else:
+                    utils.mostrar_ventana_aviso('Falta el tipo de servicio.')
+            else:
+                utils.mostrar_ventana_aviso('Debe seleccionar una reserva.')
+        except Exception as e:
+            print(e)
+            print('Error en on_botonAltaServiciosAdicionales_clicked')
+
+    def on_botonAceptarAviso_clicked(self, widget):
+        '''
+        Cierra la ventana de aviso.
+            :return: void
+        '''
+        variables.ventana_aviso.connect('delete-event', lambda w, e: w.hide() or True)
+        variables.ventana_aviso.hide()

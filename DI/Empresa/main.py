@@ -34,7 +34,10 @@ class Empresa:
         variables.ventana_calendario = builder.get_object('ventanaCalendario')
         variables.ventana_importar_clientes = builder.get_object('ventanaImportarClientes')
         variables.ventana_exportar_clientes = builder.get_object('ventanaExportarClientes')
+        variables.ventana_aviso = builder.get_object('ventanaAviso')
+        variables.label_ventana_aviso = builder.get_object('labelVentanaAviso')
         variables.calendario = builder.get_object('calendario')
+        variables.grid_factura = builder.get_object('gridFactura')
         menu_bar = builder.get_object('menuBar').get_style_context()
 
         entry_dni = builder.get_object('entryDni')

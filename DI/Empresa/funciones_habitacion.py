@@ -6,7 +6,7 @@ import variables
 from conexion import Conexion
 
 
-def limpiar_entries(entries):
+def limpiar_entries_habitacion(entries):
     '''
     Vacía los entries de la habitación tras ejecutar un evento.
         :param entries: contiene un listado de entries de la habitación

@@ -8,7 +8,7 @@ import sqlite3
 import variables
 
 
-def limpiar_entries(entries):
+def limpiar_entries_cliente(entries):
     '''
     Vacía los entries del cliente tras ejecutar un evento.
         :param entries: contiene un listado de entries del cliente

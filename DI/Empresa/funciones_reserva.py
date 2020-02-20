@@ -7,7 +7,7 @@ from datetime import datetime
 from conexion import Conexion
 
 
-def limpiar_entry(entries):
+def limpiar_entries_reserva(entries):
     '''
     Vacía los entries de la reserva tras ejecutar un evento.
         :param entries: contiene un listado de entries de la reserva
