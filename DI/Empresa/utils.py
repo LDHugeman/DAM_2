@@ -1,3 +1,6 @@
+'''Módulo que contiene funciones de carácter general.
+'''
+
 import variables
 
 
