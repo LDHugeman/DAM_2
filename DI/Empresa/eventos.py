@@ -890,7 +890,6 @@ class Eventos():
             :return: void
         '''
         try:
-            variables.grid_factura.insert_row(1)
             codigo_reserva = variables.labels_servicios[0].get_text()
             concepto = variables.entries_servicios_adicionales[0].get_text()
             precio = variables.entries_servicios_adicionales[1].get_text()
