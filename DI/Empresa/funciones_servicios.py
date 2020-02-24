@@ -2,9 +2,11 @@
 '''Módulo que gestiona los servicios.
 '''
 import sqlite3
+from typing import List
 
 import variables
 from conexion import Conexion
+from objetos.Servicio import Servicio
 
 
 def limpiar_entries_servicios(entries):
@@ -57,17 +59,20 @@ def modificar_precios_servicios_basicos(precios):
         Conexion.conexion.rollback()
 
 
-def obtener_listado_servicios_de_una_reserva(codigo_reserva):
-    '''
+def obtener_listado_servicios_de_una_reserva(codigo_reserva) -> List[Servicio]:
+    """
     Devuelve un listado con los servicios de una reserva de la base de datos.
         :return servicios: listado de servicios
-    '''
+    """
     try:
         Conexion.cursor.execute('select codigoServicio, concepto, precio from servicios where codigoReserva = ?',
                                 (codigo_reserva,))
         servicios = Conexion.cursor.fetchall()
         Conexion.conexion.commit()
-        return servicios
+        array_servicios = []
+        for servicio in servicios:
+            array_servicios.append(Servicio(codigo_reserva, servicio[0], servicio[1], servicio[2]))
+        return array_servicios
     except sqlite3.OperationalError as e:
         print(e)
         Conexion.conexion.rollback()
@@ -84,10 +89,31 @@ def actualizar_lista_servicios(lista_servicios, codigo_reserva):
         variables.listado = obtener_listado_servicios_de_una_reserva(codigo_reserva)
         lista_servicios.clear()
         for servicio in variables.listado:
-            lista_servicios.append(servicio)
+            lista_servicios.append([servicio.codigo, servicio.concepto, servicio.precio])
     except Exception as e:
         print(e)
         print("Error en actualizar_lista_servicios")
+
+
+def actualizar_lista_previsualizar_servicios(lista_servicios, codigo_reserva, noches, precio_habitacion):
+    """
+    Actualiza el listado de los servicios previsualizados.
+        :param codigo_reserva: código de la reserva
+        :param lista_servicios: listado de los servicios para actualizar
+        :param precio_habitacion: precio de la habitacion
+        :param noches: número de noches
+        :return: void
+    """
+    try:
+        variables.listado = obtener_listado_servicios_de_una_reserva(codigo_reserva)
+        lista_servicios.clear()
+        total_noches = float(noches) * precio_habitacion
+        lista_servicios.append(["Noches", noches, precio_habitacion, total_noches])
+        for servicio in variables.listado:
+            lista_servicios.append([servicio.concepto, "", servicio.precio, float(noches) * servicio.precio])
+    except Exception as e:
+        print(e)
+        print("Error en actualizar_lista_previsualizar_servicios")
 
 
 def insertar_servicio(servicio):
@@ -127,6 +153,6 @@ def existe_servicio_en_reserva(concepto, codigo_reserva):
     '''
     servicios = obtener_listado_servicios_de_una_reserva(codigo_reserva)
     for servicio in servicios:
-        if servicio[1] == concepto:
+        if servicio.concepto == concepto:
             return True
     return False

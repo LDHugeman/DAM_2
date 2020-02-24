@@ -4,10 +4,9 @@
 import gi
 
 import eventos
+import funciones_clientes
 import funciones_habitacion
 import funciones_reserva
-import funciones_clientes
-import funciones_servicios
 import variables
 from conexion import Conexion
 
@@ -37,7 +36,6 @@ class Empresa:
         variables.ventana_aviso = builder.get_object('ventanaAviso')
         variables.label_ventana_aviso = builder.get_object('labelVentanaAviso')
         variables.calendario = builder.get_object('calendario')
-        variables.grid_factura = builder.get_object('gridFactura')
         menu_bar = builder.get_object('menuBar').get_style_context()
 
         entry_dni = builder.get_object('entryDni')
@@ -53,11 +51,11 @@ class Empresa:
         variables.entries_cliente = (entry_dni, entry_apellidos, entry_nombre, entry_fecha_cliente)
         variables.lista_clientes = builder.get_object('listaClientes')
         variables.tree_clientes = builder.get_object('treeClientes')
-        variables.mensajes_label = (label_error_dni, 
-                                    label_codigo_cliente, 
-                                    label_numero_noches, 
-                                    label_directorio_backup, 
-                                    label_dni_reserva, 
+        variables.mensajes_label = (label_error_dni,
+                                    label_codigo_cliente,
+                                    label_numero_noches,
+                                    label_directorio_backup,
+                                    label_dni_reserva,
                                     label_apellidos_reserva)
 
         entry_numero_habitacion = builder.get_object('entryNumeroHabitacion')
@@ -86,10 +84,9 @@ class Empresa:
         label_codigo_reserva_factura = builder.get_object('labelCodigoReservaFactura')
         label_habitacion_factura = builder.get_object('labelHabitacionFactura')
         label_fecha_factura = builder.get_object('labelFechaFactura')
-        label_unidades_factura = builder.get_object('labelUnidades')
-        label_precio_unidad_factura = builder.get_object('labelPrecioUnidad')
+        label_subtotal_factura = builder.get_object('labelSubtotal')
+        label_iva_factura = builder.get_object('labelIva')
         label_total_factura = builder.get_object('labelTotal')
-
         variables.labels_factura = (
             label_dni_factura,
             label_apelidos_factura,
@@ -97,8 +94,8 @@ class Empresa:
             label_codigo_reserva_factura,
             label_habitacion_factura,
             label_fecha_factura,
-            label_unidades_factura,
-            label_precio_unidad_factura,
+            label_subtotal_factura,
+            label_iva_factura,
             label_total_factura)
 
         label_codigo_reserva_servicios = builder.get_object('labelCodigoReservaServicios')
@@ -116,6 +113,8 @@ class Empresa:
         variables.entries_servicios_adicionales = (entry_tipo_servicio, entry_precio_servicio)
         variables.tree_servicios = builder.get_object('treeServicios')
         variables.lista_servicios = builder.get_object('listaServicios')
+        variables.tree_previsualizar_servicios = builder.get_object('treePrevisualizarServicios')
+        variables.lista_previsualizar_servicios = builder.get_object('listaPrevisualizarServicios')
 
         entry_precio_parking = builder.get_object('entryPrecioParking')
         entry_precio_desayuno = builder.get_object('entryPrecioDesayuno')

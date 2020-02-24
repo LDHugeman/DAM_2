@@ -1,3 +1,5 @@
+from objetos import Reserva
+
 # coding=utf-8
 '''Módulo que contiene variables de carácter general para usar en cualquier otro módulo.
 '''
@@ -16,7 +18,6 @@ ventana_importar_clientes = None
 ventana_exportar_clientes = None
 ventana_aviso = None
 label_ventana_aviso = None
-grid_factura = None
 
 entries_cliente = ()
 lista_clientes = ()
@@ -40,6 +41,7 @@ reserva = None
 
 labels_factura = ()
 datos_factura = ()
+factura: Reserva
 
 labels_servicios = ()
 radiobuttons_servicios_basicos = ()
@@ -47,5 +49,8 @@ checkbox_parking = None
 entries_servicios_adicionales = ()
 lista_servicios = ()
 tree_servicios = ()
+lista_previsualizar_servicios = ()
+tree_previsualizar_servicios = ()
 entries_precios_servicios_basicos = ()
 codigo_servicio = None
+numero_habitacion = None

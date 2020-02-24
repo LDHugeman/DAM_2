@@ -2,9 +2,11 @@
 '''Módulo que gestiona las reservas.
 '''
 import sqlite3
-import variables
 from datetime import datetime
+
+import variables
 from conexion import Conexion
+from objetos.Cliente import Cliente
 
 
 def limpiar_entries_reserva(entries):
@@ -49,6 +51,21 @@ def insertar_reserva(reserva):
                                 '(dni, numhab, checkin, checkout, noches, activa) values(?,?,?,?,?,?)',
                                 reserva)
         Conexion.conexion.commit()
+    except sqlite3.OperationalError as e:
+        print(e)
+        Conexion.conexion.rollback()
+
+
+def obtener_cliente_por_dni(dni) -> Cliente:
+    """
+    Obtiene un cliente de la BD
+    :param dni: Dni del cliente
+    :return: Objeto cliente
+    """
+    try:
+        Conexion.cursor.execute('select * from clientes where dni = ?', (dni,))
+        cliente = Conexion.cursor.fetchone()
+        return Cliente(cliente[1], cliente[2], cliente[3])
     except sqlite3.OperationalError as e:
         print(e)
         Conexion.conexion.rollback()
@@ -187,7 +204,7 @@ def obtener_precio_habitacion_por_numero_habitacion(numero_habitacion):
         Conexion.cursor.execute('select prezo from habitacion where numero = ?', (numero_habitacion,))
         precio_habitacion = Conexion.cursor.fetchone()
         Conexion.conexion.commit()
-        return precio_habitacion
+        return precio_habitacion[0]
     except sqlite3.OperationalError as e:
         print(e)
         Conexion.conexion.rollback()
@@ -203,7 +220,7 @@ def obtener_noches_por_codigo_reserva(codigo_reserva):
         Conexion.cursor.execute('select noches from reservas where codreser = ?', (codigo_reserva,))
         noches = Conexion.cursor.fetchone()
         Conexion.conexion.commit()
-        return noches
+        return noches[0]
     except sqlite3.OperationalError as e:
         print(e)
         Conexion.conexion.rollback()

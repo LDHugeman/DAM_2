@@ -3,6 +3,7 @@
 '''
 import os
 import shutil
+import webbrowser
 import zipfile
 from datetime import datetime
 
@@ -11,15 +12,17 @@ import xlrd
 import xlwt
 
 import conexion
-import funciones_servicios
-import utils
-from conexion import Conexion
 import facturacion
+import funciones_clientes
 import funciones_habitacion
 import funciones_reserva
-import funciones_clientes
+import funciones_servicios
 import impresion
+import utils
 import variables
+from conexion import Conexion
+from objetos.Habitacion import Habitacion
+from objetos.Reserva import Reserva
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -607,49 +610,47 @@ class Eventos():
             print('Error en on_botonRefrescarComboHabitaciones_clicked')
 
     def on_treeReservas_cursor_changed(self, widget):
-        '''
+        """
         Muestra los datos de una reserva al seleccionarla en el TreeView.
             :return: void
-        '''
+        """
         try:
             model, iter = variables.tree_reservas.get_selection().get_selected()
-            funciones_reserva.limpiar_entries_reserva(variables.entries_reserva)
             if iter != None:
                 variables.codigo_reserva = model.get_value(iter, 0)
-                dni_seleccionado = model.get_value(iter, 1)
-                apellidos_seleccionados = funciones_reserva.obtener_apellidos_cliente_por_dni(str(dni_seleccionado))
-                nombre_seleccionado = funciones_reserva.obtener_nombre_cliente_por_dni(str(dni_seleccionado))
+                dni_seleccionado = model.get_value(iter, 1);
+                cliente = funciones_reserva.obtener_cliente_por_dni(dni_seleccionado);
                 numero_habitacion_seleccionado = model.get_value(iter, 2)
+                variables.numero_habitacion = numero_habitacion_seleccionado
                 listado_habitaciones = funciones_habitacion.listado_habitaciones_reserva()
-                m = -1
+                indice_habitacion_selecionada = -1
                 for i, x in enumerate(listado_habitaciones):
                     if str(x[0]) == str(numero_habitacion_seleccionado):
-                        m = i
-                variables.combo_habitaciones.set_active(m)
+                        indice_habitacion_selecionada = i
+                variables.combo_habitaciones.set_active(indice_habitacion_selecionada)
                 check_in_seleccionado = model.get_value(iter, 3)
                 check_out_seleccionado = model.get_value(iter, 4)
                 numero_noches_seleccionadas = model.get_value(iter, 5)
-                variables.mensajes_label[4].set_text(str(dni_seleccionado))
-                variables.mensajes_label[5].set_text(str(apellidos_seleccionados[0]))
+                variables.mensajes_label[4].set_text(str(cliente.dni))
+                variables.mensajes_label[5].set_text(str(cliente.apellidos))
                 variables.mensajes_label[2].set_text(str(numero_noches_seleccionadas))
                 variables.entries_reserva[0].set_text(str(check_in_seleccionado))
                 variables.entries_reserva[1].set_text(str(check_out_seleccionado))
-                variables.datos_factura = (variables.codigo_reserva,
-                                           numero_noches_seleccionadas,
-                                           dni_seleccionado,
-                                           numero_habitacion_seleccionado,
-                                           check_out_seleccionado,
-                                           funciones_reserva.obtener_precio_habitacion_por_numero_habitacion(
-                                               numero_habitacion_seleccionado))
-                facturacion.obtener_factura(dni_seleccionado,
-                                            apellidos_seleccionados,
-                                            nombre_seleccionado,
-                                            numero_habitacion_seleccionado,
-                                            check_out_seleccionado,
-                                            numero_noches_seleccionadas)
+                precio_habitacion = funciones_reserva.obtener_precio_habitacion_por_numero_habitacion(
+                    numero_habitacion_seleccionado)
+                habitacion_selecionada = Habitacion(numero_habitacion_seleccionado, precio_habitacion)
+                variables.factura = Reserva(variables.codigo_reserva, cliente, habitacion_selecionada,
+                                            numero_noches_seleccionadas, check_in_seleccionado, check_out_seleccionado)
+                facturacion.visualizar_factura(cliente, numero_habitacion_seleccionado, check_out_seleccionado,
+                                               variables.codigo_reserva)
                 variables.labels_servicios[0].set_text(str(variables.codigo_reserva))
                 variables.labels_servicios[1].set_text(str(numero_habitacion_seleccionado))
                 funciones_servicios.actualizar_lista_servicios(variables.lista_servicios, variables.codigo_reserva)
+                funciones_servicios.actualizar_lista_previsualizar_servicios(variables.lista_previsualizar_servicios,
+                                                                             variables.codigo_reserva,
+                                                                             numero_noches_seleccionadas,
+                                                                             funciones_reserva.obtener_precio_habitacion_por_numero_habitacion(
+                                                                                 numero_habitacion_seleccionado))
         except Exception as e:
             print(e)
             print('Error en on_treeReservas_cursor_changed')
@@ -699,7 +700,7 @@ class Eventos():
             :return: void
         '''
         try:
-            impresion.factura(variables.datos_factura)
+            impresion.factura(variables.factura)
         except:
             print('Error en on_botonImprimirFactura_clicked')
 
@@ -845,9 +846,15 @@ class Eventos():
                 precio = precios[2]
             servicio = (concepto, precio, codigo_reserva)
             if codigo_reserva != "":
-                if concepto != "" and precio is not None and not funciones_servicios.existe_servicio_en_reserva(concepto, codigo_reserva):
+                if concepto != "" and precio is not None and not funciones_servicios.existe_servicio_en_reserva(
+                        concepto, codigo_reserva):
                     funciones_servicios.insertar_servicio(servicio)
                     funciones_servicios.actualizar_lista_servicios(variables.lista_servicios, codigo_reserva)
+                    funciones_servicios.actualizar_lista_previsualizar_servicios(
+                        variables.lista_previsualizar_servicios,
+                        variables.codigo_reserva,
+                        funciones_reserva.obtener_noches_por_codigo_reserva(variables.codigo_reserva),
+                        funciones_reserva.obtener_precio_habitacion_por_numero_habitacion(variables.numero_habitacion))
                 else:
                     utils.mostrar_ventana_aviso('Esta reserva ya cuenta con ese servicio.')
             else:
@@ -900,6 +907,12 @@ class Eventos():
                         if not funciones_servicios.existe_servicio_en_reserva(concepto, codigo_reserva):
                             funciones_servicios.insertar_servicio(servicio)
                             funciones_servicios.actualizar_lista_servicios(variables.lista_servicios, codigo_reserva)
+                            funciones_servicios.actualizar_lista_previsualizar_servicios(
+                                variables.lista_previsualizar_servicios,
+                                variables.codigo_reserva,
+                                funciones_reserva.obtener_noches_por_codigo_reserva(variables.codigo_reserva),
+                                funciones_reserva.obtener_precio_habitacion_por_numero_habitacion(
+                                    variables.numero_habitacion))
                             funciones_servicios.limpiar_entries_servicios(variables.entries_servicios_adicionales)
                         else:
                             utils.mostrar_ventana_aviso('Esta reserva ya cuenta con ese servicio.')
@@ -920,3 +933,11 @@ class Eventos():
         '''
         variables.ventana_aviso.connect('delete-event', lambda w, e: w.hide() or True)
         variables.ventana_aviso.hide()
+
+    def on_menuBarAyuda_activate(self, widget):
+        '''
+        Muestra la documentación del programa.
+            :return: void
+        '''
+        os.system('pydoc -p 1234')
+        webbrowser.open_new('http://localhost:1234')

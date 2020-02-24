@@ -1,11 +1,15 @@
 # coding=utf-8
+import variables
+from objetos import Reserva
+
 '''Módulo que gestiona el pdf de la factura.
 '''
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
-
-import funciones_clientes
 import os
+
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+
+import funciones_servicios
 
 
 def basico():
@@ -34,12 +38,12 @@ def basico():
         print('Error en basico')
 
 
-def factura(datos_factura):
-    '''
+def factura(reserva: Reserva):
+    """
     Genera una factura con los datos del cliente y el importe de los distintos servicios
-        :param datos_factura: listado con los datos que se van a mostrar en la factura
+        :param reserva: Datos de la reserva
         :return: void
-    '''
+    """
     try:
         factura = basico()
         factura.setTitle('FACTURA')
@@ -48,52 +52,74 @@ def factura(datos_factura):
         numero_factura = 'Número de Factura:'
         factura.drawString(50, 735, numero_factura)
         factura.setFont('Helvetica', size=8)
-        factura.drawString(140, 735, str(datos_factura[0]))
+        factura.drawString(140, 735, str(reserva.codigo_reserva))
 
         factura.setFont('Helvetica-Bold', size=8)
         fecha_factura = 'Fecha Factura:'
         factura.drawString(300, 735, fecha_factura)
         factura.setFont('Helvetica', size=8)
-        factura.drawString(360, 735, str(datos_factura[4]))
+        factura.drawString(360, 735, str(reserva.check_out))
 
         factura.setFont('Helvetica-Bold', size=8)
         dni_cliente = 'DNI CLIENTE:'
         factura.drawString(50, 710, dni_cliente)
         factura.setFont('Helvetica', size=8)
-        factura.drawString(120, 710, str(datos_factura[2]))
+        factura.drawString(120, 710, str(reserva.cliente.dni))
 
         factura.setFont('Helvetica-Bold', size=8)
         numero_habitacion = 'Nº de Habitación:'
         factura.drawString(300, 710, numero_habitacion)
         factura.setFont('Helvetica', size=8)
-        factura.drawString(380, 710, str(datos_factura[3]))
-
-        nombre_y_apellidos = funciones_clientes.obtener_nombre_apellidos_por_dni(datos_factura[2])
+        factura.drawString(380, 710, str(reserva.habitacion.numero))
 
         factura.setFont('Helvetica-Bold', size=8)
         apellidos_cliente = 'APELLIDOS:'
         factura.drawString(50, 680, apellidos_cliente)
         factura.setFont('Helvetica', size=8)
-        factura.drawString(120, 680, nombre_y_apellidos[0])
+        factura.drawString(120, 680, reserva.cliente.apellidos)
 
         factura.setFont('Helvetica-Bold', size=8)
         nombre_cliente = 'NOMBRE:'
         factura.drawString(300, 680, nombre_cliente)
         factura.setFont('Helvetica', size=8)
-        factura.drawString(350, 680, nombre_y_apellidos[1])
+        factura.drawString(350, 680, reserva.cliente.nombre)
 
-        alojamiento = ['Noches', str(datos_factura[1]), str(datos_factura[5][0]), str(float(str(datos_factura[1])) * float(datos_factura[5][0]))]
+        alojamiento = ['Noches', str(reserva.numero_noches), str(reserva.habitacion.precio),
+                       str(reserva.precio_reserva())]
+        servicios = funciones_servicios.obtener_listado_servicios_de_una_reserva(reserva.codigo_reserva)
 
         cabecera = ['CONCEPTO', 'UNIDADES', 'PRECIO/UNIDAD', 'TOTAL']
-
-        x = 75
-        for i in range(0, 4):
-            factura.setFont('Helvetica-Bold', size=10)
-            factura.drawString(x, 655, cabecera[i])
-            factura.setFont('Helvetica', size=8)
-            factura.drawString(x, 625, alojamiento[i])
-            x += 130
+        lineas_servicios = []
+        for servicio in servicios:
+            lineas_servicios.append(
+                [servicio.concepto, "", str(servicio.precio),
+                 str(float(servicio.precio) * float(reserva.numero_noches))])
+        pintar_cabecera(factura, cabecera, 655)
+        pintar_noches(factura, 620, alojamiento)
+        y = 620 - 30
+        for linea in lineas_servicios:
+            pintar_datos(factura, linea, y)
+            y -= 30
         factura.line(50, 645, 540, 645)
+
+        factura.line(50, 250, 540, 250)
+        factura.setFont('Helvetica-Bold', size=8)
+        subtotal = 'Subtotal: '
+        factura.drawString(430, 230, subtotal)
+        factura.setFont('Helvetica', size=8)
+        factura.drawString(470, 230, variables.labels_factura[6].get_text())
+
+        factura.setFont('Helvetica-Bold', size=8)
+        iva = 'Iva: '
+        factura.drawString(430, 215, iva)
+        factura.setFont('Helvetica', size=8)
+        factura.drawString(470, 215, variables.labels_factura[7].get_text())
+
+        factura.setFont('Helvetica-Bold', size=8)
+        total = 'Total: '
+        factura.drawString(430, 200, total)
+        factura.setFont('Helvetica', size=8)
+        factura.drawString(470, 200, variables.labels_factura[8].get_text())
 
         factura.showPage()
         factura.save()
@@ -102,3 +128,30 @@ def factura(datos_factura):
     except Exception as e:
         print(e)
         print('Error en factura')
+
+
+def pintar_datos(factura, linea_servicios, y):
+    x = 75
+    for item in linea_servicios:
+        pintar_dato(factura, x, y, item)
+        x += 130
+
+
+def pintar_dato(factura, x, y, valor):
+    factura.setFont('Helvetica', size=8)
+    factura.drawString(x, y, valor)
+
+
+def pintar_cabecera(factura, items_cabecera, y):
+    x = 75
+    for item in items_cabecera:
+        factura.setFont('Helvetica-Bold', size=10)
+        factura.drawString(x, y, item)
+        x += 130
+
+
+def pintar_noches(factura, y, alojamiento):
+    x = 75
+    for i in range(0, 4):
+        pintar_dato(factura, x, y, alojamiento[i])
+        x += 130
