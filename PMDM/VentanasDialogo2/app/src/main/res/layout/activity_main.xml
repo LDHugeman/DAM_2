@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button_ventana1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ventana diálogo con mensaje"/>
+
+    <Button
+        android:id="@+id/button_ventana2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ventana diálogo con un botón"/>
+
+    <Button
+        android:id="@+id/button_ventana3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ventana diálogo con dos botones"/>
+
+    <Button
+        android:id="@+id/button_ventana4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ventana diálogo con tres botones"/>
+
+    <Button
+        android:id="@+id/button_ventana_con_lista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ventana diálogo con lista"/>
+
+    <Button
+        android:id="@+id/button_ventana_con_lista_radiobutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ventana diálogo con lista de radiobutton"/>
+
+    <Button
+        android:id="@+id/button_ventana_con_lista_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ventana diálogo con lista de checkbox"/>
+
+</LinearLayout>
