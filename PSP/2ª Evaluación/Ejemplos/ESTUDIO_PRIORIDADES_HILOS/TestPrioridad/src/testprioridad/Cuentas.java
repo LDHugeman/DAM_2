@@ -6,48 +6,48 @@ package testprioridad;
  */
 public class Cuentas extends Thread {
 
-    private static int nCuentas;
-    private Contador[] cuenta;
+    private static int numeroHilosCuenta;
+    private Contador[] hilosContador;
 
     public Cuentas(int n) {
-        nCuentas = n;
-        setPriority((nCuentas + 2) % Thread.MAX_PRIORITY);
-        cuenta = new Contador[nCuentas];
+        numeroHilosCuenta = n;
+        setPriority((numeroHilosCuenta + 2) % Thread.MAX_PRIORITY);
+        hilosContador = new Contador[numeroHilosCuenta];
 
-        for (int i = 0; i < nCuentas; i++) {
-            cuenta[i] = new Contador();
-            cuenta[i].setPriority((i + 3) % Thread.MAX_PRIORITY - 1);
+        for (int i = 0; i < numeroHilosCuenta; i++) {
+            hilosContador[i] = new Contador();
+            hilosContador[i].setPriority((i + 3) % Thread.MAX_PRIORITY - 1);
         }
 
     }
 
     public void run() {
         int i;
-        boolean hayaHilosVivos;
+        boolean hayaHilosContadorVivos;
 
         System.out.println(this.getName() + ", prioridad: " + this.getPriority());
 
-        for (i = 0; i < nCuentas; i++) {
-            cuenta[i].start();
+        for (i = 0; i < numeroHilosCuenta; i++) {
+            hilosContador[i].start();
         }
 
         do {
-            for (i = 0; i < nCuentas; i++) {
-                System.out.print(cuenta[i].getName() + ", prioridad: " + cuenta[i].getPriority() + " "
-                        + cuenta[i].cuenta + "  ");
+            for (i = 0; i < numeroHilosCuenta; i++) {
+                System.out.print(hilosContador[i].getName() + ", prioridad: " + hilosContador[i].getPriority() + " "
+                        + hilosContador[i].cuenta + "  ");
             }
             System.out.print("\r");
-            hayaHilosVivos = cuenta[0].isAlive();
-            for (i = 1; i < nCuentas; i++) {
-                hayaHilosVivos = hayaHilosVivos || cuenta[i].isAlive();
+            hayaHilosContadorVivos = hilosContador[0].isAlive();
+            for (i = 1; i < numeroHilosCuenta; i++) {
+                hayaHilosContadorVivos = hayaHilosContadorVivos || hilosContador[i].isAlive();
             }
             try {
-                int nMilisegundos = (int) (10 * Math.pow(2, nCuentas));
+                int nMilisegundos = (int) (10 * Math.pow(2, numeroHilosCuenta));
                 sleep(nMilisegundos);
             } catch (InterruptedException e) {
             };
 
-        } while (hayaHilosVivos);
+        } while (hayaHilosContadorVivos);
 
     }
 }

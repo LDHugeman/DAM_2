@@ -18,7 +18,6 @@ public class TestHilo3 {
             br.readLine();
         } catch (IOException e) {
         }
-
         contador.terminar();
     }
 

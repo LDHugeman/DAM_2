@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorFondo"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="ALUMNOS"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spinner_Cursos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:entries="@array/cursos"/>
+
+        <Spinner
+            android:id="@+id/spinner_Ciclos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:entries="@array/ciclos"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:text="Alumno"/>
+
+        <EditText
+            android:id="@+id/editText_Nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:inputType="textCapSentences"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+        <Button
+            android:id="@+id/boton_Guardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar"/>
+
+        <Button
+            android:id="@+id/boton_Listar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Listar"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView_Alumnos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
+
+</LinearLayout>
