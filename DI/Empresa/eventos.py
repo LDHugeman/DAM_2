@@ -941,3 +941,6 @@ class Eventos():
         '''
         os.system('pydoc -p 1234')
         webbrowser.open_new('http://localhost:1234')
+
+    def on_menuBarListadoClientes_activate(self, widget):
+        impresion.obtener_listado_clientes()

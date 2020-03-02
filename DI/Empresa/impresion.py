@@ -1,4 +1,5 @@
 # coding=utf-8
+import funciones_clientes
 import variables
 from objetos import Reserva
 
@@ -143,7 +144,7 @@ def pintar_dato(factura, x, y, valor):
 
 
 def pintar_cabecera(factura, items_cabecera, y):
-    x = 75
+    x = 70
     for item in items_cabecera:
         factura.setFont('Helvetica-Bold', size=10)
         factura.drawString(x, y, item)
@@ -155,3 +156,32 @@ def pintar_noches(factura, y, alojamiento):
     for i in range(0, 4):
         pintar_dato(factura, x, y, alojamiento[i])
         x += 130
+
+
+def obtener_listado_clientes():
+    try:
+        informacion_clientes = canvas.Canvas('clientes.pdf', pagesize=A4)
+        informacion_clientes.setFont('Helvetica-Bold', size=16)
+        informacion_clientes.drawString(250, 780, 'CLIENTES')
+        informacion_clientes.setTitle('Clientes')
+
+        clientes = funciones_clientes.obtener_listado_clientes()
+
+        cabecera = ['DNI', 'NOMBRE', 'APELLIDOS', 'FECHA ALTA']
+        informacion_clientes.line(50, 670, 540, 670)
+        informacion_clientes.line(50, 645, 540, 645)
+        pintar_cabecera(informacion_clientes, cabecera, 655)
+        lineas_clientes = []
+        for cliente in clientes:
+            lineas_clientes.append([cliente[1], cliente[3], cliente[2], cliente[4]])
+        y = 655 - 30
+        for linea in lineas_clientes:
+            pintar_datos(informacion_clientes, linea, y)
+            y -= 30
+        informacion_clientes.showPage()
+        informacion_clientes.save()
+        directorio_actual = os.getcwd()
+        os.system('/usr/bin/xdg-open ' + directorio_actual + '/clientes.pdf')
+    except Exception as e:
+        print(e)
+        print('Error en obtener_listado_clientes')
