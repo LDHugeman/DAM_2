@@ -18,6 +18,13 @@ public class Pedir {
     public static final SimpleDateFormat FORMATO_HORA = new SimpleDateFormat("HH:mm");
     public static final SimpleDateFormat FORMATO_ANO_MES_DIA = new SimpleDateFormat("yyyy/MM/dd");
     public static final SimpleDateFormat FORMATO_HORA_SEGUNDOS = new SimpleDateFormat("HH:mm:ss");
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    
+    public static void pintarError(String mensaje){
+        System.out.println(ANSI_RED + mensaje + ANSI_RESET);
+    }
 
     public static String texto() {
         boolean esTextoValido;

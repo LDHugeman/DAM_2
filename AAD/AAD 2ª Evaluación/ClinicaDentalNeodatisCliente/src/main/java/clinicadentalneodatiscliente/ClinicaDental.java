@@ -1,9 +1,8 @@
 package clinicadentalneodatiscliente;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import objetos.Consulta;
+import java.util.List;
+import util.Pedir;
 
 /**
  *
@@ -12,18 +11,7 @@ import java.sql.Statement;
 public class ClinicaDental {
 
     public static void main(String[] args) {
-
-        String url = "jdbc:mysql://localhost:3307/?user=root&password=usbw";
-        try {
-            Connection conexion = DriverManager.getConnection(url);
-            Statement sentencia = conexion.createStatement();
-            Crear.tablas(sentencia);
-        } catch (SQLException excepcion) {
-            System.err.println("No hay ningún Driver registrado que reconozca la URL especificada");
-            System.out.println(excepcion.getMessage());
-        }
-
-        NewHibernateUtil.getSessionFactory();
+    
         byte opcion = 0;
         do {
             opcion = Menu.seleccionarOpcionMenuPrincipal();
@@ -41,11 +29,11 @@ public class ClinicaDental {
                     Menu.menuVisualizar();
                     break;
                 case 0:
-                    NewHibernateUtil.getSessionFactory().close();
+                    Conexion.closeSession();
                     break;
                 default:
                     System.err.println("No existe esa opción");
             }
-        } while (opcion != 0);
+        } while (opcion != 0);  
     }
 }

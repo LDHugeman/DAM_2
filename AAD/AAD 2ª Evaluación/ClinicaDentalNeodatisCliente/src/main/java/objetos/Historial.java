@@ -18,7 +18,8 @@ public class Historial implements Serializable {
     public Historial() {
     }
 
-    public Historial(boolean seguroPrivado, String grupoSanguineo) {
+    public Historial(int codigo, boolean seguroPrivado, String grupoSanguineo) {
+        this.codigo = codigo;
         this.seguroPrivado = seguroPrivado;
         this.grupoSanguineo = grupoSanguineo;
         this.citas = new HashSet<>();

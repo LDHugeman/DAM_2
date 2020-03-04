@@ -1,7 +1,5 @@
 package objetos;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,27 +14,12 @@ public class Consulta implements Serializable {
     private boolean quirofano;
     private int piso;
     private Set<Limpiador> limpiadores;
-    private PropertyChangeSupport propertySupport;
 
-    /*Hibernate emplea el constructor vacío, 
-    por ello es necesario inicializar properySupport dentro*/
-    public Consulta() {
-        this.propertySupport = new PropertyChangeSupport(this);
-    }
-
-    public void addChangeListener(PropertyChangeListener listener) {
-        propertySupport.addPropertyChangeListener(listener);
-    }
-
-    public void removeChangeListener(PropertyChangeListener listener) {
-        propertySupport.removePropertyChangeListener(listener);
-    }
-
-    public Consulta(boolean quirofano, int piso) {
+    public Consulta(int numero, boolean quirofano, int piso) {
+        this.numero = numero;
         this.quirofano = quirofano;
         this.piso = piso;
         this.limpiadores = new HashSet<>();
-        this.propertySupport = new PropertyChangeSupport(this);
     }
 
     public int getNumero() {
@@ -51,13 +34,7 @@ public class Consulta implements Serializable {
         return quirofano;
     }
 
-    /*Esta clase es el bean fuente, 
-    que notifica al bean oyente ante un cambio de la propiedad quirófano*/
     public void setQuirofano(boolean quirofano) {
-        boolean oldQuirofano = this.quirofano;
-        if (oldQuirofano != quirofano) {
-            propertySupport.firePropertyChange("quirofano", oldQuirofano, quirofano);
-        }
         this.quirofano = quirofano;
     }
 

@@ -94,9 +94,6 @@ public class Menu {
                 case 5:
                     modificarSueldoLimpiador();
                     break;
-                case 6:
-                    modificarQuirofanoConsulta();
-                    break;
                 case 0:
                     break;
                 default:
@@ -117,7 +114,7 @@ public class Menu {
                     Visualizar.empleados(Consultar.extraerEmpleados());
                     break;
                 case 3:
-                    Visualizar.consultasConQuirófano(Consultar.extraerConsultas());
+                    Visualizar.consultasConQuirofano(Consultar.extraerConsultas());
                     break;
                 case 0:
                     break;
@@ -152,8 +149,12 @@ public class Menu {
 
     private static void altaConsulta() {
         Consulta consulta = Crear.nuevaConsulta();
-        Altas.guardar(consulta);
-        NewHibernateUtil.closeSession();
+        if (!Consultar.existeConsultaPorNumero(consulta.getNumero())) {
+            Altas.guardar(consulta);
+        } else {
+            System.err.println("Ya existe una consulta con ese número");
+        }
+        Conexion.closeSession();
     }
 
     private static void altaDentista() {
@@ -166,14 +167,18 @@ public class Menu {
             Consulta consulta = Consultar.encontrarConsultaPorNumero(numero);
             if (consulta != null) {
                 Dentista dentista = Crear.nuevoDentista(consulta);
-                Altas.guardar(dentista);
+                if (!Consultar.existeDentistaPorDni(dentista.getDni())) {
+                    Altas.guardar(dentista);
+                } else {
+                    System.err.println("Ya existe un dentista con ese dni");
+                }
             } else {
                 System.err.println("No hay ninguna consulta con ese número");
             }
         } else {
             System.err.println("Debe crear antes una consulta");
         }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static void altaPaciente() {
@@ -186,39 +191,60 @@ public class Menu {
             if (dentista != null) {
                 System.out.println("--- Datos del historial ---");
                 Historial historial = Crear.nuevoHistorial();
-                Altas.guardar(historial);
-                System.out.println("--- Datos del paciente ---");
-                Paciente paciente = Crear.nuevoPaciente(historial, dentista);
-                Altas.guardar(paciente);
+                if (!Consultar.existeHistorialPorCodigo(historial.getCodigo())) {
+                    Altas.guardar(historial);
+                    System.out.println("--- Datos del paciente ---");
+                    Paciente paciente = Crear.nuevoPaciente(historial, dentista);
+                    if (!Consultar.existePacientePorDni(paciente.getDni())) {
+                        Altas.guardar(paciente);
+                    } else {
+                        System.err.println("Ya existe un paciente con ese dni");
+                    }
+                } else {
+                    System.err.println("Ya existe un historial con ese código");
+                }
             } else {
                 System.err.println("No hay ningún dentista con ese dni");
             }
         } else {
             System.err.println("Debe crear antes un dentista");
         }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static void altaCita() {
-        Visualizar.pacientes(Consultar.extraerPacientes());
-        System.out.println("--- Seleccione el paciente al que quiere añadirle una cita ---");
-        String dni = Crear.pedirDni("Dni: ");
-        Paciente paciente = Consultar.encontrarPacientePorDni(dni);
-        if (paciente != null) {
-            Historial historial = paciente.getHistorial();
-            Cita cita = Crear.nuevaCita(historial);
-            historial.getCitas().add(cita);
-            Altas.guardar(cita);
+        List<Paciente> pacientes = Consultar.extraerPacientes();
+        if (!pacientes.isEmpty()) {
+            Visualizar.pacientes(pacientes);
+            System.out.println("--- Seleccione el paciente al que quiere añadirle una cita ---");
+            String dni = Crear.pedirDni("Dni: ");
+            Paciente paciente = Consultar.encontrarPacientePorDni(dni);
+            if (paciente != null) {
+                Historial historial = paciente.getHistorial();
+                Cita cita = Crear.nuevaCita(historial);
+                if (!Consultar.existeCitaPorFecha(cita.getFecha())) {
+                    historial.getCitas().add(cita);
+                    Altas.guardar(cita);
+                } else {
+                    System.err.println("Ya existe una cita en esa fecha");
+                }
+            } else {
+                System.err.println("No hay ningún paciente con ese dni");
+            }
         } else {
-            System.err.println("No hay ningún paciente con ese dni");
+            System.err.println("Debe crear antes un paciente");
         }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static void altaLimpiador() {
         Limpiador limpiador = Crear.nuevoLimpiador();
-        Altas.guardar(limpiador);
-        NewHibernateUtil.closeSession();
+        if (!Consultar.existeLimpiadorPorDni(limpiador.getDni())) {
+            Altas.guardar(limpiador);
+        } else {
+            System.err.println("Ya existe un limpiador con ese dni");
+        }
+        Conexion.closeSession();
     }
 
     private static byte seleccionarOpcionMenuBajas() {
@@ -243,6 +269,7 @@ public class Menu {
                 Bajas.eliminar(paciente);
                 for (Cita cita : paciente.getHistorial().getCitas()) {
                     Bajas.eliminar(cita);
+                    paciente.getHistorial().getCitas().remove(cita);
                 }
                 Bajas.eliminar(paciente.getHistorial());
             } else {
@@ -251,7 +278,7 @@ public class Menu {
         } else {
             System.err.println("No existe ningun paciente con ese dni");
         }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static void bajaDentista() {
@@ -268,7 +295,7 @@ public class Menu {
         } else {
             System.err.println("No existe ningun dentista con ese dni");
         }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static void bajaConsulta() {
@@ -286,7 +313,7 @@ public class Menu {
         } else {
             System.err.println("No existe ninguna consulta con ese numero");
         }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static void bajaCita() {
@@ -301,13 +328,11 @@ public class Menu {
                 System.out.println("--- Seleccione la fecha de la cita que desea dar de baja ---");
                 System.out.printf("Fecha(dd/MM/yyyy): ");
                 Date fecha = Pedir.fecha();
-                System.out.println("--- Seleccione la hora de la cita que desea dar de baja ---");
-                System.out.printf("Hora(hh:mm): ");
-                Date hora = Pedir.hora();
-                Cita cita = Consultar.encontrarCitaPorFechaHoraHistorial(paciente.getHistorial().getCodigo(), fecha, hora);
+                Cita cita = Consultar.encontrarCitaPorFecha(fecha);
                 if (cita != null) {
                     if (Pedir.duda("¿Está seguro de que quiere eliminar esta cita?")) {
                         Bajas.eliminar(cita);
+                        paciente.getHistorial().getCitas().remove(cita);
                     } else {
                         System.out.println("Operacion cancelada");
                     }
@@ -320,7 +345,7 @@ public class Menu {
         } else {
             System.err.println("No existe ningún paciente con ese dni");
         }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static void bajaLimpiador() {
@@ -337,7 +362,7 @@ public class Menu {
         } else {
             System.err.println("No existe ningun limpiador con ese dni");
         }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static byte seleccionarOpcionMenuModificaciones() {
@@ -347,7 +372,6 @@ public class Menu {
         System.out.println("[3] Consulta de un dentista");
         System.out.println("[4] Dentista de un paciente");
         System.out.println("[5] Sueldo de un limpiador");
-        System.out.println("[6] Quirófano de una consulta");
         System.out.println("[0] Salir");
         System.out.printf("Selecione una opción: ");
         return Pedir.numeroByte();
@@ -374,7 +398,7 @@ public class Menu {
         } else {
             System.err.println("No hay ninguna consulta con ese número");
         }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static void modificarFechaHoraCita() {
@@ -389,10 +413,7 @@ public class Menu {
                 System.out.println("--- Seleccione la fecha de la cita que desea modificar ---");
                 System.out.printf("Fecha(dd/MM/yyyy): ");
                 Date fecha = Pedir.fecha();
-                System.out.println("--- Seleccione la hora de la cita que desea modificar ---");
-                System.out.printf("Hora(hh:mm): ");
-                Date hora = Pedir.hora();
-                Cita cita = Consultar.encontrarCitaPorFechaHoraHistorial(paciente.getHistorial().getCodigo(), fecha, hora);
+                Cita cita = Consultar.encontrarCitaPorFecha(fecha);
                 if (cita != null) {
                     Modificar.fechaHoraCita(cita);
                 } else {
@@ -404,7 +425,7 @@ public class Menu {
         } else {
             System.err.println("No hay ningún paciente con ese dni");
         }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static void modificarConsultaDentista() {
@@ -417,7 +438,7 @@ public class Menu {
         } else {
             System.err.println("No hay ningún dentista con ese dni");
         }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static void modificarDentistaPaciente() {
@@ -430,7 +451,7 @@ public class Menu {
         } else {
             System.err.println("No hay ningún paciente con ese dni");
         }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static void modificarSueldoLimpiador() {
@@ -443,26 +464,12 @@ public class Menu {
         } else {
             System.err.println("No hay ningún limpiador con ese dni");
         }
-        NewHibernateUtil.closeSession();
-    }
-
-    private static void modificarQuirofanoConsulta() {
-        Visualizar.consultas(Consultar.extraerConsultas());
-        System.out.println("--- Seleccione el número de la consulta de la que quiere modificar el quirófano ---");
-        System.out.printf("Número: ");
-        int numero = Pedir.numeroEntero();
-        Consulta consulta = Consultar.encontrarConsultaPorNumero(numero);
-        if (consulta != null) {
-            Modificar.quirofanoConsulta(consulta);
-        } else {
-            System.err.println("No hay ninguna consulta con ese número");
-        }
-        NewHibernateUtil.closeSession();
+        Conexion.closeSession();
     }
 
     private static byte seleccionarOpcionMenuVisualizar() {
         System.out.println("------- VISUALIZAR -------");
-        System.out.println("[1] Citas de un paciente entre dos fechas");
+        System.out.println("[1] Citas entre dos fechas");
         System.out.println("[2] Todos los empleados");
         System.out.println("[3] Consultas que tienen quirófano");
         System.out.println("[0] Salir");
@@ -480,7 +487,7 @@ public class Menu {
         if (!citas.isEmpty()) {
             Visualizar.citas(citas);
         } else {
-            System.err.println("Este paciente no tiene citas entre esas dos fechas");
+            System.err.println("No hay citas entre esas dos fechas");
         }
     }
 }

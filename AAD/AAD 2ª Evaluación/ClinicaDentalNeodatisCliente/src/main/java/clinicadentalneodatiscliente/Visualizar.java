@@ -43,7 +43,7 @@ public class Visualizar {
         System.out.println("------------------------------------------------");
     }
 
-    public static void consultasConQuirófano(List<Consulta> consultas) {
+    public static void consultasConQuirofano(List<Consulta> consultas) {
         System.out.println("------------------ CONSULTAS -------------------");
         mostrarPalabrasFila("NÚMERO", "PISO", "QUIRÓFANO");
         for (Consulta consulta : consultas) {

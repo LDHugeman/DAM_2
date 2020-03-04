@@ -6,8 +6,6 @@ import objetos.Consulta;
 import objetos.Dentista;
 import objetos.Limpiador;
 import objetos.Paciente;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import util.Pedir;
 
 /**
@@ -23,10 +21,9 @@ public class Modificar {
         System.out.println("--- Introduzca la nueva hora para la cita ---");
         System.out.printf("Hora(hh:mm): ");
         Date hora = Pedir.hora();
-        Cita citaModificada = new Cita(fecha, hora, cita.getTipoTrabajo(), cita.getHistorial());
-        // Se elimina y vuelve a crear porque fecha y hora son claves primarias
-        Bajas.eliminar(cita);
-        Altas.guardar(citaModificada);
+        cita.setFecha(fecha);
+        cita.setHora(hora);
+        Altas.guardar(cita);
     }
 
     public static void consultaDelDentista(Dentista dentista) {
@@ -37,7 +34,7 @@ public class Modificar {
         Consulta consulta = Consultar.encontrarConsultaPorNumero(numero);
         if (consulta != null) {
             dentista.setConsulta(consulta);
-            modificar(consulta);
+            Altas.guardar(consulta);
         } else {
             System.err.println("No hay ninguna consulta con ese número");
         }
@@ -50,7 +47,7 @@ public class Modificar {
         Dentista dentista = Consultar.encontrarDentistaPorDni(dni);
         if (dentista != null) {
             paciente.setDentista(dentista);
-            modificar(paciente);
+            Altas.guardar(paciente);
         } else {
             System.err.println("No hay ningún dentista con ese dni");
         }
@@ -61,28 +58,6 @@ public class Modificar {
         System.out.printf("Sueldo: ");
         float sueldo = Pedir.numeroRealFloat();
         limpiador.setSueldo(sueldo);
-        modificar(limpiador);
-    }
-
-    public static void quirofanoConsulta(Consulta consulta) {
-        Dentista dentista = Consultar.dentistaDeConsulta(consulta.getNumero());
-        if(dentista!=null){
-            consulta.addChangeListener(dentista);
-        }        
-        consulta.setQuirofano(Pedir.duda("¿Desea que la consulta tenga quirófano?"));
-        modificar(consulta);
-    }
-
-    public static void modificar(Object objeto) {
-        Session session;
-        try {
-            session = NewHibernateUtil.getSession();
-            session.beginTransaction();
-            session.saveOrUpdate(objeto);
-            session.getTransaction().commit();
-        } catch (HibernateException excepcion) {
-            System.err.println("Error al modificar");
-            System.out.println(excepcion.getMessage());
-        }
+        Altas.guardar(limpiador);
     }
 }
