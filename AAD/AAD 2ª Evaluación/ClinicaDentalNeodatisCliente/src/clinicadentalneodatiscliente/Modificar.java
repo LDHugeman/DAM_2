@@ -34,7 +34,7 @@ public class Modificar {
         Consulta consulta = Consultar.encontrarConsultaPorNumero(numero);
         if (consulta != null) {
             dentista.setConsulta(consulta);
-            Altas.guardar(consulta);
+            Altas.guardar(dentista);
         } else {
             System.err.println("No hay ninguna consulta con ese número");
         }
