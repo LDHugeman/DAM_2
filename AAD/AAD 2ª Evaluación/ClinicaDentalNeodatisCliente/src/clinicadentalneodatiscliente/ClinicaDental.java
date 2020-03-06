@@ -1,8 +1,5 @@
 package clinicadentalneodatiscliente;
 
-import objetos.Consulta;
-import java.util.List;
-import util.Pedir;
 
 /**
  *
