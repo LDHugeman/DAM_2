@@ -1,5 +1,9 @@
 package clinicadentalexist;
 
+import java.util.Date;
+import util.BaseDatos;
+import util.Pedir;
+
 /**
  *
  * @author Alberto y David
@@ -18,10 +22,10 @@ public class ClinicaDentalExist {
                     Menu.menuBajas();
                     break;
                 case 3:
-                    //Menu.menuModificaciones();
+                    Menu.menuModificaciones();
                     break;
                 case 4:
-                    //Menu.menuVisualizar();
+                    Menu.menuVisualizar();
                     break;
                 case 0:
                     Conexion.cerrarConexion();
@@ -31,5 +35,4 @@ public class ClinicaDentalExist {
             }
         } while (opcion != 0);
     }
-
 }

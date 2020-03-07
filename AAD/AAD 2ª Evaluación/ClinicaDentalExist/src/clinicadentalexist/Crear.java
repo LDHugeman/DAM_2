@@ -53,14 +53,14 @@ public class Crear {
         String nombre = Pedir.texto();
         System.out.printf("Teléfono: ");
         String telefono = Pedir.texto();
-        System.out.println("Número del historial: ");
+        System.out.printf("Número del historial: ");
         int numeroHistorial = Pedir.numeroEntero();
         String dniDentista = pedirDni("Dni del dentista: ");
         return new Paciente(dni, nombre, telefono, numeroHistorial, dniDentista);
     }
     
     public static Cita nuevaCita() {
-        System.out.println("Número(Id) de la cita: ");
+        System.out.printf("Número de la cita: ");
         int numero = Pedir.numeroEntero();
         System.out.printf("Fecha(dd/MM/yyyy): ");
         Date fecha = Pedir.fecha();

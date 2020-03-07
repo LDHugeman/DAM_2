@@ -17,6 +17,7 @@ public class Pedir {
     public static final SimpleDateFormat FORMATO_DIA_MES_ANO = new SimpleDateFormat("dd/MM/yyyy");
     public static final SimpleDateFormat FORMATO_HORA = new SimpleDateFormat("HH:mm");
     public static final SimpleDateFormat FORMATO_ANO_MES_DIA = new SimpleDateFormat("yyyy/MM/dd");
+    public static final SimpleDateFormat FORMATO_ANO_MES_DIA_EXIST = new SimpleDateFormat("yyyy-MM-dd");
     public static final SimpleDateFormat FORMATO_HORA_SEGUNDOS = new SimpleDateFormat("HH:mm:ss");
 
     public static String texto() {

@@ -1,6 +1,6 @@
 <consultas>
     <consulta idConsulta="1">
-        <quirofano>true</quirofano>
+        <quirofano>Si</quirofano>
         <piso>1</piso>
     </consulta>
 </consultas>
