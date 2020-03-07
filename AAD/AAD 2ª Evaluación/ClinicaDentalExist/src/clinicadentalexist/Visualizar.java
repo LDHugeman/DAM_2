@@ -9,52 +9,52 @@ import util.BaseDatos;
 public class Visualizar {
 
     public static void consultas() {
-        String visualizarConsultas = "for $consulta in /consultas/consulta return $consulta";
-        BaseDatos.ejecutarVisualizar(visualizarConsultas);
+        String consultas = "for $consulta in /consultas/consulta return $consulta";
+        BaseDatos.ejecutarVisualizar(consultas);
     }
 
     public static void consulta(int numeroConsulta) {
-        String visualizarConsulta = "for $consulta in /consultas/consulta[@idConsulta='" + numeroConsulta + "'] return $consulta";
-        BaseDatos.ejecutarVisualizar(visualizarConsulta);
+        String consulta = "for $consulta in /consultas/consulta[@idConsulta='" + numeroConsulta + "'] return $consulta";
+        BaseDatos.ejecutarVisualizar(consulta);
     }
 
     public static void dentistas() {
-        String visualizarDentistas = "for $dentista in /dentistas/dentista return $dentista";
-        BaseDatos.ejecutarVisualizar(visualizarDentistas);
+        String dentistas = "for $dentista in /dentistas/dentista return $dentista";
+        BaseDatos.ejecutarVisualizar(dentistas);
     }
 
     public static void dentista(String dni) {
-        String visualizarDentista = "for $dentista in /dentistas/dentista[@dniDentista='" + dni + "'] return $dentista";
-        BaseDatos.ejecutarVisualizar(visualizarDentista);
+        String dentista = "for $dentista in /dentistas/dentista[@dniDentista='" + dni + "'] return $dentista";
+        BaseDatos.ejecutarVisualizar(dentista);
     }
     
     public static void pacientes() {
-        String visualizarPacientes = "for $paciente in /pacientes/paciente return $paciente";
-        BaseDatos.ejecutarVisualizar(visualizarPacientes);
+        String pacientes = "for $paciente in /pacientes/paciente return $paciente";
+        BaseDatos.ejecutarVisualizar(pacientes);
     }
     
     public static void paciente(String dni) {
-        String visualizarPaciente = "for $paciente in /pacientes/paciente[@dniPaciente='" + dni + "'] return $paciente";
-        BaseDatos.ejecutarVisualizar(visualizarPaciente);
+        String paciente = "for $paciente in /pacientes/paciente[@dniPaciente='" + dni + "'] return $paciente";
+        BaseDatos.ejecutarVisualizar(paciente);
     }
 
     public static void historiales() {
-        String visualizarHistoriales = "for $historial in /historiales/historial return $historial";
-        BaseDatos.ejecutarVisualizar(visualizarHistoriales);
+        String historiales = "for $historial in /historiales/historial return $historial";
+        BaseDatos.ejecutarVisualizar(historiales);
     }
 
     public static void historial(int numeroHistorial) {
-        String visualizarHistorial = "for $historial in /historiales/historial[@idHistorial='" + numeroHistorial + "'] return $historial";
-        BaseDatos.ejecutarVisualizar(visualizarHistorial);
+        String historial = "for $historial in /historiales/historial[@idHistorial='" + numeroHistorial + "'] return $historial";
+        BaseDatos.ejecutarVisualizar(historial);
     }
 
     public static void citas() {
-        String visualizarCitas = "for $cita in /citas/cita return $cita";
-        BaseDatos.ejecutarVisualizar(visualizarCitas);
+        String citas = "for $cita in /citas/cita return $cita";
+        BaseDatos.ejecutarVisualizar(citas);
     }
 
     public static void cita(int numeroCita) {
-        String visualizarCita = "for $cita in /citas/cita[@idCita='" + numeroCita + "'] return $cita";
-        BaseDatos.ejecutarVisualizar(visualizarCita);
+        String cita = "for $cita in /citas/cita[@idCita='" + numeroCita + "'] return $cita";
+        BaseDatos.ejecutarVisualizar(cita);
     }
 }
