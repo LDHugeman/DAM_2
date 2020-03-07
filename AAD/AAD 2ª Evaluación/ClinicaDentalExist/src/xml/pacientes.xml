@@ -1,8 +1,2 @@
 <pacientes>
-    <paciente dniPaciente="77564829C">
-        <nombrePaciente>Ernesto Chao Gómez</nombrePaciente>
-        <telefonoPaciente>687541923</telefonoPaciente>
-        <historialPaciente>1</historialPaciente>
-        <dentistaPaciente>77465839B</dentistaPaciente>
-    </paciente>
 </pacientes>
