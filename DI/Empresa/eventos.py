@@ -834,6 +834,9 @@ class Eventos():
             if variables.checkbox_parking.get_active():
                 concepto = 'Parking'
                 precio = precios[0]
+                if not funciones_servicios.existe_servicio_en_reserva(concepto, codigo_reserva):
+                    servicio_parking = (concepto, precio, codigo_reserva)
+                    funciones_servicios.insertar_servicio(servicio_parking)
             else:
                 pass
             if variables.radiobuttons_servicios_basicos[0].get_active():

@@ -86,7 +86,7 @@ def factura(reserva: Reserva):
         factura.drawString(350, 680, reserva.cliente.nombre)
 
         alojamiento = ['Noches', str(reserva.numero_noches), str(reserva.habitacion.precio),
-                       str(reserva.precio_reserva())]
+                       str(reserva.precio_reserva()) + " €"]
         servicios = funciones_servicios.obtener_listado_servicios_de_una_reserva(reserva.codigo_reserva)
 
         cabecera = ['CONCEPTO', 'UNIDADES', 'PRECIO/UNIDAD', 'TOTAL']
@@ -94,12 +94,12 @@ def factura(reserva: Reserva):
         for servicio in servicios:
             lineas_servicios.append(
                 [servicio.concepto, "", str(servicio.precio),
-                 str(float(servicio.precio) * float(reserva.numero_noches))])
-        pintar_cabecera(factura, cabecera, 655)
+                 str(float(servicio.precio) * float(reserva.numero_noches)) + " €"])
+        pintar_cabecera(factura, cabecera, 73, 655)
         pintar_noches(factura, 620, alojamiento)
         y = 620 - 30
         for linea in lineas_servicios:
-            pintar_datos(factura, linea, y)
+            pintar_datos(factura, linea, 75, y)
             y -= 30
         factura.line(50, 645, 540, 645)
 
@@ -131,8 +131,7 @@ def factura(reserva: Reserva):
         print('Error en factura')
 
 
-def pintar_datos(factura, linea_servicios, y):
-    x = 75
+def pintar_datos(factura, linea_servicios, x, y):
     for item in linea_servicios:
         pintar_dato(factura, x, y, item)
         x += 130
@@ -143,8 +142,7 @@ def pintar_dato(factura, x, y, valor):
     factura.drawString(x, y, valor)
 
 
-def pintar_cabecera(factura, items_cabecera, y):
-    x = 70
+def pintar_cabecera(factura, items_cabecera, x, y):
     for item in items_cabecera:
         factura.setFont('Helvetica-Bold', size=10)
         factura.drawString(x, y, item)
@@ -170,18 +168,23 @@ def obtener_listado_clientes():
         cabecera = ['DNI', 'NOMBRE', 'APELLIDOS', 'FECHA ALTA']
         informacion_clientes.line(50, 670, 540, 670)
         informacion_clientes.line(50, 645, 540, 645)
-        pintar_cabecera(informacion_clientes, cabecera, 655)
+        pintar_cabecera(informacion_clientes, cabecera, 74, 655)
         lineas_clientes = []
         for cliente in clientes:
             lineas_clientes.append([cliente[1], cliente[3], cliente[2], cliente[4]])
         y = 655 - 30
-        for linea in lineas_clientes:
-            pintar_datos(informacion_clientes, linea, y)
-            y -= 30
+        pintar_clientes(lineas_clientes, informacion_clientes, y)
         informacion_clientes.showPage()
         informacion_clientes.save()
         directorio_actual = os.getcwd()
         os.system('/usr/bin/xdg-open ' + directorio_actual + '/clientes.pdf')
     except Exception as e:
         print(e)
+
         print('Error en obtener_listado_clientes')
+
+
+def pintar_clientes(lineas_clientes, informacion_clientes, y):
+    for linea in lineas_clientes:
+        pintar_datos(informacion_clientes, linea, 75, y)
+        y -= 30
