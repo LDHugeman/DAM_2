@@ -85,7 +85,7 @@ def factura(reserva: Reserva):
         factura.setFont('Helvetica', size=8)
         factura.drawString(350, 680, reserva.cliente.nombre)
 
-        alojamiento = ['Noches', str(reserva.numero_noches), str(reserva.habitacion.precio),
+        alojamiento = ['Noches', str(reserva.numero_noches), str(reserva.habitacion.precio)+ " €",
                        str(reserva.precio_reserva()) + " €"]
         servicios = funciones_servicios.obtener_listado_servicios_de_una_reserva(reserva.codigo_reserva)
 
@@ -93,7 +93,7 @@ def factura(reserva: Reserva):
         lineas_servicios = []
         for servicio in servicios:
             lineas_servicios.append(
-                [servicio.concepto, "", str(servicio.precio),
+                [servicio.concepto, "", str(servicio.precio)+ " €",
                  str(float(servicio.precio) * float(reserva.numero_noches)) + " €"])
         pintar_cabecera(factura, cabecera, 73, 655)
         pintar_noches(factura, 620, alojamiento)
@@ -103,24 +103,24 @@ def factura(reserva: Reserva):
             y -= 30
         factura.line(50, 645, 540, 645)
 
-        factura.line(50, 250, 540, 250)
+        factura.line(50, 90, 540, 90)
         factura.setFont('Helvetica-Bold', size=8)
         subtotal = 'Subtotal: '
-        factura.drawString(430, 230, subtotal)
+        factura.drawString(430, 80, subtotal)
         factura.setFont('Helvetica', size=8)
-        factura.drawString(470, 230, variables.labels_factura[6].get_text())
+        factura.drawString(470, 80, variables.labels_factura[6].get_text())
 
         factura.setFont('Helvetica-Bold', size=8)
         iva = 'Iva: '
-        factura.drawString(430, 215, iva)
+        factura.drawString(430, 65, iva)
         factura.setFont('Helvetica', size=8)
-        factura.drawString(470, 215, variables.labels_factura[7].get_text())
+        factura.drawString(470, 65, variables.labels_factura[7].get_text())
 
         factura.setFont('Helvetica-Bold', size=8)
         total = 'Total: '
-        factura.drawString(430, 200, total)
+        factura.drawString(430, 50, total)
         factura.setFont('Helvetica', size=8)
-        factura.drawString(470, 200, variables.labels_factura[8].get_text())
+        factura.drawString(470, 50, variables.labels_factura[8].get_text())
 
         factura.showPage()
         factura.save()
@@ -159,20 +159,28 @@ def pintar_noches(factura, y, alojamiento):
 def obtener_listado_clientes():
     try:
         informacion_clientes = canvas.Canvas('clientes.pdf', pagesize=A4)
-        informacion_clientes.setFont('Helvetica-Bold', size=16)
-        informacion_clientes.drawString(250, 780, 'CLIENTES')
-        informacion_clientes.setTitle('Clientes')
 
         clientes = funciones_clientes.obtener_listado_clientes()
 
         cabecera = ['DNI', 'NOMBRE', 'APELLIDOS', 'FECHA ALTA']
-        informacion_clientes.line(50, 670, 540, 670)
-        informacion_clientes.line(50, 645, 540, 645)
-        pintar_cabecera(informacion_clientes, cabecera, 74, 655)
+        informacion_clientes.line(50, 825, 540, 825)
+        informacion_clientes.line(50, 800, 540, 800)
+        pintar_cabecera(informacion_clientes, cabecera, 74, 810)
+
+        texto_pie = 'Hotel Lite, Tlfo = 986291132 e-mail = info@hotellite.com'
+        informacion_clientes.setFont('Times-Italic', size=8)
+        informacion_clientes.drawString(170, 30, texto_pie)
+        informacion_clientes.line(50, 40, 540, 40)
+
+        page_num = informacion_clientes.getPageNumber()
+        text = "%s" % page_num
+        informacion_clientes.drawRightString(490, 30, text)
+
         lineas_clientes = []
         for cliente in clientes:
-            lineas_clientes.append([cliente[1], cliente[3], cliente[2], cliente[4]])
-        y = 655 - 30
+            dni = "******"+cliente[1][6]+cliente[1][7]+cliente[1][8]
+            lineas_clientes.append([dni, cliente[3], cliente[2], cliente[4]])
+        y = 810 - 30
         pintar_clientes(lineas_clientes, informacion_clientes, y)
         informacion_clientes.showPage()
         informacion_clientes.save()
@@ -186,5 +194,24 @@ def obtener_listado_clientes():
 
 def pintar_clientes(lineas_clientes, informacion_clientes, y):
     for linea in lineas_clientes:
+        if y<=30:
+            y = 810 - 30
+            informacion_clientes.showPage()
+            cabecera = ['DNI', 'NOMBRE', 'APELLIDOS', 'FECHA ALTA']
+            informacion_clientes.line(50, 825, 540, 825)
+            informacion_clientes.line(50, 800, 540, 800)
+            pintar_cabecera(informacion_clientes, cabecera, 74, 810)
+
+            texto_pie = 'Hotel Lite, Tlfo = 986291132 e-mail = info@hotellite.com'
+            informacion_clientes.setFont('Times-Italic', size=8)
+            informacion_clientes.drawString(170, 30, texto_pie)
+            informacion_clientes.line(50, 40, 540, 40)
+
+            page_num = informacion_clientes.getPageNumber()
+            text = "%s" % page_num
+            informacion_clientes.drawRightString(490, 30, text)
+
+            pintar_datos(informacion_clientes, linea, 75, y)
+
         pintar_datos(informacion_clientes, linea, 75, y)
         y -= 30
