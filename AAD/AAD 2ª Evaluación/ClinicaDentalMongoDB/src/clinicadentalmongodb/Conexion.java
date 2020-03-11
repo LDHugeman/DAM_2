@@ -9,7 +9,7 @@ import com.mongodb.client.MongoDatabase;
  */
 public class Conexion {
 
-    private static MongoDatabase baseDatos;
+    /*private static MongoDatabase baseDatos;
     private static MongoClient cliente;
 
     public static MongoDatabase establecerConexion() {
@@ -38,5 +38,5 @@ public class Conexion {
 
     private static boolean estaConexionAbierta(){
         return baseDatos != null && baseDatos
-    }
+    }*/
 }
