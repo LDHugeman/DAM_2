@@ -68,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String nombre = editTextNombre.getText().toString();
                 if(!nombre.isEmpty()){
+                    int posicion;
+                    if(spinnerCursos.getSelectedItemId()==0){
+                        posicion = 0;
+                    } else {
+                        posicion = 1;
+                    }
                     Alumno alumno = new Alumno(
                         nombre,
                         spinnerCursos.getSelectedItem().toString(),

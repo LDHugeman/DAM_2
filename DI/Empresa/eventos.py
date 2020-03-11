@@ -606,6 +606,9 @@ class Eventos():
         try:
             variables.combo_habitaciones.set_active(-1)
             funciones_habitacion.actualizar_numeros_habitacion()
+            '''
+            PROBA DE GIT
+            '''
         except:
             print('Error en on_botonRefrescarComboHabitaciones_clicked')
 
@@ -618,8 +621,8 @@ class Eventos():
             model, iter = variables.tree_reservas.get_selection().get_selected()
             if iter != None:
                 variables.codigo_reserva = model.get_value(iter, 0)
-                dni_seleccionado = model.get_value(iter, 1);
-                cliente = funciones_reserva.obtener_cliente_por_dni(dni_seleccionado);
+                dni_seleccionado = model.get_value(iter, 1)
+                cliente = funciones_reserva.obtener_cliente_por_dni(dni_seleccionado)
                 numero_habitacion_seleccionado = model.get_value(iter, 2)
                 variables.numero_habitacion = numero_habitacion_seleccionado
                 listado_habitaciones = funciones_habitacion.listado_habitaciones_reserva()

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/boton_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Añadir Item"/>
+
+    <ListView
+        android:id="@+id/lista_animales"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+
+</LinearLayout>

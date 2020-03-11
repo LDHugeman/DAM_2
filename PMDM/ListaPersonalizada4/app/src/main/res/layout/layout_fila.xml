@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
+        android:src="@drawable/aguila"
         android:id="@+id/imganimal"
         android:layout_width="80dp"
         android:layout_height="80dp"

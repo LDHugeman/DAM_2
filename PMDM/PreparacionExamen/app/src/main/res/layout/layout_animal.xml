@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linear_animal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/image_foto_animal"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/separacion_main_buttom"
+        android:layout_marginStart="@dimen/separacion_main_buttom" />
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_nombre"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Elefante"/>
+        <TextView
+            android:id="@+id/tv_descripcion"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Animal de gran embergadura que vive en las costas de africa"/>
+
+
+        <ImageView
+            android:id="@+id/image_color"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

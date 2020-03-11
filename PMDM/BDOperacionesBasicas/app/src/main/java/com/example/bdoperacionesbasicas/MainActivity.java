@@ -32,9 +32,7 @@ public class MainActivity extends AppCompatActivity {
         botonModificar = findViewById(R.id.boton_modificar);
         botonMuestraUno = findViewById(R.id.boton_muestraUno);
         botonMuestraVarios = findViewById(R.id.boton_muestraVarios);
-        usuarios = new ArrayList<>();
         listaUsuarios = findViewById(R.id.lista_usuarios);
-        adaptador = new AdaptadorPersonalizado(MainActivity.this, usuarios);
         botonInsertar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         botonMuestraVarios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    usuarios = new ArrayList<>();
                     String [] datosARecuperar= {"codigo","nombre"};
                     Helper helper = new Helper(MainActivity.this,"BDUsuarios",null,1);
                     SQLiteDatabase baseDatos = helper.getWritableDatabase();
@@ -85,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(MainActivity.this, "Usuario inexistente", Toast.LENGTH_SHORT).show();
                     }
+                    adaptador = new AdaptadorPersonalizado(MainActivity.this, usuarios);
                     listaUsuarios.setAdapter(adaptador);
                     cursor.close();
                     baseDatos.close();
