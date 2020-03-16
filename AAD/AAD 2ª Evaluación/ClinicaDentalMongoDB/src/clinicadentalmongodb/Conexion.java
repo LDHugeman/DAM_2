@@ -2,6 +2,8 @@ package clinicadentalmongodb;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -9,13 +11,15 @@ import com.mongodb.client.MongoDatabase;
  */
 public class Conexion {
 
-    /*private static MongoDatabase baseDatos;
+    private static MongoDatabase baseDatos;
     private static MongoClient cliente;
 
     public static MongoDatabase establecerConexion() {
         try {
-            cliente = new MongoClient("localhost", 27017);
             if (!estaConexionAbierta()) {
+                Logger mongoLogger = Logger.getLogger( "org.mongodb.driver" ); //Con estas dos sentencias hacemos que no aparezcan 
+                mongoLogger.setLevel(Level.SEVERE);                           //mensajes warning en la consola                                  
+                cliente = new MongoClient("localhost", 27017);
                 baseDatos = cliente.getDatabase("clinicaDental");
             }
         } catch (Exception excepcion) {
@@ -37,6 +41,11 @@ public class Conexion {
     }
 
     private static boolean estaConexionAbierta(){
-        return baseDatos != null && baseDatos
-    }*/
+        try{
+            cliente.getAddress();
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
 }
