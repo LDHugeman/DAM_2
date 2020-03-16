@@ -9,7 +9,7 @@ import org.bson.Document;
  */
 public class Visualizar {
 
-    public static void consultas(List<Document> consultas) {
+    public static void mostrarConsultas(List<Document> consultas) {
         System.out.println("------------------ CONSULTAS -------------------");
         mostrarPalabrasFila("NÚMERO", "PISO", "QUIRÓFANO");
         for (Document consulta : consultas) {
@@ -26,7 +26,7 @@ public class Visualizar {
         System.out.println("-----------------------------------------------");
     }
 
-    public static void dentistas(List<Document> dentistas) {
+    public static void mostrarDentistas(List<Document> dentistas) {
         System.out.println("---------------------- DENTISTAS -----------------------");
         mostrarPalabrasFila("DNI", "NOMBRE", "TELÉFONO", "SUELDO");
         for (Document dentista : dentistas) {
@@ -45,7 +45,7 @@ public class Visualizar {
         System.out.println("-----------------------------------------------");
     }
 
-    public static void pacientes(List<Document> pacientes) {
+    public static void mostrarPacientes(List<Document> pacientes) {
         System.out.println("---------------------------- PACIENTES -----------------------------");
         mostrarPalabrasFila("DNI", "NOMBRE", "TELÉFONO", "HISTORIAL", "DENTISTA");
         for (Document paciente : pacientes) {
@@ -65,7 +65,7 @@ public class Visualizar {
         System.out.println("-----------------------------------------------");
     }
 
-    public static void historiales(List<Document> historiales) {
+    public static void mostrarHistoriales(List<Document> historiales) {
         System.out.println("------------------ HISTORIALES -------------------");
         mostrarPalabrasFila("NÚMERO", "SEGURO PRIVADO", "GRUPO SANGUÍNEO");
         for (Document historial : historiales) {
@@ -82,7 +82,7 @@ public class Visualizar {
         System.out.println("-----------------------------------------------");
     }
     
-    public static void citas(List<Document> citas) {
+    public static void mostrarCitas(List<Document> citas) {
         System.out.println("---------------------------- CITAS -----------------------------");
         mostrarPalabrasFila("NÚMERO","FECHA", "HORA", "CONCEPTO", "PACIENTE");
         for (Document cita : citas) {

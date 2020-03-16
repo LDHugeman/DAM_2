@@ -431,7 +431,7 @@ public class Menu {
     private static void visualizarConsultas() {
         List<Document> consultas = Consultar.extraerConsultas();
         if (!consultas.isEmpty()) {
-            Visualizar.consultas(consultas);
+            Visualizar.mostrarConsultas(consultas);
         } else {
             System.err.println("No hay consultas");
         }
@@ -454,7 +454,7 @@ public class Menu {
     private static void visualizarDentistas() {
         List<Document> dentistas = Consultar.extraerDentistas();
         if (!dentistas.isEmpty()) {
-            Visualizar.dentistas(dentistas);
+            Visualizar.mostrarDentistas(dentistas);
         } else {
             System.err.println("No hay dentistas");
         }
@@ -476,7 +476,7 @@ public class Menu {
     private static void visualizarPacientes() {
         List<Document> pacientes = Consultar.extraerPacientes();
         if (!pacientes.isEmpty()) {
-            Visualizar.pacientes(pacientes);
+            Visualizar.mostrarPacientes(pacientes);
         } else {
             System.err.println("No hay pacientes");
         }
@@ -498,7 +498,7 @@ public class Menu {
     private static void visualizarHistoriales() {
         List<Document> historiales = Consultar.extraerHistoriales();
         if (!historiales.isEmpty()) {
-            Visualizar.historiales(historiales);
+            Visualizar.mostrarHistoriales(historiales);
         } else {
             System.err.println("No hay historiales");
         }
@@ -521,7 +521,7 @@ public class Menu {
     private static void visualizarCitas() {
         List<Document> citas = Consultar.extraerCitas();
         if (!citas.isEmpty()) {
-            Visualizar.citas(citas);
+            Visualizar.mostrarCitas(citas);
         } else {
             System.err.println("No hay citas");
         }
