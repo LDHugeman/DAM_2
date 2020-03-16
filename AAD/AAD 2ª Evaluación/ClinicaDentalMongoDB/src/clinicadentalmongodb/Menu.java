@@ -78,6 +78,7 @@ public class Menu {
     }
 
     private static void altaDentista() {
+        visualizarConsultas();
         Dentista dentista = Crear.nuevoDentista();
         if (!Consultar.existeDentistaPorDni(dentista.getDni())) {
             if (Consultar.existeConsultaPorNumero(dentista.getNumeroConsulta())) {
@@ -102,6 +103,8 @@ public class Menu {
     }
 
     private static void altaPaciente() {
+        visualizarDentistas();
+        visualizarHistoriales();
         Paciente paciente = Crear.nuevoPaciente();
         if (!Consultar.existePacientePorDni(paciente.getDni())) {
             if (Consultar.existeDentistaPorDni(paciente.getDniDentista())) {
@@ -120,6 +123,7 @@ public class Menu {
     }
 
     private static void altaCita() {
+        visualizarPacientes();
         Cita cita = Crear.nuevaCita();
         if (!Consultar.existeCitaPorNumero(cita.getNumero())) {
             if (Consultar.existePacientePorDni(cita.getDniPaciente())) {
@@ -175,6 +179,7 @@ public class Menu {
     }
 
     private static void bajaConsulta() {
+        visualizarConsultas();
         System.out.println("--- Introduzca el número de la consulta que desea eliminar ---");
         System.out.printf("Número de la consulta: ");
         int numero = Pedir.numeroEntero();
@@ -191,6 +196,7 @@ public class Menu {
     }
 
     private static void bajaDentista() {
+        visualizarDentistas();
         System.out.println("--- Introduzca el dni del dentista que desea eliminar ---");
         String dni = Crear.pedirDni("Dni del dentista: ");
         if (Consultar.existeDentistaPorDni(dni)) {
@@ -206,6 +212,7 @@ public class Menu {
     }
 
     private static void bajaHistorial() {
+        visualizarHistoriales();
         System.out.println("--- Introduzca el número del historial que desea eliminar");
         System.out.printf("Número del historial: ");
         int numero = Pedir.numeroEntero();
@@ -222,6 +229,7 @@ public class Menu {
     }
 
     private static void bajaPaciente() {
+        visualizarPacientes();
         System.out.println("--- Introduzca el dni del paciente que desea eliminar ---");
         String dni = Crear.pedirDni("Dni del paciente: ");
         if (Consultar.existePacientePorDni(dni)) {
@@ -237,6 +245,7 @@ public class Menu {
     }
 
     private static void bajaCita() {
+        visualizarCitas();
         System.out.println("--- Introduzca el número de la cita que desea eliminar ---");
         System.out.printf("Número de la cita: ");
         int numero = Pedir.numeroEntero();
@@ -293,6 +302,7 @@ public class Menu {
     }
 
     private static void modificarSueldoDentista() {
+        visualizarDentistas();
         System.out.println("--- Introduzca el dni del dentista al que desea modificar su sueldo ---");
         String dni = Crear.pedirDni("Dni del dentista: ");
         if (Consultar.existeDentistaPorDni(dni)) {
@@ -308,6 +318,7 @@ public class Menu {
     }
 
     private static void modificarFechaHoraCita() {
+        visualizarCitas();
         System.out.println("--- Introduzca el número de la cita de la que desea modificar fecha y hora ---");
         System.out.printf("Número de la cita: ");
         int numero = Pedir.numeroEntero();
@@ -322,6 +333,7 @@ public class Menu {
     }
 
     private static void modificarTelefonoPaciente() {
+        visualizarPacientes();
         System.out.println("--- Introduzca el dni del paciente al que desea modificar su teléfono");
         String dni = Crear.pedirDni("Dni del paciente: ");
         if (Consultar.existePacientePorDni(dni)) {
@@ -337,6 +349,7 @@ public class Menu {
     }
 
     private static void modificarQuirofanoConsulta() {
+        visualizarConsultas();
         System.out.println("--- Introduzca el número de la consulta de la que quiere modificar el quirófano ---");
         System.out.printf("Número de la consulta: ");
         int numero = Pedir.numeroEntero();
@@ -353,6 +366,7 @@ public class Menu {
     }
 
     private static void modificarGrupoSanguineoHistorial() {
+        visualizarHistoriales();
         System.out.println("--- Introduzca el número del historial al que desea modificar el grupo sanguíneo del paciente ---");
         System.out.printf("Número del historial: ");
         int numero = Pedir.numeroEntero();
