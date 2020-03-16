@@ -1,6 +1,5 @@
 package clinicadentalexist;
 
-import java.util.Date;
 import objetos.Cita;
 import objetos.Consulta;
 import objetos.Dentista;
