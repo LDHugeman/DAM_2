@@ -166,8 +166,14 @@ public class Pedir {
         System.out.println(mensaje);
         System.out.println("[1] Sí");
         System.out.println("[2] No");
-        System.out.printf("Seleccione una opción: ");
-        byte opcion = numeroByte();
+        byte opcion = 0;
+        do {
+            System.out.printf("Seleccione una opción: ");
+            opcion = Pedir.numeroByte();
+            if (!(opcion == 1 || opcion == 2)) {
+                System.err.println("No existe esa opción");
+            }
+        } while (!(opcion == 1 || opcion == 2));
         if (opcion == 1) {
             esSeguroContinuar = true;
         }
